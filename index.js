@@ -122,7 +122,7 @@ class CryptoAPIs {
             res.on('end', () => {
                 
                 try {
-                    
+
                     var obj = JSON.parse(responseStr);
 
                     if (res.statusCode != 200) {
@@ -196,6 +196,36 @@ class CryptoAPIs {
     getOHLCVPeriods() {
         
         return this.executeGetRequest('/ohlcv/periods');
+    }
+
+    getOHLCVLatestData(symbol, period) {
+        
+        return this.executeGetRequest('/ohlcv/latest/' + symbol + '?period=' + period);
+    }
+
+    getOHLCVHistoricalData(symbol, period, timePeriodStart, timePeriodEnd) {
+        
+        return this.executeGetRequest('/ohlcv/history/' + symbol + '?period=' + period + '&timePeriodStart=' + timePeriodStart + '&timePeriodEnd=' + timePeriodEnd);
+    }
+
+    tradesGetLatestData() {
+        
+        return this.executeGetRequest('/trades/latest');
+    }
+
+    tradesGetHistoricalData(symbol, timeStart, timeEnd) {
+        
+        return this.executeGetRequest('/trades/' + symbol + '/history?timeStart=' + timeStart + '&timeEnd=' + timeEnd);
+    }
+
+    quotesGetLatestData() {
+        
+        return this.executeGetRequest('/quotes/latest');
+    }
+
+    quotesGetHistoricalData(symbol, timeStart, timeEnd) {
+        
+        return this.executeGetRequest('/quotes/' + symbol + '/history?timeStart=' + timeStart + '&timeEnd=' + timeEnd);
     }
 }
 

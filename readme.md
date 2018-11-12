@@ -191,8 +191,8 @@ Get OHLCV time-series data for requested symbol and period, returned in time asc
 
 -   `symbol` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Symbol identifier used to filter response.
 -   `period` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Period
--   `timePeriodStart` **([Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number) \| [String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))?** Time period start
--   `timePeriodEnd` **([Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number) \| [String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))?** Time period end
+-   `timePeriodStart` **([Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number) | [String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))** Time period start
+-   `timePeriodEnd` **([Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number) | [String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))** Time period end
 
 #### Example
 
@@ -233,8 +233,8 @@ Get history transactions from specific symbol, returned in time ascending order.
 #### Parameters
 
 -   `symbol_id` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Symbol identifier used to filter response.
--   `timeStart` **([Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number) \| [String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))?** Time start
--   `timeEnd` **([Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number) \| [String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))?** Time end
+-   `timeStart` **([Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number) | [String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))** Time start
+-   `timeEnd` **([Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number) | [String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))** Time end
 
 #### Example
 

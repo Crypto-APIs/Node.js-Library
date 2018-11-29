@@ -1,6 +1,6 @@
 # Cryptoapis.io
 
-[CryptoAPIs](https://cryptoapis.io/) SDK for all Exchanges endpoints. You can get API credentials [here](https://dashboard.cryptoapis.io/register).
+[CryptoAPIs](https://cryptoapis.io/) SDK for all Exchanges endpoints. You can get API token [here](https://dashboard.cryptoapis.io/register).
 
 ## Table of Contents
 
@@ -20,10 +20,9 @@ $ npm install cryptoapis.io
 ```js
 const CryptoApis = require('cryptoapis.io');
 
-const email = 'your email';
-const password = 'your password';
+const token = 'your token';
 
-var caClient = new CryptoApis(email, password);
+var caClient = new CryptoApis(token);
 
 caClient.getAllExchanges().then(function(result) {
     console.log(result);
@@ -40,8 +39,7 @@ Check out [CryptoAPIs documentation](https://docs.cryptoapis.io) for more inform
 
 #### Parameters
 
--   `email` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Your email
--   `password` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Your password
+-   `token` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Your API token
 
 ### getAllExchanges
 

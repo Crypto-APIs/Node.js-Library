@@ -7,14 +7,14 @@ const API_VERSION = 'v1';
 
 class CryptoAPIs {
 
-    constructor (token) {
+    constructor (apiKey) {
 
-        this.token = token;
+        this.apiKey = apiKey;
     }
 
     getRequest(path) {
 
-        var token = this.token;
+        var apiKey = this.apiKey;
 
         return new Promise(function(resolve, reject) {
 
@@ -25,7 +25,7 @@ class CryptoAPIs {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + token
+                    'X-API-Key': apiKey
                 }
             };
 
@@ -47,11 +47,11 @@ class CryptoAPIs {
                         var obj = JSON.parse(responseStr);
 
                         if (res.statusCode != 200) {
-                            
-                            resolve(obj);
-                        } else {
-                            
+
                             reject(obj);
+                        } else {
+
+                            resolve(obj);
                         }
                     } catch (e) {
                         reject('Technical problem.');
@@ -67,38 +67,19 @@ class CryptoAPIs {
         });
     }
 
-    /*executeGetRequest (path) {
+    getAllExchanges(skip = 0, limit = 100) {
 
-        var tasks = [];
-
-        tasks.push(this.getRequest.bind(this, path));
-
-        return new Promise(function(resolve, reject) {
-
-            async.series(tasks, function(error, results) {
-                
-                if (error) {
-                    reject(error);
-                } else {
-                    resolve(results.pop());
-                }
-            });
-        });
-    }*/
-
-    getAllExchanges() {
-
-        return this.getRequest('/exchanges');
+        return this.getRequest('/exchanges?skip=' + skip + '&limit=' + limit);
     }
 
-    getAllAssets() {
+    getAllAssets(skip = 0, limit = 100) {
 
-        return this.getRequest('/assets');
+        return this.getRequest('/assets?skip=' + skip + '&limit=' + limit);
     }
 
-    getAllSymbols() {
+    getAllSymbols(skip = 0, limit = 100) {
 
-        return this.getRequest('/mappings');
+        return this.getRequest('/mappings?skip=' + skip + '&limit=' + limit);
     }
 
     getSpecificRate(baseAsset, quoteAsset) {
@@ -116,19 +97,19 @@ class CryptoAPIs {
         return this.getRequest('/ohlcv/periods');
     }
 
-    getOHLCVLatestData(symbol, period) {
+    getOHLCVLatestData(symbol, period, limit = 100) {
         
-        return this.getRequest('/ohlcv/latest/' + symbol + '?period=' + period);
+        return this.getRequest('/ohlcv/latest/' + symbol + '?period=' + period + '&limit=' + limit);
     }
 
-    getOHLCVHistoricalData(symbol, period, timePeriodStart, timePeriodEnd) {
+    getOHLCVHistoricalData(symbol, period, timePeriodStart, timePeriodEnd, limit = 100) {
         
-        return this.getRequest('/ohlcv/history/' + symbol + '?period=' + period + '&timePeriodStart=' + timePeriodStart + '&timePeriodEnd=' + timePeriodEnd);
+        return this.getRequest('/ohlcv/history/' + symbol + '?period=' + period + '&timePeriodStart=' + timePeriodStart + '&timePeriodEnd=' + timePeriodEnd + '&limit=' + limit);
     }
 
-    tradesGetLatestData() {
+    tradesGetLatestData(skip = 0, limit = 100) {
         
-        return this.getRequest('/trades/latest');
+        return this.getRequest('/trades/latest?skip=' + skip + '&limit=' + limit);
     }
 
     tradesGetHistoricalData(symbol, timeStart, timeEnd) {

@@ -1,6 +1,6 @@
 # Cryptoapis.io
 
-[CryptoAPIs](https://cryptoapis.io/) SDK for all Exchanges endpoints. You can get API token [here](https://dashboard.cryptoapis.io/register).
+[CryptoAPIs](https://cryptoapis.io/) SDK for all Exchanges endpoints. You can get API key [here](https://dashboard.cryptoapis.io/register).
 
 ## Table of Contents
 
@@ -20,11 +20,12 @@ $ npm install cryptoapis.io
 ```js
 const CryptoApis = require('cryptoapis.io');
 
-const token = 'your token';
+const apiKey = 'your API key';
 
-var caClient = new CryptoApis(token);
+var caClient = new CryptoApis(apiKey);
 
 caClient.getAllExchanges().then(function(result) {
+
     console.log(result);
 }, function(error) {
     console.log(error);
@@ -39,20 +40,26 @@ Check out [CryptoAPIs documentation](https://docs.cryptoapis.io) for more inform
 
 #### Parameters
 
--   `token` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Your API token
+-   `apiKey` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Your API key
 
 ### getAllExchanges
 
 Get a detailed list of all supported exchanges provided by CryptoAPIs.
 
+#### Parameters
+
+-   `skip` (optional) **([Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Offset results. Default value is 0
+-   `limit` (optional) **([Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Limit results. Default limit is 100
+
 #### Example
 
 ```js
 const CryptoApis = require('cryptoapis.io');
-const email = 'your email';
-const password = 'your password';
-var caClient = new CryptoApis(email, password);
-caClient.getAllExchanges().then(function(result) {
+const apiKey = 'your API key';
+var skip = 0;
+var limit = 20;
+var caClient = new CryptoApis(apiKey);
+caClient.getAllExchanges(skip, limit).then(function(result) {
     console.log(result);
 }, function(error) {
     console.log(error);
@@ -63,14 +70,20 @@ caClient.getAllExchanges().then(function(result) {
 
 Get detailed list of all associated assets.
 
+#### Parameters
+
+-   `skip` (optional) **([Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Offset results. Default value is 0
+-   `limit` (optional) **([Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Limit results. Default limit is 100
+
 #### Example
 
 ```js
 const CryptoApis = require('cryptoapis.io');
-const email = 'your email';
-const password = 'your password';
-var caClient = new CryptoApis(email, password);
-caClient.getAllAssets().then(function(result) {
+const apiKey = 'your API key';
+var skip = 0;
+var limit = 5;
+var caClient = new CryptoApis(apiKey);
+caClient.getAllAssets(skip, limit).then(function(result) {
     console.log(result);
 }, function(error) {
     console.log(error);
@@ -81,14 +94,20 @@ caClient.getAllAssets().then(function(result) {
 
 Get a detailed list of all symbol mappings.
 
+#### Parameters
+
+-   `skip` (optional) **([Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Offset results. Default value is 0
+-   `limit` (optional) **([Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Limit results. Default limit is 100
+
 #### Example
 
 ```js
 const CryptoApis = require('cryptoapis.io');
-const email = 'your email';
-const password = 'your password';
-var caClient = new CryptoApis(email, password);
-caClient.getAllSymbols().then(function(result) {
+const apiKey = 'your API key';
+var skip = 0;
+var limit = 10;
+var caClient = new CryptoApis(apiKey);
+caClient.getAllSymbols(skip, limit).then(function(result) {
     console.log(result);
 }, function(error) {
     console.log(error);
@@ -108,9 +127,8 @@ Get exchange rates between pair of requested assets.
 
 ```js
 const CryptoApis = require('cryptoapis.io');
-const email = 'your email';
-const password = 'your password';
-var caClient = new CryptoApis(email, password);
+const apiKey = 'your API key';
+var caClient = new CryptoApis(apiKey);
 caClient.getSpecificRate('BTC', 'USD').then(function(result) {
     console.log(result);
 }, function(error) {
@@ -130,9 +148,8 @@ Get the current exchange rate between requested asset and all other assets.
 
 ```js
 const CryptoApis = require('cryptoapis.io');
-const email = 'your email';
-const password = 'your password';
-var caClient = new CryptoApis(email, password);
+const apiKey = 'your API key';
+var caClient = new CryptoApis(apiKey);
 caClient.getAllCurrentRates('BTC').then(function(result) {
     console.log(result);
 }, function(error) {
@@ -148,9 +165,8 @@ Get full list of time periods available for requesting OHLCV data.
 
 ```js
 const CryptoApis = require('cryptoapis.io');
-const email = 'your email';
-const password = 'your password';
-var caClient = new CryptoApis(email, password);
+const apiKey = 'your API key';
+var caClient = new CryptoApis(apiKey);
 caClient.getOHLCVPeriods().then(function(result) {
     console.log(result);
 }, function(error) {
@@ -166,15 +182,15 @@ Get OHLCV latest time-series data for requested symbol and period, returned in t
 
 -   `symbol` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Symbol identifier used to filter response.
 -   `period` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Period
+-   `limit` (optional) **([Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Limit results. Default limit is 100
 
 #### Example
 
 ```js
 const CryptoApis = require('cryptoapis.io');
-const email = 'your email';
-const password = 'your password';
-var caClient = new CryptoApis(email, password);
-caClient.getOHLCVLatestData('5b45b055401814000123ebf7', '1day').then(function(result) {
+const apiKey = 'your API key';
+var caClient = new CryptoApis(apiKey);
+caClient.getOHLCVLatestData('5b45b055401814000123ebf7', '1day', 50).then(function(result) {
     console.log(result);
 }, function(error) {
     console.log(error);
@@ -191,15 +207,15 @@ Get OHLCV time-series data for requested symbol and period, returned in time asc
 -   `period` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Period
 -   `timePeriodStart` **([Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number) | [String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))** Time period start
 -   `timePeriodEnd` **([Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number) | [String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))** Time period end
+-   `limit` (optional) **([Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Limit results. Default limit is 100
 
 #### Example
 
 ```js
 const CryptoApis = require('cryptoapis.io');
-const email = 'your email';
-const password = 'your password';
-var caClient = new CryptoApis(email, password);
-caClient.getOHLCVHistoricalData('5b1ea92e584bf50020130612', '1day', 1514764800, 1546300800).then(function(result) {
+const apiKey = 'your API key';
+var caClient = new CryptoApis(apiKey);
+caClient.getOHLCVHistoricalData('5b1ea92e584bf50020130612', '1day', 1514764800, 1546300800, 20).then(function(result) {
     console.log(result);
 }, function(error) {
     console.log(error);
@@ -210,14 +226,18 @@ caClient.getOHLCVHistoricalData('5b1ea92e584bf50020130612', '1day', 1514764800, 
 
 Get latest trades from all symbols up to 1 hour ago
 
+#### Parameters
+
+-   `skip` (optional) **([Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Offset results. Default value is 0
+-   `limit` (optional) **([Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Limit results. Default limit is 100
+
 #### Example
 
 ```js
 const CryptoApis = require('cryptoapis.io');
-const email = 'your email';
-const password = 'your password';
-var caClient = new CryptoApis(email, password);
-caClient.tradesGetLatestData().then(function(result) {
+const apiKey = 'your API key';
+var caClient = new CryptoApis(apiKey);
+caClient.tradesGetLatestData(0, 10).then(function(result) {
     console.log(result);
 }, function(error) {
     console.log(error);
@@ -238,9 +258,8 @@ Get history transactions from specific symbol, returned in time ascending order.
 
 ```js
 const CryptoApis = require('cryptoapis.io');
-const email = 'your email';
-const password = 'your password';
-var caClient = new CryptoApis(email, password);
+const apiKey = 'your API key';
+var caClient = new CryptoApis(apiKey);
 caClient.tradesGetHistoricalData('5b45b055401814000123ebf7', 1542955177, 1556355177).then(function(result) {
     console.log(result);
 }, function(error) {

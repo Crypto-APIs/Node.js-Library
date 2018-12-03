@@ -289,3 +289,7 @@ caClient.tradesGetHistoricalData('5bfc329f9c40a100014dc5a7', 1542955177, 1556355
     console.log(error);
 });
 ```
+
+## License
+
+MIT

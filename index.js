@@ -112,19 +112,24 @@ class CryptoAPIs {
         return this.getRequest('/trades/latest?skip=' + skip + '&limit=' + limit);
     }
 
-    tradesGetHistoricalData(symbol, timeStart, timeEnd) {
+    tradesGetLatestDataBySymbol(symbol) {
         
-        return this.getRequest('/trades/' + symbol + '/history?timeStart=' + timeStart + '&timeEnd=' + timeEnd);
+        return this.getRequest('/trades/' + symbol + '/latest');
     }
 
-    quotesGetLatestData() {
+    tradesGetHistoricalData(symbol, timeStart, timeEnd, skip = 0, limit = 100) {
         
-        return this.getRequest('/quotes/latest');
+        return this.getRequest('/trades/' + symbol + '/history?timeStart=' + timeStart + '&timeEnd=' + timeEnd + '&skip=' + skip + '&limit=' + limit);
     }
 
-    quotesGetHistoricalData(symbol, timeStart, timeEnd) {
+    quotesGetLatestData(skip = 0, limit = 100) {
         
-        return this.getRequest('/quotes/' + symbol + '/history?timeStart=' + timeStart + '&timeEnd=' + timeEnd);
+        return this.getRequest('/quotes/latest?skip=' + skip + '&limit=' + limit);
+    }
+
+    quotesGetHistoricalData(symbol, timeStart, timeEnd, skip = 0, limit = 100) {
+        
+        return this.getRequest('/quotes/' + symbol + '/history?timeStart=' + timeStart + '&timeEnd=' + timeEnd + '&skip=' + skip + '&limit=' + limit);
     }
 }
 

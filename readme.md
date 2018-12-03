@@ -190,7 +190,7 @@ Get OHLCV latest time-series data for requested symbol and period, returned in t
 const CryptoApis = require('cryptoapis.io');
 const apiKey = 'your API key';
 var caClient = new CryptoApis(apiKey);
-caClient.getOHLCVLatestData('5b45b055401814000123ebf7', '1day', 50).then(function(result) {
+caClient.getOHLCVLatestData('5bfc329f9c40a100014dc5a7', '1day', 10).then(function(result) {
     console.log(result);
 }, function(error) {
     console.log(error);
@@ -215,7 +215,7 @@ Get OHLCV time-series data for requested symbol and period, returned in time asc
 const CryptoApis = require('cryptoapis.io');
 const apiKey = 'your API key';
 var caClient = new CryptoApis(apiKey);
-caClient.getOHLCVHistoricalData('5b1ea92e584bf50020130612', '1day', 1514764800, 1546300800, 20).then(function(result) {
+caClient.getOHLCVHistoricalData('5bfc329f9c40a100014dc5a7', '1day', 1542955177, 1556355177, 2).then(function(result) {
     console.log(result);
 }, function(error) {
     console.log(error);
@@ -244,6 +244,27 @@ caClient.tradesGetLatestData(0, 10).then(function(result) {
 });
 ```
 
+### tradesGetLatestDataBySymbol
+
+Get latest trades from a specific symbol without time limitation
+
+#### Parameters
+
+-   `symbol` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Symbol identifier used to filter response.
+
+#### Example
+
+```js
+const CryptoApis = require('cryptoapis.io');
+const apiKey = 'your API key';
+var caClient = new CryptoApis(apiKey);
+caClient.tradesGetLatestDataBySymbol('5bfc329f9c40a100014dc5a7').then(function(result) {
+    console.log(result);
+}, function(error) {
+    console.log(error);
+});
+```
+
 ### tradesGetHistoricalData
 
 Get history transactions from specific symbol, returned in time ascending order. If no start & end time is defined, your data results will be provided 24 hours back, by default.
@@ -253,6 +274,8 @@ Get history transactions from specific symbol, returned in time ascending order.
 -   `symbol_id` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Symbol identifier used to filter response.
 -   `timeStart` **([Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number) | [String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))** Time start
 -   `timeEnd` **([Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number) | [String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))** Time end
+-   `skip` (optional) **([Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Offset results. Default value is 0
+-   `limit` (optional) **([Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Limit results. Default limit is 100
 
 #### Example
 
@@ -260,7 +283,7 @@ Get history transactions from specific symbol, returned in time ascending order.
 const CryptoApis = require('cryptoapis.io');
 const apiKey = 'your API key';
 var caClient = new CryptoApis(apiKey);
-caClient.tradesGetHistoricalData('5b45b055401814000123ebf7', 1542955177, 1556355177).then(function(result) {
+caClient.tradesGetHistoricalData('5bfc329f9c40a100014dc5a7', 1542955177, 1556355177, 0, 10).then(function(result) {
     console.log(result);
 }, function(error) {
     console.log(error);

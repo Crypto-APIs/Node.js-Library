@@ -1,6 +1,6 @@
 {
   "name": "cryptoapis.io",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Cryptoapis SDK",
   "main": "index.js",
   "scripts": {
@@ -8,10 +8,19 @@
   },
   "author": "MENA Software",
   "license": "MIT",
+  "homepage": "https://github.com/Crypto-APIs/nodejs-package",
+  "repository": {
+    "url": "git+https://github.com/Crypto-APIs/nodejs-package.git",
+    "type": "git"
+  },
   "keywords": [
     "cryptoapis",
     "bitcoin",
+    "cash",
     "ethereum",
-    "cryptocurrency"
+    "litecoin",
+    "cryptocurrency",
+    "coinmarketcap",
+    "coinapi"
   ]
 }

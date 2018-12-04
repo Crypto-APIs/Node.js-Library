@@ -1,12 +1,12 @@
 {
   "name": "cryptoapis.io",
-  "version": "1.0.4",
-  "description": "Cryptoapis SDK",
+  "version": "1.0.5",
+  "description": "Crypto APIs SDK",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "MENA Software",
+  "author": "Crypto APIs",
   "license": "MIT",
   "homepage": "https://github.com/Crypto-APIs/nodejs-package",
   "repository": {

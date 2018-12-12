@@ -1,6 +1,6 @@
 # Cryptoapis.io
 
-[CryptoAPIs](https://cryptoapis.io/) SDK for all Exchanges endpoints. You can get API key [here](https://dashboard.cryptoapis.io/register).
+[CryptoAPIs](https://cryptoapis.io/) SDK for all Exchanges and Bitcoin endpoints. You can get API key [here](https://dashboard.cryptoapis.io/register).
 
 ## Table of Contents
 

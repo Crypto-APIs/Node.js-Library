@@ -1,6 +1,6 @@
 # Cryptoapis.io
 
-[CryptoAPIs](https://cryptoapis.io/) SDK for all Exchanges and Bitcoin endpoints. You can get API key [here](https://dashboard.cryptoapis.io/register).
+[CryptoAPIs](https://cryptoapis.io/) SDK for all Exchanges, Bitcoin and Ethereum endpoints. You can get API key [here](https://dashboard.cryptoapis.io/register).
 
 ## Table of Contents
 
@@ -452,8 +452,8 @@ The Address Transactions Endpoint returns all information available about a part
 
 -   `network` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Network name (mainnet or testnet)
 -   `address` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Bitcoin address
--   `index` (optional) **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number** Offset results. Default value is 0
--   `limit` (optional) **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number** Limit results. Default limit is 50
+-   `index` (optional) **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Offset results. Default value is 0
+-   `limit` (optional) **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Limit results. Default limit is 50
 
 #### Example
 
@@ -819,7 +819,7 @@ Returns an array of the latest transactions. By default it is for last 24 hours
 
 -   `network` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Network name (mainnet or testnet)
 -   `txsIncluded` **[Boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** Whether transactions to be included in response. Default true
--   `index` (optional) **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number** Offset results. Default value is 0
+-   `index` (optional) **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Offset results. Default value is 0
 -   `limit` (optional) **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Limit. Default limit is 50
 
 #### Example
@@ -1113,6 +1113,702 @@ const CryptoApis = require('cryptoapis.io');
 const apiKey = 'your API key';
 var caClient = new CryptoApis(apiKey);
 caClient.deleteBitcoinWebHook('mainnet', '232c9f47-ff47-401c-9681-9d854e497c8a').then(function(result) {
+    console.log(result);
+}, function(error) {
+    console.log(error);
+});
+```
+
+### getEthereumInfo
+
+General information about Ethereum blockchain.
+
+#### Parameters
+
+-   `network` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Network name (mainnet, ropsten or rinkeby)
+
+#### Example
+
+```js
+const CryptoApis = require('cryptoapis.io');
+const apiKey = 'your API key';
+var caClient = new CryptoApis(apiKey);
+caClient.getEthereumInfo('mainnet').then(function(result) {
+    console.log(result);
+}, function(error) {
+    console.log(error);
+});
+```
+
+### getEthereumBlock
+
+Information for particular block in the blockchain.
+
+#### Parameters
+
+-   `network` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Network name (mainnet, ropsten or rinkeby)
+-   `block` **([Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number) | [String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))** Block height or block hash
+
+#### Example
+
+```js
+const CryptoApis = require('cryptoapis.io');
+const apiKey = 'your API key';
+var caClient = new CryptoApis(apiKey);
+caClient.getEthereumBlock('mainnet', 6873814).then(function(result) {
+    console.log(result);
+}, function(error) {
+    console.log(error);
+});
+```
+
+### getEthereumLatestBlock
+
+Latest Block method gives you detail information for the latest block in the blockchain
+
+#### Parameters
+
+-   `network` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Network name (mainnet, ropsten or rinkeby)
+
+#### Example
+
+```js
+const CryptoApis = require('cryptoapis.io');
+const apiKey = 'your API key';
+var caClient = new CryptoApis(apiKey);
+caClient.getEthereumLatestBlock('mainnet').then(function(result) {
+    console.log(result);
+}, function(error) {
+    console.log(error);
+});
+```
+
+### getEthereumAddressBalance
+
+Get address balance
+
+#### Parameters
+
+-   `network` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Network name (mainnet, ropsten or rinkeby)
+-   `address` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Ethereum address
+
+#### Example
+
+```js
+const CryptoApis = require('cryptoapis.io');
+const apiKey = 'your API key';
+var caClient = new CryptoApis(apiKey);
+caClient.getEthereumAddressBalance('ropsten', '0x0cb1883c01377f45ee5d7448a32b5ac1709afc11').then(function(result) {
+    console.log(result);
+}, function(error) {
+    console.log(error);
+});
+```
+
+### getEthereumAddressInfo
+
+Get address information
+
+#### Parameters
+
+-   `network` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Network name (mainnet, ropsten or rinkeby)
+-   `address` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Ethereum address
+
+#### Example
+
+```js
+const CryptoApis = require('cryptoapis.io');
+const apiKey = 'your API key';
+var caClient = new CryptoApis(apiKey);
+caClient.getEthereumAddressInfo('ropsten', '0x0cb1883c01377f45ee5d7448a32b5ac1709afc11').then(function(result) {
+    console.log(result);
+}, function(error) {
+    console.log(error);
+});
+```
+
+### getEthereumAddressTransactions
+
+Returns all transactions specified by the query params: index and limit.
+
+#### Parameters
+
+-   `network` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Network name (mainnet, ropsten or rinkeby)
+-   `address` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Ethereum address
+-   `index` (optional) **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Start from. Default value is 0
+-   `limit` (optional) **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Limit. Default limit is 50
+
+#### Example
+
+```js
+const CryptoApis = require('cryptoapis.io');
+const apiKey = 'your API key';
+var caClient = new CryptoApis(apiKey);
+caClient.getEthereumAddressTransactions('ropsten', '0x0cb1883c01377f45ee5d7448a32b5ac1709afc11', 0, 10).then(function(result) {
+    console.log(result);
+}, function(error) {
+    console.log(error);
+});
+```
+
+### generateEthereumAddress
+
+Generate private-public key-pairs along with an associated public address.
+
+#### Parameters
+
+-   `network` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Network name (mainnet, ropsten or rinkeby)
+
+#### Example
+
+```js
+const CryptoApis = require('cryptoapis.io');
+const apiKey = 'your API key';
+var caClient = new CryptoApis(apiKey);
+caClient.generateEthereumAddress('mainnet').then(function(result) {
+    console.log(result);
+}, function(error) {
+    console.log(error);
+});
+```
+
+### generateEthereumAccount
+
+Generate private-public key-pairs along with an associated public address encoded in a keyfile.
+
+#### Parameters
+
+-   `network` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Network name (mainnet, ropsten or rinkeby)
+-   `password` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Password
+
+#### Example
+
+```js
+const CryptoApis = require('cryptoapis.io');
+const apiKey = 'your API key';
+var caClient = new CryptoApis(apiKey);
+caClient.generateEthereumAccount('mainnet', 'kl423jkls$3kl').then(function(result) {
+    console.log(result);
+}, function(error) {
+    console.log(error);
+});
+```
+
+### getEthereumTransaction
+
+Returns detailed information about a given transaction based on its hash.
+
+#### Parameters
+
+-   `network` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Network name (mainnet, ropsten or rinkeby)
+-   `txHash` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Transaction hash
+
+#### Example
+
+```js
+const CryptoApis = require('cryptoapis.io');
+const apiKey = 'your API key';
+var caClient = new CryptoApis(apiKey);
+caClient.getEthereumTransaction('mainnet', '0x52afade154e72b3f9059f9a0330bd8f9c9b6ccf73f9a6ef75fa6814bf941ceae').then(function(result) {
+    console.log(result);
+}, function(error) {
+    console.log(error);
+});
+```
+
+### getEthereumTransactionsByBlock
+
+Get ethereum transactions by block number
+
+#### Parameters
+
+-   `network` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Network name (mainnet, ropsten or rinkeby)
+-   `block` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Block number
+-   `index` (optional) **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Start from. Default value is 0
+-   `limit` (optional) **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Limit. Default limit is 50
+
+#### Example
+
+```js
+const CryptoApis = require('cryptoapis.io');
+const apiKey = 'your API key';
+var caClient = new CryptoApis(apiKey);
+caClient.getEthereumTransactionsByBlock('mainnet', 6878377, 0, 10).then(function(result) {
+    console.log(result);
+}, function(error) {
+    console.log(error);
+});
+```
+
+### getEthereumTransactionByIndexInBlock
+
+Returns detailed information about a given transaction based on its index and block.
+
+#### Parameters
+
+-   `network` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Network name (mainnet, ropsten or rinkeby)
+-   `block` **([Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number) | [String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String))** Block height or block hash
+-   `index` (optional) **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Index of the transaction in block
+
+#### Example
+
+```js
+const CryptoApis = require('cryptoapis.io');
+const apiKey = 'your API key';
+var caClient = new CryptoApis(apiKey);
+caClient.getEthereumTransactionByIndexInBlock('mainnet', 6878377, 0).then(function(result) {
+    console.log(result);
+}, function(error) {
+    console.log(error);
+});
+```
+
+### createEthereumTransaction
+
+Create new transaction using keystore file stored on our server. In order to use this endpoint you should have an account (keystore file) stored on our servers.
+
+#### Parameters
+
+-   `network` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Network name (mainnet, ropsten or rinkeby)
+-   `from` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Input address
+-   `to` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Output address
+-   `gasPrice` **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Gas price
+-   `gasLimit` **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Gas limit
+-   `value` **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Value to transfer (in Ether)
+-   `password` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Account password
+
+#### Example
+
+```js
+const CryptoApis = require('cryptoapis.io');
+const apiKey = 'your API key';
+var caClient = new CryptoApis(apiKey);
+caClient.createEthereumTransaction('ropsten', '0xc56b7f5264eb24b6b2bf2eb59184c521f0770d52', '0x0cb1883c01377f45ee5d7448a32b5ac1709afc11', 21000000000, 21000, 1.12, 'kl423jkls$3kl').then(function(result) {
+    console.log(result);
+}, function(error) {
+    console.log(error);
+});
+```
+
+### createEthereumTransactionWithPrivateKey
+
+Create new transaction for address which is not hold on Crypto APIs servers.
+
+#### Parameters
+
+-   `network` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Network name (mainnet, ropsten or rinkeby)
+-   `from` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Input address
+-   `to` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Output address
+-   `gasPrice` **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Gas price
+-   `gasLimit` **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Gas limit
+-   `value` **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Value to transfer (in Ether)
+-   `privateKey` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Private key
+
+#### Example
+
+```js
+const CryptoApis = require('cryptoapis.io');
+const apiKey = 'your API key';
+var caClient = new CryptoApis(apiKey);
+caClient.createEthereumTransactionWithPrivateKey('ropsten', '0xc56b7f5264eb24b6b2bf2eb59184c521f0770d52', '0x0cb1883c01377f45ee5d7448a32b5ac1709afc11', 21000000000, 21000, 1.12, '0x17de216dff24b36c35af535c7d4d9d36f57326f3ee8aaf7fd373715c27a15b7e').then(function(result) {
+    console.log(result);
+}, function(error) {
+    console.log(error);
+});
+```
+
+### sendEthereumTransaction
+
+Send transaction
+
+#### Parameters
+
+-   `network` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Network name (mainnet, ropsten or rinkeby)
+-   `from` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Input address
+-   `to` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Output address
+-   `value` **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Value to transfer (in Ether)
+
+#### Example
+
+```js
+const CryptoApis = require('cryptoapis.io');
+const apiKey = 'your API key';
+var caClient = new CryptoApis(apiKey);
+caClient.sendEthereumTransaction('ropsten', '0xc56b7f5264eb24b6b2bf2eb59184c521f0770d52', '0x0cb1883c01377f45ee5d7448a32b5ac1709afc11', 1.12).then(function(result) {
+    console.log(result);
+}, function(error) {
+    console.log(error);
+});
+```
+
+### pushEthereumTransaction
+
+Push transaction
+
+#### Parameters
+
+-   `network` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Network name (mainnet, ropsten or rinkeby)
+-   `signedTx` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Hex-encoded raw representation of your transaction
+
+#### Example
+
+```js
+const CryptoApis = require('cryptoapis.io');
+const apiKey = 'your API key';
+var caClient = new CryptoApis(apiKey);
+var signedTx = '0xf86a22827d00831e8480941b85a43e2e7f52e766ddfdfa2b901c42cb1201be8801b27f33b807c0008029a084ccbf02b27e0842fb1eda7a187a5589c3759be0e969e0ca989dc469a5e5e394a02e111e1156b197f1de4c1d9ba4af26e50665ea6d617d05b3e4047da12b915e69';
+caClient.pushEthereumTransaction('ropsten', signedTx).then(function(result) {
+    console.log(result);
+}, function(error) {
+    console.log(error);
+});
+```
+
+### estimateEthereumTransactionGas
+
+Estimate Transaction Gas
+
+#### Parameters
+
+-   `network` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Network name (mainnet, ropsten or rinkeby)
+-   `from` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Input address
+-   `to` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Output address
+-   `value` **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Value to transfer (in Ether)
+-   `data` (optional) **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Optional data. However, if data is added it should be a valid hexadecimal number otherwise an error will be returned
+
+#### Example
+
+```js
+const CryptoApis = require('cryptoapis.io');
+const apiKey = 'your API key';
+var caClient = new CryptoApis(apiKey);
+var data = '24224747A80F225FD841E7AB2806A2FDF78525B58C1BC1F5D5A5D3943B4214B6C350CE0D973CAD81BD7A6E57048A487939D7CD6373BF8C9F3ADB6328f7';
+caClient.estimateEthereumTransactionGas('ropsten', '0x7857af2143cb06ddc1dab5d7844c9402e89717cb', '0xc595B20EEC3d35E8f993d79262669F3ADb6328f7', 0.12, data).then(function(result) {
+    console.log(result);
+}, function(error) {
+    console.log(error);
+});
+```
+
+### estimateEthereumSmartContractGas
+
+Estimate Gas Smart Contract
+
+#### Parameters
+
+-   `network` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Network name (mainnet, ropsten or rinkeby)
+
+#### Example
+
+```js
+const CryptoApis = require('cryptoapis.io');
+const apiKey = 'your API key';
+var caClient = new CryptoApis(apiKey);
+caClient.estimateEthereumSmartContractGas('ropsten').then(function(result) {
+    console.log(result);
+}, function(error) {
+    console.log(error);
+});
+```
+
+### deployEthereumSmartContract
+
+Deploy Smart Contract
+
+#### Parameters
+
+-   `network` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Network name (mainnet, ropsten or rinkeby)
+-   `privateKey` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Private key
+-   `from` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Input address
+-   `gasPrice` **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Gas price
+-   `gasLimit` **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Gas limit
+-   `byteCode` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Contract bytecode - compiled to binary solidity code
+
+#### Example
+
+```js
+const CryptoApis = require('cryptoapis.io');
+const apiKey = 'your API key';
+var caClient = new CryptoApis(apiKey);
+var privateKey = '4f75aff19dd7acbf7c4d5d6f736176a3fe2db1ec9b60cc11d30dc3c343520ed1';
+var byteCode = '0x60806040523480156200001157600080fd5b50336000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055506040805190810160405280600481526020017f4d464b54000000000000000000000000000000000000000000000000000000008fffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161415156116b457600080fd5b80600160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373fffff';
+caClient.deployEthereumSmartContract('rinkeby', privateKey, '0xe7cc96ba0562dfba61a55c8dd2e162a30942f402', 21000000000, 2100000, byteCode).then(function(result) {
+    console.log(result);
+}, function(error) {
+    console.log(error);
+});
+```
+
+### getEthereumAddressTokenBalance
+
+Get Token Balance
+
+#### Parameters
+
+-   `network` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Network name (mainnet, ropsten or rinkeby)
+-   `address` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Ethereum address
+-   `contract` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Contract address
+
+#### Example
+
+```js
+const CryptoApis = require('cryptoapis.io');
+const apiKey = 'your API key';
+var caClient = new CryptoApis(apiKey);
+caClient.getEthereumAddressTokenBalance('rinkeby', '0x0cb1883c01377f45ee5d7448a32b5ac1709afc11', '0xe7d553c3aab5943ec097d60535fd06f1b75db43e').then(function(result) {
+    console.log(result);
+}, function(error) {
+    console.log(error);
+});
+```
+
+### ethereumTransferTokens
+
+Transfer Tokens. You must use the private key or password (if it is an account stored on our servers)
+
+#### Parameters
+
+-   `network` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Network name (mainnet, ropsten or rinkeby)
+-   `fromAddress` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** From address
+-   `toAddress` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** To address
+-   `contract` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Contract address
+-   `gasPrice` **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Gas price
+-   `gasLimit` **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Gas limit
+-   `token` **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** The amount of tokens you would like to transfer
+-   `password` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Account password. Pass null if you use privateKey
+-   `privateKey` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Private key
+
+#### Example
+
+```js
+const CryptoApis = require('cryptoapis.io');
+const apiKey = 'your API key';
+var caClient = new CryptoApis(apiKey);
+caClient.ethereumTransferTokens('rinkeby', '0x0cb1883c01377f45ee5d7448a32b5ac1709afc11', '0x0cb1883c01377f45ee5d7448a32b5ac1709afc11', '0xe7d553c3aab5943ec097d60535fd06f1b75db43e', 11500000000, 60000, 115, null, '0xeb38783ad75d8081fb9105baee6ac9413c4abd732ef889116714f271cde6aed').then(function(result) {
+    console.log(result);
+}, function(error) {
+    console.log(error);
+});
+```
+
+### ethereumCreatePayment
+
+Create Payment Forwarding. You must use the private key or password (if it is an account stored on our servers)
+
+#### Parameters
+
+-   `network` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Network name (mainnet, ropsten or rinkeby)
+-   `fromAddress` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** From address
+-   `toAddress` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** To address
+-   `callbackURL` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Callback URL
+-   `password` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Account password. Pass null if you use privateKey
+-   `privateKey` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Private key
+
+#### Example
+
+```js
+const CryptoApis = require('cryptoapis.io');
+const apiKey = 'your API key';
+var caClient = new CryptoApis(apiKey);
+caClient.ethereumCreatePayment('rinkeby', '0x195831d0fa4888c3fd577110d23ee464265c551a', '0x12b1883c01377f45ee5d7448a32b5ac1709af076', 'your callback url', null, '0x17de216dff24b36c35af535c7d4d9d36f57326f3ee8aaf7fd373715c27a15b7e').then(function(result) {
+    console.log(result);
+}, function(error) {
+    console.log(error);
+});
+```
+
+### ethereumDeletePayment
+
+Delete Payment Forwarding
+
+#### Parameters
+
+-   `network` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Network name (mainnet, ropsten or rinkeby)
+-   `uuid` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** The uuid of the payment
+
+#### Example
+
+```js
+const CryptoApis = require('cryptoapis.io');
+const apiKey = 'your API key';
+var caClient = new CryptoApis(apiKey);
+caClient.ethereumDeletePayment('rinkeby', 'a2e2498a-a8e5-40a0-adb4-4b4b736c233c').then(function(result) {
+    console.log(result);
+}, function(error) {
+    console.log(error);
+});
+```
+
+### ethereumListPayment
+
+List of Forward Payments By Users
+
+#### Parameters
+
+-   `network` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Network name (mainnet, ropsten or rinkeby)
+
+#### Example
+
+```js
+const CryptoApis = require('cryptoapis.io');
+const apiKey = 'your API key';
+var caClient = new CryptoApis(apiKey);
+caClient.ethereumListPayment('rinkeby').then(function(result) {
+    console.log(result);
+}, function(error) {
+    console.log(error);
+});
+```
+
+### ethereumListPaymentHistory
+
+List of Past Forward Payments By Users
+
+#### Parameters
+
+-   `network` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Network name (mainnet, ropsten or rinkeby)
+
+#### Example
+
+```js
+const CryptoApis = require('cryptoapis.io');
+const apiKey = 'your API key';
+var caClient = new CryptoApis(apiKey);
+caClient.ethereumListPaymentHistory('rinkeby').then(function(result) {
+    console.log(result);
+}, function(error) {
+    console.log(error);
+});
+```
+
+### ethereumCreateUnconfirmedTransactionWebHook
+
+Create WebHook triggered for every pending transaction in the Ethereum Blockchain before it's confirmed in a block, basically, for every unconfirmed transaction
+
+#### Parameters
+
+-   `network` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Network name (mainnet, ropsten or rinkeby)
+-   `callbackURL` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Callback URL
+
+#### Example
+
+```js
+const CryptoApis = require('cryptoapis.io');
+const apiKey = 'your API key';
+var caClient = new CryptoApis(apiKey);
+caClient.ethereumCreateUnconfirmedTransactionWebHook('ropsten', 'your callback url').then(function(result) {
+    console.log(result);
+}, function(error) {
+    console.log(error);
+});
+```
+
+### ethereumCreateConfirmedTransactionWebHook
+
+Create WebHook triggered for every new transaction making it into a new block
+
+#### Parameters
+
+-   `network` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Network name (mainnet, ropsten or rinkeby)
+-   `callbackURL` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Callback URL
+-   `transaction` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Transaction hash
+-   `confirmations` **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Confirmations
+
+#### Example
+
+```js
+const CryptoApis = require('cryptoapis.io');
+const apiKey = 'your API key';
+var caClient = new CryptoApis(apiKey);
+caClient.ethereumCreateConfirmedTransactionWebHook('mainnet', 'your callback url', '0x87da27245076441baf7bcc6e93d328d80d11297a3a247a1ce3019168be3b7a36', 10).then(function(result) {
+    console.log(result);
+}, function(error) {
+    console.log(error);
+});
+```
+
+### ethereumCreateNewBlockWebHook
+
+Create WebHook triggered for every new block
+
+#### Parameters
+
+-   `network` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Network name (mainnet, ropsten or rinkeby)
+-   `callbackURL` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Callback URL
+
+#### Example
+
+```js
+const CryptoApis = require('cryptoapis.io');
+const apiKey = 'your API key';
+var caClient = new CryptoApis(apiKey);
+caClient.ethereumCreateNewBlockWebHook('rinkeby', 'your callback url').then(function(result) {
+    console.log(result);
+}, function(error) {
+    console.log(error);
+});
+```
+
+### ethereumCreateAddressTransactionWebHook
+
+Create Ethereum Address Transaction WebHook
+
+#### Parameters
+
+-   `network` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Network name (mainnet, ropsten or rinkeby)
+-   `callbackURL` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Callback URL
+-   `address` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Ethereum address
+
+#### Example
+
+```js
+const CryptoApis = require('cryptoapis.io');
+const apiKey = 'your API key';
+var caClient = new CryptoApis(apiKey);
+caClient.ethereumCreateAddressTransactionWebHook('ropsten', 'your callback url', '0xe816c453a99b12bb65ea55db22a6fe70f63c2c7a').then(function(result) {
+    console.log(result);
+}, function(error) {
+    console.log(error);
+});
+```
+
+### ethereumListAllWebHooks
+
+Provides a list with all WebHooks of current user
+
+#### Parameters
+
+-   `network` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Network name (mainnet, ropsten or rinkeby)
+
+#### Example
+
+```js
+const CryptoApis = require('cryptoapis.io');
+const apiKey = 'your API key';
+var caClient = new CryptoApis(apiKey);
+caClient.ethereumListAllWebHooks('ropsten').then(function(result) {
+    console.log(result);
+}, function(error) {
+    console.log(error);
+});
+```
+
+### ethereumDeleteWebHook
+
+Delete WebHook
+
+#### Parameters
+
+-   `network` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Network name (mainnet, ropsten or rinkeby)
+-   `webhookID` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** WebHook ID
+
+#### Example
+
+```js
+const CryptoApis = require('cryptoapis.io');
+const apiKey = 'your API key';
+var caClient = new CryptoApis(apiKey);
+caClient.ethereumDeleteWebHook('ropsten', '75012af1-12b6-4472-98de-a7fb5d66dba9').then(function(result) {
     console.log(result);
 }, function(error) {
     console.log(error);

@@ -479,6 +479,238 @@ class CryptoAPIs {
 
         return this.deleteRequest('/bc/btc/' + network + '/hooks/' + webhookID);
     }
+
+    getEthereumInfo(network) {
+
+        return this.getRequest('/bc/eth/' + network + '/info');
+    }
+
+    getEthereumBlock(network, block) {
+
+        return this.getRequest('/bc/eth/' + network + '/blocks/' + block);
+    }
+
+    getEthereumLatestBlock(network) {
+
+        return this.getRequest('/bc/eth/' + network + '/blocks/latest');
+    }
+
+    getEthereumAddressBalance(network, address) {
+
+        return this.getRequest('/bc/eth/' + network + '/address/' + address + '/balance');
+    }
+
+    getEthereumAddressInfo(network, address) {
+
+        return this.getRequest('/bc/eth/' + network + '/address/' + address);
+    }
+
+    getEthereumAddressTransactions(network, address, index = 0, limit = 50) {
+
+        return this.getRequest('/bc/eth/' + network + '/address/' + address + '/transactions?index=' + index + '&limit=' + limit);
+    }
+
+    generateEthereumAddress(network) {
+
+        return this.postRequest('/bc/eth/' + network + '/address', {});
+    }
+
+    generateEthereumAccount(network, password) {
+
+        return this.postRequest('/bc/eth/' + network + '/account', {
+            password: password
+        });
+    }
+
+    getEthereumTransaction(network, txHash) {
+
+        return this.getRequest('/bc/eth/' + network + '/txs/hash/' + txHash);
+    }
+
+    getEthereumTransactionsByBlock(network, block, index = 0, limit = 50) {
+
+        return this.getRequest('/bc/eth/' + network + '/txs/block/' + block + '?index=' + index + '&limit=' + limit);
+    }
+
+    getEthereumTransactionByIndexInBlock(network, block, index) {
+
+        return this.getRequest('/bc/eth/' + network + '/txs/block/' + block + '/' + index);
+    }
+
+    createEthereumTransaction(network, from, to, gasPrice, gasLimit, value, password) {
+
+        return this.postRequest('/bc/eth/' + network + '/txs/new', {
+            fromAddress: from,
+            toAddress: to,
+            gasPrice: gasPrice,
+            gasLimit: gasLimit,
+            value: value,
+            password: password
+        });
+    }
+
+    createEthereumTransactionWithPrivateKey(network, from, to, gasPrice, gasLimit, value, privateKey) {
+
+        return this.postRequest('/bc/eth/' + network + '/txs/new-pvtkey', {
+            fromAddress: from,
+            toAddress: to,
+            gasPrice: gasPrice,
+            gasLimit: gasLimit,
+            value: value,
+            privateKey: privateKey
+        });
+    }
+
+    sendEthereumTransaction(network, from, to, value) {
+
+        return this.postRequest('/bc/eth/' + network + '/txs/send', {
+            fromAddress: from,
+            toAddress: to,
+            value: value
+        });
+    }
+
+    pushEthereumTransaction(network, signedTx) {
+
+        return this.postRequest('/bc/eth/' + network + '/txs/push', {
+            signed_tx: signedTx
+        });
+    }
+
+    estimateEthereumTransactionGas(network, from, to, value, data = null) {
+
+        var body = {
+            fromAddress: from,
+            toAddress: to,
+            value: value
+        };
+
+        if (data) {
+            body['data'] = data;
+        }
+
+        return this.postRequest('/bc/eth/' + network + '/txs/gas', body);
+    }
+
+    estimateEthereumSmartContractGas(network) {
+
+        return this.getRequest('/bc/eth/' + network + '/contracts/gas');
+    }
+
+    deployEthereumSmartContract(network, privateKey, from, gasPrice, gasLimit, byteCode) {
+
+        return this.postRequest('/bc/eth/' + network + '/contracts', {
+            privateKey: privateKey,
+            fromAddress: from,
+            gasPrice: gasPrice,
+            gasLimit: gasLimit,
+            byteCode: byteCode
+        });
+    }
+
+    getEthereumAddressTokenBalance(network, address, contract) {
+
+        return this.getRequest('/bc/eth/' + network + '/tokens/' + address + '/' + contract + '/balance');
+    }
+
+    ethereumTransferTokens(network, fromAddress, toAddress, contract, gasPrice, gasLimit, token, password = null, privateKey = null) {
+
+        var body =  {
+            fromAddress: fromAddress,
+            toAddress: toAddress,
+            contract: contract,
+            gasPrice: gasPrice,
+            gasLimit: gasLimit,
+            token: token
+        };
+
+        if (password) {
+
+            body['password'] = password;
+        } else {
+            body['privateKey'] = privateKey;
+        }
+
+        return this.postRequest('/bc/eth/' + network + '/tokens/transfer', body);
+    }
+
+    ethereumCreatePayment(network, fromAddress, toAddress, callbackURL, password = null, privateKey = null) {
+
+        var body =  {
+            fromAddress: fromAddress,
+            toAddress: toAddress,
+            callBack: callbackURL
+        };
+
+        if (password) {
+
+            body['password'] = password;
+        } else {
+            body['privateKey'] = privateKey;
+        }
+
+        return this.postRequest('/bc/eth/' + network + '/payments', body);
+    }
+
+    ethereumDeletePayment(network, uuid) {
+
+        return this.deleteRequest('/bc/eth/' + network + '/payments/' + uuid);
+    }
+
+    ethereumListPayment(network) {
+
+        return this.getRequest('/bc/eth/' + network + '/payments');
+    }
+
+    ethereumListPaymentHistory(network) {
+
+        return this.getRequest('/bc/eth/' + network + '/payments/history');
+    }
+
+    ethereumCreateUnconfirmedTransactionWebHook(network, callbackURL) {
+
+        return this.postRequest('/bc/eth/' + network + '/hooks', {
+            event: 'UNCONFIRMED_TX',
+            url: callbackURL
+        });
+    }
+
+    ethereumCreateConfirmedTransactionWebHook(network, callbackURL, transaction, confirmations) {
+
+        return this.postRequest('/bc/eth/' + network + '/hooks', {
+            event: 'CONFIRMED_TX',
+            url: callbackURL,
+            confirmations: confirmations,
+            transaction: transaction
+        });
+    }
+
+    ethereumCreateNewBlockWebHook(network, callbackURL) {
+
+        return this.postRequest('/bc/eth/' + network + '/hooks', {
+            event: 'NEW_BLOCK',
+            url: callbackURL
+        });
+    }
+
+    ethereumCreateAddressTransactionWebHook(network, callbackURL, address) {
+
+        return this.postRequest('/bc/eth/' + network + '/hooks', {
+            event: 'ADDRESS',
+            address: address,
+            url: callbackURL
+        });
+    }
+
+    ethereumListAllWebHooks(network) {
+
+        return this.getRequest('/bc/eth/' + network + '/hooks');
+    }
+
+    ethereumDeleteWebHook(network, webhookID) {
+
+        return this.deleteRequest('/bc/eth/' + network + '/hooks/' + webhookID);
+    }
 }
 
 module.exports = CryptoAPIs;

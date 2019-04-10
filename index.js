@@ -245,6 +245,9 @@ class CryptoAPIs {
         return this.getRequest('/quotes/' + symbol + '/history?timeStart=' + timeStart + '&timeEnd=' + timeEnd + '&skip=' + skip + '&limit=' + limit);
     }
 
+    /*
+    BITCOIN methods
+     */
     getBitcoinInfo(network) {
 
         return this.getRequest('/bc/btc/' + network + '/info');
@@ -480,6 +483,247 @@ class CryptoAPIs {
         return this.deleteRequest('/bc/btc/' + network + '/hooks/' + webhookID);
     }
 
+    /*
+    LITECOIN methods
+     */
+    getLitecoinInfo(network) {
+
+        return this.getRequest('/bc/ltc/' + network + '/info');
+    }
+
+    getLitecoinBlock(network, block) {
+
+        return this.getRequest('/bc/ltc/' + network + '/blocks/' + block);
+    }
+
+    getLitecoinLatestBlock(network) {
+
+        return this.getRequest('/bc/ltc/' + network + '/blocks/latest');
+    }
+
+    getLitecoinAddressInfo(network, address) {
+
+        return this.getRequest('/bc/ltc/' + network + '/address/' + address);
+    }
+
+    generateLitecoinAddress(network) {
+
+        return this.postRequest('/bc/ltc/' + network + '/address', {});
+    }
+
+    getLitecoinAddressTransactions(network, address, index = 0, limit = 50) {
+
+        return this.getRequest('/bc/ltc/' + network + '/address/' + address + '/transactions?index=' + index + '&limit=' + limit);
+    }
+
+    createLitecoinWallet(network, name, addresses) {
+
+        return this.postRequest('/bc/ltc/' + network + '/wallets', {
+            walletName: name,
+            addresses: addresses
+        });
+    }
+
+    createLitecoinHDWallet(network, name, addressCount, password) {
+
+        return this.postRequest('/bc/ltc/' + network + '/wallets/hd', {
+            walletName: name,
+            addressCount: addressCount,
+            password: password
+        });
+    }
+
+    listLitecoinWallets(network, hd) {
+
+        var path = '/bc/ltc/' + network + '/wallets';
+
+        if (hd) {
+            path = path + '/hd';
+        }
+
+        return this.getRequest(path);
+    }
+
+    getLitecoinWallet(network, walletName, hd) {
+
+        var path = '/bc/ltc/' + network + '/wallets/';
+
+        if (hd) {
+            path = path + 'hd/';
+        }
+
+        path = path + walletName;
+
+        return this.getRequest(path);
+    }
+
+    addAddressToLitecoinWallet(network, name, addresses) {
+
+        return this.postRequest('/bc/ltc/' + network + '/wallets/' + name + '/addresses', {
+            addresses: addresses
+        });
+    }
+
+    generateAddressInLitecoinWallet(network, name) {
+
+        return this.postRequest('/bc/ltc/' + network + '/wallets/' + name + '/addresses/generate', {});
+    }
+
+    generateAddressInLitecoinHDWallet(network, name, addressCount, password) {
+
+        return this.postRequest('/bc/ltc/' + network + '/wallets/hd/' + name + '/addresses/generate', {
+            addressCount: addressCount,
+            password: password
+        });
+    }
+
+    deleteAddressFromLitecoinWallet(network, name, address) {
+
+        return this.deleteRequest('/bc/ltc/' + network + '/wallets/' + name + '/address/' + address);
+    }
+
+    deleteLitecoinWallet(network, name, hd) {
+
+        var path = '/bc/ltc/' + network + '/wallets/';
+
+        if (hd) {
+            path = path + 'hd/';
+        }
+
+        path = path + name;
+
+        return this.deleteRequest(path);
+    }
+
+    getLitecoinTransaction(network, txID) {
+
+        return this.getRequest('/bc/ltc/' + network + '/txs/txid/' + txID);
+    }
+
+    getLitecoinTransactionByBlockIndex(network, block, index) {
+
+        return this.getRequest('/bc/ltc/' + network + '/txs/block/' + block + '/' + index);
+    }
+
+    getLitecoinTransactionsByBlockIndex(network, block, index, limit) {
+
+        return this.getRequest('/bc/ltc/' + network + '/txs/block/' + block + '?index=' + index + '&limit=' + limit);
+    }
+
+    getLitecoinUnconfirmedTransactions(network) {
+
+        return this.getRequest('/bc/ltc/' + network + '/txs');
+    }
+
+    litecoinTransactionTrace(network, txs) {
+
+        return this.postRequest('/bc/ltc/' + network + '/txs/trace', {
+            txs: txs
+        });
+    }
+
+    getLitecoinLatestTransactions(network, limit = 50) {
+
+        return this.getRequest('/bc/ltc/' + network + '/txs/latest?limit=' + limit);
+    }
+
+    getLitecoinTransactionsHistory(network, txsIncluded = true, index = 0, limit = 50) {
+
+        return this.getRequest('/bc/ltc/' + network + '/txs/history?txs-included=' + txsIncluded + '&index=' + index + '&limit=' + limit);
+    }
+
+    createLitecoinTransaction(network, inputs, outputs, fee) {
+
+        return this.postRequest('/bc/ltc/' + network + '/txs/new', {
+            inputs: inputs,
+            outputs: outputs,
+            fee: fee
+        });
+    }
+
+    sendLitecoinTransaction(network, toSend) {
+
+        return this.postRequest('/bc/ltc/' + network + '/txs/send', {
+            toSend: toSend
+        });
+    }
+
+    decodeRawLitecoinTransaction(network, txHex) {
+
+        return this.postRequest('/bc/ltc/' + network + '/txs/decode', {
+            txHex: txHex
+        });
+    }
+
+    litecoinCreatePayment(network, from, to, callbackURL, wallet, password) {
+
+        return this.postRequest('/bc/ltc/' + network + '/payments', {
+            from: from,
+            to: to,
+            callback: callbackURL,
+            wallet: wallet,
+            password: password
+        });
+    }
+
+    litecoinListPayment(network) {
+
+        return this.getRequest('/bc/ltc/' + network + '/payments');
+    }
+
+    litecoinDeletePayment(network, paymentID) {
+
+        return this.deleteRequest('/bc/ltc/' + network + '/payments/' + paymentID);
+    }
+
+    litecoinCreateUnconfirmedTransactionWebHook(network, callbackURL) {
+
+        return this.postRequest('/bc/ltc/' + network + '/hooks', {
+            event: 'UNCONFIRMED_TX',
+            url: callbackURL
+        });
+    }
+
+    litecoinCreateNewBlockWebHook(network, callbackURL) {
+
+        return this.postRequest('/bc/ltc/' + network + '/hooks', {
+            event: 'NEW_BLOCK',
+            url: callbackURL
+        });
+    }
+
+    litecoinCreateConfirmedTransactionWebHook(network, callbackURL, transaction, confirmations) {
+
+        return this.postRequest('/bc/ltc/' + network + '/hooks', {
+            event: 'CONFIRMED_TX',
+            url: callbackURL,
+            transaction: transaction,
+            confirmations: confirmations
+        });
+    }
+
+    litecoinCreateAddressTransactionWebHook(network, callbackURL, address) {
+
+        return this.postRequest('/bc/ltc/' + network + '/hooks', {
+            event: 'ADDRESS',
+            url: callbackURL,
+            address: address
+        });
+    }
+
+    listAllLitecoinHooks(network) {
+
+        return this.getRequest('/bc/ltc/' + network + '/hooks');
+    }
+
+    deleteLitecoinWebHook(network, webhookID) {
+
+        return this.deleteRequest('/bc/ltc/' + network + '/hooks/' + webhookID);
+    }
+
+    /*
+    ETHEREUM methods
+     */
     getEthereumInfo(network) {
 
         return this.getRequest('/bc/eth/' + network + '/info');

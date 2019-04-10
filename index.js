@@ -955,6 +955,244 @@ class CryptoAPIs {
 
         return this.deleteRequest('/bc/eth/' + network + '/hooks/' + webhookID);
     }
+
+    /*
+    BITCOIN-CASH methods
+     */
+    getBitcoinCashInfo(network) {
+
+        return this.getRequest('/bc/bch/' + network + '/info');
+    }
+
+    getBitcoinCashBlock(network, block) {
+
+        return this.getRequest('/bc/bch/' + network + '/blocks/' + block);
+    }
+
+    getBitcoinCashLatestBlock(network) {
+
+        return this.getRequest('/bc/bch/' + network + '/blocks/latest');
+    }
+
+    getBitcoinCashAddressInfo(network, address) {
+
+        return this.getRequest('/bc/bch/' + network + '/address/' + address);
+    }
+
+    generateBitcoinCashAddress(network) {
+
+        return this.postRequest('/bc/bch/' + network + '/address', {});
+    }
+
+    getBitcoinCashAddressTransactions(network, address, index = 0, limit = 50) {
+
+        return this.getRequest('/bc/bch/' + network + '/address/' + address + '/transactions?index=' + index + '&limit=' + limit);
+    }
+
+    createBitcoinCashWallet(network, name, addresses) {
+
+        return this.postRequest('/bc/bch/' + network + '/wallets', {
+            walletName: name,
+            addresses: addresses
+        });
+    }
+
+    createBitcoinCashHDWallet(network, name, addressCount, password) {
+
+        return this.postRequest('/bc/bch/' + network + '/wallets/hd', {
+            walletName: name,
+            addressCount: addressCount,
+            password: password
+        });
+    }
+
+    listBitcoinCashWallets(network, hd) {
+
+        var path = '/bc/bch/' + network + '/wallets';
+
+        if (hd) {
+            path = path + '/hd';
+        }
+
+        return this.getRequest(path);
+    }
+
+    getBitcoinCashWallet(network, walletName, hd) {
+
+        var path = '/bc/bch/' + network + '/wallets/';
+
+        if (hd) {
+            path = path + 'hd/';
+        }
+
+        path = path + walletName;
+
+        return this.getRequest(path);
+    }
+
+    addAddressToBitcoinCashWallet(network, name, addresses) {
+
+        return this.postRequest('/bc/bch/' + network + '/wallets/' + name + '/addresses', {
+            addresses: addresses
+        });
+    }
+
+    generateAddressInBitcoinCashWallet(network, name) {
+
+        return this.postRequest('/bc/bch/' + network + '/wallets/' + name + '/addresses/generate', {});
+    }
+
+    generateAddressInBitcoinCashHDWallet(network, name, addressCount, password) {
+
+        return this.postRequest('/bc/bch/' + network + '/wallets/hd/' + name + '/addresses/generate', {
+            addressCount: addressCount,
+            password: password
+        });
+    }
+
+    deleteAddressFromBitcoinCashWallet(network, name, address) {
+
+        return this.deleteRequest('/bc/bch/' + network + '/wallets/' + name + '/address/' + address);
+    }
+
+    deleteBitcoinCashWallet(network, name, hd) {
+
+        var path = '/bc/bch/' + network + '/wallets/';
+
+        if (hd) {
+            path = path + 'hd/';
+        }
+
+        path = path + name;
+
+        return this.deleteRequest(path);
+    }
+
+    getBitcoinCashTransaction(network, txID) {
+
+        return this.getRequest('/bc/bch/' + network + '/txs/txid/' + txID);
+    }
+
+    getBitcoinCashTransactionByBlockIndex(network, block, index) {
+
+        return this.getRequest('/bc/bch/' + network + '/txs/block/' + block + '/' + index);
+    }
+
+    getBitcoinCashTransactionsByBlockIndex(network, block, index, limit) {
+
+        return this.getRequest('/bc/bch/' + network + '/txs/block/' + block + '?index=' + index + '&limit=' + limit);
+    }
+
+    getBitcoinCashUnconfirmedTransactions(network) {
+
+        return this.getRequest('/bc/bch/' + network + '/txs');
+    }
+
+    bitcoinCashTransactionTrace(network, txs) {
+
+        return this.postRequest('/bc/bch/' + network + '/txs/trace', {
+            txs: txs
+        });
+    }
+
+    getBitcoinCashLatestTransactions(network, limit = 50) {
+
+        return this.getRequest('/bc/bch/' + network + '/txs/latest?limit=' + limit);
+    }
+
+    getBitcoinCashTransactionsHistory(network, txsIncluded = true, index = 0, limit = 50) {
+
+        return this.getRequest('/bc/bch/' + network + '/txs/history?txs-included=' + txsIncluded + '&index=' + index + '&limit=' + limit);
+    }
+
+    createBitcoinCashTransaction(network, inputs, outputs, fee) {
+
+        return this.postRequest('/bc/bch/' + network + '/txs/new', {
+            inputs: inputs,
+            outputs: outputs,
+            fee: fee
+        });
+    }
+
+    sendBitcoinCashTransaction(network, toSend) {
+
+        return this.postRequest('/bc/bch/' + network + '/txs/send', {
+            toSend: toSend
+        });
+    }
+
+    decodeRawBitcoinCashTransaction(network, txHex) {
+
+        return this.postRequest('/bc/bch/' + network + '/txs/decode', {
+            txHex: txHex
+        });
+    }
+
+    bitcoinCashCreatePayment(network, from, to, callbackURL, wallet, password) {
+
+        return this.postRequest('/bc/bch/' + network + '/payments', {
+            from: from,
+            to: to,
+            callback: callbackURL,
+            wallet: wallet,
+            password: password
+        });
+    }
+
+    bitcoinCashListPayment(network) {
+
+        return this.getRequest('/bc/bch/' + network + '/payments');
+    }
+
+    bitcoinCashDeletePayment(network, paymentID) {
+
+        return this.deleteRequest('/bc/bch/' + network + '/payments/' + paymentID);
+    }
+
+    bitcoinCashCreateUnconfirmedTransactionWebHook(network, callbackURL) {
+
+        return this.postRequest('/bc/bch/' + network + '/hooks', {
+            event: 'UNCONFIRMED_TX',
+            url: callbackURL
+        });
+    }
+
+    bitcoinCashCreateNewBlockWebHook(network, callbackURL) {
+
+        return this.postRequest('/bc/bch/' + network + '/hooks', {
+            event: 'NEW_BLOCK',
+            url: callbackURL
+        });
+    }
+
+    bitcoinCashCreateConfirmedTransactionWebHook(network, callbackURL, transaction, confirmations) {
+
+        return this.postRequest('/bc/bch/' + network + '/hooks', {
+            event: 'CONFIRMED_TX',
+            url: callbackURL,
+            transaction: transaction,
+            confirmations: confirmations
+        });
+    }
+
+    bitcoinCashCreateAddressTransactionWebHook(network, callbackURL, address) {
+
+        return this.postRequest('/bc/bch/' + network + '/hooks', {
+            event: 'ADDRESS',
+            url: callbackURL,
+            address: address
+        });
+    }
+
+    listAllBitcoinCashHooks(network) {
+
+        return this.getRequest('/bc/bch/' + network + '/hooks');
+    }
+
+    deleteBitcoinCashWebHook(network, webhookID) {
+
+        return this.deleteRequest('/bc/bch/' + network + '/hooks/' + webhookID);
+    }
 }
 
 module.exports = CryptoAPIs;

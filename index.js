@@ -739,11 +739,6 @@ class CryptoAPIs {
         return this.getRequest('/bc/eth/' + network + '/blocks/latest');
     }
 
-    getEthereumAddressBalance(network, address) {
-
-        return this.getRequest('/bc/eth/' + network + '/address/' + address + '/balance');
-    }
-
     getEthereumAddressInfo(network, address) {
 
         return this.getRequest('/bc/eth/' + network + '/address/' + address);

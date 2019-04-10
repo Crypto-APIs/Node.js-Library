@@ -1183,28 +1183,6 @@ caClient.getEthereumLatestBlock('mainnet').then(function(result) {
 });
 ```
 
-### getEthereumAddressBalance
-
-Get address balance
-
-#### Parameters
-
--   `network` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Network name (mainnet, ropsten or rinkeby)
--   `address` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Ethereum address
-
-#### Example
-
-```js
-const CryptoApis = require('cryptoapis.io');
-const apiKey = 'your API key';
-var caClient = new CryptoApis(apiKey);
-caClient.getEthereumAddressBalance('ropsten', '0x0cb1883c01377f45ee5d7448a32b5ac1709afc11').then(function(result) {
-    console.log(result);
-}, function(error) {
-    console.log(error);
-});
-```
-
 ### getEthereumAddressInfo
 
 Get address information

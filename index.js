@@ -180,17 +180,17 @@ class CryptoAPIs {
         });
     }
 
-    getAllExchanges(skip = 0, limit = 100) {
+    getAllExchanges(skip = 0, limit = 50) {
 
         return this.getRequest('/exchanges?skip=' + skip + '&limit=' + limit);
     }
 
-    getAllAssets(skip = 0, limit = 100) {
+    getAllAssets(skip = 0, limit = 50) {
 
         return this.getRequest('/assets?skip=' + skip + '&limit=' + limit);
     }
 
-    getAllSymbols(skip = 0, limit = 100) {
+    getAllSymbols(skip = 0, limit = 50) {
 
         return this.getRequest('/mappings?skip=' + skip + '&limit=' + limit);
     }
@@ -210,17 +210,17 @@ class CryptoAPIs {
         return this.getRequest('/ohlcv/periods');
     }
 
-    getOHLCVLatestData(symbol, period, limit = 100) {
+    getOHLCVLatestData(symbol, period, limit = 50) {
         
         return this.getRequest('/ohlcv/latest/' + symbol + '?period=' + period + '&limit=' + limit);
     }
 
-    getOHLCVHistoricalData(symbol, period, timePeriodStart, timePeriodEnd, limit = 100) {
+    getOHLCVHistoricalData(symbol, period, timePeriodStart, timePeriodEnd, limit = 50) {
         
         return this.getRequest('/ohlcv/history/' + symbol + '?period=' + period + '&timePeriodStart=' + timePeriodStart + '&timePeriodEnd=' + timePeriodEnd + '&limit=' + limit);
     }
 
-    tradesGetLatestData(skip = 0, limit = 100) {
+    tradesGetLatestData(skip = 0, limit = 50) {
         
         return this.getRequest('/trades/latest?skip=' + skip + '&limit=' + limit);
     }
@@ -230,17 +230,17 @@ class CryptoAPIs {
         return this.getRequest('/trades/' + symbol + '/latest');
     }
 
-    tradesGetHistoricalData(symbol, timeStart, timeEnd, skip = 0, limit = 100) {
+    tradesGetHistoricalData(symbol, timeStart, timeEnd, skip = 0, limit = 50) {
         
         return this.getRequest('/trades/' + symbol + '/history?timeStart=' + timeStart + '&timeEnd=' + timeEnd + '&skip=' + skip + '&limit=' + limit);
     }
 
-    quotesGetLatestData(skip = 0, limit = 100) {
+    quotesGetLatestData(skip = 0, limit = 50) {
         
         return this.getRequest('/quotes/latest?skip=' + skip + '&limit=' + limit);
     }
 
-    quotesGetHistoricalData(symbol, timeStart, timeEnd, skip = 0, limit = 100) {
+    quotesGetHistoricalData(symbol, timeStart, timeEnd, skip = 0, limit = 50) {
         
         return this.getRequest('/quotes/' + symbol + '/history?timeStart=' + timeStart + '&timeEnd=' + timeEnd + '&skip=' + skip + '&limit=' + limit);
     }

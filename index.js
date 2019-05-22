@@ -394,12 +394,18 @@ class CryptoAPIs {
         return this.getRequest('/bc/btc/' + network + '/txs/history?txs-included=' + txsIncluded + '&index=' + index + '&limit=' + limit);
     }
 
-    createBitcoinTransaction(network, inputs, outputs, fee) {
+    createBitcoinTransaction(network, inputs, outputs, feeAddress, feeValue, wifs) {
 
         return this.postRequest('/bc/btc/' + network + '/txs/new', {
-            inputs: inputs,
-            outputs: outputs,
-            fee: fee
+            createTx: {
+                inputs: inputs,
+                outputs: outputs,
+                fee: {
+                    address: feeAddress,
+                    value: feeValue
+                }
+            },
+            wifs: wifs
         });
     }
 
@@ -632,12 +638,18 @@ class CryptoAPIs {
         return this.getRequest('/bc/ltc/' + network + '/txs/history?txs-included=' + txsIncluded + '&index=' + index + '&limit=' + limit);
     }
 
-    createLitecoinTransaction(network, inputs, outputs, fee) {
+    createLitecoinTransaction(network, inputs, outputs, feeAddress, feeValue, wifs) {
 
         return this.postRequest('/bc/ltc/' + network + '/txs/new', {
-            inputs: inputs,
-            outputs: outputs,
-            fee: fee
+            createTx: {
+                inputs: inputs,
+                outputs: outputs,
+                fee: {
+                    address: feeAddress,
+                    value: feeValue
+                }
+            },
+            wifs: wifs
         });
     }
 
@@ -1100,12 +1112,18 @@ class CryptoAPIs {
         return this.getRequest('/bc/bch/' + network + '/txs/history?txs-included=' + txsIncluded + '&index=' + index + '&limit=' + limit);
     }
 
-    createBitcoinCashTransaction(network, inputs, outputs, fee) {
+    createBitcoinCashTransaction(network, inputs, outputs, feeAddress, feeValue, wifs) {
 
         return this.postRequest('/bc/bch/' + network + '/txs/new', {
-            inputs: inputs,
-            outputs: outputs,
-            fee: fee
+            createTx: {
+                inputs: inputs,
+                outputs: outputs,
+                fee: {
+                    address: feeAddress,
+                    value: feeValue
+                }
+            },
+            wifs: wifs
         });
     }
 

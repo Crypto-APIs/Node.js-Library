@@ -394,12 +394,15 @@ class CryptoAPIs {
         return this.getRequest('/bc/btc/' + network + '/txs/history?txs-included=' + txsIncluded + '&index=' + index + '&limit=' + limit);
     }
 
-    createBitcoinTransaction(network, inputs, outputs, fee) {
+    createBitcoinTransaction(network, inputs, outputs, fee, wifs) {
 
         return this.postRequest('/bc/btc/' + network + '/txs/new', {
-            inputs: inputs,
-            outputs: outputs,
-            fee: fee
+            createTx: {
+                inputs: inputs,
+                outputs: outputs,
+                fee: fee
+            },
+            wifs: wifs
         });
     }
 
@@ -632,12 +635,15 @@ class CryptoAPIs {
         return this.getRequest('/bc/ltc/' + network + '/txs/history?txs-included=' + txsIncluded + '&index=' + index + '&limit=' + limit);
     }
 
-    createLitecoinTransaction(network, inputs, outputs, fee) {
+    createLitecoinTransaction(network, inputs, outputs, fee, wifs) {
 
         return this.postRequest('/bc/ltc/' + network + '/txs/new', {
-            inputs: inputs,
-            outputs: outputs,
-            fee: fee
+            createTx: {
+                inputs: inputs,
+                outputs: outputs,
+                fee: fee
+            },
+            wifs: wifs
         });
     }
 
@@ -1100,12 +1106,15 @@ class CryptoAPIs {
         return this.getRequest('/bc/bch/' + network + '/txs/history?txs-included=' + txsIncluded + '&index=' + index + '&limit=' + limit);
     }
 
-    createBitcoinCashTransaction(network, inputs, outputs, fee) {
+    createBitcoinCashTransaction(network, inputs, outputs, fee, wifs) {
 
         return this.postRequest('/bc/bch/' + network + '/txs/new', {
-            inputs: inputs,
-            outputs: outputs,
-            fee: fee
+            createTx: {
+                inputs: inputs,
+                outputs: outputs,
+                fee: fee
+            },
+            wifs: wifs
         });
     }
 

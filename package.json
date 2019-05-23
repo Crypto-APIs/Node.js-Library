@@ -1,6 +1,6 @@
 {
   "name": "cryptoapis.io",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Crypto APIs SDK",
   "main": "index.js",
   "scripts": {

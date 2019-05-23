@@ -406,6 +406,25 @@ class CryptoAPIs {
         });
     }
 
+    createBitcoinHDWalletTransaction(network, walletName, password, fee, outputs, inputs = null, locktime = null) {
+        var data = {
+            walletName: walletName,
+            password: password,
+            outputs: outputs,
+            fee: fee
+        };
+
+        if(inputs) {
+            data.inputs = inputs;
+        }
+
+        if(locktime) {
+            data.locktime = locktime;
+        }
+
+        return this.postRequest('/bc/btc/' + network + '/txs/hdwallet', data);
+    }
+
     sendBitcoinTransaction(network, toSend) {
 
         return this.postRequest('/bc/btc/' + network + '/txs/send', {
@@ -645,6 +664,25 @@ class CryptoAPIs {
             },
             wifs: wifs
         });
+    }
+
+    createLitecoinHDWalletTransaction(network, walletName, password, fee, outputs, inputs = null, locktime = null) {
+        var data = {
+            walletName: walletName,
+            password: password,
+            outputs: outputs,
+            fee: fee
+        };
+
+        if(inputs) {
+            data.inputs = inputs;
+        }
+
+        if(locktime) {
+            data.locktime = locktime;
+        }
+
+        return this.postRequest('/bc/btc/' + network + '/txs/hdwallet', data);
     }
 
     sendLitecoinTransaction(network, toSend) {
@@ -1116,6 +1154,25 @@ class CryptoAPIs {
             },
             wifs: wifs
         });
+    }
+
+    createBitcoinCashHDWalletTransaction(network, walletName, password, fee, outputs, inputs = null, locktime = null) {
+        var data = {
+            walletName: walletName,
+            password: password,
+            outputs: outputs,
+            fee: fee
+        };
+
+        if(inputs) {
+            data.inputs = inputs;
+        }
+
+        if(locktime) {
+            data.locktime = locktime;
+        }
+
+        return this.postRequest('/bc/btc/' + network + '/txs/hdwallet', data);
     }
 
     sendBitcoinCashTransaction(network, toSend) {

@@ -844,13 +844,15 @@ Create transaction
 -   `network` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Network name (mainnet or testnet)
 -   `inputs` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)>** Array of objects (see example below)
 -   `outputs` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)>** Array of objects (see example below)
--   `fee` **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Transaction fee
+-   `fee` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** (see example below)
+-   `wifs` **[Array](ttps://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** Array of private ECDSA keys of the addresses (see example below)
 
 #### Example
 
 ```js
 const CryptoApis = require('cryptoapis.io');
 const apiKey = 'your API key';
+
 var caClient = new CryptoApis(apiKey);
 var inputs = [{
     address: "2N4Peeewfgghac69z6evCAmab91oEuWmkgy",
@@ -863,7 +865,17 @@ var outputs = [{
     address: "2Mx93LzsoPWR8UmoJMBFnCb2KkCGt2Jg8Dd",
     value: 1.54
 }];
-caClient.createBitcoinTransaction('testnet', inputs, outputs, 0.00001500).then(function(result) {
+var fee = {
+    address: "mmskWH7hG9CJNzb16JaVFJyWdgAwcVEAkz", //optional
+    value: 0.00023141
+};
+var wifs = [
+    "cUGddnJmuzfzpWXNwt1SRnQ8GMqZdQ1vg8BtwjG8f275pvExPzaX", 
+    "cSEjySAREyai8eQhgoqixzmxCeSP8QtbwHxptL8ijofg68ZMjoud",
+    "cV2u6dqfiQthWfPixJ7ucFW5Tza1ubLr6ipM35vSTy9xGEKbCbaJ"
+];
+
+caClient.createBitcoinTransaction('testnet', inputs, outputs, fee, wifs).then(function(result) {
     console.log(result);
 }, function(error) {
     console.log(error);
@@ -2300,13 +2312,15 @@ Create transaction
 -   `network` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Network name (mainnet or testnet)
 -   `inputs` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)>** Array of objects (see example below)
 -   `outputs` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)>** Array of objects (see example below)
--   `fee` **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Transaction fee
+-   `fee` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** (see example below)
+-   `wifs` **[Array](ttps://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** Array of private ECDSA keys of the addresses (see example below)
 
 #### Example
 
 ```js
 const CryptoApis = require('cryptoapis.io');
 const apiKey = 'your API key';
+
 var caClient = new CryptoApis(apiKey);
 var inputs = [{
     address: "2N4Peeewfgghac69z6evCAmab91oEuWmkgy",
@@ -2319,7 +2333,17 @@ var outputs = [{
     address: "2Mx93LzsoPWR8UmoJMBFnCb2KkCGt2Jg8Dd",
     value: 1.54
 }];
-caClient.createLitecoinTransaction('testnet', inputs, outputs, 0.00001500).then(function(result) {
+var fee = {
+    address: "mmskWH7hG9CJNzb16JaVFJyWdgAwcVEAkz", //optional
+    value: 0.00023141
+};
+var wifs = [
+    "cUGddnJmuzfzpWXNwt1SRnQ8GMqZdQ1vg8BtwjG8f275pvExPzaX", 
+    "cSEjySAREyai8eQhgoqixzmxCeSP8QtbwHxptL8ijofg68ZMjoud",
+    "cV2u6dqfiQthWfPixJ7ucFW5Tza1ubLr6ipM35vSTy9xGEKbCbaJ"
+];
+
+caClient.createLitecoinTransaction('testnet', inputs, outputs, fee, wifs).then(function(result) {
     console.log(result);
 }, function(error) {
     console.log(error);
@@ -3081,13 +3105,15 @@ Create transaction
 -   `network` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Network name (mainnet or testnet)
 -   `inputs` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)>** Array of objects (see example below)
 -   `outputs` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)>** Array of objects (see example below)
--   `fee` **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Transaction fee
+-   `fee` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** (see example below)
+-   `wifs` **[Array](ttps://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** Array of private ECDSA keys of the addresses (see example below)
 
 #### Example
 
 ```js
 const CryptoApis = require('cryptoapis.io');
 const apiKey = 'your API key';
+
 var caClient = new CryptoApis(apiKey);
 var inputs = [{
     address: "2N4Peeewfgghac69z6evCAmab91oEuWmkgy",
@@ -3100,7 +3126,17 @@ var outputs = [{
     address: "2Mx93LzsoPWR8UmoJMBFnCb2KkCGt2Jg8Dd",
     value: 1.54
 }];
-caClient.createBitcoinCashTransaction('testnet', inputs, outputs, 0.00001500).then(function(result) {
+var fee = {
+    address: "mmskWH7hG9CJNzb16JaVFJyWdgAwcVEAkz", //optional
+    value: 0.00023141
+};
+var wifs = [
+    "cUGddnJmuzfzpWXNwt1SRnQ8GMqZdQ1vg8BtwjG8f275pvExPzaX", 
+    "cSEjySAREyai8eQhgoqixzmxCeSP8QtbwHxptL8ijofg68ZMjoud",
+    "cV2u6dqfiQthWfPixJ7ucFW5Tza1ubLr6ipM35vSTy9xGEKbCbaJ"
+];
+
+caClient.createBitcoinCashTransaction('testnet', inputs, outputs, fee, wifs).then(function(result) {
     console.log(result);
 }, function(error) {
     console.log(error);

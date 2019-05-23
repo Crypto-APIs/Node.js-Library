@@ -394,16 +394,13 @@ class CryptoAPIs {
         return this.getRequest('/bc/btc/' + network + '/txs/history?txs-included=' + txsIncluded + '&index=' + index + '&limit=' + limit);
     }
 
-    createBitcoinTransaction(network, inputs, outputs, feeAddress, feeValue, wifs) {
+    createBitcoinTransaction(network, inputs, outputs, fee, wifs) {
 
         return this.postRequest('/bc/btc/' + network + '/txs/new', {
             createTx: {
                 inputs: inputs,
                 outputs: outputs,
-                fee: {
-                    address: feeAddress,
-                    value: feeValue
-                }
+                fee: fee
             },
             wifs: wifs
         });
@@ -638,16 +635,13 @@ class CryptoAPIs {
         return this.getRequest('/bc/ltc/' + network + '/txs/history?txs-included=' + txsIncluded + '&index=' + index + '&limit=' + limit);
     }
 
-    createLitecoinTransaction(network, inputs, outputs, feeAddress, feeValue, wifs) {
+    createLitecoinTransaction(network, inputs, outputs, fee, wifs) {
 
         return this.postRequest('/bc/ltc/' + network + '/txs/new', {
             createTx: {
                 inputs: inputs,
                 outputs: outputs,
-                fee: {
-                    address: feeAddress,
-                    value: feeValue
-                }
+                fee: fee
             },
             wifs: wifs
         });
@@ -1112,16 +1106,13 @@ class CryptoAPIs {
         return this.getRequest('/bc/bch/' + network + '/txs/history?txs-included=' + txsIncluded + '&index=' + index + '&limit=' + limit);
     }
 
-    createBitcoinCashTransaction(network, inputs, outputs, feeAddress, feeValue, wifs) {
+    createBitcoinCashTransaction(network, inputs, outputs, fee, wifs) {
 
         return this.postRequest('/bc/bch/' + network + '/txs/new', {
             createTx: {
                 inputs: inputs,
                 outputs: outputs,
-                fee: {
-                    address: feeAddress,
-                    value: feeValue
-                }
+                fee: fee
             },
             wifs: wifs
         });

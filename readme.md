@@ -882,6 +882,52 @@ caClient.createBitcoinTransaction('testnet', inputs, outputs, fee, wifs).then(fu
 });
 ```
 
+### createBitcoinHDWalletTransaction
+
+Create HDWallet transaction
+
+#### Parameters
+
+-   `network` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Network name (mainnet or testnet)
+-   `walletName` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Wallet name
+-   `password` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Wallet password
+-   `fee` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** (see example below)
+-   `outputs` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)>** Array of objects (see example below)
+-   `inputs`(optional) **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)>** Array of objects (see example below)
+-   `locktime`(optional) **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** 
+
+#### Example
+
+```js
+const CryptoApis = require('cryptoapis.io');
+const apiKey = 'your API key';
+
+var caClient = new CryptoApis(apiKey);
+var walletName = 'myWallet';
+var password = '8a0690d2cd4fad1371090225217bb1425b3700210f51be6111eb225d5142ac32';
+var inputs = [{
+    address: "2N4Peeewfgghac69z6evCAmab91oEuWmkgy",
+    value: 0.54
+}, {
+    address: "2MuqsmttygX6RWkxS1MLjDgwJ2DavbG9JPu",
+    value: 1.0
+}]; //optional
+var outputs = [{
+    address: "2Mx93LzsoPWR8UmoJMBFnCb2KkCGt2Jg8Dd",
+    value: 1.54
+}];
+var fee = {
+    value: 0.00023141
+};
+var locktime = 0; //optional
+
+caClient.createBitcoinHDWalletTransaction('testnet', walletName, password, fee, outputs, inputs, locktime).then(function(result) {
+    console.log(result);
+}, function(error) {
+    console.log(error);
+});
+```
+
 ### sendBitcoinTransaction
 
 Send Transaction
@@ -2350,6 +2396,52 @@ caClient.createLitecoinTransaction('testnet', inputs, outputs, fee, wifs).then(f
 });
 ```
 
+### createLitecoinHDWalletTransaction
+
+Create HDWallet transaction
+
+#### Parameters
+
+-   `network` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Network name (mainnet or testnet)
+-   `walletName` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Wallet name
+-   `password` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Wallet password
+-   `fee` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** (see example below)
+-   `outputs` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)>** Array of objects (see example below)
+-   `inputs`(optional) **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)>** Array of objects (see example below)
+-   `locktime`(optional) **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** 
+
+#### Example
+
+```js
+const CryptoApis = require('cryptoapis.io');
+const apiKey = 'your API key';
+
+var caClient = new CryptoApis(apiKey);
+var walletName = 'myWallet';
+var password = '8a0690d2cd4fad1371090225217bb1425b3700210f51be6111eb225d5142ac32';
+var inputs = [{
+    address: "2N4Peeewfgghac69z6evCAmab91oEuWmkgy",
+    value: 0.54
+}, {
+    address: "2MuqsmttygX6RWkxS1MLjDgwJ2DavbG9JPu",
+    value: 1.0
+}]; //optional
+var outputs = [{
+    address: "2Mx93LzsoPWR8UmoJMBFnCb2KkCGt2Jg8Dd",
+    value: 1.54
+}];
+var fee = {
+    value: 0.00023141
+};
+var locktime = 0; //optional
+
+caClient.createLitecoinHDWalletTransaction('testnet', walletName, password, fee, outputs, inputs, locktime).then(function(result) {
+    console.log(result);
+}, function(error) {
+    console.log(error);
+});
+```
+
 ### sendLitecoinTransaction
 
 Send Transaction
@@ -3137,6 +3229,52 @@ var wifs = [
 ];
 
 caClient.createBitcoinCashTransaction('testnet', inputs, outputs, fee, wifs).then(function(result) {
+    console.log(result);
+}, function(error) {
+    console.log(error);
+});
+```
+
+### createBitcoinCashHDWalletTransaction
+
+Create HDWallet transaction
+
+#### Parameters
+
+-   `network` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Network name (mainnet or testnet)
+-   `walletName` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Wallet name
+-   `password` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Wallet password
+-   `fee` **[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** (see example below)
+-   `outputs` **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)>** Array of objects (see example below)
+-   `inputs`(optional) **[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)>** Array of objects (see example below)
+-   `locktime`(optional) **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** 
+
+#### Example
+
+```js
+const CryptoApis = require('cryptoapis.io');
+const apiKey = 'your API key';
+
+var caClient = new CryptoApis(apiKey);
+var walletName = 'myWallet';
+var password = '8a0690d2cd4fad1371090225217bb1425b3700210f51be6111eb225d5142ac32';
+var inputs = [{
+    address: "2N4Peeewfgghac69z6evCAmab91oEuWmkgy",
+    value: 0.54
+}, {
+    address: "2MuqsmttygX6RWkxS1MLjDgwJ2DavbG9JPu",
+    value: 1.0
+}]; //optional
+var outputs = [{
+    address: "2Mx93LzsoPWR8UmoJMBFnCb2KkCGt2Jg8Dd",
+    value: 1.54
+}];
+var fee = {
+    value: 0.00023141
+};
+var locktime = 0; //optional
+
+caClient.createBitcoinCashHDWalletTransaction('testnet', walletName, password, fee, outputs, inputs, locktime).then(function(result) {
     console.log(result);
 }, function(error) {
     console.log(error);

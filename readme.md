@@ -698,6 +698,27 @@ caClient.getBitcoinTransaction('mainnet', '54287345c01d64a3365166b380adf04e738ec
 });
 ```
 
+### getBitcoinTransactionFee
+
+Returns detailed information about the fees for all transactions included in the last 70 blocks.
+
+#### Parameters
+
+-   `network` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Network name (mainnet or testnet)
+
+#### Example
+
+```js
+const CryptoApis = require('cryptoapis.io');
+const apiKey = 'your API key';
+var caClient = new CryptoApis(apiKey);
+caClient.getBitcoinTransactionFee('mainnet').then(function(result) {
+    console.log(result);
+}, function(error) {
+    console.log(error);
+});
+```
+
 ### getBitcoinTransactionByBlockIndex
 
 Returns detailed information about a given transaction based on its hash and index of transaction in the block.

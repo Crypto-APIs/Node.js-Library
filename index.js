@@ -362,7 +362,7 @@ class CryptoAPIs {
         return this.getRequest('/bc/btc/' + network + '/txs/txid/' + txID);
     }
 
-    getBitcoinTransactionFee(network) {
+    getBitcoinTransactionsFee(network) {
         return this.getRequest('/bc/btc/' + network + '/txs/fee');
     }
 

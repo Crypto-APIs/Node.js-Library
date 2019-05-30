@@ -712,7 +712,7 @@ Returns detailed information about the fees for all transactions included in the
 const CryptoApis = require('cryptoapis.io');
 const apiKey = 'your API key';
 var caClient = new CryptoApis(apiKey);
-caClient.getBitcoinTransactionFee('mainnet').then(function(result) {
+caClient.getBitcoinTransactionsFee('mainnet').then(function(result) {
     console.log(result);
 }, function(error) {
     console.log(error);

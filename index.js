@@ -245,7 +245,7 @@ class CryptoAPIs {
         return this.getRequest('/quotes/' + symbol + '/history?timeStart=' + timeStart + '&timeEnd=' + timeEnd + '&skip=' + skip + '&limit=' + limit);
     }
 
-     /*
+    /*
     BITCOIN methods
      */
     getBitcoinInfo(network) {

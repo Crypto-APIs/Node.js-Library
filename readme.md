@@ -698,6 +698,27 @@ caClient.getBitcoinTransaction('mainnet', '54287345c01d64a3365166b380adf04e738ec
 });
 ```
 
+### getBitcoinTransactionsFee
+
+Returns detailed information about the fees for all transactions included in the last 70 blocks.
+
+#### Parameters
+
+-   `network` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Network name (mainnet or testnet)
+
+#### Example
+
+```js
+const CryptoApis = require('cryptoapis.io');
+const apiKey = 'your API key';
+var caClient = new CryptoApis(apiKey);
+caClient.getBitcoinTransactionsFee('mainnet').then(function(result) {
+    console.log(result);
+}, function(error) {
+    console.log(error);
+});
+```
+
 ### getBitcoinTransactionByBlockIndex
 
 Returns detailed information about a given transaction based on its hash and index of transaction in the block.
@@ -1346,6 +1367,27 @@ const CryptoApis = require('cryptoapis.io');
 const apiKey = 'your API key';
 var caClient = new CryptoApis(apiKey);
 caClient.getEthereumTransaction('mainnet', '0x52afade154e72b3f9059f9a0330bd8f9c9b6ccf73f9a6ef75fa6814bf941ceae').then(function(result) {
+    console.log(result);
+}, function(error) {
+    console.log(error);
+});
+```
+
+### getEthereumTransactionsFee
+
+Returns detailed information about the fees for all transactions included in the last 70 blocks.
+
+#### Parameters
+
+-   `network` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Network name (mainnet or testnet)
+
+#### Example
+
+```js
+const CryptoApis = require('cryptoapis.io');
+const apiKey = 'your API key';
+var caClient = new CryptoApis(apiKey);
+caClient.getEthereumTransactionsFee('mainnet').then(function(result) {
     console.log(result);
 }, function(error) {
     console.log(error);
@@ -2212,6 +2254,27 @@ caClient.getLitecoinTransaction('mainnet', '54287345c01d64a3365166b380adf04e738e
 });
 ```
 
+### getLitecoinTransactionsFee
+
+Returns detailed information about the fees for all transactions included in the last 70 blocks.
+
+#### Parameters
+
+-   `network` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Network name (mainnet or testnet)
+
+#### Example
+
+```js
+const CryptoApis = require('cryptoapis.io');
+const apiKey = 'your API key';
+var caClient = new CryptoApis(apiKey);
+caClient.getLitecoinTransactionsFee('mainnet').then(function(result) {
+    console.log(result);
+}, function(error) {
+    console.log(error);
+});
+```
+
 ### getLitecoinTransactionByBlockIndex
 
 Returns detailed information about a given transaction based on its hash and index of transaction in the block.
@@ -3045,6 +3108,27 @@ const CryptoApis = require('cryptoapis.io');
 const apiKey = 'your API key';
 var caClient = new CryptoApis(apiKey);
 caClient.getBitcoinCashTransaction('mainnet', '54287345c01d64a3365166b380adf04e738ec52935f2751aead7ae60ff4fcb21').then(function(result) {
+    console.log(result);
+}, function(error) {
+    console.log(error);
+});
+```
+
+### getBitcoinCashTransactionsFee
+
+Returns detailed information about the fees for all transactions included in the last 70 blocks.
+
+#### Parameters
+
+-   `network` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Network name (mainnet or testnet)
+
+#### Example
+
+```js
+const CryptoApis = require('cryptoapis.io');
+const apiKey = 'your API key';
+var caClient = new CryptoApis(apiKey);
+caClient.getBitcoinCashTransactionsFee('mainnet').then(function(result) {
     console.log(result);
 }, function(error) {
     console.log(error);

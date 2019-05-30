@@ -362,6 +362,10 @@ class CryptoAPIs {
         return this.getRequest('/bc/btc/' + network + '/txs/txid/' + txID);
     }
 
+    getBitcoinTransactionsFee(network) {
+        return this.getRequest('/bc/btc/' + network + '/txs/fee');
+    }
+
     getBitcoinTransactionByBlockIndex(network, block, index) {
 
         return this.getRequest('/bc/btc/' + network + '/txs/block/' + block + '/' + index);
@@ -622,6 +626,10 @@ class CryptoAPIs {
         return this.getRequest('/bc/ltc/' + network + '/txs/txid/' + txID);
     }
 
+    getLitecoinTransactionsFee(network) {
+        return this.getRequest('/bc/ltc/' + network + '/txs/fee');
+    }
+
     getLitecoinTransactionByBlockIndex(network, block, index) {
 
         return this.getRequest('/bc/ltc/' + network + '/txs/block/' + block + '/' + index);
@@ -808,6 +816,10 @@ class CryptoAPIs {
     getEthereumTransaction(network, txHash) {
 
         return this.getRequest('/bc/eth/' + network + '/txs/hash/' + txHash);
+    }
+
+    getEthereumTransactionsFee(network) {
+        return this.getRequest('/bc/eth/' + network + '/txs/fee');
     }
 
     getEthereumTransactionsByBlock(network, block, index = 0, limit = 50) {
@@ -1110,6 +1122,10 @@ class CryptoAPIs {
     getBitcoinCashTransaction(network, txID) {
 
         return this.getRequest('/bc/bch/' + network + '/txs/txid/' + txID);
+    }
+
+    getBitcoinCashTransactionsFee(network) {
+        return this.getRequest('/bc/bch/' + network + '/txs/fee');
     }
 
     getBitcoinCashTransactionByBlockIndex(network, block, index) {

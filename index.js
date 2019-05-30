@@ -245,7 +245,7 @@ class CryptoAPIs {
         return this.getRequest('/quotes/' + symbol + '/history?timeStart=' + timeStart + '&timeEnd=' + timeEnd + '&skip=' + skip + '&limit=' + limit);
     }
 
-    /*
+     /*
     BITCOIN methods
      */
     getBitcoinInfo(network) {
@@ -1269,6 +1269,270 @@ class CryptoAPIs {
     deleteBitcoinCashWebHook(network, webhookID) {
 
         return this.deleteRequest('/bc/bch/' + network + '/hooks/' + webhookID);
+    }
+
+    /*
+    DOGECOIN methods
+    */
+    getDogecoinInfo(network) {
+
+        return this.getRequest('/bc/doge/' + network + '/info');
+    }
+
+    getDogecoinBlock(network, block) {
+
+        return this.getRequest('/bc/doge/' + network + '/blocks/' + block);
+    }
+
+    getDogecoinLatestBlock(network) {
+
+        return this.getRequest('/bc/doge/' + network + '/blocks/latest');
+    }
+
+    getDogecoinAddressInfo(network, address) {
+
+        return this.getRequest('/bc/doge/' + network + '/address/' + address);
+    }
+
+    generateDogecoinAddress(network) {
+
+        return this.postRequest('/bc/doge/' + network + '/address', {});
+    }
+
+    getDogecoinAddressTransactions(network, address, index = 0, limit = 50) {
+
+        return this.getRequest('/bc/doge/' + network + '/address/' + address + '/transactions?index=' + index + '&limit=' + limit);
+    }
+
+    createDogecoinWallet(network, name, addresses) {
+
+        return this.postRequest('/bc/doge/' + network + '/wallets', {
+            walletName: name,
+            addresses: addresses
+        });
+    }
+
+    createDogecoinHDWallet(network, name, addressCount, password) {
+
+        return this.postRequest('/bc/doge/' + network + '/wallets/hd', {
+            walletName: name,
+            addressCount: addressCount,
+            password: password
+        });
+    }
+
+    listDogecoinWallets(network, hd) {
+
+        var path = '/bc/doge/' + network + '/wallets';
+
+        if (hd) {
+            path = path + '/hd';
+        }
+
+        return this.getRequest(path);
+    }
+
+    getDogecoinWallet(network, walletName, hd) {
+
+        var path = '/bc/doge/' + network + '/wallets/';
+
+        if (hd) {
+            path = path + 'hd/';
+        }
+
+        path = path + walletName;
+
+        return this.getRequest(path);
+    }
+
+    addAddressToDogecoinWallet(network, name, addresses) {
+
+        return this.postRequest('/bc/doge/' + network + '/wallets/' + name + '/addresses', {
+            addresses: addresses
+        });
+    }
+
+    generateAddressInDogecoinWallet(network, name) {
+
+        return this.postRequest('/bc/doge/' + network + '/wallets/' + name + '/addresses/generate', {});
+    }
+
+    generateAddressInDogecoinHDWallet(network, name, addressCount, password) {
+
+        return this.postRequest('/bc/doge/' + network + '/wallets/hd/' + name + '/addresses/generate', {
+            addressCount: addressCount,
+            password: password
+        });
+    }
+
+    deleteAddressFromDogecoinWallet(network, name, address) {
+
+        return this.deleteRequest('/bc/doge/' + network + '/wallets/' + name + '/address/' + address);
+    }
+
+    deleteDogecoinWallet(network, name, hd) {
+
+        var path = '/bc/doge/' + network + '/wallets/';
+
+        if (hd) {
+            path = path + 'hd/';
+        }
+
+        path = path + name;
+
+        return this.deleteRequest(path);
+    }
+
+    getDogecoinTransaction(network, txID) {
+
+        return this.getRequest('/bc/doge/' + network + '/txs/txid/' + txID);
+    }
+
+    getDogecoinTransactionsFee(network) {
+        return this.getRequest('/bc/doge/' + network + '/txs/fee');
+    }
+
+    getDogecoinTransactionByBlockIndex(network, block, index) {
+
+        return this.getRequest('/bc/doge/' + network + '/txs/block/' + block + '/' + index);
+    }
+
+    getDogecoinTransactionsByBlockIndex(network, block, index, limit) {
+
+        return this.getRequest('/bc/doge/' + network + '/txs/block/' + block + '?index=' + index + '&limit=' + limit);
+    }
+
+    getDogecoinUnconfirmedTransactions(network) {
+
+        return this.getRequest('/bc/doge/' + network + '/txs');
+    }
+
+    dogecoinTransactionTrace(network, txs) {
+
+        return this.postRequest('/bc/doge/' + network + '/txs/trace', {
+            txs: txs
+        });
+    }
+
+    getDogecoinLatestTransactions(network, limit = 50) {
+
+        return this.getRequest('/bc/doge/' + network + '/txs/latest?limit=' + limit);
+    }
+
+    getDogecoinTransactionsHistory(network, txsIncluded = true, index = 0, limit = 50) {
+
+        return this.getRequest('/bc/doge/' + network + '/txs/history?txs-included=' + txsIncluded + '&index=' + index + '&limit=' + limit);
+    }
+
+    createDogecoinTransaction(network, inputs, outputs, fee, wifs) {
+
+        return this.postRequest('/bc/doge/' + network + '/txs/new', {
+            createTx: {
+                inputs: inputs,
+                outputs: outputs,
+                fee: fee
+            },
+            wifs: wifs
+        });
+    }
+
+    createDogecoinHDWalletTransaction(network, walletName, password, fee, outputs, inputs = null, locktime = null) {
+        var data = {
+            walletName: walletName,
+            password: password,
+            outputs: outputs,
+            fee: fee
+        };
+
+        if(inputs) {
+            data.inputs = inputs;
+        }
+
+        if(locktime) {
+            data.locktime = locktime;
+        }
+
+        return this.postRequest('/bc/doge/' + network + '/txs/hdwallet', data);
+    }
+
+    sendDogecoinTransaction(network, toSend) {
+
+        return this.postRequest('/bc/doge/' + network + '/txs/send', {
+            toSend: toSend
+        });
+    }
+
+    decodeRawDogecoinTransaction(network, txHex) {
+
+        return this.postRequest('/bc/doge/' + network + '/txs/decode', {
+            txHex: txHex
+        });
+    }
+
+    dogecoinCreatePayment(network, from, to, callbackURL, wallet, password) {
+
+        return this.postRequest('/bc/doge/' + network + '/payments', {
+            from: from,
+            to: to,
+            callback: callbackURL,
+            wallet: wallet,
+            password: password
+        });
+    }
+
+    dogecoinListPayment(network) {
+
+        return this.getRequest('/bc/doge/' + network + '/payments');
+    }
+
+    dogecoinDeletePayment(network, paymentID) {
+
+        return this.deleteRequest('/bc/doge/' + network + '/payments/' + paymentID);
+    }
+
+    dogecoinCreateUnconfirmedTransactionWebHook(network, callbackURL) {
+
+        return this.postRequest('/bc/doge/' + network + '/hooks', {
+            event: 'UNCONFIRMED_TX',
+            url: callbackURL
+        });
+    }
+
+    dogecoinCreateNewBlockWebHook(network, callbackURL) {
+
+        return this.postRequest('/bc/doge/' + network + '/hooks', {
+            event: 'NEW_BLOCK',
+            url: callbackURL
+        });
+    }
+
+    dogecoinCreateConfirmedTransactionWebHook(network, callbackURL, transaction, confirmations) {
+
+        return this.postRequest('/bc/doge/' + network + '/hooks', {
+            event: 'CONFIRMED_TX',
+            url: callbackURL,
+            transaction: transaction,
+            confirmations: confirmations
+        });
+    }
+
+    dogecoinCreateAddressTransactionWebHook(network, callbackURL, address) {
+
+        return this.postRequest('/bc/doge/' + network + '/hooks', {
+            event: 'ADDRESS',
+            url: callbackURL,
+            address: address
+        });
+    }
+
+    listAllDogecoinHooks(network) {
+
+        return this.getRequest('/bc/doge/' + network + '/hooks');
+    }
+
+    deleteDogecoinWebHook(network, webhookID) {
+
+        return this.deleteRequest('/bc/doge/' + network + '/hooks/' + webhookID);
     }
 }
 

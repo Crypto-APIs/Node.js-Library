@@ -1132,6 +1132,30 @@ caClient.bitcoinCreateConfirmedTransactionWebHook('mainnet', 'your callback url'
 });
 ```
 
+### bitcoinCreateTransactionConfirmationsWebHook
+
+Receive confirmations for a specified address.
+
+#### Parameters
+
+-   `network` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Network name (mainnet or testnet)
+-   `callbackURL` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Callback URL
+-   `address` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Bitcoin address
+-   `confirmations` **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Confirmations
+
+#### Example
+
+```js
+const CryptoApis = require('cryptoapis.io');
+const apiKey = 'your API key';
+var caClient = new CryptoApis(apiKey);
+caClient.bitcoinCreateTransactionConfirmationsWebHook('mainnet', 'your callback url', '1GdnJh1r3xWsst7o7JXykgGD13AF4NSmh3', 5).then(function(result) {
+    console.log(result);
+}, function(error) {
+    console.log(error);
+});
+```
+
 ### bitcoinCreateAddressTransactionWebHook
 
 Create Address Transaction WebHook
@@ -1799,6 +1823,30 @@ const CryptoApis = require('cryptoapis.io');
 const apiKey = 'your API key';
 var caClient = new CryptoApis(apiKey);
 caClient.ethereumCreateConfirmedTransactionWebHook('mainnet', 'your callback url', '0x87da27245076441baf7bcc6e93d328d80d11297a3a247a1ce3019168be3b7a36', 10).then(function(result) {
+    console.log(result);
+}, function(error) {
+    console.log(error);
+});
+```
+
+### ethereumCreateTransactionConfirmationsWebHook
+
+Receive confirmations for a specified address.
+
+#### Parameters
+
+-   `network` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Network name (mainnet or testnet)
+-   `callbackURL` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Callback URL
+-   `address` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Ethereum address
+-   `confirmations` **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Confirmations
+
+#### Example
+
+```js
+const CryptoApis = require('cryptoapis.io');
+const apiKey = 'your API key';
+var caClient = new CryptoApis(apiKey);
+caClient.ethereumCreateTransactionConfirmationsWebHook('mainnet', 'your callback url', '0xe816c453a99b12bb65ea55db22a6fe70f63c2c7a', 5).then(function(result) {
     console.log(result);
 }, function(error) {
     console.log(error);
@@ -2688,6 +2736,30 @@ caClient.litecoinCreateConfirmedTransactionWebHook('mainnet', 'your callback url
 });
 ```
 
+### litecoinCreateTransactionConfirmationsWebHook
+
+Receive confirmations for a specified address.
+
+#### Parameters
+
+-   `network` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Network name (mainnet or testnet)
+-   `callbackURL` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Callback URL
+-   `address` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Litecoin address
+-   `confirmations` **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Confirmations
+
+#### Example
+
+```js
+const CryptoApis = require('cryptoapis.io');
+const apiKey = 'your API key';
+var caClient = new CryptoApis(apiKey);
+caClient.litecoinCreateTransactionConfirmationsWebHook('mainnet', 'your callback url', '1GdnJh1r3xWsst7o7JXykgGD13AF4NSmh3', 5).then(function(result) {
+    console.log(result);
+}, function(error) {
+    console.log(error);
+});
+```
+
 ### litecoinCreateAddressTransactionWebHook
 
 Create Address Transaction WebHook
@@ -3542,6 +3614,30 @@ const CryptoApis = require('cryptoapis.io');
 const apiKey = 'your API key';
 var caClient = new CryptoApis(apiKey);
 caClient.bitcoinCashCreateConfirmedTransactionWebHook('mainnet', 'your callback url', '56ee588e6ac4df324d5e1cdd0fa7d58a479295bad71f3c62865f1c302e0ca2a6', 5).then(function(result) {
+    console.log(result);
+}, function(error) {
+    console.log(error);
+});
+```
+
+### bitcoinCashCreateTransactionConfirmationsWebHook
+
+Receive confirmations for a specified address.
+
+#### Parameters
+
+-   `network` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Network name (mainnet or testnet)
+-   `callbackURL` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Callback URL
+-   `address` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Bitcoin Cash address
+-   `confirmations` **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Confirmations
+
+#### Example
+
+```js
+const CryptoApis = require('cryptoapis.io');
+const apiKey = 'your API key';
+var caClient = new CryptoApis(apiKey);
+caClient.bitcoinCashCreateTransactionConfirmationsWebHook('mainnet', 'your callback url', '1GdnJh1r3xWsst7o7JXykgGD13AF4NSmh3', 5).then(function(result) {
     console.log(result);
 }, function(error) {
     console.log(error);
@@ -4403,6 +4499,30 @@ const CryptoApis = require('cryptoapis.io');
 const apiKey = 'your API key';
 var caClient = new CryptoApis(apiKey);
 caClient.dogecoinCreateConfirmedTransactionWebHook('mainnet', 'your callback url', '56ee588e6ac4df324d5e1cdd0fa7d58a479295bad71f3c62865f1c302e0ca2a6', 5).then(function(result) {
+    console.log(result);
+}, function(error) {
+    console.log(error);
+});
+```
+
+### dogecoinCreateTransactionConfirmationsWebHook
+
+Receive confirmations for a specified address.
+
+#### Parameters
+
+-   `network` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Network name (mainnet or testnet)
+-   `callbackURL` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Callback URL
+-   `address` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Dogecoin address
+-   `confirmations` **[Number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** Confirmations
+
+#### Example
+
+```js
+const CryptoApis = require('cryptoapis.io');
+const apiKey = 'your API key';
+var caClient = new CryptoApis(apiKey);
+caClient.dogecoinCreateTransactionConfirmationsWebHook('mainnet', 'your callback url', '1GdnJh1r3xWsst7o7JXykgGD13AF4NSmh3', 5).then(function(result) {
     console.log(result);
 }, function(error) {
     console.log(error);

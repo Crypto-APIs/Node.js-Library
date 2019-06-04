@@ -490,6 +490,15 @@ class CryptoAPIs {
         });
     }
 
+    bitcoinCreateTransactionConfirmationsWebHook(network, callbackURL, address, confirmations) {
+        return this.postRequest('/bc/btc/' + network + '/hooks', {
+            "event" : "TRANSACTION_CONFIRMATIONS",
+            "url" : callbackURL,
+            "confirmations": confirmations,
+            "address" : address
+        });
+    }
+
     bitcoinCreateAddressTransactionWebHook(network, callbackURL, address) {
 
         return this.postRequest('/bc/btc/' + network + '/hooks', {
@@ -754,6 +763,15 @@ class CryptoAPIs {
         });
     }
 
+    litecoinCreateTransactionConfirmationsWebHook(network, callbackURL, address, confirmations) {
+        return this.postRequest('/bc/ltc/' + network + '/hooks', {
+            "event" : "TRANSACTION_CONFIRMATIONS",
+            "url" : callbackURL,
+            "confirmations": confirmations,
+            "address" : address
+        });
+    }
+
     litecoinCreateAddressTransactionWebHook(network, callbackURL, address) {
 
         return this.postRequest('/bc/ltc/' + network + '/hooks', {
@@ -977,6 +995,15 @@ class CryptoAPIs {
             url: callbackURL,
             confirmations: confirmations,
             transaction: transaction
+        });
+    }
+
+    ethereumCreateTransactionConfirmationsWebHook(network, callbackURL, address, confirmations) {
+        return this.postRequest('/bc/eth/' + network + '/hooks', {
+            "event" : "TRANSACTION_CONFIRMATIONS",
+            "url" : callbackURL,
+            "confirmations": confirmations,
+            "address" : address
         });
     }
 
@@ -1252,6 +1279,15 @@ class CryptoAPIs {
         });
     }
 
+    bitcoinCashCreateTransactionConfirmationsWebHook(network, callbackURL, address, confirmations) {
+        return this.postRequest('/bc/bch/' + network + '/hooks', {
+            "event" : "TRANSACTION_CONFIRMATIONS",
+            "url" : callbackURL,
+            "confirmations": confirmations,
+            "address" : address
+        });
+    }
+
     bitcoinCashCreateAddressTransactionWebHook(network, callbackURL, address) {
 
         return this.postRequest('/bc/bch/' + network + '/hooks', {
@@ -1513,6 +1549,15 @@ class CryptoAPIs {
             url: callbackURL,
             transaction: transaction,
             confirmations: confirmations
+        });
+    }
+
+    dogecoinCreateTransactionConfirmationsWebHook(network, callbackURL, address, confirmations) {
+        return this.postRequest('/bc/doge/' + network + '/hooks', {
+            "event" : "TRANSACTION_CONFIRMATIONS",
+            "url" : callbackURL,
+            "confirmations": confirmations,
+            "address" : address
         });
     }
 

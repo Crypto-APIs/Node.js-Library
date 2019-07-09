@@ -40,27 +40,6 @@ class BCH {
         return this.request.get('/bc/bch/' + network + '/txs/history?txs-included=' + txsIncluded + '&index=' + index + '&limit=' + limit);
     }
 
-    CreatePayment(network, from, to, callbackURL, wallet, password) {
-
-        return this.request.post('/bc/bch/' + network + '/payments', {
-            from: from,
-            to: to,
-            callback: callbackURL,
-            wallet: wallet,
-            password: password
-        });
-    }
-
-    ListPayment(network) {
-
-        return this.request.get('/bc/bch/' + network + '/payments');
-    }
-
-    DeletePayment(network, paymentID) {
-
-        return this.request.delete('/bc/bch/' + network + '/payments/' + paymentID);
-    }
-
     CreateUnconfirmedTransactionWebHook(network, callbackURL) {
 
         return this.request.post('/bc/bch/' + network + '/hooks', {

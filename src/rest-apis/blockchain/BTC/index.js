@@ -2,6 +2,7 @@ const Address = require('./address');
 const Blockchain = require('./blockchain');
 
 const Transaction = require('./transaction');
+const PaymentForwarding = require('./payment-forwarding');
 
 const Wallet = require('./wallet');
 
@@ -14,6 +15,7 @@ class BTC {
         this.blockchain = new Blockchain(req, BASE_PATH);
 
         this.transaction = new Transaction(req, BASE_PATH);
+        this.paymentForwarding = new PaymentForwarding(req, BASE_PATH);
 
         this.wallet = new Wallet(req, BASE_PATH);
     }

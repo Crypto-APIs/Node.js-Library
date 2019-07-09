@@ -2,6 +2,7 @@ const Address = require('./address');
 const Blockchain = require('./blockchain');
 
 const Transaction = require('./transaction');
+const PaymentForwarding = require('./payment-forwarding');
 
 const BASE_PATH = '/bc/eth/';
 
@@ -12,6 +13,7 @@ class ETH {
         this.address = new Address(req, BASE_PATH);
 
         this.transaction = new Transaction(req, BASE_PATH);
+        this.paymentForwarding = new PaymentForwarding(req, BASE_PATH);
     }
 
     estimateSmartContractGas(network) {

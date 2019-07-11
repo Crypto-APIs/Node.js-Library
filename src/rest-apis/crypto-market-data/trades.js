@@ -4,28 +4,49 @@ class Trades {
         this.request = req;
     }
 
-    tradesGetLatestData(skip = 0, limit = 50) {
-        return this.request.get('/trades/latest?skip=' + skip + '&limit=' + limit);
+    getLatestData(limit = 50) {
+        return this.request.get('/trades/latest?limit=' + limit);
     }
 
-    tradesGetLatestDataBySymbol(symbol) {
-        return this.request.get('/trades/' + symbol + '/latest');
+    getLatestDataBySymbol(symbolId, skip = 0, limit = 50) {
+        return this.request.get('/trades/' + symbolId + '/latest?skip=' + skip + '&limit=' + limit);
     }
 
-
-    // TODO GET /v1/trades/exchange/{exchangeId}/latest?skip={skip}&limit={limit}
-    // TODO GET /v1/trades/baseAsset/{baseAsset}/latest?skip={skip}&limit={limit}
-    // TODO GET /v1/trades/baseAsset/{baseAsset}/quoteAsset/{quoteAsset}/latest?skip={skip}&limit={limit}
-    // TODO GET /v1/trades/exchange/{exchangeId}/baseAsset/{baseAsset}/quoteAsset/{quoteAsset}/latest?skip={skip}&limit={limit}
-
-    tradesGetHistoricalData(symbol, timeStart, timeEnd, skip = 0, limit = 50) {
-        return this.request.get('/trades/' + symbol + '/history?timeStart=' + timeStart + '&timeEnd=' + timeEnd + '&skip=' + skip + '&limit=' + limit);
+    getLatestDataByExchange(exchangeId, skip = 0, limit = 50) {
+        return this.request.get('/trades/exchange/' + exchangeId + '/latest?skip=' + skip + '&limit=' + limit);
     }
 
-    // TODO GET /v1/trades/exchange/{exchangeId}/history?timeStart={timestart}&timeEnd={timeend}&skip={skip}&limit={limit}
-    // TODO GET /v1/trades/baseAsset/{baseAsset}/history?timeStart={timestart}&timeEnd={timeend}&skip={skip}&limit={limit}
-    // TODO GET /v1/trades/baseAsset/{baseAsset}/quoteAsset/{quoteAsset}/history?timeStart={timestart}&timeEnd={timeend}&skip={skip}&limit={limit}
-    // TODO GET /v1/trades/exchange/{exchangeId}/baseAsset/{baseAsset}/quoteAsset/{quoteAsset}/history?timeStart={timestart}&timeEnd={timeend}&skip={skip}&limit={limit}
+    getLatestDataByAsset(baseAsset, skip = 0, limit = 50) {
+        return this.request.get('/trades/baseAsset/' + baseAsset + '/latest?skip=' + skip + '&limit=' + limit);
+    }
+
+    getLatestDataByAssetsPair(baseAsset, quoteAsset, skip = 0, limit = 50) {
+        return this.request.get('/trades/baseAsset/' + baseAsset + '/quoteAsset/' + quoteAsset + '/latest?skip=' + skip + '&limit=' + limit);
+    }
+
+    getLatestDataByExchangeAssetsPair(exchangeId, baseAsset, quoteAsset, skip = 0, limit = 50) {
+        return this.request.get('/trades/exchange/' + exchangeId + '/baseAsset/' + baseAsset + '/quoteAsset/' + quoteAsset + '/latest?skip=' + skip + '&limit=' + limit);
+    }
+
+    tradesGetHistoricalData(symbolId, timeStart, timeEnd, skip = 0, limit = 50) {
+        return this.request.get('/trades/' + symbolId + '/history?timeStart=' + timeStart + '&timeEnd=' + timeEnd + '&skip=' + skip + '&limit=' + limit);
+    }
+
+    tradesGetHistoricalDataByExchange(exchangeId, timeStart, timeEnd, skip = 0, limit = 50) {
+        return this.request.get('/trades/exchange/' + exchangeId + '/history?timeStart=' + timeStart + '&timeEnd=' + timeEnd + '&skip=' + skip + '&limit=' + limit);
+    }
+
+    tradesGetHistoricalDataByAsset(baseAsset, timeStart, timeEnd, skip = 0, limit = 50) {
+        return this.request.get('/trades/baseAsset/' + baseAsset + '/history?timeStart=' + timeStart + '&timeEnd=' + timeEnd + '&skip=' + skip + '&limit=' + limit);
+    }
+
+    tradesGetHistoricalDataByAssetPair(baseAsset, quoteAsset, timeStart, timeEnd, skip = 0, limit = 50) {
+        return this.request.get('/trades/baseAsset/' + baseAsset + '/quoteAsset/' + quoteAsset + '/history?timeStart=' + timeStart + '&timeEnd=' + timeEnd + '&skip=' + skip + '&limit=' + limit);
+    }
+
+    tradesGetHistoricalDataByAssetPair(exchangeId, baseAsset, quoteAsset, timeStart, timeEnd, skip = 0, limit = 50) {
+        return this.request.get('/trades/exchange' + exchangeId + '/baseAsset/' + baseAsset + '/quoteAsset/' + quoteAsset + '/history?timeStart=' + timeStart + '&timeEnd=' + timeEnd + '&skip=' + skip + '&limit=' + limit);
+    }
 
 }
 

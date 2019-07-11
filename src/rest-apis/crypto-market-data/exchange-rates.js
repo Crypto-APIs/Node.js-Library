@@ -4,12 +4,12 @@ class ExchangeRates {
         this.request = req;
     }
 
-    getSpecificRate(baseAsset, quoteAsset) {
-        return this.request.get('/exchange-rates/' + baseAsset + '/' + quoteAsset);
+    getSpecificRate(baseAssetId, quoteAssetId, timestamp) {
+        return this.request.get('/exchange-rates/' + baseAssetId + '/' + quoteAssetId + '?timestamp=' + timestamp);
     }
 
-    getAllCurrentRates(baseAsset) {
-        return this.request.get('/exchange-rates/' + baseAsset);
+    getAllCurrentRates(baseAssetId, timestamp, skip = 0, limit = 50) {
+        return this.request.get('/exchange-rates/' + baseAssetId + '?timestamp=' + timestamp + '&skip=' + skip + '&limit=' + limit);
     }
 
 }

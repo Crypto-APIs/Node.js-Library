@@ -4,7 +4,9 @@ class Arbitrage {
         this.request = req;
     }
 
-    // TODO GET /v1/arbitrage-rest?skip={skip}&limit={limit}
+    getLatest(skip = 0, limit = 50) {
+        return this.request.get('/arbitrage-rest?skip=' + skip + '&limit=' + limit);
+    }
 
 }
 

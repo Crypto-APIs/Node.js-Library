@@ -4,16 +4,16 @@ class OHLCV {
         this.request = req;
     }
 
-    getOHLCVPeriods() {
+    listAllPeriods() {
         return this.request.get('/ohlcv/periods');
     }
 
-    getOHLCVLatestData(symbol, period, limit = 50) {
-        return this.request.get('/ohlcv/latest/' + symbol + '?period=' + period + '&limit=' + limit);
+    latestData(symbolId, periodId, limit = 50) {
+        return this.request.get('/ohlcv/latest/' + symbolId + '?period=' + periodId + '&limit=' + limit);
     }
 
-    getOHLCVHistoricalData(symbol, period, timePeriodStart, timePeriodEnd, limit = 50) {
-        return this.request.get('/ohlcv/history/' + symbol + '?period=' + period + '&timePeriodStart=' + timePeriodStart + '&timePeriodEnd=' + timePeriodEnd + '&limit=' + limit);
+    historicalData(symbolId, periodId, timeStart, timeEnd, limit = 50) {
+        return this.request.get('/ohlcv/history/' + symbolId + '?period=' + periodId + '&timePeriodStart=' + timeStart + '&timePeriodEnd=' + timeEnd + '&limit=' + limit);
     }
 
 }

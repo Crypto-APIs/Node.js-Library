@@ -4,18 +4,29 @@ class Meta {
         this.request = req;
     }
 
-    getAllExchanges(skip = 0, limit = 50) {
+    listAllExchanges(skip = 0, limit = 50) {
         return this.request.get('/exchanges?skip=' + skip + '&limit=' + limit);
     }
 
-    getAllAssets(skip = 0, limit = 50) {
+    getExchangeDetails(exchangeId) {
+        return this.request.get('/exchanges/' + exchangeId);
+    }
+
+    listAllAssets(skip = 0, limit = 50) {
         return this.request.get('/assets?skip=' + skip + '&limit=' + limit);
     }
 
-    getAllSymbols(skip = 0, limit = 50) {
+    getAssetDetails(assetId) {
+        return this.request.get('/assets/' + assetId);
+    }
+
+    listAllSymbols(skip = 0, limit = 50) {
         return this.request.get('/mappings?skip=' + skip + '&limit=' + limit);
     }
 
+    getSymbolDetails(symbolId) {
+        return this.request.get('/mappings/' + symbolId);
+    }
 
 }
 

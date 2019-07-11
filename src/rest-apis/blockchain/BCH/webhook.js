@@ -1,10 +1,8 @@
 class BCHWebHook extends BaseWebHook {
 
-    constructor(props) {
-        super(props);
-
+    constructor(...props) {
+        super(...props);
     }
-
 
 }
 

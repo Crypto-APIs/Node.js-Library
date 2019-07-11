@@ -24,7 +24,7 @@ class BaseWallet {
         return this.request.get(this.basePath + network + '/wallets');
     }
 
-    listHDWallets(network, hd) {
+    listHDWallets(network) {
         return this.request.get(this.basePath + network + '/wallets/hd');
     }
 

@@ -3,6 +3,7 @@
 const http = require('https');
 
 const API_URL = 'api.cryptoapis.io';
+const API_PORT = 443;
 const API_VERSION = 'v1';
 
 class Request {
@@ -15,10 +16,9 @@ class Request {
         var apiKey = this.apiKey;
 
         return new Promise(function (resolve, reject) {
-
             var options = {
                 hostname: API_URL,
-                port: 443,
+                port: API_PORT,
                 path: '/' + API_VERSION + path,
                 method: 'GET',
                 headers: {
@@ -28,27 +28,21 @@ class Request {
             };
 
             var req = http.request(options, (res) => {
-
                 res.setEncoding('utf8');
 
                 var responseStr = '';
 
                 res.on('data', (str) => {
-
                     responseStr += str;
                 });
 
                 res.on('end', () => {
-
                     try {
-
                         var obj = JSON.parse(responseStr);
 
                         if (res.statusCode != 200) {
-
                             reject(obj);
                         } else {
-
                             resolve(obj);
                         }
                     } catch (e) {
@@ -70,12 +64,11 @@ class Request {
         var apiKey = this.apiKey;
 
         return new Promise(function (resolve, reject) {
-
             var postData = JSON.stringify(data);
 
             var options = {
                 hostname: API_URL,
-                port: 443,
+                port: API_PORT,
                 path: '/' + API_VERSION + path,
                 method: 'POST',
                 headers: {
@@ -85,27 +78,21 @@ class Request {
             };
 
             var req = http.request(options, (res) => {
-
                 res.setEncoding('utf8');
 
                 var responseStr = '';
 
                 res.on('data', (str) => {
-
                     responseStr += str;
                 });
 
                 res.on('end', () => {
-
                     try {
-
                         var obj = JSON.parse(responseStr);
 
                         if (res.statusCode != 200) {
-
                             reject(obj);
                         } else {
-
                             resolve(obj);
                         }
                     } catch (e) {
@@ -124,14 +111,12 @@ class Request {
     }
 
     delete(path) {
-
         var apiKey = this.apiKey;
 
         return new Promise(function (resolve, reject) {
-
             var options = {
                 hostname: API_URL,
-                port: 443,
+                port: API_PORT,
                 path: '/' + API_VERSION + path,
                 method: 'DELETE',
                 headers: {
@@ -141,27 +126,21 @@ class Request {
             };
 
             var req = http.request(options, (res) => {
-
                 res.setEncoding('utf8');
 
                 var responseStr = '';
 
                 res.on('data', (str) => {
-
                     responseStr += str;
                 });
 
                 res.on('end', () => {
-
                     try {
-
                         var obj = JSON.parse(responseStr);
 
                         if (res.statusCode != 200) {
-
                             reject(obj);
                         } else {
-
                             resolve(obj);
                         }
                     } catch (e) {

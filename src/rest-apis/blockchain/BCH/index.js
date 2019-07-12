@@ -1,3 +1,5 @@
+const BlockchainNetwork = require('../../../common/blockchain/blockchain-network');
+
 const Address = require('./address');
 const Blockchain = require('./blockchain');
 const PaymentForwarding = require('./payment-forwarding');
@@ -5,17 +7,23 @@ const Transaction = require('./transaction');
 const Wallet = require('./wallet');
 const Webhook = require('./webhook');
 
-const BASE_PATH = '/bc/bch/';
+const ID = 'bch';
+const NETWORKS = {
+    MAINNET: 'mainnet',
+    TESTNET: 'testnet',
+};
 
-class BCH {
+class BCH extends BlockchainNetwork {
 
-    constructor(req) {
-        this.address = new Address(req, BASE_PATH);
-        this.blockchain = new Blockchain(req, BASE_PATH);
-        this.paymentForwarding = new PaymentForwarding(req, BASE_PATH);
-        this.transaction = new Transaction(req, BASE_PATH);
-        this.wallet = new Wallet(req, BASE_PATH);
-        this.webhook = new Webhook(req, BASE_PATH);
+    constructor() {
+        super(ID, NETWORKS, NETWORKS.MAINNET);
+
+        this.address = new Address(ID);
+        this.blockchain = new Blockchain(ID);
+        this.paymentForwarding = new PaymentForwarding(ID);
+        this.transaction = new Transaction(ID);
+        this.wallet = new Wallet(ID);
+        this.webhook = new Webhook(ID);
     }
 
 }

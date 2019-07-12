@@ -1,86 +1,87 @@
-class BaseWallet {
+const BaseChainComponent = require('./base-chain-component');
 
-    constructor(req, basePath) {
-        this.request = req;
-        this.basePath = basePath;
+class BaseWallet extends BaseChainComponent {
+
+    constructor(...props) {
+        super(...props);
     }
 
-    createWallet(network, name, addresses) {
-        return this.request.post(this.basePath + network + '/wallets', {
+    createWallet(name, addresses) {
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/wallets', {
             walletName: name,
             addresses: addresses
         });
     }
 
-    createHDWallet(network, name, addressCount, password) {
-        return this.request.post(this.basePath + network + '/wallets/hd', {
+    createHDWallet(name, addressCount, password) {
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/wallets/hd', {
             walletName: name,
             addressCount: addressCount,
             password: password
         });
     }
 
-    listWallets(network) {
-        return this.request.get(this.basePath + network + '/wallets');
+    listWallets() {
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/wallets');
     }
 
-    listHDWallets(network) {
-        return this.request.get(this.basePath + network + '/wallets/hd');
+    listHDWallets() {
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/wallets/hd');
     }
 
-    getWallet(network, walletName) {
-        return this.request.get(this.basePath + network + '/wallets/' + walletName);
+    getWallet(walletName) {
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/wallets/' + walletName);
     }
 
-    getHDWallet(network, walletName) {
-        return this.request.get(this.basePath + network + '/wallets/hd/' + walletName);
+    getHDWallet(walletName) {
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/wallets/hd/' + walletName);
     }
 
-    addAddressToWallet(network, name, addresses) {
-        return this.request.post(this.basePath + network + '/wallets/' + name + '/addresses', {
+    addAddressToWallet(name, addresses) {
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/wallets/' + name + '/addresses', {
             addresses: addresses
         });
     }
 
-    generateAddressInWallet(network, name) {
-        return this.request.post(this.basePath + network + '/wallets/' + name + '/addresses/generate', {});
+    generateAddressInWallet(name) {
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/wallets/' + name + '/addresses/generate', {});
     }
 
-    generateAddressInHDWallet(network, name, addressCount, password) {
-        return this.request.post(this.basePath + network + '/wallets/hd/' + name + '/addresses/generate', {
+    generateAddressInHDWallet(name, addressCount, password) {
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/wallets/hd/' + name + '/addresses/generate', {
             addressCount: addressCount,
             password: password
         });
     }
 
-    removeAddressFromWallet(network, name, address) {
-        return this.request.delete(this.basePath + network + '/wallets/' + name + '/address/' + address);
+    removeAddressFromWallet(name, address) {
+        return this.request.delete(this.basePath + this.getSelectedNetwork() + '/wallets/' + name + '/address/' + address);
     }
 
-    deleteWallet(network, name) {
-        return this.request.delete(this.basePath + network + '/wallets/' + name);
+    deleteWallet(name) {
+        return this.request.delete(this.basePath + this.getSelectedNetwork() + '/wallets/' + name);
     }
 
-    deleteHDWallet(network, name) {
-        return this.request.delete(this.basePath + network + '/wallets/hd/' + name);
+    deleteHDWallet(name) {
+        return this.request.delete(this.basePath + this.getSelectedNetwork() + '/wallets/hd/' + name);
     }
 
-    createXPub(network, password) {
-        return this.request.post(this.basePath + network + '/wallets/wallets/hd/xpub', {
+    createXPub(password) {
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/wallets/wallets/hd/xpub', {
             password: password
         });
     }
 
-    getXPubChangeAddresses(network, xpub, from, to) {
-        return this.request.post(this.basePath + network + '/wallets/hd/xpub/addresses/change', {
+    getXPubChangeAddresses(xpub, from, to) {
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/wallets/hd/xpub/addresses/change', {
             xpub: xpub,
             from: from,
             to: to
         });
     }
 
-    getXPubReceiveAddresses(network, xpub, from, to) {
-        return this.request.post(this.basePath + network + '/wallets/hd/xpub/addresses/receive', {
+    getXPubReceiveAddresses(xpub, from, to) {
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/wallets/hd/xpub/addresses/receive', {
             xpub: xpub,
             from: from,
             to: to

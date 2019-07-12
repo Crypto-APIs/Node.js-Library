@@ -1,28 +1,29 @@
-class ETHTransaction {
+const Base = require('../../../common/blockchain/base-chain-component');
 
-    constructor(req, basePath) {
-        this.request = req;
-        this.basePath = basePath;
+class ETHTransaction extends Base {
+
+    constructor(...props) {
+        super(...props);
     }
 
-    getTransaction(network, txHash) {
-        return this.request.get(this.basePath + network + '/txs/hash/' + txHash);
+    getTransaction(txHash) {
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/txs/hash/' + txHash);
     }
 
-    getTransactionsByBlock(network, block, index = 0, limit = 50) {
-        return this.request.get(this.basePath + network + '/txs/block/' + block + '?index=' + index + '&limit=' + limit);
+    getTransactionsByBlock(block, index = 0, limit = 50) {
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/txs/block/' + block + '?index=' + index + '&limit=' + limit);
     }
 
-    getTransactionByBlockNumber(network, block, blockNumber) {
-        return this.request.get(this.basePath + network + '/txs/block/' + block + '/' + blockNumber);
+    getTransactionByBlockNumber( block, blockNumber) {
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/txs/block/' + block + '/' + blockNumber);
     }
 
-    getTransactionByBlockHash(network, block, blockHash) {
-        return this.request.get(this.basePath + network + '/txs/block/' + block + '/' + blockHash);
+    getTransactionByBlockHash(block, blockHash) {
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/txs/block/' + block + '/' + blockHash);
     }
 
-    newTransaction(network, fromAddress, toAddress, gasPrice, gasLimit, value, password) {
-        return this.request.post(this.basePath + network + '/txs/new', {
+    newTransaction(fromAddress, toAddress, gasPrice, gasLimit, value, password) {
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/new', {
             fromAddress: fromAddress,
             toAddress: toAddress,
             gasPrice: gasPrice,
@@ -32,16 +33,16 @@ class ETHTransaction {
         });
     }
 
-    newAllTransaction(network, fromAddress, toAddress, password) {
-        return this.request.post(this.basePath + network + '/txs/new/all', {
+    newAllTransaction(fromAddress, toAddress, password) {
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/new/all', {
             fromAddress: fromAddress,
             toAddress: toAddress,
             password: password
         });
     }
 
-    newTransactionWithPrivateKey(network, from, to, gasPrice, gasLimit, value, privateKey) {
-        return this.request.post(this.basePath + network + '/txs/new-pvtkey', {
+    newTransactionWithPrivateKey(from, to, gasPrice, gasLimit, value, privateKey) {
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/new-pvtkey', {
             fromAddress: from,
             toAddress: to,
             gasPrice: gasPrice,
@@ -51,29 +52,29 @@ class ETHTransaction {
         });
     }
 
-    newAllTransactionWithPrivateKey(network, from, to, gasPrice, gasLimit, value, privateKey) {
-        return this.request.post(this.basePath + network + '/txs/new-pvtkey/all', {
+    newAllTransactionWithPrivateKey(from, to, gasPrice, gasLimit, value, privateKey) {
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/new-pvtkey/all', {
             fromAddress: from,
             toAddress: to,
             privateKey: privateKey
         });
     }
 
-    sendTransaction(network, fromAddress, toAddress, value) {
-        return this.request.post(this.basePath + network + '/txs/send', {
+    sendTransaction(fromAddress, toAddress, value) {
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/send', {
             fromAddress: fromAddress,
             toAddress: toAddress,
             value: value
         });
     }
 
-    pushTransaction(network, hex) {
-        return this.request.post(this.basePath + network + '/txs/push', {
+    pushTransaction(hex) {
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/push', {
             hex: hex
         });
     }
 
-    estimateTransactionGas(network, fromAddress, toAddress, value, data = null) {
+    estimateTransactionGas(fromAddress, toAddress, value, data = null) {
         var body = {
             fromAddress: fromAddress,
             toAddress: toAddress,
@@ -84,19 +85,19 @@ class ETHTransaction {
             body.data = data;
         }
 
-        return this.request.post(this.basePath + network + '/txs/gas', body);
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/gas', body);
     }
 
-    getPendingTransactions(network) {
-        return this.request.post(this.basePath + network + '/txs/pending');
+    getPendingTransactions() {
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/pending');
     }
 
-    getQuedTransactions(network) {
-        return this.request.post(this.basePath + network + '/txs/queued');
+    getQuedTransactions() {
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/queued');
     }
 
-    getTransactionsFee(network) {
-        return this.request.get(this.basePath + network + '/txs/fee');
+    getTransactionsFee() {
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/txs/fee');
     }
 
 }

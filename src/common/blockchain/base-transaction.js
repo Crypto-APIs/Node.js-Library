@@ -1,51 +1,52 @@
-class BaseTransaction {
+const BaseChainComponent = require('./base-chain-component');
 
-    constructor(req, basePath) {
-        this.request = req;
-        this.basePath = basePath;
+class BaseTransaction extends BaseChainComponent {
+
+    constructor(...props) {
+        super(...props);
     }
 
-    getTransaction(network, txID) {
-        return this.request.get(this.basePath + network + '/txs/txid/' + txID);
+    getTransaction(txID) {
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/txs/txid/' + txID);
     }
 
-    getTransactionIndexByBlock(network, block, index = 0, limit = 1) {
-        return this.request.get(this.basePath + network + '/txs/block/' + block + '?index=' + index + '&limit=' + limit);
+    getTransactionIndexByBlock(block, index = 0, limit = 1) {
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/txs/block/' + block + '?index=' + index + '&limit=' + limit);
     }
 
-    getUnconfirmedTransactions(network, index = 0, limit = 100) {
-        return this.request.get(this.basePath + network + '/txs/unconfirmed?index=' + index + '&limit=' + limit);
+    getUnconfirmedTransactions(index = 0, limit = 100) {
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/txs/unconfirmed?index=' + index + '&limit=' + limit);
     }
 
-    decodeRawTransaction(network, hex) {
-        return this.request.post(this.basePath + network + '/txs/decode', {
+    decodeRawTransaction(hex) {
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/decode', {
             hex: hex
         });
     }
 
-    createTransaction(network, inputs, outputs, fee) {
-        return this.request.post(this.basePath + network + '/txs/create', {
+    createTransaction(inputs, outputs, fee) {
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/create', {
             inputs: inputs,
             outputs: outputs,
             fee: fee,
         });
     }
 
-    signTransaction(network, hex, wifs) {
-        return this.request.post(this.basePath + network + '/txs/sign', {
+    signTransaction(hex, wifs) {
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/sign', {
             hex: hex,
             wifs: wifs,
         });
     }
 
-    sendTransaction(network, hex) {
-        return this.request.post(this.basePath + network + '/txs/send', {
+    sendTransaction(hex) {
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/send', {
             hex: hex
         });
     }
 
-    newTransaction(network, inputs, outputs, fee, wifs) {
-        return this.request.post(this.basePath + network + '/txs/new', {
+    newTransaction(inputs, outputs, fee, wifs) {
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/new', {
             createTx: {
                 inputs: inputs,
                 outputs: outputs,
@@ -55,7 +56,7 @@ class BaseTransaction {
         });
     }
 
-    createHDWalletTransaction(network, walletName, password, outputs, fee, inputs = null, locktime = null) {
+    createHDWalletTransaction(walletName, password, outputs, fee, inputs = null, locktime = null) {
         var data = {
             walletName: walletName,
             password: password,
@@ -71,11 +72,11 @@ class BaseTransaction {
             data.locktime = locktime;
         }
 
-        return this.request.post(this.basePath + network + '/txs/hdwallet', data);
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/hdwallet', data);
     }
 
-    getTransactionsFee(network) {
-        return this.request.get(this.basePath + network + '/txs/fee');
+    getTransactionsFee() {
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/txs/fee');
     }
 
 }

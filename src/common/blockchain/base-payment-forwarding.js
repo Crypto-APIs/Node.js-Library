@@ -1,11 +1,12 @@
-class BasePaymentForwarding {
+const BaseChainComponent = require('./base-chain-component');
 
-    constructor(req, basePath) {
-        this.request = req;
-        this.basePath = basePath;
+class BasePaymentForwarding extends BaseChainComponent {
+
+    constructor(...props) {
+        super(...props);
     }
 
-    createPayment(network, from, to, callbackURL, wallet, password, confirmations, fee = null) {
+    createPayment(from, to, callbackURL, wallet, password, confirmations, fee = null) {
         const data = {
             from: from,
             to: to,
@@ -19,19 +20,19 @@ class BasePaymentForwarding {
             data.fee = fee;
         }
 
-        return this.request.post(this.basePath + network + '/payments', data);
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/payments', data);
     }
 
-    listPayment(network) {
-        return this.request.get(this.basePath + network + '/payments');
+    listPayment() {
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/payments');
     }
 
-    listPaymentHistory(network) {
-        return this.request.get(this.basePath + network + '/payments/history');
+    listPaymentHistory() {
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/payments/history');
     }
 
-    deletePayment(network, paymentID) {
-        return this.request.delete(this.basePath + network + '/payments/' + paymentID);
+    deletePayment(paymentID) {
+        return this.request.delete(this.basePath + this.getSelectedNetwork() + '/payments/' + paymentID);
     }
 
 }

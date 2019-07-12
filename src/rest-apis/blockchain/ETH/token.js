@@ -1,15 +1,16 @@
-class ETHToken {
+const Base = require('../../../common/blockchain/base-chain-component');
 
-    constructor(req, basePath) {
-        this.request = req;
-        this.basePath = basePath;
+class ETHToken extends Base {
+
+    constructor(...props) {
+        super(...props);
     }
 
-    getAddressTokenBalance(network, address, contract) {
-        return this.request.get(this.basePath + network + '/tokens/' + address + '/' + contract + '/balance');
+    getAddressTokenBalance(address, contract) {
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/tokens/' + address + '/' + contract + '/balance');
     }
 
-    transferTokens(network, fromAddress, toAddress, contract, gasPrice, gasLimit, token, password = null, privateKey = null) {
+    transferTokens(fromAddress, toAddress, contract, gasPrice, gasLimit, token, password = null, privateKey = null) {
         var body = {
             fromAddress: fromAddress,
             toAddress: toAddress,
@@ -25,7 +26,7 @@ class ETHToken {
             body['privateKey'] = privateKey;
         }
 
-        return this.request.post(this.basePath + network + '/tokens/transfer', body);
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/tokens/transfer', body);
     }
 
 }

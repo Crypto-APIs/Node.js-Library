@@ -7,13 +7,13 @@ var Trades = require('./trades');
 
 class CryptoMarketData {
 
-    constructor(req) {
-        this.arbitrage = new Arbitrage(req);
-        this.exchangeRates = new ExchangeRates(req);
-        this.meta = new Meta(req);
-        this.OHLCV = new OHLCV(req);
-        this.quotes = new Quotes(req);
-        this.trades = new Trades(req);
+    constructor() {
+        this.arbitrage = Arbitrage;
+        this.exchangeRates = ExchangeRates;
+        this.meta = Meta;
+        this.OHLCV = OHLCV;
+        this.quotes = Quotes;
+        this.trades = Trades;
     }
 
 }

@@ -6,6 +6,9 @@ class ETHWebHook extends BaseWebHook {
         super(...props);
     }
 
+    // TODO?: implement hook for TOKEN?
+    // TODO?: implement hook for TXPOOL?
+
 }
 
 module.exports = ETHWebHook;

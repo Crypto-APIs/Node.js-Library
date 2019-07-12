@@ -1,50 +1,52 @@
-class BaseWebHook {
+const {WH_EVENT: EVENT} = require('../../consts');
+const BaseChainComponent = require('./base-chain-component');
 
-    constructor(req, basePath) {
-        this.request = req;
-        this.basePath = basePath;
+class BaseWebHook extends BaseChainComponent {
+
+    constructor(...props) {
+        super(...props);
     }
 
-    createNewBlockWebHook(network, callbackURL) {
-        return this.request.post(this.basePath + network + '/hooks', {
-            event: 'NEW_BLOCK',
+    createNewBlockWebHook(callbackURL) {
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/hooks', {
+            event: EVENT.COMMON.NEW_BLOCK,
             url: callbackURL
         });
     }
 
-    createConfirmedTransactionWebHook(network, callbackURL, transaction, confirmations) {
-        return this.request.post(this.basePath + network + '/hooks', {
-            event: 'CONFIRMED_TX',
+    createConfirmedTransactionWebHook(callbackURL, transaction, confirmations) {
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/hooks', {
+            event: EVENT.COMMON.CONFIRMED_TX,
             url: callbackURL,
             transaction: transaction,
             confirmations: confirmations
         });
     }
 
-    createAddressTransactionWebHook(network, callbackURL, address, confirmations) {
-        return this.request.post(this.basePath + network + '/hooks', {
-            event: 'ADDRESS',
+    createAddressTransactionWebHook(callbackURL, address, confirmations) {
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/hooks', {
+            event: EVENT.COMMON.ADDRESS,
             url: callbackURL,
             address: address,
             confirmations: confirmations
         });
     }
 
-    createTransactionConfirmationsWebHook(network, callbackURL, address, confirmations) {
-        return this.request.post(this.basePath + network + '/hooks', {
-            event: 'TRANSACTION_CONFIRMATIONS',
+    createTransactionConfirmationsWebHook(callbackURL, address, confirmations) {
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/hooks', {
+            event: EVENT.COMMON.TRANSACTION_CONFIRMATIONS,
             url: callbackURL,
             address: address,
             confirmations: confirmations,
         });
     }
 
-    listAllHooks(network) {
-        return this.request.get(this.basePath + network + '/hooks');
+    listAllHooks() {
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/hooks');
     }
 
-    deleteWebHook(network, webhookID) {
-        return this.request.delete(this.basePath + network + '/hooks/' + webhookID);
+    deleteWebHook(webhookID) {
+        return this.request.delete(this.basePath + this.getSelectedNetwork() + '/hooks/' + webhookID);
     }
 }
 

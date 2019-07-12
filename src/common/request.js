@@ -1,162 +1,169 @@
-'use strict';
-
 const http = require('https');
 
 const API_URL = 'api.cryptoapis.io';
 const API_PORT = 443;
 const API_VERSION = 'v1';
 
-class Request {
+const Request = (function () {
+    let instance;
 
-    constructor(apiKey) {
-        this.apiKey = apiKey;
-    }
+    function createInstance(apiKey) {
+        return {
+            apiKey: apiKey,
+            get: function (path) {
+                var apiKey = this.apiKey;
 
-    get(path) {
-        var apiKey = this.apiKey;
+                console.log(path);
 
-        return new Promise(function (resolve, reject) {
-            var options = {
-                hostname: API_URL,
-                port: API_PORT,
-                path: '/' + API_VERSION + path,
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-API-Key': apiKey
-                }
-            };
-
-            var req = http.request(options, (res) => {
-                res.setEncoding('utf8');
-
-                var responseStr = '';
-
-                res.on('data', (str) => {
-                    responseStr += str;
-                });
-
-                res.on('end', () => {
-                    try {
-                        var obj = JSON.parse(responseStr);
-
-                        if (res.statusCode != 200) {
-                            reject(obj);
-                        } else {
-                            resolve(obj);
+                return new Promise(function (resolve, reject) {
+                    var options = {
+                        hostname: API_URL,
+                        port: API_PORT,
+                        path: '/' + API_VERSION + path,
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-API-Key': apiKey
                         }
-                    } catch (e) {
+                    };
+
+                    var req = http.request(options, (res) => {
+                        res.setEncoding('utf8');
+
+                        var responseStr = '';
+
+                        res.on('data', (str) => {
+                            responseStr += str;
+                        });
+
+                        res.on('end', () => {
+                            try {
+                                var obj = JSON.parse(responseStr);
+
+                                if (res.statusCode != 200) {
+                                    reject(obj);
+                                } else {
+                                    resolve(obj);
+                                }
+                            } catch (e) {
+                                reject('Technical problem.');
+                            }
+                        });
+                    });
+
+                    req.on('error', (e) => {
                         reject('Technical problem.');
-                    }
+                    });
+
+                    req.end();
                 });
-            });
+            },
+            post: function (path, data) {
+                var apiKey = this.apiKey;
 
-            req.on('error', (e) => {
-                reject('Technical problem.');
-            });
+                return new Promise(function (resolve, reject) {
+                    var postData = JSON.stringify(data);
 
-            req.end();
-        });
-    }
-
-    post(path, data) {
-
-        var apiKey = this.apiKey;
-
-        return new Promise(function (resolve, reject) {
-            var postData = JSON.stringify(data);
-
-            var options = {
-                hostname: API_URL,
-                port: API_PORT,
-                path: '/' + API_VERSION + path,
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-API-Key': apiKey
-                }
-            };
-
-            var req = http.request(options, (res) => {
-                res.setEncoding('utf8');
-
-                var responseStr = '';
-
-                res.on('data', (str) => {
-                    responseStr += str;
-                });
-
-                res.on('end', () => {
-                    try {
-                        var obj = JSON.parse(responseStr);
-
-                        if (res.statusCode != 200) {
-                            reject(obj);
-                        } else {
-                            resolve(obj);
+                    var options = {
+                        hostname: API_URL,
+                        port: API_PORT,
+                        path: '/' + API_VERSION + path,
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-API-Key': apiKey
                         }
-                    } catch (e) {
+                    };
+
+                    var req = http.request(options, (res) => {
+                        res.setEncoding('utf8');
+
+                        var responseStr = '';
+
+                        res.on('data', (str) => {
+                            responseStr += str;
+                        });
+
+                        res.on('end', () => {
+                            try {
+                                var obj = JSON.parse(responseStr);
+
+                                if (res.statusCode != 200) {
+                                    reject(obj);
+                                } else {
+                                    resolve(obj);
+                                }
+                            } catch (e) {
+                                reject('Technical problem.');
+                            }
+                        });
+                    });
+
+                    req.on('error', (e) => {
                         reject('Technical problem.');
-                    }
+                    });
+
+                    req.write(postData);
+                    req.end();
                 });
-            });
+            },
+            delete: function (path) {
+                var apiKey = this.apiKey;
 
-            req.on('error', (e) => {
-                reject('Technical problem.');
-            });
-
-            req.write(postData);
-            req.end();
-        });
-    }
-
-    delete(path) {
-        var apiKey = this.apiKey;
-
-        return new Promise(function (resolve, reject) {
-            var options = {
-                hostname: API_URL,
-                port: API_PORT,
-                path: '/' + API_VERSION + path,
-                method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-API-Key': apiKey
-                }
-            };
-
-            var req = http.request(options, (res) => {
-                res.setEncoding('utf8');
-
-                var responseStr = '';
-
-                res.on('data', (str) => {
-                    responseStr += str;
-                });
-
-                res.on('end', () => {
-                    try {
-                        var obj = JSON.parse(responseStr);
-
-                        if (res.statusCode != 200) {
-                            reject(obj);
-                        } else {
-                            resolve(obj);
+                return new Promise(function (resolve, reject) {
+                    var options = {
+                        hostname: API_URL,
+                        port: API_PORT,
+                        path: '/' + API_VERSION + path,
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-API-Key': apiKey
                         }
-                    } catch (e) {
+                    };
+
+                    var req = http.request(options, (res) => {
+                        res.setEncoding('utf8');
+
+                        var responseStr = '';
+
+                        res.on('data', (str) => {
+                            responseStr += str;
+                        });
+
+                        res.on('end', () => {
+                            try {
+                                var obj = JSON.parse(responseStr);
+
+                                if (res.statusCode != 200) {
+                                    reject(obj);
+                                } else {
+                                    resolve(obj);
+                                }
+                            } catch (e) {
+                                reject('Technical problem.');
+                            }
+                        });
+                    });
+
+                    req.on('error', (e) => {
                         reject('Technical problem.');
-                    }
+                    });
+
+                    req.end();
                 });
-            });
-
-            req.on('error', (e) => {
-                reject('Technical problem.');
-            });
-
-            req.end();
-        });
+            }
+        };
     }
 
-}
+    return {
+        getInstance: function (apiKey) {
+            if (!instance) {
+                instance = createInstance(apiKey);
+            }
+            return instance;
+        }
+    };
+})();
 
 module.exports = Request;

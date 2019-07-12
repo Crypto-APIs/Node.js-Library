@@ -6,8 +6,8 @@ class LTCAddress extends BaseAddress {
         super(...props);
     }
 
-    getInfoMultisig(network, address) {
-        return this.request.get(this.basePath + network + '/address/' + address + '/multisig');
+    getInfoMultisig(address) {
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/address/' + address + '/multisig');
     }
 
 }

@@ -1,17 +1,19 @@
 var BCH = require('./BCH');
 var BTC = require('./BTC');
+var DASH = require('./DASH');
 var DOGE = require('./DOGE');
 var ETH = require('./ETH');
 var LTC = require('./LTC');
 
 class Blockchain {
 
-    constructor(req) {
-        this.BCH = new BCH(req);
-        this.BTC = new BTC(req);
-        this.DOGE = new DOGE(req);
-        this.ETH = new ETH(req);
-        this.LTC = new LTC(req);
+    constructor() {
+        this.BCH = new BCH();
+        this.BTC = new BTC();
+        this.DASH = new DASH();
+        this.DOGE = new DOGE();
+        this.ETH = new ETH();
+        this.LTC = new LTC();
     }
 
 }

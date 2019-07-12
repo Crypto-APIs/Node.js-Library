@@ -1,24 +1,25 @@
-class BaseBlockchain {
+const BaseChainComponent = require('./base-chain-component');
 
-    constructor(req, basePath) {
-        this.request = req;
-        this.basePath = basePath;
+class BaseBlockchain extends BaseChainComponent {
+
+    constructor(...props) {
+        super(...props);
     }
 
-    getInfo(network) {
-        return this.request.get(this.basePath + network + '/info');
+    getInfo() {
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/info');
     }
 
-    getBlockByHash(network, blockHash) {
-        return this.request.get(this.basePath + network + '/blocks/' + blockHash);
+    getBlockByHash(blockHash) {
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/blocks/' + blockHash);
     }
 
-    getBlockByHeight(network, blockHeight) {
-        return this.request.get(this.basePath + network + '/blocks/' + blockHeight);
+    getBlockByHeight(blockHeight) {
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/blocks/' + blockHeight);
     }
 
-    getLatestBlock(network) {
-        return this.request.get(this.basePath + network + '/blocks/latest');
+    getLatestBlock() {
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/blocks/latest');
     }
 
 }

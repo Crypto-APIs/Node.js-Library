@@ -1,51 +1,49 @@
+const request = require('../../common/request');
+
 class Trades {
 
-    constructor(req) {
-        this.request = req;
+    static getLatestData(limit = 50) {
+        return request.getInstance().get('/trades/latest?limit=' + limit);
     }
 
-    getLatestData(limit = 50) {
-        return this.request.get('/trades/latest?limit=' + limit);
+    static getLatestDataBySymbol(symbolId, skip = 0, limit = 50) {
+        return request.getInstance().get('/trades/' + symbolId + '/latest?skip=' + skip + '&limit=' + limit);
     }
 
-    getLatestDataBySymbol(symbolId, skip = 0, limit = 50) {
-        return this.request.get('/trades/' + symbolId + '/latest?skip=' + skip + '&limit=' + limit);
+    static getLatestDataByExchange(exchangeId, skip = 0, limit = 50) {
+        return request.getInstance().get('/trades/exchange/' + exchangeId + '/latest?skip=' + skip + '&limit=' + limit);
     }
 
-    getLatestDataByExchange(exchangeId, skip = 0, limit = 50) {
-        return this.request.get('/trades/exchange/' + exchangeId + '/latest?skip=' + skip + '&limit=' + limit);
+    static getLatestDataByAsset(baseAsset, skip = 0, limit = 50) {
+        return request.getInstance().get('/trades/baseAsset/' + baseAsset + '/latest?skip=' + skip + '&limit=' + limit);
     }
 
-    getLatestDataByAsset(baseAsset, skip = 0, limit = 50) {
-        return this.request.get('/trades/baseAsset/' + baseAsset + '/latest?skip=' + skip + '&limit=' + limit);
+    static getLatestDataByAssetsPair(baseAsset, quoteAsset, skip = 0, limit = 50) {
+        return request.getInstance().get('/trades/baseAsset/' + baseAsset + '/quoteAsset/' + quoteAsset + '/latest?skip=' + skip + '&limit=' + limit);
     }
 
-    getLatestDataByAssetsPair(baseAsset, quoteAsset, skip = 0, limit = 50) {
-        return this.request.get('/trades/baseAsset/' + baseAsset + '/quoteAsset/' + quoteAsset + '/latest?skip=' + skip + '&limit=' + limit);
+    static getLatestDataByExchangeAssetsPair(exchangeId, baseAsset, quoteAsset, skip = 0, limit = 50) {
+        return request.getInstance().get('/trades/exchange/' + exchangeId + '/baseAsset/' + baseAsset + '/quoteAsset/' + quoteAsset + '/latest?skip=' + skip + '&limit=' + limit);
     }
 
-    getLatestDataByExchangeAssetsPair(exchangeId, baseAsset, quoteAsset, skip = 0, limit = 50) {
-        return this.request.get('/trades/exchange/' + exchangeId + '/baseAsset/' + baseAsset + '/quoteAsset/' + quoteAsset + '/latest?skip=' + skip + '&limit=' + limit);
+    static tradesGetHistoricalData(symbolId, timeStart, timeEnd, skip = 0, limit = 50) {
+        return request.getInstance().get('/trades/' + symbolId + '/history?timeStart=' + timeStart + '&timeEnd=' + timeEnd + '&skip=' + skip + '&limit=' + limit);
     }
 
-    tradesGetHistoricalData(symbolId, timeStart, timeEnd, skip = 0, limit = 50) {
-        return this.request.get('/trades/' + symbolId + '/history?timeStart=' + timeStart + '&timeEnd=' + timeEnd + '&skip=' + skip + '&limit=' + limit);
+    static tradesGetHistoricalDataByExchange(exchangeId, timeStart, timeEnd, skip = 0, limit = 50) {
+        return request.getInstance().get('/trades/exchange/' + exchangeId + '/history?timeStart=' + timeStart + '&timeEnd=' + timeEnd + '&skip=' + skip + '&limit=' + limit);
     }
 
-    tradesGetHistoricalDataByExchange(exchangeId, timeStart, timeEnd, skip = 0, limit = 50) {
-        return this.request.get('/trades/exchange/' + exchangeId + '/history?timeStart=' + timeStart + '&timeEnd=' + timeEnd + '&skip=' + skip + '&limit=' + limit);
+    static tradesGetHistoricalDataByAsset(baseAsset, timeStart, timeEnd, skip = 0, limit = 50) {
+        return request.getInstance().get('/trades/baseAsset/' + baseAsset + '/history?timeStart=' + timeStart + '&timeEnd=' + timeEnd + '&skip=' + skip + '&limit=' + limit);
     }
 
-    tradesGetHistoricalDataByAsset(baseAsset, timeStart, timeEnd, skip = 0, limit = 50) {
-        return this.request.get('/trades/baseAsset/' + baseAsset + '/history?timeStart=' + timeStart + '&timeEnd=' + timeEnd + '&skip=' + skip + '&limit=' + limit);
+    static tradesGetHistoricalDataByAssetPair(baseAsset, quoteAsset, timeStart, timeEnd, skip = 0, limit = 50) {
+        return request.getInstance().get('/trades/baseAsset/' + baseAsset + '/quoteAsset/' + quoteAsset + '/history?timeStart=' + timeStart + '&timeEnd=' + timeEnd + '&skip=' + skip + '&limit=' + limit);
     }
 
-    tradesGetHistoricalDataByAssetPair(baseAsset, quoteAsset, timeStart, timeEnd, skip = 0, limit = 50) {
-        return this.request.get('/trades/baseAsset/' + baseAsset + '/quoteAsset/' + quoteAsset + '/history?timeStart=' + timeStart + '&timeEnd=' + timeEnd + '&skip=' + skip + '&limit=' + limit);
-    }
-
-    tradesGetHistoricalDataByAssetPair(exchangeId, baseAsset, quoteAsset, timeStart, timeEnd, skip = 0, limit = 50) {
-        return this.request.get('/trades/exchange' + exchangeId + '/baseAsset/' + baseAsset + '/quoteAsset/' + quoteAsset + '/history?timeStart=' + timeStart + '&timeEnd=' + timeEnd + '&skip=' + skip + '&limit=' + limit);
+    static tradesGetHistoricalDataByExchangeAssetPair(exchangeId, baseAsset, quoteAsset, timeStart, timeEnd, skip = 0, limit = 50) {
+        return request.getInstance().get('/trades/exchange' + exchangeId + '/baseAsset/' + baseAsset + '/quoteAsset/' + quoteAsset + '/history?timeStart=' + timeStart + '&timeEnd=' + timeEnd + '&skip=' + skip + '&limit=' + limit);
     }
 
 }

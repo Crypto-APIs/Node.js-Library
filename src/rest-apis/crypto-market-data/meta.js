@@ -1,31 +1,29 @@
+const request = require('../../common/request');
+
 class Meta {
 
-    constructor(req) {
-        this.request = req;
+    static listAllExchanges(skip = 0, limit = 50) {
+        return request.getInstance().get('/exchanges?skip=' + skip + '&limit=' + limit);
     }
 
-    listAllExchanges(skip = 0, limit = 50) {
-        return this.request.get('/exchanges?skip=' + skip + '&limit=' + limit);
+    static getExchangeDetails(exchangeId) {
+        return request.getInstance().get('/exchanges/' + exchangeId);
     }
 
-    getExchangeDetails(exchangeId) {
-        return this.request.get('/exchanges/' + exchangeId);
+    static listAllAssets(skip = 0, limit = 50) {
+        return request.getInstance().get('/assets?skip=' + skip + '&limit=' + limit);
     }
 
-    listAllAssets(skip = 0, limit = 50) {
-        return this.request.get('/assets?skip=' + skip + '&limit=' + limit);
+    static getAssetDetails(assetId) {
+        return request.getInstance().get('/assets/' + assetId);
     }
 
-    getAssetDetails(assetId) {
-        return this.request.get('/assets/' + assetId);
+    static listAllSymbols(skip = 0, limit = 50) {
+        return request.getInstance().get('/mappings?skip=' + skip + '&limit=' + limit);
     }
 
-    listAllSymbols(skip = 0, limit = 50) {
-        return this.request.get('/mappings?skip=' + skip + '&limit=' + limit);
-    }
-
-    getSymbolDetails(symbolId) {
-        return this.request.get('/mappings/' + symbolId);
+    static getSymbolDetails(symbolId) {
+        return request.getInstance().get('/mappings/' + symbolId);
     }
 
 }

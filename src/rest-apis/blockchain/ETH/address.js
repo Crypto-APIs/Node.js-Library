@@ -6,8 +6,8 @@ class ETHAddress extends BaseAddress {
         super(...props);
     }
 
-    generateEthereumAccount(network, password) {
-        return this.request.post(this.basePath + network + '/account', {
+    generateEthereumAccount(password) {
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/account', {
             password: password
         });
     }

@@ -1,16 +1,17 @@
-class ETHContract {
+const Base = require('../../../common/blockchain/base-chain-component');
 
-    constructor(req, basePath) {
-        this.request = req;
-        this.basePath = basePath;
+class ETHContract extends Base {
+
+    constructor(...props) {
+        super(...props);
     }
 
-    estimateSmartContractGas(network) {
-        return this.request.get(this.basePath + network + '/contracts/gas');
+    estimateSmartContractGas() {
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/contracts/gas');
     }
 
-    deploySmartContract(network, privateKey, from, gasPrice, gasLimit, byteCode) {
-        return this.request.post(this.basePath + network + '/contracts', {
+    deploySmartContract(privateKey, from, gasPrice, gasLimit, byteCode) {
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/contracts', {
             privateKey: privateKey,
             fromAddress: from,
             gasPrice: gasPrice,

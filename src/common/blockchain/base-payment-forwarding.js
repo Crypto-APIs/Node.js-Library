@@ -5,14 +5,21 @@ class BasePaymentForwarding {
         this.basePath = basePath;
     }
 
-    createPayment(network, from, to, callbackURL, wallet, password) {
-        return this.request.post(this.basePath + network + '/payments', {
+    createPayment(network, from, to, callbackURL, wallet, password, confirmations, fee = null) {
+        const data = {
             from: from,
             to: to,
             callback: callbackURL,
             wallet: wallet,
-            password: password
-        });
+            password: password,
+            confirmations: confirmations,
+        };
+
+        if (fee) {
+            data.fee = fee;
+        }
+
+        return this.request.post(this.basePath + network + '/payments', data);
     }
 
     listPayment(network) {

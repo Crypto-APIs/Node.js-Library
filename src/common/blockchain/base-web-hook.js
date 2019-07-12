@@ -21,20 +21,21 @@ class BaseWebHook {
         });
     }
 
-    createAddressTransactionWebHook(network, callbackURL, address) {
+    createAddressTransactionWebHook(network, callbackURL, address, confirmations) {
         return this.request.post(this.basePath + network + '/hooks', {
             event: 'ADDRESS',
             url: callbackURL,
-            address: address
+            address: address,
+            confirmations: confirmations
         });
     }
 
     createTransactionConfirmationsWebHook(network, callbackURL, address, confirmations) {
         return this.request.post(this.basePath + network + '/hooks', {
-            "event": "TRANSACTION_CONFIRMATIONS",
-            "url": callbackURL,
-            "confirmations": confirmations,
-            "address": address
+            event: 'TRANSACTION_CONFIRMATIONS',
+            url: callbackURL,
+            address: address,
+            confirmations: confirmations,
         });
     }
 

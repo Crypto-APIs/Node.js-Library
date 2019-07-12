@@ -4,7 +4,7 @@ var DOGE = require('./DOGE');
 var ETH = require('./ETH');
 var LTC = require('./LTC');
 
-class BC {
+class Blockchain {
 
     constructor(req) {
         this.BCH = new BCH(req);
@@ -16,4 +16,4 @@ class BC {
 
 }
 
-module.exports = BC;
+module.exports = Blockchain;

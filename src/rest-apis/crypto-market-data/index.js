@@ -5,7 +5,7 @@ var OHLCV = require('./ohlcv');
 var Quotes = require('./quotes');
 var Trades = require('./trades');
 
-class CMD {
+class CryptoMarketData {
 
     constructor(req) {
         this.arbitrage = new Arbitrage(req);
@@ -18,4 +18,4 @@ class CMD {
 
 }
 
-module.exports = CMD;
+module.exports = CryptoMarketData;

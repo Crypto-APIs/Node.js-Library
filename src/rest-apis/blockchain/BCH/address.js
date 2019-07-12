@@ -4,8 +4,8 @@ class BCHAddress extends BaseAddress {
         super(...props);
     }
 
-    getInfoMultisig(network, address) {
-        return this.request.get(this.basePath + network + '/address/' + address + '/multisig');
+    getInfoMultisig(network, address, limit = 50) {
+        return this.request.get(this.basePath + network + '/address/' + address + '/multisig?limit=' + limit);
     }
 }
 

@@ -1,16 +1,16 @@
 'use strict';
 
 const Request = require('../request');
-const BC = require('./rest-apis/blockchain');
-const CMD = require('./rest-apis/crypto-market-data');
+const Blockchain = require('./rest-apis/blockchain');
+const CryptoMarketData = require('./rest-apis/crypto-market-data');
 
 class CryptoAPIs {
 
     constructor(apiKey) {
         const request = new Request(apiKey);
 
-        this.BC = new BC(request);
-        this.CMD = new CMD(request);
+        this.blockchain = new Blockchain(request);
+        this.cryptoMarketData = new CryptoMarketData(request);
     }
 
 }

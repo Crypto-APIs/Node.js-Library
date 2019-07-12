@@ -65,14 +65,12 @@ class BaseWallet {
         return this.request.delete(this.basePath + network + '/wallets/hd/' + name);
     }
 
-    // TODO: A lot of questions here
     createXPub(network, password) {
         return this.request.post(this.basePath + network + '/wallets/wallets/hd/xpub', {
             password: password
         });
     }
 
-    // TODO: A lot of questions here
     getXPubChangeAddresses(network, xpub, from, to) {
         return this.request.post(this.basePath + network + '/wallets/hd/xpub/addresses/change', {
             xpub: xpub,
@@ -81,7 +79,6 @@ class BaseWallet {
         });
     }
 
-    // TODO: A lot of questions here
     getXPubReceiveAddresses(network, xpub, from, to) {
         return this.request.post(this.basePath + network + '/wallets/hd/xpub/addresses/receive', {
             xpub: xpub,

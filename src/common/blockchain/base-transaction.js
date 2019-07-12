@@ -9,19 +9,17 @@ class BaseTransaction {
         return this.request.get(this.basePath + network + '/txs/txid/' + txID);
     }
 
-    // TODO: Check with doc, there is as param in a post
-    getTransactionByBlockIndex(network, block, index) {
-        return this.request.get(this.basePath + network + '/txs/block/' + block + '/' + index);
+    getTransactionIndexByBlock(network, block, index = 0, limit = 1) {
+        return this.request.get(this.basePath + network + '/txs/block/' + block + '?index=' + index + '&limit=' + limit);
     }
 
-    // TODO: A lot of questions
-    getUnconfirmedTransactions(network) {
-        return this.request.get(this.basePath + network + '/txs/unconfirmed');
+    getUnconfirmedTransactions(network, index = 0, limit = 100) {
+        return this.request.get(this.basePath + network + '/txs/unconfirmed?index=' + index + '&limit=' + limit);
     }
 
-    decodeRawTransaction(network, txHex) {
+    decodeRawTransaction(network, hex) {
         return this.request.post(this.basePath + network + '/txs/decode', {
-            txHex: txHex
+            hex: hex
         });
     }
 
@@ -57,7 +55,7 @@ class BaseTransaction {
         });
     }
 
-    createHDWalletTransaction(network, walletName, password, fee, outputs, inputs = null, locktime = null) {
+    createHDWalletTransaction(network, walletName, password, outputs, fee, inputs = null, locktime = null) {
         var data = {
             walletName: walletName,
             password: password,

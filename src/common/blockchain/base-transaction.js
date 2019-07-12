@@ -79,3 +79,5 @@ class BaseTransaction {
     }
 
 }
+
+module.exports = BaseTransaction;

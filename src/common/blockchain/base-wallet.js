@@ -88,3 +88,5 @@ class BaseWallet {
     }
 
 }
+
+module.exports = BaseWallet;

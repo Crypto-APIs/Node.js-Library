@@ -159,4 +159,4 @@ class Request {
 
 }
 
-module.exports = apiKey => new Request(apiKey);
+module.exports = Request;

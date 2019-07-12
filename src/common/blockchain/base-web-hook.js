@@ -47,3 +47,5 @@ class BaseWebHook {
         return this.request.delete(this.basePath + network + '/hooks/' + webhookID);
     }
 }
+
+module.exports = BaseWebHook;

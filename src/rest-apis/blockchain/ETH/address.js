@@ -1,4 +1,6 @@
-class LTCAddress extends BaseAddress {
+const BaseAddress = require('../../../common/blockchain/base-address');
+
+class ETHAddress extends BaseAddress {
 
     constructor(...props) {
         super(...props);
@@ -14,4 +16,4 @@ class LTCAddress extends BaseAddress {
 
 }
 
-module.exports = LTCAddress;
+module.exports = ETHAddress;

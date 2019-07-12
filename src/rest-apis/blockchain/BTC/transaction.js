@@ -1,7 +1,9 @@
+const BaseTransaction = require('../../../common/blockchain/base-transaction');
+
 class BTCTransaction extends BaseTransaction {
 
-    constructor(props) {
-        super(props);
+    constructor(...props) {
+        super(...props);
     }
 
 }

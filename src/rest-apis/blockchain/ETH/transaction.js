@@ -1,4 +1,4 @@
-class BTCTransaction {
+class ETHTransaction {
 
     constructor(req, basePath) {
         this.request = req;
@@ -101,4 +101,4 @@ class BTCTransaction {
 
 }
 
-module.exports = BTCTransaction;
+module.exports = ETHTransaction;

@@ -1,4 +1,6 @@
-class BTCTransaction extends BaseTransaction {
+const BaseTransaction = require('../../../common/blockchain/base-transaction');
+
+class LTCTransaction extends BaseTransaction {
 
     constructor(...props) {
         super(...props);
@@ -6,4 +8,4 @@ class BTCTransaction extends BaseTransaction {
 
 }
 
-module.exports = BTCTransaction;
+module.exports = LTCTransaction;

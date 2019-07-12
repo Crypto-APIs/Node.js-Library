@@ -1,7 +1,9 @@
+const BaseBlockchain = require('../../../common/blockchain/base-blockchain');
+
 class LTCBlockchain extends BaseBlockchain {
 
-    constructor(props) {
-        super(props, '/bc/ltc/');
+    constructor(...props) {
+        super(...props);
     }
 
 }

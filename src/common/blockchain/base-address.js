@@ -19,3 +19,5 @@ class BaseAddress {
 
 
 }
+
+module.exports = BaseAddress;

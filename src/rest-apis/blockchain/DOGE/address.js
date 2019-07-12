@@ -1,10 +1,10 @@
+const BaseAddress = require('../../../common/blockchain/base-address');
+
 class DOGEAddress extends BaseAddress {
 
     constructor(...props) {
         super(...props);
     }
-
-    // TODO: No doge multisig?
 
 }
 

@@ -22,3 +22,5 @@ class BaseBlockchain {
     }
 
 }
+
+module.exports = BaseBlockchain;

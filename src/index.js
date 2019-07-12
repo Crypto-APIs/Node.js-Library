@@ -1,6 +1,6 @@
 'use strict';
 
-const Request = require('../request');
+const Request = require('./common/request');
 const Blockchain = require('./rest-apis/blockchain');
 const CryptoMarketData = require('./rest-apis/crypto-market-data');
 

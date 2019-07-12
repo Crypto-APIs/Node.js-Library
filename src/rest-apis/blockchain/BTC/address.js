@@ -1,3 +1,5 @@
+const BaseAddress = require('../../../common/blockchain/base-address');
+
 class BTCAddress extends BaseAddress {
 
     constructor(...props) {

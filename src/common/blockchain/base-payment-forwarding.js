@@ -35,3 +35,5 @@ class BasePaymentForwarding {
     }
 
 }
+
+module.exports = BasePaymentForwarding;

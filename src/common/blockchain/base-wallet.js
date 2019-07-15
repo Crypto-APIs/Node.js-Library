@@ -67,7 +67,7 @@ class BaseWallet extends BaseChainComponent {
     }
 
     createXPub(password) {
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/wallets/wallets/hd/xpub', {
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/wallets/hd/xpub', {
             password: password
         });
     }

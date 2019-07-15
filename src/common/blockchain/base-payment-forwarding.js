@@ -6,6 +6,9 @@ class BasePaymentForwarding extends BaseChainComponent {
         super(...props);
     }
 
+    /**
+     * POST /bc/bch/{network}/payments
+     */
     createPayment(from, to, callbackURL, wallet, password, confirmations, fee = null) {
         const data = {
             from: from,
@@ -23,14 +26,23 @@ class BasePaymentForwarding extends BaseChainComponent {
         return this.request.post(this.basePath + this.getSelectedNetwork() + '/payments', data);
     }
 
+    /**
+     * GET /bc/bch/{network}/payments
+     */
     listPayment() {
         return this.request.get(this.basePath + this.getSelectedNetwork() + '/payments');
     }
 
+    /**
+     * GET /bc/bch/{network}/payments/history
+     */
     listPaymentHistory() {
         return this.request.get(this.basePath + this.getSelectedNetwork() + '/payments/history');
     }
 
+    /**
+     * DELETE /bc/bch/{network}/payments/{paymentID}
+     */
     deletePayment(paymentID) {
         return this.request.delete(this.basePath + this.getSelectedNetwork() + '/payments/' + paymentID);
     }

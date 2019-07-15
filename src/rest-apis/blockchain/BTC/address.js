@@ -1,4 +1,5 @@
 const BaseAddress = require('../../../common/blockchain/base-address');
+const {MultisigMixin} = require('../../../common/mixins');
 
 class BTCAddress extends BaseAddress {
 
@@ -6,9 +7,8 @@ class BTCAddress extends BaseAddress {
         super(...props);
     }
 
-    getInfoMultisig(address, limit = 50) {
-        return this.request.get(this.basePath + this.getSelectedNetwork() + '/address/' + address + '/multisig?limit=' + limit);
-    }
 }
+
+Object.assign(BTCAddress.prototype, MultisigMixin);
 
 module.exports = BTCAddress;

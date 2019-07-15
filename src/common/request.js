@@ -1,4 +1,5 @@
 const http = require('https');
+const {DEBUG} = require('../consts');
 
 const API_URL = 'api.cryptoapis.io';
 const API_PORT = 443;
@@ -11,14 +12,15 @@ const Request = (function () {
         return {
             apiKey: apiKey,
             get: function (path) {
-                var apiKey = this.apiKey;
+                const apiKey = this.apiKey;
+                const method = 'GET';
 
                 return new Promise(function (resolve, reject) {
                     var options = {
                         hostname: API_URL,
                         port: API_PORT,
                         path: '/' + API_VERSION + path,
-                        method: 'GET',
+                        method: method,
                         headers: {
                             'Content-Type': 'application/json',
                             'X-API-Key': apiKey
@@ -55,11 +57,23 @@ const Request = (function () {
 
                     req.end();
                 })
-                    .then(console.log)
-                    .catch(console.error);
+                    .then(res => {
+                        if (DEBUG) {
+                            console.log('\x1b[32m', 'OK', '\x1b[0m', method + ' ' + path);
+                        }
+
+                        return res;
+                    })
+                    .catch(err => {
+                        if (DEBUG) {
+                            console.log('\x1b[31m', 'ERR', '\x1b[0m', method + ' ' + path);
+                        }
+                        console.error(err);
+                    });
             },
             post: function (path, data) {
-                var apiKey = this.apiKey;
+                const apiKey = this.apiKey;
+                const method = 'POST';
 
                 return new Promise(function (resolve, reject) {
                     var postData = JSON.stringify(data);
@@ -68,7 +82,7 @@ const Request = (function () {
                         hostname: API_URL,
                         port: API_PORT,
                         path: '/' + API_VERSION + path,
-                        method: 'POST',
+                        method: method,
                         headers: {
                             'Content-Type': 'application/json',
                             'X-API-Key': apiKey
@@ -106,18 +120,30 @@ const Request = (function () {
                     req.write(postData);
                     req.end();
                 })
-                    .then(console.log)
-                    .catch(console.error);
+                    .then(res => {
+                        if (DEBUG) {
+                            console.log('\x1b[32m', 'OK', '\x1b[0m', method + ' ' + path);
+                        }
+
+                        return res;
+                    })
+                    .catch(err => {
+                        if (DEBUG) {
+                            console.log('\x1b[31m', 'ERR', '\x1b[0m', method + ' ' + path);
+                        }
+                        console.error(err);
+                    });
             },
             delete: function (path) {
-                var apiKey = this.apiKey;
+                const apiKey = this.apiKey;
+                const method = 'DELETE';
 
                 return new Promise(function (resolve, reject) {
                     var options = {
                         hostname: API_URL,
                         port: API_PORT,
                         path: '/' + API_VERSION + path,
-                        method: 'DELETE',
+                        method: method,
                         headers: {
                             'Content-Type': 'application/json',
                             'X-API-Key': apiKey
@@ -154,8 +180,19 @@ const Request = (function () {
 
                     req.end();
                 })
-                    .then(console.log)
-                    .catch(console.error);
+                    .then(res => {
+                        if (DEBUG) {
+                            console.log('\x1b[32m', 'OK', '\x1b[0m', method + ' ' + path);
+                        }
+
+                        return res;
+                    })
+                    .catch(err => {
+                        if (DEBUG) {
+                            console.log('\x1b[31m', 'ERR', '\x1b[0m', method + ' ' + path);
+                        }
+                        console.error(err);
+                    });
             }
         };
     }

@@ -7,6 +7,9 @@ class BaseWebHook extends BaseChainComponent {
         super(...props);
     }
 
+    /**
+     * POST /bc/bch/{network}/hooks
+     */
     createNewBlockWebHook(callbackURL) {
         return this.request.post(this.basePath + this.getSelectedNetwork() + '/hooks', {
             event: EVENT.COMMON.NEW_BLOCK,
@@ -14,6 +17,9 @@ class BaseWebHook extends BaseChainComponent {
         });
     }
 
+    /**
+     * POST /bc/bch/{network}/hooks
+     */
     createConfirmedTransactionWebHook(callbackURL, transaction, confirmations) {
         return this.request.post(this.basePath + this.getSelectedNetwork() + '/hooks', {
             event: EVENT.COMMON.CONFIRMED_TX,
@@ -23,6 +29,9 @@ class BaseWebHook extends BaseChainComponent {
         });
     }
 
+    /**
+     * POST /bc/bch/{network}/hooks
+     */
     createAddressTransactionWebHook(callbackURL, address, confirmations) {
         return this.request.post(this.basePath + this.getSelectedNetwork() + '/hooks', {
             event: EVENT.COMMON.ADDRESS,
@@ -32,6 +41,9 @@ class BaseWebHook extends BaseChainComponent {
         });
     }
 
+    /**
+     * POST /bc/bch/{network}/hooks
+     */
     createTransactionConfirmationsWebHook(callbackURL, address, confirmations) {
         return this.request.post(this.basePath + this.getSelectedNetwork() + '/hooks', {
             event: EVENT.COMMON.TRANSACTION_CONFIRMATIONS,
@@ -41,10 +53,16 @@ class BaseWebHook extends BaseChainComponent {
         });
     }
 
+    /**
+     * GET /bc/bch/${network}/hooks
+     */
     listAllHooks() {
         return this.request.get(this.basePath + this.getSelectedNetwork() + '/hooks');
     }
 
+    /**
+     * DELETE /bc/bch/{network}/hooks/{webhookID}
+     */
     deleteWebHook(webhookID) {
         return this.request.delete(this.basePath + this.getSelectedNetwork() + '/hooks/' + webhookID);
     }

@@ -1,9 +1,9 @@
-var BCH = require('./BCH');
-var BTC = require('./BTC');
-var DASH = require('./DASH');
-var DOGE = require('./DOGE');
-var ETH = require('./ETH');
-var LTC = require('./LTC');
+var {BCH} = require('./BCH');
+var {BTC} = require('./BTC');
+var {DASH} = require('./DASH');
+var {DOGE} = require('./DOGE');
+var {ETH} = require('./ETH');
+var {LTC} = require('./LTC');
 
 class Blockchain {
 

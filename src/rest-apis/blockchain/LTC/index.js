@@ -28,4 +28,7 @@ class LTC extends BlockchainNetwork {
 
 }
 
-module.exports = LTC;
+module.exports = {
+    LTC,
+    NETWORKS,
+};

@@ -28,4 +28,7 @@ class BCH extends BlockchainNetwork {
 
 }
 
-module.exports = BCH;
+module.exports = {
+    BCH,
+    NETWORKS,
+};

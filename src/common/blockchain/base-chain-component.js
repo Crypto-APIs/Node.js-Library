@@ -5,7 +5,7 @@ class BaseChainComponent {
 
     constructor(bcId) {
         this.bcId = bcId;
-        this.basePath = 'bc/' + bcId.toLowerCase() + '/';
+        this.basePath = '/bc/' + bcId.toLowerCase() + '/';
         this.network = network.getInstance();
         this.request = request.getInstance();
     }

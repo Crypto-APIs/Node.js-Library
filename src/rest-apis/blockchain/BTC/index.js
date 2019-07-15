@@ -28,4 +28,7 @@ class BTC extends BlockchainNetwork {
 
 }
 
-module.exports = BTC;
+module.exports = {
+    BTC,
+    NETWORKS,
+};

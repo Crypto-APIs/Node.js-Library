@@ -31,4 +31,7 @@ class ETH extends BlockchainNetwork {
 
 }
 
-module.exports = ETH;
+module.exports = {
+    ETH,
+    NETWORKS,
+};

@@ -13,8 +13,6 @@ const Request = (function () {
             get: function (path) {
                 var apiKey = this.apiKey;
 
-                console.log(path);
-
                 return new Promise(function (resolve, reject) {
                     var options = {
                         hostname: API_URL,
@@ -56,7 +54,9 @@ const Request = (function () {
                     });
 
                     req.end();
-                });
+                })
+                    .then(console.log)
+                    .catch(console.error);
             },
             post: function (path, data) {
                 var apiKey = this.apiKey;
@@ -105,7 +105,9 @@ const Request = (function () {
 
                     req.write(postData);
                     req.end();
-                });
+                })
+                    .then(console.log)
+                    .catch(console.error);
             },
             delete: function (path) {
                 var apiKey = this.apiKey;
@@ -151,7 +153,9 @@ const Request = (function () {
                     });
 
                     req.end();
-                });
+                })
+                    .then(console.log)
+                    .catch(console.error);
             }
         };
     }

@@ -28,4 +28,7 @@ class DASH extends BlockchainNetwork {
 
 }
 
-module.exports = DASH;
+module.exports = {
+    DASH,
+    NETWORKS,
+};

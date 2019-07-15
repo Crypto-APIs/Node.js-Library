@@ -28,4 +28,7 @@ class DOGE extends BlockchainNetwork {
 
 }
 
-module.exports = DOGE;
+module.exports = {
+    DOGE,
+    NETWORKS,
+};

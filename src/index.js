@@ -18,7 +18,4 @@ class CryptoAPIs {
 
 }
 
-// TODO: Review all BC endpoints except BCH and BTC
-// TODO: Add DASH endpoints
-
 module.exports = CryptoAPIs;

@@ -69,6 +69,8 @@ const Request = (function () {
                             console.log('\x1b[31m', 'ERR', '\x1b[0m', method + ' ' + path);
                         }
                         console.error(err);
+
+                        return err;
                     });
             },
             post: function (path, data) {

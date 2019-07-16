@@ -12,7 +12,7 @@ async function Quotes(caClient) {
     await caClient.cryptoMarketData.quotes.getLatestDataByExchangeAssetsPair(exchangeId, baseAsset, quoteAsset);
 
 
-    const symbols = await caClient.cryptoMarketData.meta.listAllSymbols().then(response => response.payload); // Duplicated in meta.test but needed for scenario
+    const symbols = await caClient.cryptoMarketData.meta.listAllSymbols().then(response => response.payload); // Duplicated but needed for scenario
     const symbolId = symbols[0]._id;
     const timeEnd = Date.now();
     const timeStart = timeEnd - 1;

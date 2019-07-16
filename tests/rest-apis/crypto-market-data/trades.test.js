@@ -8,7 +8,7 @@ async function Trades(caClient) {
     const timeEnd = Date.now();
     const timeStart = timeEnd - 1;
 
-    const symbols = await caClient.cryptoMarketData.meta.listAllSymbols().then(response => response.payload); // Duplicated in meta.test but needed for scenario
+    const symbols = await caClient.cryptoMarketData.meta.listAllSymbols().then(response => response.payload); // Duplicated but needed for scenario
     const symbolId = symbols[0]._id;
 
     await caClient.cryptoMarketData.trades.getLatestDataBySymbol(symbolId);

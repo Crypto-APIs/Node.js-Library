@@ -46,12 +46,18 @@ const Request = (function () {
                                     resolve(obj);
                                 }
                             } catch (e) {
+                                if (DEBUG) {
+                                    console.error(e);
+                                }
                                 reject('Technical problem.');
                             }
                         });
                     });
 
                     req.on('error', (e) => {
+                        if (DEBUG) {
+                            console.error(e);
+                        }
                         reject('Technical problem.');
                     });
 
@@ -110,12 +116,18 @@ const Request = (function () {
                                     resolve(obj);
                                 }
                             } catch (e) {
+                                if (DEBUG) {
+                                    console.error(e);
+                                }
                                 reject('Technical problem.');
                             }
                         });
                     });
 
                     req.on('error', (e) => {
+                        if (DEBUG) {
+                            console.error(e);
+                        }
                         reject('Technical problem.');
                     });
 
@@ -171,12 +183,18 @@ const Request = (function () {
                                     resolve(obj);
                                 }
                             } catch (e) {
+                                if (DEBUG) {
+                                    console.error(e);
+                                }
                                 reject('Technical problem.');
                             }
                         });
                     });
 
                     req.on('error', (e) => {
+                        if (DEBUG) {
+                            console.error(e);
+                        }
                         reject('Technical problem.');
                     });
 

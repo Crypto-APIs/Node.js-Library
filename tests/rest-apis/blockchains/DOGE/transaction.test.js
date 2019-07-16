@@ -8,6 +8,7 @@ async function Transaction(caClient) {
         const txId = transactions[0].txid;
         await caClient.blockchain.DOGE.transaction.getTransaction(txId);
     }
+
     await caClient.blockchain.DOGE.transaction.getUnconfirmedTransactions();
     await caClient.blockchain.DOGE.transaction.getTransactionsFee();
 

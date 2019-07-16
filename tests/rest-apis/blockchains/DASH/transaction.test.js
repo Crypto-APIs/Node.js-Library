@@ -8,6 +8,7 @@ async function Transaction(caClient) {
         const txId = transactions[0].txid;
         await caClient.blockchain.DASH.transaction.getTransaction(txId);
     }
+
     await caClient.blockchain.DASH.transaction.getUnconfirmedTransactions();
     await caClient.blockchain.DASH.transaction.getTransactionsFee();
 

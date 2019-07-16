@@ -3,9 +3,12 @@ async function Transaction(caClient) {
 
     const chainInfo = await caClient.blockchain.LTC.blockchain.getInfo().then(response => response.payload); // Duplicated but needed for scenario
     const transactions = await caClient.blockchain.LTC.transaction.getTransactionIndexByBlock(chainInfo.bestBlockHash).then(response => response.payload);
-    const txId = transactions[0].txid;
 
-    await caClient.blockchain.LTC.transaction.getTransaction(txId);
+    if (transactions && transactions.length) {
+        const txId = transactions[0].txid;
+        await caClient.blockchain.BCH.transaction.getTransaction(txId);
+    }
+
     await caClient.blockchain.LTC.transaction.getUnconfirmedTransactions();
     await caClient.blockchain.LTC.transaction.getTransactionsFee();
 

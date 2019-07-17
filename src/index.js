@@ -12,8 +12,8 @@ class CryptoAPIs {
         Request.getInstance(apiKey); // Creates an instance of the Request class for usage across endpoints
         Network.getInstance(); // Creates an instance of the Network class for usage across endpoints
 
-        this.blockchain = new Blockchain();
-        this.cryptoMarketData = new CryptoMarketData();
+        this.BC = new Blockchain();
+        this.CMD = new CryptoMarketData();
     }
 
 }

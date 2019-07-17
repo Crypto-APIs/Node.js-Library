@@ -88,7 +88,7 @@ class ETHTransaction extends Base {
      * @param {number} gasPrice
      * @param {number} gasLimit
      * @param {number} [nonce=null] - The transactions count for the specified from address. If not specified the system will automatically calculate the correct nonce.
-     * @param {string} [data=null] - Hexidecimal string. Be aware that the gas limit will be higher than the minumum amount of 21,000 wei.
+     * @param {number} [data=null] - Hexidecimal string. Be aware that the gas limit will be higher than the minumum amount of 21,000 wei.
      *
      * @returns {*|Promise<any | never>}
      */
@@ -158,7 +158,7 @@ class ETHTransaction extends Base {
      * @param {number} gasPrice
      * @param {number} gasLimit
      * @param {number} [nonce=null] - Integer.
-     * @param {string} [data=null] - Hexidecimal.
+     * @param {number} [data=null] - Hexidecimal.
      *
      * @returns {*|Promise<any | never>}
      */
@@ -267,7 +267,7 @@ class ETHTransaction extends Base {
      * @param {string} fromAddress
      * @param {string} toAddress
      * @param {number} value - Value of the transaction.
-     * @param {string} [data=null] - If data is added it should be a valid hexadecimal number otherwise an error will be returned as a response.
+     * @param {number} [data=null] - If data is added it should be a valid hexadecimal number otherwise an error will be returned as a response.
      *
      * @returns {*|Promise<any | never>}
      */

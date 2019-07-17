@@ -7,41 +7,38 @@ class BasePaymentForwarding extends BaseChainComponent {
     }
 
     /**
-     * POST /bc/bch/{network}/payments
-     */
-    createPayment(from, to, callbackURL, wallet, password, confirmations, fee = null) {
-        const data = {
-            from: from,
-            to: to,
-            callback: callbackURL,
-            wallet: wallet,
-            password: password,
-            confirmations: confirmations,
-        };
-
-        if (fee) {
-            data.fee = fee;
-        }
-
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/payments', data);
-    }
-
-    /**
-     * GET /bc/bch/{network}/payments
+     * List Payment Endpoint
+     *
+     * @async
+     * @desc To list your currently active payment forwarding addresses, you can use this endpoint.
+     *
+     * @returns {*|Promise<any | never>}
      */
     listPayment() {
         return this.request.get(this.basePath + this.getSelectedNetwork() + '/payments');
     }
 
     /**
-     * GET /bc/bch/{network}/payments/history
+     * List of Past Forward Payments By Users
+     *
+     * @async
+     * @desc To list your currently active payment forwarding addresses, you can use this endpoint.
+     *
+     * @returns {*|Promise<any | never>}
      */
     listPaymentHistory() {
         return this.request.get(this.basePath + this.getSelectedNetwork() + '/payments/history');
     }
 
     /**
-     * DELETE /bc/bch/{network}/payments/{paymentID}
+     * Delete Payment Endpoints
+     *
+     * @async
+     * @desc When you’re done with a payment forwarding address, you can delete it via its id and current user id.
+     *
+     * @param {string} paymentID - Generated UUID when payment forwarding have been created.
+     *
+     * @returns {*|Promise<any | never>}
      */
     deletePayment(paymentID) {
         return this.request.delete(this.basePath + this.getSelectedNetwork() + '/payments/' + paymentID);

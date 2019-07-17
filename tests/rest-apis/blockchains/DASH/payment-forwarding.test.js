@@ -1,8 +1,8 @@
 async function PaymentForwarding(caClient) {
     console.log('\n::DASH Payment Forwarding');
 
-    await caClient.blockchain.DASH.paymentForwarding.listPayment();
-    await caClient.blockchain.DASH.paymentForwarding.listPaymentHistory();
+    await caClient.blockchain.DASH.paymentForwarding.listPayments();
+    await caClient.blockchain.DASH.paymentForwarding.listPaymentsHistory();
 
     const testUrl = 'http://testUrl';
     const randomHDWalletName = Math.random().toString(36).substring(7);

@@ -1,6 +1,6 @@
-const Base = require('../../../common/blockchain/base-chain-component');
+const BaseChainComponent = require('../../../common/blockchain/base-chain-component');
 
-class ETHToken extends Base {
+class ETHToken extends BaseChainComponent {
 
     constructor(...props) {
         super(...props);

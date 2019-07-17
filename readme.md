@@ -19,39 +19,41 @@
 ### Ethereum - Services/Methods
 
 
-|   AddressService   | BlockchainService |  BlockService  | ContractService |  PaymentService  |    TokenService      | TransactionService  |    WebhookService     |               
-| ------------------ | ----------------- | -------------- | --------------- | ---------------- | -------------------- | ------------------- | --------------------- |  
-| getAddressInfo     | getBlockchainInfo | getBlock x2    | estimateGasSC   | createPFPvt      | getTokenBalance      | getTx x3            | createNewBlockWh      |
-| generateNewAddress |                   | getLatestBlock | deploySC        | createPFPwd      | transferPvt          | getPendingTxs       | createAddressWh       | 
-| generateAccount    |                   |                |                 | deletePF         | transferPwd          | getQueuedTxs        | createConfirmedTxWh   |
-| getTxsByAddress    |                   |                |                 | listPayments     | getTokensByAddress   | getTxByIdxAndLimit  | createTokenWh         |
-| getNonce           |                   |                |                 | listPastPayments | getTokenTxsByAddress | createTxKeyStore    | createTXPoolWh        |
-|                    |                   |                |                 |                  |                      | createTxKeyStoreAll | deleteWebhook         |
-|                    |                   |                |                 |                  |                      | createTxPvt         | listWebhooks          |
-|                    |                   |                |                 |                  |                      | createTxPvtAll      |                       |
-|                    |                   |                |                 |                  |                      | getRawTxBody        |                       |
-|                    |                   |                |                 |                  |                      | estimateGasLimit    |                       |
-|                    |                   |                |                 |                  |                      | broadcastSignedTx   |                       |
-|                    |                   |                |                 |                  |                      | getGasFees          |                       |
+| AddressService         | BlockchainService | ContractService          | PaymentForwardingService | TokenService                  | TransactionService              | WebhookService                        |               
+| ---------------------- | ----------------- | ------------------------ | ------------------------ | ----------------------------- | ------------------------------- | ------------------------------------- |  
+| getInfo                | getInfo           | estimateSmartContractGas | createPaymentForwarding  | getAddressTokenBalance        | getTransaction                  | createNewBlockWebHook                 |
+| generateAddress        | getBlockByHash    | deploySmartContract      | listPayments              | transferTokens                | getTransactionsByBlock          | createConfirmedTransactionWebHook     | 
+| generateAccount        | getBlockByHeight  |                          | listPaymentsHistory       | getTokenTransactionsByAddress | getTransactionByBlockNumber     | createAddressTransactionWebHook       |
+| getAddressTransactions | getLatestBlock    |                          | deletePayment            | getAddressTokenTransfers      | getTransactionByBlockHash       | createTransactionConfirmationsWebHook |
+| getAddressNonce        |                   |                          |                          |                               | newTransaction                  | createTokenWebHook                    |
+|                        |                   |                          |                          |                               | newAllTransaction               | createTxPoolWebHook                   |
+|                        |                   |                          |                          |                               | newTransactionWithPrivateKey    | listAllHooks                          |
+|                        |                   |                          |                          |                               | newAllTransactionWithPrivateKey | deleteWebHook                         |
+|                        |                   |                          |                          |                               | sendTransaction                 |                                       |
+|                        |                   |                          |                          |                               | pushTransaction                 |                                       |
+|                        |                   |                          |                          |                               | estimateTransactionGas          |                                       |
+|                        |                   |                          |                          |                               | getPendingTransactions          |                                       |
+|                        |                   |                          |                          |                               | getQueuedTransactions           |                                       |
+|                        |                   |                          |                          |                               | getTransactionsFee              |                                       |
     
                                 
-### Bitcoin, Litecoin, Bitcoin_Cash, Dogecoin - Services/Methods
+### Bitcoin, Litecoin, Bitcoin Cash, Dogecoin, DASH - Services/Methods
 
 
-|     AddressService     | BlockchainService |  BlockService  |  PaymentService  | TransactionService |       WalletService     |    WebhookService     |               
-| ---------------------- | ----------------- | -------------- | ---------------- | ------------------ | ----------------------- | --------------------- |  
-| getAddressInfo         | getBlockchainInfo | getBlock x2    | createPFPwd      | getTxByHash        | createWallet            | createNewBlockWh      |
-| getMultisigAddressInfo |                   | getLatestBlock | deletePF         | getTxByBlock x2    | createHDWallet          | createAddressWh       | 
-| generateNewAddress     |                   |                | listPayments     | getUnconfirmedTxs  | listWallets             | createConfirmedTxWh   |
-| getTxsByAddress        |                   |                | listPastPayments | decodeTx           | listHDWallets           | deleteWebhook         |
-|                        |                   |                |                  | createTx           | getWallet               | listWebhooks          |
-|                        |                   |                |                  | signTx             | getHDWallet             |                       |
-|                        |                   |                |                  | sendTx             | addAddressToWallet      |                       |
-|                        |                   |                |                  | newTx              | generateAddressWallet   |                       |
-|                        |                   |                |                  | getFees            | generateAddressHDWallet |                       |
-|                        |                   |                |                  | newTxWithHDWallet  | removeAddress           |                       |
-|                        |                   |                |                  |                    | deleteWallet            |                       |
-|                        |                   |                |                  |                    | deleteHDWallet          |                       |
-|                        |                   |                |                  |                    | createExtendedKey       |                       |
-|                        |                   |                |                  |                    | getXpubReceiveAddresses |                       |
-|                        |                   |                |                  |                    | getXpubChangeAddresses  |                       |
+| AddressService                                   | BlockchainService | PaymentForwardingService | TransactionService         | WalletService             | WebhookService                        |               
+| ------------------------------------------------ | ----------------- | ------------------------ | -------------------------- | ------------------------- | ------------------------------------- |  
+| getInfo                                          | getInfo           | createPaymentForwarding  | getTransaction             | createWallet              | createNewBlockWebHook                 |
+| getInfoMultisig (not supported in Dogecoin/DASH) | getBlockByHash    | deletePayment            | getTransactionIndexByBlock | createHDWallet            | createConfirmedTransactionWebHook     | 
+| generateAddress                                  | getBlockByHeight  | listPayments              | getUnconfirmedTransactions | listWallets               | createAddressTransactionWebHook       |
+| getAddressTransactions                           | getLatestBlock    | listPaymentsHistory       | decodeRawTransaction       | listHDWallets             | createTransactionConfirmationsWebHook |
+|                                                  |                   |                          | createTransaction          | getWallet                 | listAllHooks                          |
+|                                                  |                   |                          | signTransaction            | getHDWallet               | deleteWebHook                         |
+|                                                  |                   |                          | sendTransaction            | addAddressToWallet        |                                       |
+|                                                  |                   |                          | newTransaction             | generateAddressInWallet   |                                       |
+|                                                  |                   |                          | createHDWalletTransaction  | generateAddressInHDWallet |                                       |
+|                                                  |                   |                          | getTransactionsFee         | removeAddressFromWallet   |                                       |
+|                                                  |                   |                          |                            | deleteWallet              |                                       |
+|                                                  |                   |                          |                            | deleteHDWallet            |                                       |
+|                                                  |                   |                          |                            | createXPub                |                                       |
+|                                                  |                   |                          |                            | getXPubChangeAddresses    |                                       |
+|                                                  |                   |                          |                            | getXPubReceiveAddresses   |                                       |

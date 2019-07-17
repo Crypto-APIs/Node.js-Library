@@ -1,8 +1,8 @@
 async function PaymentForwarding(caClient) {
     console.log('\n::LTC Payment Forwarding');
 
-    await caClient.blockchain.LTC.paymentForwarding.listPayment();
-    await caClient.blockchain.LTC.paymentForwarding.listPaymentHistory();
+    await caClient.blockchain.LTC.paymentForwarding.listPayments();
+    await caClient.blockchain.LTC.paymentForwarding.listPaymentsHistory();
 
     const testUrl = 'http://testUrl';
     const randomHDWalletName = Math.random().toString(36).substring(7);

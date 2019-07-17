@@ -1,8 +1,8 @@
 async function PaymentForwarding(caClient) {
     console.log('\n::DOGE Payment Forwarding');
 
-    await caClient.blockchain.DOGE.paymentForwarding.listPayment();
-    await caClient.blockchain.DOGE.paymentForwarding.listPaymentHistory();
+    await caClient.blockchain.DOGE.paymentForwarding.listPayments();
+    await caClient.blockchain.DOGE.paymentForwarding.listPaymentsHistory();
 
     const testUrl = 'http://testUrl';
     const randomHDWalletName = Math.random().toString(36).substring(7);

@@ -1,8 +1,8 @@
 async function PaymentForwarding(caClient) {
     console.log('\n::ETH Payment Forwarding');
 
-    await caClient.blockchain.ETH.paymentForwarding.listPayment();
-    await caClient.blockchain.ETH.paymentForwarding.listPaymentHistory();
+    await caClient.blockchain.ETH.paymentForwarding.listPayments();
+    await caClient.blockchain.ETH.paymentForwarding.listPaymentsHistory();
 
     const testUrl = 'http://testUrl';
     const from = '0x7857af2143cb06ddc1dab5d7844c9402e89717cb';

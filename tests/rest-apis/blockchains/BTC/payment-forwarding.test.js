@@ -1,8 +1,8 @@
 async function PaymentForwarding(caClient) {
     console.log('\n::BTC Payment Forwarding');
 
-    await caClient.blockchain.BTC.paymentForwarding.listPayment();
-    await caClient.blockchain.BTC.paymentForwarding.listPaymentHistory();
+    await caClient.blockchain.BTC.paymentForwarding.listPayments();
+    await caClient.blockchain.BTC.paymentForwarding.listPaymentsHistory();
 
     const testUrl = 'http://testUrl';
     const randomHDWalletName = Math.random().toString(36).substring(7);

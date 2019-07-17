@@ -14,7 +14,7 @@ class BasePaymentForwarding extends BaseChainComponent {
      *
      * @returns {*|Promise<any | never>}
      */
-    listPayment() {
+    listPayments() {
         return this.request.get(this.basePath + this.getSelectedNetwork() + '/payments');
     }
 
@@ -26,7 +26,7 @@ class BasePaymentForwarding extends BaseChainComponent {
      *
      * @returns {*|Promise<any | never>}
      */
-    listPaymentHistory() {
+    listPaymentsHistory() {
         return this.request.get(this.basePath + this.getSelectedNetwork() + '/payments/history');
     }
 

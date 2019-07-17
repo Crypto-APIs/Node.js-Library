@@ -20,10 +20,11 @@ async function Transaction(caClient) {
     const fee = {value: 0.00000001};
 
     await caClient.blockchain.DASH.transaction.createTransaction(txIns, txOuts, fee);
-    // await caClient.blockchain.DASH.transaction.signTransaction(); // TODO
-    // await caClient.blockchain.DASH.transaction.sendTransaction(); // TODO
-    // await caClient.blockchain.DASH.transaction.newTransaction();
-    // await caClient.blockchain.DASH.transaction.createHDWalletTransaction(); // TODO
+
+    // TODO signTransaction
+    // TODO sendTransaction
+    // TODO newTransaction
+    // TODO createHDWalletTransaction
 }
 
 

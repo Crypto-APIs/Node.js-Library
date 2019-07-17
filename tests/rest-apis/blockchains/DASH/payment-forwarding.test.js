@@ -11,7 +11,7 @@ async function PaymentForwarding(caClient) {
     await caClient.blockchain.DASH.wallet.createHDWallet(randomHDWalletName, 1, hdWalletPass); // Duplicated but needed for scenario
     const addresses = await caClient.blockchain.DASH.wallet.generateAddressInHDWallet(randomHDWalletName, 1, hdWalletPass).then(response => response.payload.addresses); // Duplicated but needed for scenario
 
-    const payment = await caClient.blockchain.DASH.paymentForwarding.createPayment(addresses[0].address, addresses[1].address, testUrl, randomHDWalletName, hdWalletPass, 1).then(response => response.payload);
+    const payment = await caClient.blockchain.DASH.paymentForwarding.createPaymentForwarding(addresses[0].address, addresses[1].address, testUrl, randomHDWalletName, hdWalletPass, 1).then(response => response.payload);
     await caClient.blockchain.DASH.paymentForwarding.deletePayment(payment.uuid);
     await caClient.blockchain.DASH.wallet.deleteHDWallet(randomHDWalletName); // (Cleanup) Duplicated but needed for scenario cleanup
 }

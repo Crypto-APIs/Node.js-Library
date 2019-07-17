@@ -6,7 +6,7 @@ async function Transaction(caClient) {
 
     if (transactions && transactions.length) {
         const txId = transactions[0].txid;
-        await caClient.blockchain.BCH.transaction.getTransaction(txId);
+        await caClient.blockchain.LTC.transaction.getTransaction(txId);
     }
 
     await caClient.blockchain.LTC.transaction.getUnconfirmedTransactions();
@@ -20,10 +20,11 @@ async function Transaction(caClient) {
     const fee = {value: 0.00000001};
 
     await caClient.blockchain.LTC.transaction.createTransaction(txIns, txOuts, fee);
-    // await caClient.blockchain.LTC.transaction.signTransaction(); // TODO
-    // await caClient.blockchain.LTC.transaction.sendTransaction(); // TODO
-    // await caClient.blockchain.LTC.transaction.newTransaction();
-    // await caClient.blockchain.LTC.transaction.createHDWalletTransaction(); // TODO
+
+    // TODO signTransaction
+    // TODO sendTransaction
+    // TODO newTransaction
+    // TODO createHDWalletTransaction
 }
 
 

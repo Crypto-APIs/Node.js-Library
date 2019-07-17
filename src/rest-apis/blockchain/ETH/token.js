@@ -80,7 +80,7 @@ class ETHToken extends Base {
      * @returns {*|Promise<any | never>}
      */
     getTokenTransactionsByAddress(address, limit = 50) {
-        return this.request.get(this.basePath + this.getSelectedNetwork() + 'tokens/address/' + address + '/transfers?limit=' + limit);
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/tokens/address/' + address + '/transfers?limit=' + limit);
     }
 
     /**
@@ -97,7 +97,7 @@ class ETHToken extends Base {
      * @returns {*|Promise<any | never>}
      */
     getAddressTokenTransfers(address, limit = 50) {
-        return this.request.get(this.basePath + this.getSelectedNetwork() + 'tokens/address/' + address + '?limit=' + limit);
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/tokens/address/' + address + '?limit=' + limit);
     }
 
 }

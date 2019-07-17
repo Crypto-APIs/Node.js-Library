@@ -297,7 +297,7 @@ class ETHTransaction extends Base {
      * @returns {*|Promise<any | never>}
      */
     getPendingTransactions(limit = 50) {
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/pending?limit=' + limit);
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/txs/pending?limit=' + limit);
     }
 
     /**
@@ -311,8 +311,8 @@ class ETHTransaction extends Base {
      *
      * @returns {*|Promise<any | never>}
      */
-    getQuedTransactions(limit = 50) {
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/queued?limit=' + limit);
+    getQueuedTransactions(limit = 50) {
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/txs/queued?limit=' + limit);
     }
 
     /**

@@ -36,7 +36,7 @@ const BTCBasedPayment = {
      *
      * @returns {*|Promise<any | never>}
      */
-    createPayment(from, to, callbackURL, wallet, password, confirmations, fee = null) {
+    createPaymentForwarding(from, to, callbackURL, wallet, password, confirmations, fee = null) {
         const data = {
             from: from,
             to: to,

@@ -6,6 +6,7 @@
     const BTC = require('./rest-apis/blockchains/BTC');
     const DASH = require('./rest-apis/blockchains/DASH');
     const DOGE = require('./rest-apis/blockchains/DOGE');
+    const ETH = require('./rest-apis/blockchains/ETH');
     const LTC = require('./rest-apis/blockchains/LTC');
 
     // const apiKey = 'your API key';
@@ -18,5 +19,6 @@
     await BTC(caClient);
     await DASH(caClient);
     await DOGE(caClient);
+    await ETH(caClient);
     await LTC(caClient);
 })();

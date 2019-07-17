@@ -1,4 +1,4 @@
-const {WH_EVENT: EVENT} = require('../../consts');
+const {WH_EVENT: EVENT} = require('../../../consts');
 const BaseWebHook = require('../../../common/blockchain/base-web-hook');
 
 class ETHWebHook extends BaseWebHook {
@@ -18,7 +18,7 @@ class ETHWebHook extends BaseWebHook {
      *
      * @returns {*|Promise<any | never>}
      */
-    createTokenkWebHook(callbackURL) {
+    createTokenWebHook(callbackURL) {
         return this.request.post(this.basePath + this.getSelectedNetwork() + '/hooks', {
             event: EVENT.ETH.TOKEN,
             url: callbackURL

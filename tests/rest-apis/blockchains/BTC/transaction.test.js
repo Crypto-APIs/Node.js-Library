@@ -20,10 +20,11 @@ async function Transaction(caClient) {
     const fee = {value: 0.00000001};
 
     await caClient.blockchain.BTC.transaction.createTransaction(txIns, txOuts, fee);
-    // await caClient.blockchain.BTC.transaction.signTransaction(); // TODO
-    // await caClient.blockchain.BTC.transaction.sendTransaction(); // TODO
-    // await caClient.blockchain.BTC.transaction.newTransaction();
-    // await caClient.blockchain.BTC.transaction.createHDWalletTransaction(); // TODO
+
+    // TODO signTransaction
+    // TODO sendTransaction
+    // TODO newTransaction
+    // TODO createHDWalletTransaction
 }
 
 

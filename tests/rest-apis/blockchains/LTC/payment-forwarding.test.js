@@ -11,7 +11,7 @@ async function PaymentForwarding(caClient) {
     await caClient.blockchain.LTC.wallet.createHDWallet(randomHDWalletName, 1, hdWalletPass); // Duplicated but needed for scenario
     const addresses = await caClient.blockchain.LTC.wallet.generateAddressInHDWallet(randomHDWalletName, 1, hdWalletPass).then(response => response.payload.addresses); // Duplicated but needed for scenario
 
-    const payment = await caClient.blockchain.LTC.paymentForwarding.createPayment(addresses[0].address, addresses[1].address, testUrl, randomHDWalletName, hdWalletPass, 1).then(response => response.payload);
+    const payment = await caClient.blockchain.LTC.paymentForwarding.createPaymentForwarding(addresses[0].address, addresses[1].address, testUrl, randomHDWalletName, hdWalletPass, 1).then(response => response.payload);
     await caClient.blockchain.LTC.paymentForwarding.deletePayment(payment.uuid);
     await caClient.blockchain.LTC.wallet.deleteHDWallet(randomHDWalletName); // (Cleanup) Duplicated but needed for scenario cleanup
 }

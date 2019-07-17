@@ -25,7 +25,7 @@ class ETHPaymentForwarding extends BasePaymentForwarding {
      *
      * @returns {*|Promise<any | never>}
      */
-    createPayment(callback, from, to, privateKey, confirmations, gasPrice = 0, gasLimit = 0) {
+    createPaymentForwarding(callback, from, to, privateKey, confirmations, gasPrice = 0, gasLimit = 0) {
         const data = {
             callback: callback,
             from: from,

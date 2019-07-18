@@ -15,15 +15,15 @@ const NETWORKS = {
 
 class DASH extends BlockchainNetwork {
 
-    constructor() {
-        super(ID, NETWORKS, NETWORKS.MAINNET);
+    constructor(...props) {
+        super(...props, ID, NETWORKS, NETWORKS.MAINNET);
 
-        this.address = new Address(ID);
-        this.blockchain = new Blockchain(ID);
-        this.paymentForwarding = new PaymentForwarding(ID);
-        this.transaction = new Transaction(ID);
-        this.wallet = new Wallet(ID);
-        this.webhook = new Webhook(ID);
+        this.address = new Address(...props, ID);
+        this.blockchain = new Blockchain(...props, ID);
+        this.paymentForwarding = new PaymentForwarding(...props, ID);
+        this.transaction = new Transaction(...props, ID);
+        this.wallet = new Wallet(...props, ID);
+        this.webhook = new Webhook(...props, ID);
     }
 
 }

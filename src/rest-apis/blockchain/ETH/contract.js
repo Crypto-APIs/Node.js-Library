@@ -2,10 +2,6 @@ const BaseChainComponent = require('../../../common/blockchain/base-chain-compon
 
 class ETHContract extends BaseChainComponent {
 
-    constructor(...props) {
-        super(...props);
-    }
-
     /**
      * Estimate Gas Smart Contract Endpoint
      *

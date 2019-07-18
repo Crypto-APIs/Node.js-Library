@@ -1,13 +1,14 @@
-const request = require('../proxy');
 const network = require('../../common/network');
+const BaseAuth = require('../base-auth');
 
-class BaseChainComponent {
+class BaseChainComponent extends BaseAuth {
 
-    constructor(bcId) {
+    constructor(apiKey, bcId) {
+        super(apiKey);
+
         this.bcId = bcId;
         this.basePath = '/bc/' + bcId.toLowerCase() + '/';
-        this.network = network.getInstance();
-        this.request = request.getInstance();
+        this.network = network.getInstance(apiKey);
     }
 
     getSelectedNetwork() {

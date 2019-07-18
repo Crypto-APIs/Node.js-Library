@@ -2,10 +2,6 @@ const BaseChainComponent = require('../../../common/blockchain/base-chain-compon
 
 class ETHToken extends BaseChainComponent {
 
-    constructor(...props) {
-        super(...props);
-    }
-
     /**
      * Get Token Balance
      *

@@ -2,7 +2,8 @@ const Network = require('../../common/network');
 
 class BlockchainNetwork {
 
-    constructor(bcId, networks, defaultNetwork) {
+    constructor(apiKey, bcId, networks, defaultNetwork) {
+        this.apiKey = apiKey;
         this.bcId = bcId;
         this.NETWORKS = networks;
 
@@ -10,15 +11,15 @@ class BlockchainNetwork {
     }
 
     addNetwork(networks, defaultNetwork) {
-        Network.getInstance().addBlockchain(this.bcId, Object.values(networks), defaultNetwork);
+        Network.getInstance(this.apiKey).addBlockchain(this.bcId, Object.values(networks), defaultNetwork);
     }
 
     switchNetwork(network) {
-        Network.getInstance().switchSelected(this.bcId, network);
+        Network.getInstance(this.apiKey).switchSelected(this.bcId, network);
     }
 
     getSelectedNetwork() {
-        Network.getInstance().getSelected(this.bcId);
+        Network.getInstance(this.apiKey).getSelected(this.bcId);
     }
 
 }

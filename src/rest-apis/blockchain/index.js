@@ -7,13 +7,13 @@ var {LTC} = require('./LTC');
 
 class Blockchain {
 
-    constructor() {
-        this.BCH = new BCH();
-        this.BTC = new BTC();
-        this.DASH = new DASH();
-        this.DOGE = new DOGE();
-        this.ETH = new ETH();
-        this.LTC = new LTC();
+    constructor(...props) {
+        this.BCH = new BCH(...props);
+        this.BTC = new BTC(...props);
+        this.DASH = new DASH(...props);
+        this.DOGE = new DOGE(...props);
+        this.ETH = new ETH(...props);
+        this.LTC = new LTC(...props);
     }
 
 }

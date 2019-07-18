@@ -2,10 +2,6 @@ const BaseChainComponent = require('./base-chain-component');
 
 class BaseTransaction extends BaseChainComponent {
 
-    constructor(...props) {
-        super(...props);
-    }
-
     /**
      * Transactions Txid Endpoint
      *

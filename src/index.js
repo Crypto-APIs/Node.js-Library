@@ -1,6 +1,6 @@
 'use strict';
 
-const Request = require('./common/proxy');
+const Proxy = require('./common/proxy');
 const Network = require('./common/network');
 
 const Blockchain = require('./rest-apis/blockchain');
@@ -9,11 +9,11 @@ const CryptoMarketData = require('./rest-apis/crypto-market-data');
 class CryptoAPIs {
 
     constructor(apiKey) {
-        Request.getInstance(apiKey); // Creates an instance of the Request class for usage across endpoints
-        Network.getInstance(); // Creates an instance of the Network class for usage across endpoints
+        Proxy.getInstance(apiKey); // Creates an instance of the Proxy class for usage across endpoints
+        Network.getInstance(apiKey); // Creates an instance of the Network class for usage across endpoints
 
-        this.BC = new Blockchain();
-        this.CMD = new CryptoMarketData();
+        this.BC = new Blockchain(apiKey);
+        this.CMD = new CryptoMarketData(apiKey);
     }
 
 }

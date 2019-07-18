@@ -1,12 +1,12 @@
-const request = require('../../common/proxy');
+const BaseAuth = require('../../common/base-auth');
 
-class Arbitrage {
+class Arbitrage extends BaseAuth {
 
     /**
      * GET /arbitrage-rest?skip={skip}&limit={limit}
      */
-    static getLatest(skip = 0, limit = 50) {
-        return request.getInstance().get('/arbitrage-rest?skip=' + skip + '&limit=' + limit);
+    getLatest(skip = 0, limit = 50) {
+        return this.request.get('/arbitrage-rest?skip=' + skip + '&limit=' + limit);
     }
 
 }

@@ -2,10 +2,6 @@ const BaseChainComponent = require('./base-chain-component');
 
 class BaseWallet extends BaseChainComponent {
 
-    constructor(...props) {
-        super(...props);
-    }
-
     /**
      * Create Wallet Endpoint
      *

@@ -2,10 +2,6 @@ const BaseChainComponent = require('./base-chain-component');
 
 class BaseAddress extends BaseChainComponent {
 
-    constructor(...props) {
-        super(...props);
-    }
-
     /**
      * Address Endpoint
      *

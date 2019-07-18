@@ -1,6 +1,4 @@
-const {DEBUG} = require('../consts');
-
-const Response = (res, onSuccess, onError) => {
+const Response = (log, res, onSuccess, onError) => {
     let responseStr = '';
 
     res.setEncoding('utf8')
@@ -17,7 +15,7 @@ const Response = (res, onSuccess, onError) => {
                     onSuccess(obj);
                 }
             } catch (e) {
-                if (DEBUG) {
+                if (log) {
                     console.error(e);
                 }
                 onError(e);

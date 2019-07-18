@@ -11,9 +11,6 @@ const WH_EVENT = {
     },
 };
 
-const DEBUG = false;
-
 module.exports = {
     WH_EVENT: WH_EVENT,
-    DEBUG: DEBUG,
 };

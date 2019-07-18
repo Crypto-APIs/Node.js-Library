@@ -1,5 +1,5 @@
 const Network = (function () {
-    let instance;
+    let instances = {};
 
     function createInstance() {
         return {
@@ -11,7 +11,7 @@ const Network = (function () {
 
                 this.BC[bcId.toUpperCase()].selected = network;
             },
-            addBlockchain: function(bcId, available, selected) {
+            addBlockchain: function (bcId, available, selected) {
                 if (Object.keys(this.BC).includes(bcId.toUpperCase())) {
                     return console.error(`Record for this blockchain (${bcId}) already exists.`);
                 }
@@ -31,11 +31,11 @@ const Network = (function () {
     }
 
     return {
-        getInstance: function () {
-            if (!instance) {
-                instance = createInstance();
+        getInstance: function (apiKey) {
+            if (!instances[apiKey]) {
+                instances[apiKey] = createInstance(apiKey);
             }
-            return instance;
+            return instances[apiKey];
         }
     };
 })();

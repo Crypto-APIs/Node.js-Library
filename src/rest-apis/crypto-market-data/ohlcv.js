@@ -1,26 +1,26 @@
-const request = require('../../common/proxy');
+const BaseAuth = require('../../common/base-auth');
 
-class OHLCV {
+class OHLCV extends BaseAuth {
 
     /**
      * GET /ohlcv/periods
      */
-    static listAllPeriods() {
-        return request.getInstance().get('/ohlcv/periods');
+    listAllPeriods() {
+        return this.request.get('/ohlcv/periods');
     }
 
     /**
      * GET /ohlcv/latest/{symbolId}?period={periodId}&limit={limit}
      */
-    static latestData(symbolId, periodId, limit = 50) {
-        return request.getInstance().get('/ohlcv/latest/' + symbolId + '?period=' + periodId + '&limit=' + limit);
+    latestData(symbolId, periodId, limit = 50) {
+        return this.request.get('/ohlcv/latest/' + symbolId + '?period=' + periodId + '&limit=' + limit);
     }
 
     /**
      * GET /ohlcv/history/{symbolId}?period={periodId}&timePeriodStart={timeStart}&timePeriodEnd={timeEnd}&limit={limit}
      */
-    static historicalData(symbolId, periodId, timeStart, timeEnd, limit = 50) {
-        return request.getInstance().get('/ohlcv/history/' + symbolId + '?period=' + periodId + '&timePeriodStart=' + timeStart + '&timePeriodEnd=' + timeEnd + '&limit=' + limit);
+    historicalData(symbolId, periodId, timeStart, timeEnd, limit = 50) {
+        return this.request.get('/ohlcv/history/' + symbolId + '?period=' + periodId + '&timePeriodStart=' + timeStart + '&timePeriodEnd=' + timeEnd + '&limit=' + limit);
     }
 
 }

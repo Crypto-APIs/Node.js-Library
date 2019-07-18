@@ -2,10 +2,6 @@ const BasePaymentForwarding = require('../../../common/blockchain/base-payment-f
 
 class ETHPaymentForwarding extends BasePaymentForwarding {
 
-    constructor(...props) {
-        super(...props);
-    }
-
     /**
      * Create Payment Forwarding
      *

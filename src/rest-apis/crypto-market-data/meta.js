@@ -1,47 +1,47 @@
-const request = require('../../common/proxy');
+const BaseAuth = require('../../common/base-auth');
 
-class Meta {
+class Meta extends BaseAuth {
 
     /**
      * GET /exchanges?skip={skip}&limit={limit}
      */
-    static listAllExchanges(skip = 0, limit = 50) {
-        return request.getInstance().get('/exchanges?skip=' + skip + '&limit=' + limit);
+    listAllExchanges(skip = 0, limit = 50) {
+        return this.request.get('/exchanges?skip=' + skip + '&limit=' + limit);
     }
 
     /**
      * GET /exchanges/{exchangeId}
      */
-    static getExchangeDetails(exchangeId) {
-        return request.getInstance().get('/exchanges/' + exchangeId);
+    getExchangeDetails(exchangeId) {
+        return this.request.get('/exchanges/' + exchangeId);
     }
 
     /**
      * GET /assets?skip={skip}&limit={limit}
      */
-    static listAllAssets(skip = 0, limit = 50) {
-        return request.getInstance().get('/assets?skip=' + skip + '&limit=' + limit);
+    listAllAssets(skip = 0, limit = 50) {
+        return this.request.get('/assets?skip=' + skip + '&limit=' + limit);
     }
 
     /**
      * GET /assets/{assetId}
      */
-    static getAssetDetails(assetId) {
-        return request.getInstance().get('/assets/' + assetId);
+    getAssetDetails(assetId) {
+        return this.request.get('/assets/' + assetId);
     }
 
     /**
      * GET /mappings?skip={skip}&limit={limit}
      */
-    static listAllSymbols(skip = 0, limit = 50) {
-        return request.getInstance().get('/mappings?skip=' + skip + '&limit=' + limit);
+    listAllSymbols(skip = 0, limit = 50) {
+        return this.request.get('/mappings?skip=' + skip + '&limit=' + limit);
     }
 
     /**
      * GET /mappings/{symbolId}
      */
-    static getSymbolDetails(symbolId) {
-        return request.getInstance().get('/mappings/' + symbolId);
+    getSymbolDetails(symbolId) {
+        return this.request.get('/mappings/' + symbolId);
     }
 
 }

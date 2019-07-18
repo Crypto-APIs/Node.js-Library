@@ -2,10 +2,6 @@ const BaseChainComponent = require('./base-chain-component');
 
 class BaseBlockchain extends BaseChainComponent {
 
-    constructor(...props) {
-        super(...props);
-    }
-
     /**
      * Chain Endpoint
      *

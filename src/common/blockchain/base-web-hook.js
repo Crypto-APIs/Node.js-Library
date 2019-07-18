@@ -3,10 +3,6 @@ const BaseChainComponent = require('./base-chain-component');
 
 class BaseWebHook extends BaseChainComponent {
 
-    constructor(...props) {
-        super(...props);
-    }
-
     /**
      * Create New Block WebHook Endpoint
      *

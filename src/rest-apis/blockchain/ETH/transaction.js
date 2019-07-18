@@ -2,10 +2,6 @@ const Base = require('../../../common/blockchain/base-chain-component');
 
 class ETHTransaction extends Base {
 
-    constructor(...props) {
-        super(...props);
-    }
-
     /**
      * Transaction Hash Endpoint
      *

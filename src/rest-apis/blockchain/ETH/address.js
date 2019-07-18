@@ -2,10 +2,6 @@ const BaseAddress = require('../../../common/blockchain/base-address');
 
 class ETHAddress extends BaseAddress {
 
-    constructor(...props) {
-        super(...props);
-    }
-
     /**
      * Generate Account Endpoint
      *

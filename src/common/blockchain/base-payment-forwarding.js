@@ -2,10 +2,6 @@ const BaseChainComponent = require('./base-chain-component');
 
 class BasePaymentForwarding extends BaseChainComponent {
 
-    constructor(...props) {
-        super(...props);
-    }
-
     /**
      * List Payment Endpoint
      *

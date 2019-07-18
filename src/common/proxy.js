@@ -1,29 +1,33 @@
 const Request = require('./request');
 
 const Proxy = (function () {
-    let instance;
+    let instances = {};
 
     function createInstance(apiKey) {
         return {
+            log: false,
             apiKey: apiKey,
+            setLogging: function (enable) {
+                this.log = enable;
+            },
             get: function (path) {
-                return Request(this.apiKey, path);
+                return Request(this.log, this.apiKey, path);
             },
             post: function (path, data) {
-                return Request(this.apiKey, path, {method: 'POST'}, JSON.stringify(data))
+                return Request(this.log, this.apiKey, path, {method: 'POST'}, JSON.stringify(data))
             },
             delete: function (path) {
-                return Request(this.apiKey, path, {method: 'DELETE'})
+                return Request(this.log, this.apiKey, path, {method: 'DELETE'})
             }
         };
     }
 
     return {
         getInstance: function (apiKey) {
-            if (!instance) {
-                instance = createInstance(apiKey);
+            if (!instances[apiKey]) {
+                instances[apiKey] = createInstance(apiKey);
             }
-            return instance;
+            return instances[apiKey];
         }
     };
 })();

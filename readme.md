@@ -51,7 +51,7 @@ It will print the following:
   "payload": {
     "address": "0xd1b99ca3971c06af48474aa6606ec885e7aff600",
     "privateKey": "31f5d2a8d3f4a816fb498200423461ec52aefe579c13b807a8140c7a7ecc8448",
-    "publicKey": "51767e84342ea3d10faf35676997cf1dbd4d2c0168fe46a4a920c4c1f557bc8851445ff17aaba144546e7aac45b1754352d860c617eff441778c4e053178f97b",
+    "publicKey": "51767e84342ea3d10faf35676997cf1dbd4d2c0168fe46a4a920c4c1f557bc8851445ff17aaba144546e7aac45b1754352d860c617eff441778c4e053178f97b"
   }
 }
 ```
@@ -60,6 +60,7 @@ It will print the following:
 
 ```js
 const password = 'your password - l3tt3rs and d1g1ts';
+
 caClient.BC.ETH.address.generateAccount(password).then(console.log);
 ```
 
@@ -93,6 +94,7 @@ If an error occurs, it will print the following (e.g. your password is weak):
 
 ```js
 const address = '0xd6cb6744b7f2da784c5afd6b023d957188522198';
+
 caClient.BC.ETH.address.getInfo(address).then(console.log);
 ```
 
@@ -106,7 +108,7 @@ It will print the following:
     "balance": "1981.86598254851838",
     "txs_count": 180546,
     "from": 60509,
-    "to": 120037,
+    "to": 120037
   }
 }
 ```
@@ -115,6 +117,7 @@ It will print the following:
 
 ```js
 const blockNumber = 6123321;
+
 caClient.BC.ETH.blockchain.getBlockByHeight(blockNumber).then(console.log);
 ```
 
@@ -131,7 +134,7 @@ It will print the following:
     "gas_used": "7992049",
     "size": "5332 bytes",
     "timestamp": 1533919094,
-    "date": "2018-08-10 16"38"14 +UTC",
+    "date": "2018-08-10 16:38:14 +UTC",
     "transactions": 36,
     "difficulty": "3544115802240984",
     "total_difficulty": "5917863156620322787518",
@@ -141,7 +144,7 @@ It will print the following:
     "uncles": [],
     "extra_data": "0x65746865726d696e652d657538",
     "confirmations": 2045393,
-    "total_fees": "100689146837974998",
+    "total_fees": "100689146837974998"
   }
 }
 ```
@@ -150,6 +153,7 @@ It will print the following:
 
 ```js
 const tx = '0xe7abcffe85acf8e6d3186f1378d201b0857c41d300885c9c3c2f2c72afaecbcd';
+
 caClient.BC.ETH.transaction.getTransaction(tx).then(console.log);
 ```
 
@@ -205,16 +209,15 @@ If transaction is not found, the following message will be printed:
 ### Create payment forwarding using an account
 
 ```js
-caClient.BC.ETH.paymentForwarding.createPaymentForwarding(
-    "https://somepoint.com", 
-    "0x7857af2143cb06ddc1dab5d7844c9402e89717cb", 
-    "0x4ab47e7b0204d6b3bf0e956db14e63142b9b5ab8", 
-    "your-password-123", 
-    6, 
-    11000000000, 
-    21000
-)
-    .then(console.log);
+const url = 'https://somepoint.com';
+const from = '0x7857af2143cb06ddc1dab5d7844c9402e89717cb';
+const to = '0x4ab47e7b0204d6b3bf0e956db14e63142b9b5ab8';
+const privateKey = 'your-password-123';
+const confirmations = 6;
+const gasPrice = 11000000000;
+const gasLimit = 21000;
+
+caClient.BC.ETH.paymentForwarding.createPaymentForwarding(url, from, to, privateKey, confirmations, gasPrice, gasLimit).then(console.log);
 ```
 
 It will print similar to the following:
@@ -258,7 +261,7 @@ const password = 'your-password-123';
 const value = 0.012;
 const hexData = 0x123;
 
-caClient.BC.ETH.transaction.newTransaction(from, to, password, value, gasPrice, gasLimit, null, hexData);
+caClient.BC.ETH.transaction.newTransaction(from, to, password, value, gasPrice, gasLimit, null, hexData).then(console.log);
 ```
 
 It will print similar to the following:
@@ -331,7 +334,6 @@ It will print similar to the following:
         "tx": [
             "48d0c5e7d7f1004e4fda1ad02529b024d59e8d663486d9b9cad4fe92d3f9d63e",
             "2046a3a6affe4886c53060f5f5637b9369f188046b2ea2d3172ca99a0bcb7137",
-            ...
             "14f18a93af7ffb3dacec0d419e68efa8a436068390691a5d1f54baedbab55a00"
         ],
         "confirmations": 0,
@@ -381,7 +383,6 @@ caClient.BC.DASH.transaction.getTransactionIndexByBlock(blockNumber, index, limi
 			},
 			"votype": "pubkeyhash"
 		  },
-		 ...
 		 {
 			"txout": "72229f239e1e07de267310dafca1546d046b2ccb7a8ed97166377e0a029bc7a9",
 			"vout": 1,
@@ -439,7 +440,6 @@ caClient.BC.DASH.transaction.getTransactionIndexByBlock(blockNumber, index, limi
 			},
 			"votype": "pubkeyhash"
 		}, 
-		 ...
 		 {
 			"txout": "cacb2282399e250bbbe60fbb49e62e60f0bd123563ff853730e038be8e4a116f",
 			"vout": 1,
@@ -484,46 +484,37 @@ caClient.BC.DASH.transaction.getTransactionIndexByBlock(blockNumber, index, limi
 
 ### Create, sign and send a transaction to the blockchain
 
-```java
-final TransactionService btcTransactionService = btc.getTransactionService();
-CreateTransaction ct = new CreateTransaction();
+```js
+const inputs = [
+    {
+        address: 'mtFYoSowT3i649wnBDYjCjewenh8AuofQb',
+        value: 0.0003
+    },
+    {
+        address: 'mn6GtNFRPwXtW7xJqH8Afck7FbVoRi6NF1',
+        value: 0.001
+    }
+];
+const outputs = [
+    {
+        address: 'mrnWMV41vXivQX9yiY9ACSK5uPo3TfJdv9',
+        value: 0.0013
+    }
+];
+const fee = {
+    value: 0.00145,
+    address: 'mmskWH7hG9CJNzb16JaVFJyWdgAwcVEAkz'
+};
+const wifs = [
+    'cUGddnJmuzfzpWXNwt1SRnQ8GMqZdQ1vg8BtwjG8f275pvExPzaX',
+    'cSEjySAREyai8eQhgoqixzmxCeSP8QtbwHxptL8ijofg68ZMjoud',
+    'cPo4XXgsnkVdg93GqR8M1iCDGk6Tgywk5gng4rSpoMVzpQx13WmA',
+];
 
-List<CreateTransaction.Inputs> inputs = new ArrayList<>();
-CreateTransaction.Inputs input1 = new CreateTransaction.Inputs();
-input1.setAddress("mtFYoSowT3i649wnBDYjCjewenh8AuofQb");
-input1.setValue(0.0003);
-inputs.add(input1);
-
-CreateTransaction.Inputs input2 = new CreateTransaction.Inputs();
-input2.setAddress("mn6GtNFRPwXtW7xJqH8Afck7FbVoRi6NF1");
-input2.setValue(0.001);
-inputs.add(input2);
-
-ct.setInputs(inputs);
-
-List<CreateTransaction.Outputs> outputs = new ArrayList<>();
-CreateTransaction.Outputs output = new CreateTransaction.Outputs();
-output.setAddress("mrnWMV41vXivQX9yiY9ACSK5uPo3TfJdv9");
-output.setValue(0.0013);
-outputs.add(output);
-
-ct.setOutputs(outputs);
-
-//setting fee value is mandatory, however setting fee address is optional
-CreateTransaction.Fee fee = new CreateTransaction.Fee();
-fee.setValue(0.00145);
-fee.setAddress("mmskWH7hG9CJNzb16JaVFJyWdgAwcVEAkz");
-ct.setFee(fee);
-
-final List<String> wifs = new ArrayList<String>(){{
-   add("cUGddnJmuzfzpWXNwt1SRnQ8GMqZdQ1vg8BtwjG8f275pvExPzaX");
-   add("cSEjySAREyai8eQhgoqixzmxCeSP8QtbwHxptL8ijofg68ZMjoud");
-   add("cPo4XXgsnkVdg93GqR8M1iCDGk6Tgywk5gng4rSpoMVzpQx13WmA");
-}};
-
-ApiResponse res = btcTransactionService.newTx(ct, wifs);
-System.out.println(res.getResponse());
+caClient.BC.BTC.transaction.newTransaction(inputs, outputs, fee, wifs).then(console.log);
 ```
+
+It will print similar to the following:
 
 ```json
 {
@@ -532,6 +523,420 @@ System.out.println(res.getResponse());
 	}
 }
 ```
+
+### Create wallet
+
+```js
+const walletName = 'demoWallet';
+const addresses = [
+    'LLrxRzrNVxyVQ2DjuMoCNEMN2YM2nkwr1K',
+    'LiLGYuVLV4HExGYizwZEjTpTG2apN4or8M',
+    'LP3LrpZDjCDhysQarq4STG97sH8a8Yf748'
+];
+
+caClient.BC.LTC.wallet.createWallet(walletName, addresses).then(console.log);
+```
+
+It will print similar to the following:
+
+```json
+{
+	"payload": {
+		"walletName": "demoWallet",
+		"addresses": ["LLrxRzrNVxyVQ2DjuMoCNEMN2YM2nkwr1K", "LiLGYuVLV4HExGYizwZEjTpTG2apN4or8M", "LP3LrpZDjCDhysQarq4STG97sH8a8Yf748"],
+		"hd": false
+	}
+}
+```
+
+### Create HD wallet
+
+```js
+const walletName = 'demoHDWallet';
+const addressCount = 5;
+const password = 'your password - l3tt3rs and d1g1ts';
+
+caClient.BC.BCH.wallet.createHDWallet(walletName, addressCount, password).then(console.log);
+```
+
+It will print similar to the following:
+
+```json
+{
+	"payload": {
+		"walletName": "demoHDWallet",
+		"addresses": [{
+			"address": "bitcoincash:qz5c8fpj25hz8wmnqy2k04enwvd937k89ur7hcft6e",
+			"legacy": "1GTJu2NexADzFcFhvqozHczVP7h1uh1WzN",
+			"path": "M/0H/0/0"
+		}, {
+			"address": "bitcoincash:qr6rvvvh4u8v9vaq4kuf7rh00r8smu78cy3sycwmdq",
+			"legacy": "1PGGoFdvDQQmEZuTuwNQFo7vwfWhpAi2Ji",
+			"path": "M/0H/0/1"
+		}, {
+			"address": "bitcoincash:qzr6tqax9hhr77x9a2ttffc6ktgal2rtwyprcsha9s",
+			"legacy": "1DNEW2gwyL2XnTLgCcsYt1kM9KMpFz3ni7",
+			"path": "M/0H/0/2"
+		}, {
+			"address": "bitcoincash:qzhcldlhnk6s9gjmgx6nkypxrwfjslu7r5yph59svl",
+			"legacy": "1H1HRKHVS6pMHCcbYDTVegwyFgj77Lz27U",
+			"path": "M/0H/0/3"
+		}, {
+			"address": "bitcoincash:qpkv6ufumrka40ca8c8px8kftnj48tch7u9afwd65e",
+			"legacy": "1AvJ66sw83hC9v1KZBG7rTYNxpxKwrsdTN",
+			"path": "M/0H/0/4"
+		}],
+		"hd": true
+	}
+}
+```
+
+### Add address to wallet
+
+```js
+const walletName = 'demoWallet';
+
+caClient.BC.LTC.wallet.generateAddressInWallet(walletName).then(console.log);
+```
+
+It will print similar to the following:
+
+```json
+{
+	"payload": {
+		"wallet_info": {
+			"walletName": "demoWallet",
+			"addresses": ["LLrxRzrNVxyVQ2DjuMoCNEMN2YM2nkwr1K", "LiLGYuVLV4HExGYizwZEjTpTG2apN4or8M", "LP3LrpZDjCDhysQarq4STG97sH8a8Yf748", "LfX7oHnE37ch1KYmn8RFbtfNbFWnngmYW7"],
+			"hd": false
+		},
+		"address_info": {
+			"privateKey": "4442839f4f27fff266ce22bcfb1edd8135792a52d086649874007bcc8eb23f71",
+			"publicKey": "02737644477a499f487d07359a35e6dda11afc0f656ec5cbe693ae02060b91ef06",
+			"address": "LfX7oHnE37ch1KYmn8RFbtfNbFWnngmYW7",
+			"wif": "T5LfYR3EKoidySNmsaALbpWPQDJZyAFAsZXP4B9Gd19kMsukJC1v"
+		}
+	}
+}
+```
+
+### Create Transaction Using HDWallet
+
+```js
+const walletName = 'demohdwallet';
+const password = 'password';
+const outputs = [
+    { 
+        address: 'my4TmbbhJCLJB9q1eHUHQWJfbbJoYdLwtE', 
+        value: 0.003 
+    }
+];
+const fee = {
+    value: 0.00023141
+};
+
+caClient.BC.BCH.transaction.createHDWalletTransaction(walletName, password, outputs, fee).then(console.log);
+```
+
+It will print similar to the following:
+
+```json
+{
+  "payload": { 
+       "txid":"1a6bffc375ecd14eb8fa85308baae86a68278cb12d78a2aedbb014c10fb080a1"
+   }
+}
+```
+
+### Create Confirmed Transaction Webhook
+
+```js
+const url = 'https://somepoint.com';
+const tx = '909d545c8ca26a754118f88939ff38a76dad2a06fdff6117c4b6b029f6330625';
+const confirmations = 6;
+
+caClient.BC.BTC.webhook.createConfirmedTransactionWebHook(url, tx, confirmations).then(console.log);
+
+```
+
+It will print similar to the following:
+
+```json
+{
+	"payload": {
+		"uuid": "de6c3898-b6a0-44be-8ff8-f2beb83dd09f",
+		"event": "CONFIRMED_TX",
+		"transaction": "909d545c8ca26a754118f88939ff38a76dad2a06fdff6117c4b6b029f6330625",
+		"confirmations": 6,
+		"url": "https://somepoint.com"
+	}
+}
+```
+
+### Get blockchain info
+
+```js
+caClient.BC.DOGE.blockchain.getInfo().then(console.log);
+```
+
+It will print similar to the following:
+
+```json
+{
+    "payload": {
+        "difficulty": 6329995.2247605,
+        "headers": 2745874,
+        "chain": "main",
+        "chainWork": "0000000000000000000000000000000000000000000001eedd07ae5c113b9d92",
+        "blocks": 2745874,
+        "bestBlockHash": "c895d63eb2f7e306bc6d1df85e085d13ed83509dc70ba9ce3f84564461bbd234",
+        "currency": "DOGE",
+        "transactions": 12687555,
+        "verificationProgress": 0.99999946
+    }
+}
+```
+
+## Exchanges examples
+
+### Get specific rate - ExchangeRates
+
+```js
+const baseAsset = 'USD';
+const quoteAsset = 'BTC';
+
+caClient.CMD.exchangeRates.getSpecificRate(baseAsset, quoteAsset).then(console.log);
+```
+
+It will print similar to the following:
+
+```json
+{
+	"payload": {
+		"weightedAveragePrice": 0.0001908939768173263,
+		"medianPrice": 0.0001914660979263376,
+		"weightedMedianAveragePrice": 0,
+		"timestamp": 1555484749,
+		"baseAsset": "USD",
+		"quoteAsset": "BTC"
+	}
+}
+```
+
+### List all exchanges - Metadata
+
+```js
+const limit = 5;
+
+caClient.CMD.meta.listAllExchanges(0, limit);
+```
+
+It will print similar to the following:
+
+```json
+{
+	"meta": {
+		"totalCount": 25,
+		"index": 0,
+		"limit": 5,
+		"results": 5
+	},
+	"payload": [{
+		"exchangeId": "BINANCE",
+		"name": "Binance",
+		"website": "https:\/\/www.binance.com\/",
+		"_id": "5b1ea9d21090c200146f7362"
+	}, {
+		"exchangeId": "COINBASE",
+		"name": "GDAX",
+		"website": "https:\/\/www.gdax.com\/",
+		"_id": "5b1ea9d21090c200146f7363"
+	}, {
+		"exchangeId": "BITSTAMP",
+		"name": "Bitstamp Ltd.",
+		"website": "https:\/\/www.bitstamp.net\/",
+		"_id": "5b1ea9d21090c200146f7364"
+	}, {
+		"exchangeId": "BITTREX",
+		"name": "Bittrex",
+		"website": "https:\/\/bittrex.com\/",
+		"_id": "5b1ea9d21090c200146f7366"
+	}, {
+		"exchangeId": "POLONIEX",
+		"name": "POLONIEX",
+		"website": "https:\/\/poloniex.com\/",
+		"_id": "5b1ea9d21090c200146f7367"
+	}]
+}
+```
+
+### Get latest data - OHLCV
+
+```js
+const symbolId = '5bfc325e9c40a100014db989';
+const period = '1day';
+const limit = 2;
+
+caClient.CMD.OHLCV.latestData(symbolId, period, limit).then(console.log);
+```
+
+It will print similar to the following:
+
+```json
+{
+	"meta": {
+		"totalCount": 23
+	},
+	"payload": [{
+		"exchange": "5b1ea9d21090c200146f7366",
+		"eventType": "SPOT",
+		"assetBase": "5b1ea92e584bf5002013066a",
+		"assetQuote": "5b755dacd5dd99000b3d92b2",
+		"timePeriodStart": 1545091200,
+		"timePeriodEnd": 1545177600,
+		"timeOpen": 1545095064,
+		"timeClose": 1545105503,
+		"priceOpen": 0.00536766,
+		"priceClose": 0.00533631,
+		"priceLow": 0.00533631,
+		"priceHigh": 0.00540231,
+		"volumeTraded": 1713.40194932,
+		"tradesCount": 10,
+		"_id": "5c1a11c0481c5700015eaeff",
+		"_created": 1545212352,
+		"_lastModified": 1545218854
+	}, {
+		"exchange": "5b1ea9d21090c200146f7366",
+		"eventType": "SPOT",
+		"assetBase": "5b1ea92e584bf5002013066a",
+		"assetQuote": "5b755dacd5dd99000b3d92b2",
+		"timePeriodStart": 1545004800,
+		"timePeriodEnd": 1545091200,
+		"timeOpen": 1545025630,
+		"timeClose": 1545073697,
+		"priceOpen": 0.00547147,
+		"priceClose": 0.00539047,
+		"priceLow": 0.00535,
+		"priceHigh": 0.00548921,
+		"volumeTraded": 64723.87729499,
+		"tradesCount": 260,
+		"_id": "5c195cc2481c57000121f344",
+		"_created": 1545166018,
+		"_lastModified": 1545198267
+	}]
+}
+```
+
+### Get historical data - Quotes
+
+```js
+const symbolId = '5bfc325c9c40a100014db8ff';
+const testTS = 1563353934;
+const limit = 5;
+
+caClient.CMD.quotes.getHistoricalData(symbolId, testTS, null, 0, limit).then(console.log);
+```
+
+It will print similar to the following:
+
+```json
+{
+	"meta": {
+		"totalCount": 2124,
+		"index": 0,
+		"limit": 5,
+		"results": 5
+	},
+	"payload": [{
+		"exchangeSymbol": "etheur",
+		"exchangeId": "5b1ea9d21090c200146f7364",
+		"price": 147.53,
+		"orderId": "N\/A",
+		"tradeType": "SPOT",
+		"baseAsset": "5b755dacd5dd99000b3d92b2",
+		"quoteAsset": "5b1ea92e584bf5002013061a",
+		"direction": "ASKS",
+		"amount": 0.64306,
+		"eventTime": 1555488613000
+	}, {
+		"exchangeSymbol": "etheur",
+		"exchangeId": "5b1ea9d21090c200146f7364",
+		"price": 147.04,
+		"orderId": "N\/A",
+		"tradeType": "SPOT",
+		"baseAsset": "5b755dacd5dd99000b3d92b2",
+		"quoteAsset": "5b1ea92e584bf5002013061a",
+		"direction": "BIDS",
+		"amount": 11.985,
+		"eventTime": 1555488406000
+	}, {
+		"exchangeSymbol": "etheur",
+		"exchangeId": "5b1ea9d21090c200146f7364",
+		"price": 147.63,
+		"orderId": "N\/A",
+		"tradeType": "SPOT",
+		"baseAsset": "5b755dacd5dd99000b3d92b2",
+		"quoteAsset": "5b1ea92e584bf5002013061a",
+		"direction": "ASKS",
+		"amount": 327.0426884,
+		"eventTime": 1555488406000
+	}, {
+		"exchangeSymbol": "etheur",
+		"exchangeId": "5b1ea9d21090c200146f7364",
+		"price": 147.62,
+		"orderId": "N\/A",
+		"tradeType": "SPOT",
+		"baseAsset": "5b755dacd5dd99000b3d92b2",
+		"quoteAsset": "5b1ea92e584bf5002013061a",
+		"direction": "ASKS",
+		"amount": 0.64306,
+		"eventTime": 1555488406000
+	}, {
+		"exchangeSymbol": "etheur",
+		"exchangeId": "5b1ea9d21090c200146f7364",
+		"price": 147.76,
+		"orderId": "N\/A",
+		"tradeType": "SPOT",
+		"baseAsset": "5b755dacd5dd99000b3d92b2",
+		"quoteAsset": "5b1ea92e584bf5002013061a",
+		"direction": "ASKS",
+		"amount": 23.76,
+		"eventTime": 1555488406000
+	}]
+}
+```
+
+### Get latest data by - Trades
+
+```js
+const symbolId = '5bfc32a29c40a100014dc5f6';
+
+caClient.CMD.trades.getLatestDataBySymbol(symbolId).then(console.log);
+```
+
+It will print similar to the following:
+
+```json
+{
+	"meta": {
+		"totalCount": 170,
+		"index": 0,
+		"limit": 1,
+		"results": 1
+	},
+	"payload": [{
+		"exchangeId": "5b4e131b6ab304000a106945",
+		"exchangeSequenceId": "dc5d8abc-cb3b-43a2-9350-c983ef368c09",
+		"eventTime": 1555488112732,
+		"baseAsset": "5b1ea92e584bf50020130845",
+		"quoteAsset": "5b755dacd5dd99000b3d92b2",
+		"price": 2.679e-5,
+		"amount": 14142.4,
+		"direction": "SELL",
+		"tradeType": "SPOT"
+	}]
+}
+```
+
 ### Exchanges - Services/Methods
 
 

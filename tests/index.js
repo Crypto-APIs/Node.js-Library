@@ -21,15 +21,4 @@
     await DOGE(caClient);
     await ETH(caClient);
     await LTC(caClient);
-
-    // await caClient.BC.ETH.blockchain.getInfo();
-    // await caClient.BC.ETH.switchNetwork(caClient.BC.ETH.NETWORKS.ROPSTEN);
-    // caClient.BC.ETH.transaction.newTransaction(from, to, password, value, gasPrice, gasLimit, null, hexData)
-    //     .then(res => console.log(JSON.stringify(res, null, 2)));
-    // await caClient.BC.ETH.address.generateAddress().then(console.log);
-    // caClient.BC.BTC.address.generateAddress().then(console.log);
-    // caClient.BC.LTC.address.generateAddress().then(console.log);
-    // caClient.BC.BCH.address.generateAddress().then(console.log);
-    // caClient.BC.DOGE.address.generateAddress().then(console.log);
-    // caClient.BC.DASH.address.generateAddress().then(console.log);
 })();

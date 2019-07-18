@@ -3,17 +3,17 @@ const request = require('../../common/proxy');
 class ExchangeRates {
 
     /**
-     * GET /exchange-rates/{baseAssetId}/{quoteAssetId}?timestamp={timestamp}
+     * GET /exchange-rates/{baseAsset}/{quoteAsset}?timestamp={timestamp}
      */
-    static getSpecificRate(baseAssetId, quoteAssetId, timestamp) {
-        return request.getInstance().get('/exchange-rates/' + baseAssetId + '/' + quoteAssetId + '?timestamp=' + timestamp);
+    static getSpecificRate(baseAsset, quoteAsset, timestamp) {
+        return request.getInstance().get('/exchange-rates/' + baseAsset + '/' + quoteAsset + '?timestamp=' + timestamp);
     }
 
     /**
-     * GET /exchange-rates/{baseAssetId}?timestamp={timestamp}&skip={skip}&limit={limit}
+     * GET /exchange-rates/{baseAsset}?timestamp={timestamp}&skip={skip}&limit={limit}
      */
-    static getAllCurrentRates(baseAssetId, timestamp, skip = 0, limit = 50) {
-        return request.getInstance().get('/exchange-rates/' + baseAssetId + '?timestamp=' + timestamp + '&skip=' + skip + '&limit=' + limit);
+    static getAllCurrentRates(baseAsset, timestamp, skip = 0, limit = 50) {
+        return request.getInstance().get('/exchange-rates/' + baseAsset + '?timestamp=' + timestamp + '&skip=' + skip + '&limit=' + limit);
     }
 
 }

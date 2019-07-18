@@ -9,10 +9,14 @@ async function PaymentForwarding(caClient) {
     const hdWalletPass = 'testhdpass';
 
     await caClient.BC.DOGE.wallet.createHDWallet(randomHDWalletName, 1, hdWalletPass); // Duplicated but needed for scenario
-    const addresses = await caClient.BC.DOGE.wallet.generateAddressInHDWallet(randomHDWalletName, 1, hdWalletPass).then(response => response.payload.addresses); // Duplicated but needed for scenario
+    const response = await caClient.BC.DOGE.wallet.generateAddressInHDWallet(randomHDWalletName, 1, hdWalletPass); // Duplicated but needed for scenario
+    const addresses = response && response.payload ? response.payload.addresses : [];
 
-    const payment = await caClient.BC.DOGE.paymentForwarding.createPaymentForwarding(addresses[0].address, addresses[1].address, testUrl, randomHDWalletName, hdWalletPass, 1).then(response => response.payload);
-    await caClient.BC.DOGE.paymentForwarding.deletePayment(payment.uuid);
+    if (addresses.length > 1) {
+        const payment = await caClient.BC.DOGE.paymentForwarding.createPaymentForwarding(addresses[0].address, addresses[1].address, testUrl, randomHDWalletName, hdWalletPass, 1).then(response => response.payload);
+        await caClient.BC.DOGE.paymentForwarding.deletePayment(payment.uuid);
+    }
+
     await caClient.BC.DOGE.wallet.deleteHDWallet(randomHDWalletName); // (Cleanup) Duplicated but needed for scenario cleanup
 }
 

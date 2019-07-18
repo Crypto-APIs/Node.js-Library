@@ -1,4 +1,7 @@
-const Response = (log, res, onSuccess, onError) => {
+const Logger = require('./logger');
+const lg = Logger.getInstance();
+
+const Response = (res, options, onSuccess, onError) => {
     let responseStr = '';
 
     res.setEncoding('utf8')
@@ -9,16 +12,28 @@ const Response = (log, res, onSuccess, onError) => {
             try {
                 var obj = JSON.parse(responseStr);
 
-                if (res.statusCode != 200) {
-                    onError(obj);
+                if (res.statusCode !== 200) {
+                    const next = () => onError(obj);
+
+                    if (!lg.enabled) {
+                        return next();
+                    }
+                    lg.log(next, options, obj);
                 } else {
-                    onSuccess(obj);
+                    const next = () => onSuccess(obj);
+
+                    if (!lg.enabled) {
+                        return next();
+                    }
+                    lg.log(next, options);
                 }
             } catch (e) {
-                if (log) {
-                    console.error(e);
+                const next = () => onError(obj);
+
+                if (!lg.enabled) {
+                    return next();
                 }
-                onError(e);
+                lg.log(next, options, e);
             }
         });
 };

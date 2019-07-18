@@ -5,19 +5,15 @@ const Proxy = (function () {
 
     function createInstance(apiKey) {
         return {
-            log: false,
             apiKey: apiKey,
-            setLogging: function (enable) {
-                this.log = enable;
-            },
             get: function (path) {
-                return Request(this.log, this.apiKey, path);
+                return Request(this.apiKey, path);
             },
             post: function (path, data) {
-                return Request(this.log, this.apiKey, path, {method: 'POST'}, JSON.stringify(data))
+                return Request(this.apiKey, path, {method: 'POST'}, JSON.stringify(data))
             },
             delete: function (path) {
-                return Request(this.log, this.apiKey, path, {method: 'DELETE'})
+                return Request(this.apiKey, path, {method: 'DELETE'})
             }
         };
     }

@@ -1,11 +1,14 @@
 const http = require('https');
 const Response = require('./response');
+const Logger = require('./logger');
 
 const API_URL = 'api.cryptoapis.io';
 const API_PORT = 443;
 const API_VERSION = 'v1';
 
-const Request = (log, apiKey, path, opt = {}, postData = null) => {
+const lg = Logger.getInstance();
+
+const Request = (apiKey, path, opt = {}, postData = null) => {
     const options = {
         hostname: API_URL,
         port: API_PORT,
@@ -19,13 +22,14 @@ const Request = (log, apiKey, path, opt = {}, postData = null) => {
     };
 
     return new Promise((resolve, reject) => {
-        const req = http.request(options, res => Response(log, res, resolve, reject));
+        const req = http.request(options, res => Response(res, options, resolve, reject));
 
         req.on('error', e => {
-            if (log) {
-                console.error(e);
+            const next = () => reject(e);
+            if (!lg.enabled) {
+                return next();
             }
-            reject(e);
+            lg.log(next, options, e);
         });
 
         if (postData) {
@@ -34,19 +38,7 @@ const Request = (log, apiKey, path, opt = {}, postData = null) => {
 
         req.end();
     })
-        .then(res => {
-            if (log) {
-                console.log('\x1b[32m', 'OK', '\x1b[0m', options.method + ' ' + options.path);
-            }
-            return res;
-        })
-        .catch(err => {
-            if (log) {
-                console.log('\x1b[31m', 'ERR', '\x1b[0m', options.method + ' ' + options.path);
-                console.error(err);
-            }
-            return err;
-        });
+        .catch(console.error);
 };
 
 module.exports = Request;

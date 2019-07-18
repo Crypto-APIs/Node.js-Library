@@ -4,6 +4,7 @@ class BlockchainNetwork {
 
     constructor(bcId, networks, defaultNetwork) {
         this.bcId = bcId;
+        this.NETWORKS = networks;
 
         this.addNetwork(networks, defaultNetwork);
     }

@@ -15,7 +15,22 @@ const CryptoApis = require('cryptoapis.io');
 const apiKey = 'your API key';
 
 const caClient = new CryptoApis(apiKey);
+
+// By default the calls are made to the mainnet for each chain.
+// To switch to a different network you need to call the <chain>.switchNetwork method.
+
+// The network can be specified via the respective <chain>.NETWORKS.<network>
+caClient.BC.ETH.switchNetwork(caClient.BC.ETH.NETWORKS.ROPSTEN);
+caClient.BC.BTC.switchNetwork(caClient.BC.BTC.NETWORKS.TESTNET);
+caClient.BC.BCH.switchNetwork(caClient.BC.BCH.NETWORKS.TESTNET);
+caClient.BC.LTC.switchNetwork(caClient.BC.LTC.NETWORKS.TESTNET);
+caClient.BC.DOGE.switchNetwork(caClient.BC.DOGE.NETWORKS.TESTNET);
+caClient.BC.DASH.switchNetwork(caClient.BC.DASH.NETWORKS.TESTNET);
+
+// Or by passing a valid network name for the chain
+caClient.BC.ETH.switchNetwork('rinkeby');
 ```
+
 ## Ethereum examples
 
 ### Generate new address

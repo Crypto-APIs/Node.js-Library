@@ -1,4 +1,4 @@
-const request = require('../../common/request');
+const request = require('../../common/proxy');
 
 class Arbitrage {
 

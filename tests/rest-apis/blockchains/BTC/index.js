@@ -1,8 +1,6 @@
-const {NETWORKS} = require('../../../../src/rest-apis/blockchain/BTC');
-
 const BTC = require('./btc.test');
 
-async function middleware(caClient, next, network = NETWORKS.TESTNET) {
+async function middleware(caClient, next, network = caClient.BC.BTC.NETWORKS.TESTNET) {
     caClient.BC.BTC.switchNetwork(network);
 
     await next(caClient);

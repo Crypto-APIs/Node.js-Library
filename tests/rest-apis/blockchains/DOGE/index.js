@@ -1,8 +1,6 @@
-const {NETWORKS} = require('../../../../src/rest-apis/blockchain/DOGE');
-
 const DOGE = require('./doge.test');
 
-async function middleware(caClient, next, network = NETWORKS.TESTNET) {
+async function middleware(caClient, next, network = caClient.BC.DOGE.NETWORKS.TESTNET) {
     caClient.BC.DOGE.switchNetwork(network);
 
     await next(caClient);

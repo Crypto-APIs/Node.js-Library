@@ -1,4 +1,4 @@
-const request = require('../../common/request');
+const request = require('../proxy');
 const network = require('../../common/network');
 
 class BaseChainComponent {

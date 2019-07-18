@@ -1,8 +1,6 @@
-const {NETWORKS} = require('../../../../src/rest-apis/blockchain/BCH');
-
 const BCH = require('./bch.test');
 
-async function middleware(caClient, next, network = NETWORKS.TESTNET) {
+async function middleware(caClient, next, network = caClient.BC.BCH.NETWORKS.TESTNET) {
     caClient.BC.BCH.switchNetwork(network);
 
     await next(caClient);

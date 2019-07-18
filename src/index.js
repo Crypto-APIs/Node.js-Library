@@ -1,6 +1,6 @@
 'use strict';
 
-const Request = require('./common/request');
+const Request = require('./common/proxy');
 const Network = require('./common/network');
 
 const Blockchain = require('./rest-apis/blockchain');

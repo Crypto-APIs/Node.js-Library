@@ -1,8 +1,6 @@
-const {NETWORKS} = require('../../../../src/rest-apis/blockchain/ETH');
-
 const ETH = require('./eth.test');
 
-async function middleware(caClient, next, network = NETWORKS.ROPSTEN) {
+async function middleware(caClient, next, network = caClient.BC.ETH.NETWORKS.ROPSTEN) {
     caClient.BC.ETH.switchNetwork(network);
 
     await next(caClient);

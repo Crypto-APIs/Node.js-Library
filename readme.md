@@ -3,6 +3,11 @@ JavaScript SDK for [CryptoAPIs.io](https://cryptoapis.io/)
 
 You can get API key [here](https://dashboard.cryptoapis.io/register).
 -----
+
+Docs [here](https://docs.cryptoapis.io/).
+-----
+
+
 ## How to install
 ```sh
 $ npm install cryptoapis.io
@@ -13,8 +18,9 @@ $ npm install cryptoapis.io
 const CryptoApis = require('cryptoapis.io');
 
 const apiKey = 'your API key';
-
 const caClient = new CryptoApis(apiKey);
+
+// You can use several instances of the client which can coexist in the same environment
 
 // By default the calls are made to the mainnet for each chain.
 // To switch to a different network you need to call the <chain>.switchNetwork method.

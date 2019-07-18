@@ -32,7 +32,7 @@ class ETHAddress extends BaseAddress {
      * @returns {*|Promise<any | never>}
      */
     getAddressNonce(address) {
-        return this.request.get(this.basePath + this.getSelectedNetwork() + '/address/' + address);
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/address/' + address + '/nonce');
     }
 
 }

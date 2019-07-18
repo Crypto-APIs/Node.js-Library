@@ -9,13 +9,13 @@ const Webhook = require('./webhook.test');
 async function ETH(caClient) {
     console.log('\n::ETH');
 
-    // await Address(caClient);
-    // await Blockchain(caClient);
-    // await Contract(caClient);
-    // await PaymentForwarding(caClient);
-    // await Token(caClient);
+    await Address(caClient);
+    await Blockchain(caClient);
+    await Contract(caClient);
+    await PaymentForwarding(caClient);
+    await Token(caClient);
     await Transaction(caClient);
-    // await Webhook(caClient);
+    await Webhook(caClient);
 }
 
 module.exports = caClient => ETH(caClient);

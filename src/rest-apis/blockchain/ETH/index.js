@@ -1,7 +1,8 @@
 const BlockchainNetwork = require('../../../common/blockchain/blockchain-network');
 
+const Blockchain = require('../../../common/blockchain/base-blockchain');
+
 const Address = require('./address');
-const Blockchain = require('./blockchain');
 const Contract = require('./contract');
 const PaymentForwarding = require('./payment-forwarding');
 const Token = require('./token');

@@ -1,11 +1,12 @@
 const BlockchainNetwork = require('../../../common/blockchain/blockchain-network');
 
+const Blockchain = require('../../../common/blockchain/base-blockchain');
+const Transaction = require('../../../common/blockchain/base-transaction');
+const Wallet = require('../../../common/blockchain/base-wallet');
+const Webhook = require('../../../common/blockchain/base-web-hook');
+
 const Address = require('./address');
-const Blockchain = require('./blockchain');
 const PaymentForwarding = require('./payment-forwarding');
-const Transaction = require('./transaction');
-const Wallet = require('./wallet');
-const Webhook = require('./webhook');
 
 const ID = 'btc';
 const NETWORKS = {

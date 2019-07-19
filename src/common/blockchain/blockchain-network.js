@@ -19,7 +19,7 @@ class BlockchainNetwork {
     }
 
     getSelectedNetwork() {
-        Network.getInstance(this.apiKey).getSelected(this.bcId);
+        return Network.getInstance(this.apiKey).getSelected(this.bcId);
     }
 
 }

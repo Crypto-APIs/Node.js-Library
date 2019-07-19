@@ -23,6 +23,10 @@ const caClient = new CryptoApis(apiKey);
 // You can use several instances of the client which can coexist in the same environment
 
 // By default the calls are made to the mainnet for each chain.
+
+// The selected network for each chain at any moment can be checked with the <chain>.getSelectedNetwork() method.
+caClient.BC.DOGE.getSelectedNetwork();
+
 // To switch to a different network you need to call the <chain>.switchNetwork method.
 
 // The network can be specified via the respective <chain>.NETWORKS.<network>

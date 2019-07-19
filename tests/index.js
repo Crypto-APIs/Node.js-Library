@@ -11,8 +11,7 @@ const ETH = require('./rest-apis/blockchains/ETH');
 const LTC = require('./rest-apis/blockchains/LTC');
 
 (async function () {
-    // const apiKey = 'your API key';
-    const apiKey = '5ed74f587d4193a08defacaba132b4b6b2ae1cd0';
+    const apiKey = 'your API key';
     const caClient = new CryptoAPIs(apiKey);
 
     Logger.getInstance().setLogging(true);

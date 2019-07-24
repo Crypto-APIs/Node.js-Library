@@ -19,8 +19,6 @@ async function Webhook(caClient) {
     await caClient.BC.ETH.webhook.deleteWebHook(txConfirmationHook.uuid); // (Cleanup)
     await caClient.BC.ETH.webhook.deleteWebHook(tokenCreationHook.uuid); // (Cleanup)
     await caClient.BC.ETH.webhook.deleteWebHook(txPoolCreationHook.uuid); // (Cleanup)
-
-    await caClient.BC.ETH.webhook.listAllHooks().then(console.log); // TODO RM
 }
 
 

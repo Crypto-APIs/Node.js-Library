@@ -2,7 +2,7 @@ async function Transaction(caClient) {
     console.log('\n::DASH Transaction');
 
     const chainInfo = await caClient.BC.DASH.blockchain.getInfo().then(response => response.payload); // Duplicated but needed for scenario
-    const transactions = await caClient.BC.DASH.transaction.getTransactionIndexByBlock(chainInfo.bestBlockHash).then(response => response.payload);
+    const transactions = await caClient.BC.DASH.transaction.getTransactionIndexByBlock(chainInfo.bestBlockHash).then(response => response ? response.payload : null);
 
     if (transactions && transactions.length) {
         const txId = transactions[0].txid;
@@ -20,11 +20,6 @@ async function Transaction(caClient) {
     const fee = {value: 0.00000001};
 
     await caClient.BC.DASH.transaction.createTransaction(txIns, txOuts, fee);
-
-    // TODO signTransaction
-    // TODO sendTransaction
-    // TODO newTransaction
-    // TODO createHDWalletTransaction
 }
 
 

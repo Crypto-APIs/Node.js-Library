@@ -7,8 +7,6 @@ async function Token(caClient) {
     await caClient.BC.ETH.token.getAddressTokenBalance(testAddress, testContract);
     await caClient.BC.ETH.token.getAddressTokenTransfers(testAddress);
     await caClient.BC.ETH.token.getTokenTransactionsByAddress(testAddress);
-
-    // TODO transferTokens
 }
 
 module.exports = Token;

@@ -189,6 +189,11 @@ class CryptoAPIs {
 
         return this.getRequest('/assets?skip=' + skip + '&limit=' + limit);
     }
+    
+    getAsset(baseAsset) {
+     
+        return this.getRequest('/assets/' + baseAsset);
+    }
 
     getAllSymbols(skip = 0, limit = 50) {
 

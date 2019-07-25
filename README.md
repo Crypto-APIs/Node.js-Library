@@ -871,19 +871,19 @@ It will print similar to the following:
 ### Exchanges - Services/Methods
 
 
-| ExchangeRatesService | MetadataService    | OHLCVService   | TradesService                              |             
-| -------------------- | ------------------ | -------------- | ------------------------------------------ |  
-| getSpecificRate      | listAllExchanges   | listAllPeriods | getLatestData                              |
-| getAllCurrentRates   | getExchangeDetails | latestData     | getLatestDataBySymbol                      |
-|                      | listAllAssets      | historicalData | getLatestDataByExchange                    |
-|                      | listAllSymbols     |                | getLatestDataByAsset                       |
-|                      | getSymbolDetails   |                | getLatestDataByAssetsPair                  |
-|                      |                    |                | getLatestDataByExchangeAssetsPair          |
-|                      |                    |                | tradesGetHistoricalData                    |
-|                      |                    |                | tradesGetHistoricalDataByExchange          |
-|                      |                    |                | tradesGetHistoricalDataByAsset             |
-|                      |                    |                | tradesGetHistoricalDataByAssetPair         |
-|                      |                    |                | tradesGetHistoricalDataByExchangeAssetPair |
+| Base               | ExchangeRatesService | MetadataService  | OHLCVService   | TradesService                              |             
+| ------------------ | -------------------- | ---------------- | -------------- | ------------------------------------------ |  
+| listAllExchanges   | getSpecificRate      | listAllExchanges | listAllPeriods | getLatestData                              |
+| getExchangeDetails | getAllCurrentRates   | listAllAssets    | latestData     | getLatestDataBySymbol                      |
+| listAllAssets      |                      | listAllSymbols   | historicalData | getLatestDataByExchange                    |
+| getAssetDetails    |                      |                  |                | getLatestDataByAsset                       |
+| getSymbolDetails   |                      |                  |                | getLatestDataByAssetsPair                  |
+|                    |                      |                  |                | getLatestDataByExchangeAssetsPair          |
+|                    |                      |                  |                | tradesGetHistoricalData                    |
+|                    |                      |                  |                | tradesGetHistoricalDataByExchange          |
+|                    |                      |                  |                | tradesGetHistoricalDataByAsset             |
+|                    |                      |                  |                | tradesGetHistoricalDataByAssetPair         |
+|                    |                      |                  |                | tradesGetHistoricalDataByExchangeAssetPair |
 
 
 ### Ethereum - Services/Methods

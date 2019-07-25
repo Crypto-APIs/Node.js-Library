@@ -14,21 +14,7 @@ class Meta extends BaseAuth {
      * @returns {*}
      */
     listAllExchanges(skip = 0, limit = 50) {
-        return this.request.get('/exchanges?skip=' + skip + '&limit=' + limit);
-    }
-
-    /**
-     * Get Exchange details
-     *
-     * @async
-     * @desc Get a detailed information for a single supported exchange provided by our system by ID.
-     *
-     * @param {string} exchangeId - Our identifier (UID) of the exchange. (_id attribute from exchanges endpoint).
-     *
-     * @returns {*}
-     */
-    getExchangeDetails(exchangeId) {
-        return this.request.get('/exchanges/' + exchangeId);
+        return this.request.get('/exchanges/meta?skip=' + skip + '&limit=' + limit);
     }
 
     /**
@@ -43,21 +29,7 @@ class Meta extends BaseAuth {
      * @returns {*}
      */
     listAllAssets(skip = 0, limit = 50) {
-        return this.request.get('/assets?skip=' + skip + '&limit=' + limit);
-    }
-
-    /**
-     * Get Asset details
-     *
-     * @async
-     * @desc Get detailed information for a specific asset.
-     *
-     * @param {string} assetId - Our identifier (UID) of the asset. (_id attribute from assets endpoint).
-     *
-     * @returns {*}
-     */
-    getAssetDetails(assetId) {
-        return this.request.get('/assets/' + assetId);
+        return this.request.get('/assets/meta?skip=' + skip + '&limit=' + limit);
     }
 
     /**
@@ -73,20 +45,6 @@ class Meta extends BaseAuth {
      */
     listAllSymbols(skip = 0, limit = 50) {
         return this.request.get('/mappings?skip=' + skip + '&limit=' + limit);
-    }
-
-    /**
-     * Get symbol details
-     *
-     * @async
-     * @desc Get a detailed information for a specific symbol mapping.
-     *
-     * @param {string} symbolId - Symbol identifier used to filter response. (_id attribute from symbols endpoint).
-     *
-     * @returns {*}
-     */
-    getSymbolDetails(symbolId) {
-        return this.request.get('/mappings/' + symbolId);
     }
 
 }

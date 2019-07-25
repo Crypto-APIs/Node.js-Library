@@ -90,6 +90,23 @@ caClient.getAllAssets(skip, limit).then(function(result) {
 });
 ```
 
+### getAsset
+
+Get detailed information for a specific asset.
+
+```js
+const CryptoApis = require('cryptoapis.io');
+const apiKey = 'your API key';
+var asset = '5b755dacd5dd99000b3d92b2';
+var caClient = new CryptoApis(apiKey);
+caClient.getAsset(asset).then(function(result) {
+    console.log(result);
+}, function(error) {
+    console.log(error);
+});
+```
+
+
 ### getAllSymbols
 
 Get a detailed list of all symbol mappings.

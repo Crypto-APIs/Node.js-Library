@@ -836,85 +836,6 @@ It will print similar to the following:
 }
 ```
 
-### Get historical data - Quotes
-
-```js
-const symbolId = '5bfc325c9c40a100014db8ff';
-const testTS = 1563353934;
-const limit = 5;
-
-caClient.CMD.quotes.getHistoricalData(symbolId, testTS, null, 0, limit).then(console.log);
-```
-
-It will print similar to the following:
-
-```json
-{
-	"meta": {
-		"totalCount": 2124,
-		"index": 0,
-		"limit": 5,
-		"results": 5
-	},
-	"payload": [{
-		"exchangeSymbol": "etheur",
-		"exchangeId": "5b1ea9d21090c200146f7364",
-		"price": 147.53,
-		"orderId": "N\/A",
-		"tradeType": "SPOT",
-		"baseAsset": "5b755dacd5dd99000b3d92b2",
-		"quoteAsset": "5b1ea92e584bf5002013061a",
-		"direction": "ASKS",
-		"amount": 0.64306,
-		"eventTime": 1555488613000
-	}, {
-		"exchangeSymbol": "etheur",
-		"exchangeId": "5b1ea9d21090c200146f7364",
-		"price": 147.04,
-		"orderId": "N\/A",
-		"tradeType": "SPOT",
-		"baseAsset": "5b755dacd5dd99000b3d92b2",
-		"quoteAsset": "5b1ea92e584bf5002013061a",
-		"direction": "BIDS",
-		"amount": 11.985,
-		"eventTime": 1555488406000
-	}, {
-		"exchangeSymbol": "etheur",
-		"exchangeId": "5b1ea9d21090c200146f7364",
-		"price": 147.63,
-		"orderId": "N\/A",
-		"tradeType": "SPOT",
-		"baseAsset": "5b755dacd5dd99000b3d92b2",
-		"quoteAsset": "5b1ea92e584bf5002013061a",
-		"direction": "ASKS",
-		"amount": 327.0426884,
-		"eventTime": 1555488406000
-	}, {
-		"exchangeSymbol": "etheur",
-		"exchangeId": "5b1ea9d21090c200146f7364",
-		"price": 147.62,
-		"orderId": "N\/A",
-		"tradeType": "SPOT",
-		"baseAsset": "5b755dacd5dd99000b3d92b2",
-		"quoteAsset": "5b1ea92e584bf5002013061a",
-		"direction": "ASKS",
-		"amount": 0.64306,
-		"eventTime": 1555488406000
-	}, {
-		"exchangeSymbol": "etheur",
-		"exchangeId": "5b1ea9d21090c200146f7364",
-		"price": 147.76,
-		"orderId": "N\/A",
-		"tradeType": "SPOT",
-		"baseAsset": "5b755dacd5dd99000b3d92b2",
-		"quoteAsset": "5b1ea92e584bf5002013061a",
-		"direction": "ASKS",
-		"amount": 23.76,
-		"eventTime": 1555488406000
-	}]
-}
-```
-
 ### Get latest data by - Trades
 
 ```js
@@ -950,19 +871,19 @@ It will print similar to the following:
 ### Exchanges - Services/Methods
 
 
-| Arbitrage  | ExchangeRatesService | MetadataService    | OHLCVService   | QuotesService                         | TradesService                              |             
-| ---------- | -------------------- | ------------------ | -------------- | ------------------------------------- | ------------------------------------------ |  
-| getLatest  | getSpecificRate      | listAllExchanges   | listAllPeriods | getLatestData                         | getLatestData                              |
-|            | getAllCurrentRates   | getExchangeDetails | latestData     | getLatestDataByExchange               | getLatestDataBySymbol                      |
-|            |                      | listAllAssets      | historicalData | getLatestDataByBaseAsset              | getLatestDataByExchange                    |
-|            |                      | listAllSymbols     |                | getLatestDataByExchangeAssetsPair     | getLatestDataByAsset                       |
-|            |                      | getSymbolDetails   |                | getHistoricalData                     | getLatestDataByAssetsPair                  |
-|            |                      |                    |                | getHistoricalDataByExchange           | getLatestDataByExchangeAssetsPair          |
-|            |                      |                    |                | getHistoricalDataByAsset              | tradesGetHistoricalData                    |
-|            |                      |                    |                | getHistoricalDataByAssetsPair         | tradesGetHistoricalDataByExchange          |
-|            |                      |                    |                | getHistoricalDataByExchangeAssetsPair | tradesGetHistoricalDataByAsset             |
-|            |                      |                    |                |                                       | tradesGetHistoricalDataByAssetPair         |
-|            |                      |                    |                |                                       | tradesGetHistoricalDataByExchangeAssetPair |
+| ExchangeRatesService | MetadataService    | OHLCVService   | TradesService                              |             
+| -------------------- | ------------------ | -------------- | ------------------------------------------ |  
+| getSpecificRate      | listAllExchanges   | listAllPeriods | getLatestData                              |
+| getAllCurrentRates   | getExchangeDetails | latestData     | getLatestDataBySymbol                      |
+|                      | listAllAssets      | historicalData | getLatestDataByExchange                    |
+|                      | listAllSymbols     |                | getLatestDataByAsset                       |
+|                      | getSymbolDetails   |                | getLatestDataByAssetsPair                  |
+|                      |                    |                | getLatestDataByExchangeAssetsPair          |
+|                      |                    |                | tradesGetHistoricalData                    |
+|                      |                    |                | tradesGetHistoricalDataByExchange          |
+|                      |                    |                | tradesGetHistoricalDataByAsset             |
+|                      |                    |                | tradesGetHistoricalDataByAssetPair         |
+|                      |                    |                | tradesGetHistoricalDataByExchangeAssetPair |
 
 
 ### Ethereum - Services/Methods
@@ -971,8 +892,8 @@ It will print similar to the following:
 | AddressService         | BlockchainService | ContractService          | PaymentForwardingService | TokenService                  | TransactionService              | WebhookService                        |               
 | ---------------------- | ----------------- | ------------------------ | ------------------------ | ----------------------------- | ------------------------------- | ------------------------------------- |  
 | getInfo                | getInfo           | estimateSmartContractGas | createPaymentForwarding  | getAddressTokenBalance        | getTransaction                  | createNewBlockWebHook                 |
-| generateAddress        | getBlockByHash    | deploySmartContract      | listPayments              | transferTokens                | getTransactionsByBlock          | createConfirmedTransactionWebHook     | 
-| generateAccount        | getBlockByHeight  |                          | listPaymentsHistory       | getTokenTransactionsByAddress | getTransactionByBlockNumber     | createAddressTransactionWebHook       |
+| generateAddress        | getBlockByHash    | deploySmartContract      | listPayments             | transferTokens                | getTransactionsByBlock          | createConfirmedTransactionWebHook     | 
+| generateAccount        | getBlockByHeight  |                          | listPaymentsHistory      | getTokenTransactionsByAddress | getTransactionByBlockNumber     | createAddressTransactionWebHook       |
 | getAddressTransactions | getLatestBlock    |                          | deletePayment            | getAddressTokenTransfers      | getTransactionByBlockHash       | createTransactionConfirmationsWebHook |
 | getAddressNonce        |                   |                          |                          |                               | newTransaction                  | createTokenWebHook                    |
 |                        |                   |                          |                          |                               | newAllTransaction               | createTxPoolWebHook                   |
@@ -993,8 +914,8 @@ It will print similar to the following:
 | ------------------------------------------------ | ----------------- | ------------------------ | -------------------------- | ------------------------- | ------------------------------------- |  
 | getInfo                                          | getInfo           | createPaymentForwarding  | getTransaction             | createWallet              | createNewBlockWebHook                 |
 | getInfoMultisig (not supported in Dogecoin/DASH) | getBlockByHash    | deletePayment            | getTransactionIndexByBlock | createHDWallet            | createConfirmedTransactionWebHook     | 
-| generateAddress                                  | getBlockByHeight  | listPayments              | getUnconfirmedTransactions | listWallets               | createAddressTransactionWebHook       |
-| getAddressTransactions                           | getLatestBlock    | listPaymentsHistory       | decodeRawTransaction       | listHDWallets             | createTransactionConfirmationsWebHook |
+| generateAddress                                  | getBlockByHeight  | listPayments             | getUnconfirmedTransactions | listWallets               | createAddressTransactionWebHook       |
+| getAddressTransactions                           | getLatestBlock    | listPaymentsHistory      | decodeRawTransaction       | listHDWallets             | createTransactionConfirmationsWebHook |
 |                                                  |                   |                          | createTransaction          | getWallet                 | listAllHooks                          |
 |                                                  |                   |                          | signTransaction            | getHDWallet               | deleteWebHook                         |
 |                                                  |                   |                          | sendTransaction            | addAddressToWallet        |                                       |

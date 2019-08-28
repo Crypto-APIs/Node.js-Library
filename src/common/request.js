@@ -37,8 +37,7 @@ const Request = (apiKey, path, opt = {}, postData = null) => {
         }
 
         req.end();
-    })
-        .catch(console.error);
+    });
 };
 
 module.exports = Request;

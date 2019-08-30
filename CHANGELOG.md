@@ -1,3 +1,8 @@
+## 2019-08-30, Version 2.1.0
+
+#### Notable changes:
+* ETC support added
+
 ## 2019-08-28, Version 2.0.1
 
 #### Notable changes:

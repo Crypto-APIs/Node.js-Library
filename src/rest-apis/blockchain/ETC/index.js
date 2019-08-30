@@ -12,8 +12,7 @@ const Webhook = require('./webhook');
 const ID = 'etc';
 const NETWORKS = {
     MAINNET: 'mainnet',
-    ROPSTEN: 'ropsten',
-    RINKEBY: 'rinkeby',
+    MORDEN: 'morden',
 };
 
 class ETC extends BlockchainNetwork {

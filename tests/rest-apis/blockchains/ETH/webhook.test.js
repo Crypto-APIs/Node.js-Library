@@ -1,5 +1,5 @@
 async function Webhook(caClient) {
-    console.log('\n::BCH Webhook');
+    console.log('\n::ETH Webhook');
 
     const testUrl = 'http://testUrl';
     const textTx = '96749686ff70751cbc0c64a8171fc4598f6ccb6c595d235b8b6c3052748d284c';

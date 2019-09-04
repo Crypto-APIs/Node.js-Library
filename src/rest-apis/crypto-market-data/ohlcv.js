@@ -1,3 +1,4 @@
+const querystring = require('querystring');
 const BaseAuth = require('../../common/base-auth');
 
 class OHLCV extends BaseAuth {
@@ -8,10 +9,14 @@ class OHLCV extends BaseAuth {
      * @async
      * @desc Get full list of, supported by us, time periods available for requesting OHLCV data.
      *
+     * @param {object} [queryParams] - Additional query parameters.
+     *
      * @returns {*}
      */
-    listAllPeriods() {
-        return this.request.get('/ohlcv/periods');
+    listAllPeriods(queryParams = {}) {
+        const queryString = querystring.stringify(queryParams);
+
+        return this.request.get('/ohlcv/periods?' + queryString);
     }
 
     /**
@@ -22,12 +27,19 @@ class OHLCV extends BaseAuth {
      *
      * @param {string} symbolId - Symbol identifier (UID) used to filter response. (required).
      * @param {string} periodId - Identifier of requested time period (required, e.g. 1hrs, 2mth etc.) (required).
-     * @param {number} [limit=50] - Amount of items to return (optional, default value is 50)
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*}
      */
-    latestData(symbolId, periodId, limit = 50) {
-        return this.request.get('/ohlcv/latest/' + symbolId + '?period=' + periodId + '&limit=' + limit);
+    latestData(symbolId, periodId, queryParams = {}) {
+        const combinedQueryParams = {
+            periodId: periodId,
+            limit: 50, // Amount of items to return (optional, default value is 50)
+            ...queryParams,
+        };
+        const queryString = querystring.stringify(combinedQueryParams);
+
+        return this.request.get('/ohlcv/latest/' + symbolId + '?' + queryString);
     }
 
     /**
@@ -40,12 +52,21 @@ class OHLCV extends BaseAuth {
      * @param {string} periodId - Identifier of requested time period (required, e.g. 1hrs, 2mth etc.) (required).
      * @param {number} timeStart - Time period starting time in timestamp (required).
      * @param {number} timeEnd - Time period ending time in timestamp (optional, if not supplied then the data is returned to the end or when count of result elements reaches the limit).
-     * @param {number} [limit=50] - Amount of items to return (optional, default value is 50)
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*}
      */
-    historicalData(symbolId, periodId, timeStart, timeEnd, limit = 50) {
-        return this.request.get('/ohlcv/history/' + symbolId + '?period=' + periodId + '&timePeriodStart=' + timeStart + '&timePeriodEnd=' + timeEnd + '&limit=' + limit);
+    historicalData(symbolId, periodId, timeStart, timeEnd, queryParams = {}) {
+        const combinedQueryParams = {
+            periodId: periodId,
+            timePeriodStart: timeStart,
+            timePeriodEnd: timeEnd,
+            limit: 50, // Amount of items to return (optional, default value is 50)
+            ...queryParams,
+        };
+        const queryString = querystring.stringify(combinedQueryParams);
+
+        return this.request.get('/ohlcv/history/' + symbolId + '?' + queryString);
     }
 
 }

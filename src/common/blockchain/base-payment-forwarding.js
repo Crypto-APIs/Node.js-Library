@@ -1,3 +1,4 @@
+const querystring = require('querystring');
 const BaseChainComponent = require('./base-chain-component');
 
 class BasePaymentForwarding extends BaseChainComponent {
@@ -8,10 +9,14 @@ class BasePaymentForwarding extends BaseChainComponent {
      * @async
      * @desc To list your currently active payment forwarding addresses, you can use this endpoint.
      *
+     * @param {object} [queryParams] - Additional query parameters.
+     *
      * @returns {*|Promise<any | never>}
      */
-    listPayments() {
-        return this.request.get(this.basePath + this.getSelectedNetwork() + '/payments');
+    listPayments(queryParams = {}) {
+        const queryString = querystring.stringify(queryParams);
+
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/payments?' + queryString);
     }
 
     /**
@@ -20,10 +25,14 @@ class BasePaymentForwarding extends BaseChainComponent {
      * @async
      * @desc To list your currently active payment forwarding addresses, you can use this endpoint.
      *
+     * @param {object} [queryParams] - Additional query parameters.
+     *
      * @returns {*|Promise<any | never>}
      */
-    listPaymentsHistory() {
-        return this.request.get(this.basePath + this.getSelectedNetwork() + '/payments/history');
+    listPaymentsHistory(queryParams = {}) {
+        const queryString = querystring.stringify(queryParams);
+
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/payments/history?' + queryString);
     }
 
     /**
@@ -33,11 +42,14 @@ class BasePaymentForwarding extends BaseChainComponent {
      * @desc When you’re done with a payment forwarding address, you can delete it via its id and current user id.
      *
      * @param {string} paymentID - Generated UUID when payment forwarding have been created.
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*|Promise<any | never>}
      */
-    deletePayment(paymentID) {
-        return this.request.delete(this.basePath + this.getSelectedNetwork() + '/payments/' + paymentID);
+    deletePayment(paymentID, queryParams = {}) {
+        const queryString = querystring.stringify(queryParams);
+
+        return this.request.delete(this.basePath + this.getSelectedNetwork() + '/payments/' + paymentID + '?' + queryString);
     }
 
 }

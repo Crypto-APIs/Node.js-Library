@@ -1,3 +1,4 @@
+const querystring = require('querystring');
 const BaseChainComponent = require('./base-chain-component');
 
 class BaseAddress extends BaseChainComponent {
@@ -9,11 +10,14 @@ class BaseAddress extends BaseChainComponent {
      * @desc The default Address Endpoint strikes a general information about addresses.
      *
      * @param {string} address - Address in blockchain.
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*|Promise<any | never>}
      */
-    getInfo(address) {
-        return this.request.get(this.basePath + this.getSelectedNetwork() + '/address/' + address);
+    getInfo(address, queryParams = {}) {
+        const queryString = querystring.stringify(queryParams);
+
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/address/' + address + '?' + queryString);
     }
 
     /**
@@ -22,10 +26,15 @@ class BaseAddress extends BaseChainComponent {
      * @async
      * @desc The Generate Address endpoint allows you to generate private-public key-pairs along with an associated public address.
      *
+     * @param {object} [optData] - Optional data.
+     * @param {object} [queryParams] - Additional query parameters.
+     *
      * @returns {*|Promise<any | never>}
      */
-    generateAddress() {
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/address', {});
+    generateAddress(optData = {}, queryParams = {}) {
+        const queryString = querystring.stringify(queryParams);
+
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/address?' + queryString, optData);
     }
 
     /**
@@ -35,13 +44,19 @@ class BaseAddress extends BaseChainComponent {
      * @desc The Address Transactions Endpoint returns all information available about a particular address, including an array of complete transactions.
      *
      * @param {string} address - Address in blockchain.
-     * @param {number} [index=0] - First index of returned results.
-     * @param {number} [limit=50] - Sets the number of returned results.
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*|Promise<any | never>}
      */
-    getAddressTransactions(address, index = 0, limit = 50) {
-        return this.request.get(this.basePath + this.getSelectedNetwork() + '/address/' + address + '/transactions?index=' + index + '&limit=' + limit);
+    getAddressTransactions(address, queryParams = {}) {
+        const combinedQueryParams = {
+            index: 0, // First index of returned results.
+            limit: 50, // Sets the number of returned results.
+            ...queryParams,
+        };
+        const queryString = querystring.stringify(combinedQueryParams);
+
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/address/' + address + '/transactions?' + queryString);
     }
 
 

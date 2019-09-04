@@ -1,3 +1,4 @@
+const querystring = require('querystring');
 const BaseAuth = require('../../common/base-auth');
 
 class Meta extends BaseAuth {
@@ -8,13 +9,19 @@ class Meta extends BaseAuth {
      * @async
      * @desc Get a detailed list of all supported exchanges provided by our system.
      *
-     * @param {number} [skip=0] - The offset of items to start from. Useful for paginations. (e.g. skip=100 would show results from 101 item to 150).
-     * @param {number} [limit=50] - Amount of items to return (optional, default value is 50).
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*}
      */
-    listAllExchanges(skip = 0, limit = 50) {
-        return this.request.get('/exchanges/meta?skip=' + skip + '&limit=' + limit);
+    listAllExchanges(queryParams = {}) {
+        const combinedQueryParams = {
+            skip: 0, // The offset of items to start from. Useful for paginations. (e.g. skip=100 would show results from 101 item to 150).
+            limit: 50, // Amount of items to return (optional, default value is 50).
+            ...queryParams,
+        };
+        const queryString = querystring.stringify(combinedQueryParams);
+
+        return this.request.get('/exchanges/meta?' + queryString);
     }
 
     /**
@@ -23,13 +30,19 @@ class Meta extends BaseAuth {
      * @async
      * @desc Get detailed list of all associated assets.
      *
-     * @param {number} [skip=0] - The offset of items to start from. Useful for paginations. (e.g. skip=100 would show results from 101 item to 150).
-     * @param {number} [limit=50] - Amount of items to return (optional, default value is 50).
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*}
      */
-    listAllAssets(skip = 0, limit = 50) {
-        return this.request.get('/assets/meta?skip=' + skip + '&limit=' + limit);
+    listAllAssets(queryParams = {}) {
+        const combinedQueryParams = {
+            skip: 0, // The offset of items to start from. Useful for paginations. (e.g. skip=100 would show results from 101 item to 150).
+            limit: 50, // Amount of items to return (optional, default value is 50).
+            ...queryParams,
+        };
+        const queryString = querystring.stringify(combinedQueryParams);
+
+        return this.request.get('/assets/meta?' + queryString);
     }
 
     /**
@@ -38,13 +51,19 @@ class Meta extends BaseAuth {
      * @async
      * @desc Get a detailed list of all symbol mappings.
      *
-     * @param {number} [skip=0] - The offset of items to start from. Useful for paginations. (e.g. skip=100 would show results from 101 item to 150).
-     * @param {number} [limit=50] - Amount of items to return (optional, default value is 50).
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*}
      */
-    listAllSymbols(skip = 0, limit = 50) {
-        return this.request.get('/mappings?skip=' + skip + '&limit=' + limit);
+    listAllSymbols(queryParams = {}) {
+        const combinedQueryParams = {
+            skip: 0, // The offset of items to start from. Useful for paginations. (e.g. skip=100 would show results from 101 item to 150).
+            limit: 50, // Amount of items to return (optional, default value is 50).
+            ...queryParams,
+        };
+        const queryString = querystring.stringify(combinedQueryParams);
+
+        return this.request.get('/mappings?' + queryString);
     }
 
 }

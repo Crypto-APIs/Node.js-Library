@@ -1,3 +1,4 @@
+const querystring = require('querystring');
 const {WH_EVENT: EVENT} = require('../../consts');
 const BaseChainComponent = require('./base-chain-component');
 
@@ -10,14 +11,27 @@ class BaseWebHook extends BaseChainComponent {
      * @desc Using a partially filled out Event, you can create a WebHook using this resource.
      *
      * @param {string} callbackURL - Webhook callback url
+     * @param {object} [optData] - Optional data.
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*|Promise<any | never>}
      */
-    createNewBlockWebHook(callbackURL) {
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/hooks', {
+    createNewBlockWebHook(callbackURL, optData = {}, queryParams = {}) {
+        let data = {};
+
+        Object.keys(optData).map(k => {
+            data[k] = optData[k];
+        });
+
+        data = {
+            ...data,
             event: EVENT.COMMON.NEW_BLOCK,
             url: callbackURL
-        });
+        };
+
+        const queryString = querystring.stringify(queryParams);
+
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/hooks?' + queryString, data);
     }
 
     /**
@@ -30,16 +44,29 @@ class BaseWebHook extends BaseChainComponent {
      * @param {string} callbackURL - Webhook callback url
      * @param {string} transaction - Transaction hash.
      * @param {number} confirmations - Receive webhook after a specified number of confirmations.
+     * @param {object} [optData] - Optional data.
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*|Promise<any | never>}
      */
-    createConfirmedTransactionWebHook(callbackURL, transaction, confirmations) {
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/hooks', {
+    createConfirmedTransactionWebHook(callbackURL, transaction, confirmations, optData = {}, queryParams = {}) {
+        let data = {};
+
+        Object.keys(optData).map(k => {
+            data[k] = optData[k];
+        });
+
+        data = {
+            ...data,
             event: EVENT.COMMON.CONFIRMED_TX,
             url: callbackURL,
             transaction: transaction,
             confirmations: confirmations
-        });
+        };
+
+        const queryString = querystring.stringify(queryParams);
+
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/hooks?' + queryString, data);
     }
 
     /**
@@ -57,16 +84,29 @@ class BaseWebHook extends BaseChainComponent {
      * @param {string} callbackURL - Webhook callback url
      * @param {string} address - Address from the blockchain.
      * @param {number} confirmations - Receive webhook after a specified number of confirmations.
+     * @param {object} [optData] - Optional data.
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*|Promise<any | never>}
      */
-    createAddressTransactionWebHook(callbackURL, address, confirmations) {
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/hooks', {
+    createAddressTransactionWebHook(callbackURL, address, confirmations, optData = {}, queryParams = {}) {
+        let data = {};
+
+        Object.keys(optData).map(k => {
+            data[k] = optData[k];
+        });
+
+        data = {
+            ...data,
             event: EVENT.COMMON.ADDRESS,
             url: callbackURL,
             address: address,
             confirmations: confirmations
-        });
+        };
+
+        const queryString = querystring.stringify(queryParams);
+
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/hooks?' + queryString, data);
     }
 
     /**
@@ -78,16 +118,29 @@ class BaseWebHook extends BaseChainComponent {
      * @param {string} callbackURL - Webhook callback url
      * @param {string} address - Address from the blockchain.
      * @param {number} confirmations - Receive webhook after a specified number of confirmations.
+     * @param {object} [optData] - Optional data.
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*|Promise<any | never>}
      */
-    createTransactionConfirmationsWebHook(callbackURL, address, confirmations) {
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/hooks', {
+    createTransactionConfirmationsWebHook(callbackURL, address, confirmations, optData = {}, queryParams = {}) {
+        let data = {};
+
+        Object.keys(optData).map(k => {
+            data[k] = optData[k];
+        });
+
+        data = {
+            ...data,
             event: EVENT.COMMON.TRANSACTION_CONFIRMATIONS,
             url: callbackURL,
             address: address,
             confirmations: confirmations,
-        });
+        };
+
+        const queryString = querystring.stringify(queryParams);
+
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/hooks?' + queryString, data);
     }
 
     /**
@@ -96,10 +149,14 @@ class BaseWebHook extends BaseChainComponent {
      * @async
      * @desc Using this resource you can list all web hooks that you have created.
      *
+     * @param {object} [queryParams] - Additional query parameters.
+     *
      * @returns {*|Promise<any | never>}
      */
-    listAllHooks() {
-        return this.request.get(this.basePath + this.getSelectedNetwork() + '/hooks');
+    listAllHooks(queryParams = {}) {
+        const queryString = querystring.stringify(queryParams);
+
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/hooks?' + queryString);
     }
 
     /**
@@ -109,11 +166,14 @@ class BaseWebHook extends BaseChainComponent {
      * @desc You can delete a WebHook using this resource.
      *
      * @param {string} webhookID - Webhook uuid.
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*|Promise<any | never>}
      */
-    deleteWebHook(webhookID) {
-        return this.request.delete(this.basePath + this.getSelectedNetwork() + '/hooks/' + webhookID);
+    deleteWebHook(webhookID, queryParams = {}) {
+        const queryString = querystring.stringify(queryParams);
+
+        return this.request.delete(this.basePath + this.getSelectedNetwork() + '/hooks/' + webhookID + '?' + queryString);
     }
 }
 

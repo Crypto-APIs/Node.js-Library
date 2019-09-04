@@ -1,3 +1,4 @@
+const querystring = require('querystring');
 const BasePaymentForwarding = require('../../../common/blockchain/base-payment-forwarding');
 
 class ETCPaymentForwarding extends BasePaymentForwarding {
@@ -16,13 +17,23 @@ class ETCPaymentForwarding extends BasePaymentForwarding {
      * @param {string} to - Address in blockchain.
      * @param {string} privateKey - Private key.
      * @param {number} confirmations - After how many confirmations to execute the payment forwarding.
-     * @param {number} [gasPrice=0] - What fee should be paid for the transaction.
-     * @param {number} [gasLimit=0] - What fee should be paid for the transaction.
+     * @param {object} [optData] - Optional data.
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*|Promise<any | never>}
      */
-    createPaymentForwarding(callback, from, to, privateKey, confirmations, gasPrice = 0, gasLimit = 0) {
-        const data = {
+    createPaymentForwarding(callback, from, to, privateKey, confirmations, optData = {}, queryParams = {}) {
+        let data = {
+            gasPrice: 0, // What fee should be paid for the transaction.
+            gasLimit: 0, // Gas limit for the transaction.
+        };
+
+        Object.keys(optData).map(k => {
+            data[k] = optData[k];
+        });
+
+        data = {
+            ...data,
             callback: callback,
             from: from,
             to: to,
@@ -30,15 +41,9 @@ class ETCPaymentForwarding extends BasePaymentForwarding {
             confirmations: confirmations,
         };
 
-        if (gasPrice) {
-            data.gasPrice = gasPrice;
-        }
+        const queryString = querystring.stringify(queryParams);
 
-        if (gasLimit) {
-            data.gasLimit = gasLimit;
-        }
-
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/payments', data);
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/payments?' + queryString, data);
     }
 
 }

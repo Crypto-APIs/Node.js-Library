@@ -9,6 +9,9 @@ const WH_EVENT = {
         TOKEN: 'TOKEN',
         TXPOOL: 'TXPOOL',
     },
+    ETC: {
+        TXPOOL: 'TXPOOL',
+    }
 };
 
 module.exports = {

@@ -1,3 +1,4 @@
+const querystring = require('querystring');
 const BaseChainComponent = require('../../../common/blockchain/base-chain-component');
 
 class ETHContract extends BaseChainComponent {
@@ -12,10 +13,14 @@ class ETHContract extends BaseChainComponent {
      *      { "gas_price": 22000000000, "gas_limit": 4300000 }
      *      The actual amount will be known after the deployment is complete.
      *
+     * @param {object} [queryParams] - Additional query parameters.
+     *
      * @returns {*|Promise<any | never>}
      */
-    estimateSmartContractGas() {
-        return this.request.get(this.basePath + this.getSelectedNetwork() + '/contracts/gas');
+    estimateSmartContractGas(queryParams = {}) {
+        const queryString = querystring.stringify(queryParams);
+
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/contracts/gas?' + queryString);
     }
 
     /**
@@ -30,17 +35,30 @@ class ETHContract extends BaseChainComponent {
      * @param {number} gasPrice
      * @param {number} gasLimit
      * @param {string} byteCode
+     * @param {object} [optData] - Optional data.
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*|Promise<any | never>}
      */
-    deploySmartContract(privateKey, fromAddress, gasPrice, gasLimit, byteCode) {
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/contracts', {
+    deploySmartContract(privateKey, fromAddress, gasPrice, gasLimit, byteCode, optData = {}, queryParams = {}) {
+        let data = {};
+
+        Object.keys(optData).map(k => {
+            data[k] = optData[k];
+        });
+
+        data = {
+            ...data,
             privateKey: privateKey,
             fromAddress: fromAddress,
             gasPrice: gasPrice,
             gasLimit: gasLimit,
             byteCode: byteCode
-        });
+        };
+
+        const queryString = querystring.stringify(queryParams);
+
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/contracts?' + queryString, data);
     }
 
 }

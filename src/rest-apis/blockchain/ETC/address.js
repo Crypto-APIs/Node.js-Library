@@ -1,3 +1,4 @@
+const querystring = require('querystring');
 const BaseAddress = require('../../../common/blockchain/base-address');
 
 class ETCAddress extends BaseAddress {
@@ -12,13 +13,26 @@ class ETCAddress extends BaseAddress {
      *      is always encrypted, and it is encrypted with the password entered when the account was created.
      *
      * @param {string} password
+     * @param {object} [optData] - Optional data.
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*|Promise<any | never>}
      */
-    generateAccount(password) {
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/account', {
-            password: password
+    generateAccount(password, optData = {}, queryParams = {}) {
+        let data = {};
+
+        Object.keys(optData).map(k => {
+            data[k] = optData[k];
         });
+
+        data = {
+            ...data,
+            password: password
+        };
+
+        const queryString = querystring.stringify(queryParams);
+
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/account?' + queryString, data);
     }
 
     /**
@@ -28,11 +42,14 @@ class ETCAddress extends BaseAddress {
      * @desc The Nonce Endpoint returns the current nonce of the specified address.
      *
      * @param {string} address - Address in blockchain.
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*|Promise<any | never>}
      */
-    getAddressNonce(address) {
-        return this.request.get(this.basePath + this.getSelectedNetwork() + '/address/' + address + '/nonce');
+    getAddressNonce(address, queryParams = {}) {
+        const queryString = querystring.stringify(queryParams);
+
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/address/' + address + '/nonce?' + queryString);
     }
 
 }

@@ -1,3 +1,4 @@
+const querystring = require('querystring');
 const BaseChainComponent = require('./base-chain-component');
 
 class BaseWallet extends BaseChainComponent {
@@ -10,14 +11,27 @@ class BaseWallet extends BaseChainComponent {
      *
      * @param {string} name - Wallet name.
      * @param {Array} addresses - Array of addresses that will be added to wallet.
+     * @param {object} [optData] - Optional data.
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*|Promise<any | never>}
      */
-    createWallet(name, addresses) {
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/wallets', {
+    createWallet(name, addresses, optData = {}, queryParams = {}) {
+        let data = {};
+
+        Object.keys(optData).map(k => {
+            data[k] = optData[k];
+        });
+
+        data = {
+            ...data,
             walletName: name,
             addresses: addresses
-        });
+        };
+
+        const queryString = querystring.stringify(queryParams);
+
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/wallets?' + queryString, data);
     }
 
     /**
@@ -29,15 +43,28 @@ class BaseWallet extends BaseChainComponent {
      * @param {string} name - Wallet name.
      * @param {number} addressCount - Number of addresses that should be generated in the new wallet.
      * @param {string} password - Wallet password.
+     * @param {object} [optData] - Optional data.
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*|Promise<any | never>}
      */
-    createHDWallet(name, addressCount, password) {
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/wallets/hd', {
+    createHDWallet(name, addressCount, password, optData = {}, queryParams = {}) {
+        let data = {};
+
+        Object.keys(optData).map(k => {
+            data[k] = optData[k];
+        });
+
+        data = {
+            ...data,
             walletName: name,
             addressCount: addressCount,
             password: password
-        });
+        };
+
+        const queryString = querystring.stringify(queryParams);
+
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/wallets/hd?' + queryString, data);
     }
 
     /**
@@ -47,10 +74,14 @@ class BaseWallet extends BaseChainComponent {
      * @desc This endpoint returns a string array of active wallet names under the token you queried. You can then query
      *      detailed information on individual wallets (via their names) by leveraging the Get Wallet Endpoint.
      *
+     * @param {object} [queryParams] - Additional query parameters.
+     *
      * @returns {*|Promise<any | never>}
      */
-    listWallets() {
-        return this.request.get(this.basePath + this.getSelectedNetwork() + '/wallets');
+    listWallets(queryParams = {}) {
+        const queryString = querystring.stringify(queryParams);
+
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/wallets?' + queryString);
     }
 
     /**
@@ -60,10 +91,14 @@ class BaseWallet extends BaseChainComponent {
      * @desc This endpoint returns a string array of active wallet names under the token you queried. You can then query
      *      detailed information on individual wallets (via their names) by leveraging the Get Wallet Endpoint.
      *
+     * @param {object} [queryParams] - Additional query parameters.
+     *
      * @returns {*|Promise<any | never>}
      */
-    listHDWallets() {
-        return this.request.get(this.basePath + this.getSelectedNetwork() + '/wallets/hd');
+    listHDWallets(queryParams = {}) {
+        const queryString = querystring.stringify(queryParams);
+
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/wallets/hd?' + queryString);
     }
 
     /**
@@ -73,11 +108,14 @@ class BaseWallet extends BaseChainComponent {
      * @desc This endpoint returns a Wallet.
      *
      * @param {string} walletName - Wallet name.
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*|Promise<any | never>}
      */
-    getWallet(walletName) {
-        return this.request.get(this.basePath + this.getSelectedNetwork() + '/wallets/' + walletName);
+    getWallet(walletName, queryParams = {}) {
+        const queryString = querystring.stringify(queryParams);
+
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/wallets/' + walletName + '?' + queryString);
     }
 
     /**
@@ -87,11 +125,14 @@ class BaseWallet extends BaseChainComponent {
      * @desc This endpoint returns a HD Wallet.
      *
      * @param {string} walletName - Wallet name.
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*|Promise<any | never>}
      */
-    getHDWallet(walletName) {
-        return this.request.get(this.basePath + this.getSelectedNetwork() + '/wallets/hd/' + walletName);
+    getHDWallet(walletName, queryParams = {}) {
+        const queryString = querystring.stringify(queryParams);
+
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/wallets/hd/' + walletName + '?' + queryString);
     }
 
     /**
@@ -104,13 +145,26 @@ class BaseWallet extends BaseChainComponent {
      *
      * @param {string} name - Wallet name.
      * @param {Array} addresses - Array of addresses that will be added to wallet.
+     * @param {object} [optData] - Optional data.
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*|Promise<any | never>}
      */
-    addAddressToWallet(name, addresses) {
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/wallets/' + name + '/addresses', {
-            addresses: addresses
+    addAddressToWallet(name, addresses, optData = {}, queryParams = {}) {
+        let data = {};
+
+        Object.keys(optData).map(k => {
+            data[k] = optData[k];
         });
+
+        data = {
+            ...data,
+            addresses: addresses
+        };
+
+        const queryString = querystring.stringify(queryParams);
+
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/wallets/' + name + '/addresses?' + queryString, data);
     }
 
     /**
@@ -121,10 +175,15 @@ class BaseWallet extends BaseChainComponent {
      *      Address Endpoint. If successful, it will returned the newly modified Wallet.
      *
      * @param {string} name - Wallet name.
+     * @param {object} [optData] - Optional data.
+     * @param {object} [queryParams] - Additional query parameters.
+     *
      * @returns {*|Promise<any | never>}
      */
-    generateAddressInWallet(name) {
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/wallets/' + name + '/addresses/generate', {});
+    generateAddressInWallet(name, optData = {}, queryParams = {}) {
+        const queryString = querystring.stringify(queryParams);
+
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/wallets/' + name + '/addresses/generate?' + queryString, optData);
     }
 
     /**
@@ -137,14 +196,27 @@ class BaseWallet extends BaseChainComponent {
      * @param {string} name - Wallet name.
      * @param {number} addressCount - Number of addresses that should be generated in the wallet.
      * @param {string} password - Wallet password.
+     * @param {object} [optData] - Optional data.
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*|Promise<any | never>}
      */
-    generateAddressInHDWallet(name, addressCount, password) {
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/wallets/hd/' + name + '/addresses/generate', {
+    generateAddressInHDWallet(name, addressCount, password, optData = {}, queryParams = {}) {
+        let data = {};
+
+        Object.keys(optData).map(k => {
+            data[k] = optData[k];
+        });
+
+        data = {
+            ...data,
             addressCount: addressCount,
             password: password
-        });
+        };
+
+        const queryString = querystring.stringify(queryParams);
+
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/wallets/hd/' + name + '/addresses/generate?' + queryString, data);
     }
 
     /**
@@ -155,11 +227,14 @@ class BaseWallet extends BaseChainComponent {
      *
      * @param {string} name - Wallet name.
      * @param {string} address - Address which should be deleted.
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*|Promise<any | never>}
      */
-    removeAddressFromWallet(name, address) {
-        return this.request.delete(this.basePath + this.getSelectedNetwork() + '/wallets/' + name + '/address/' + address);
+    removeAddressFromWallet(name, address, queryParams = {}) {
+        const queryString = querystring.stringify(queryParams);
+
+        return this.request.delete(this.basePath + this.getSelectedNetwork() + '/wallets/' + name + '/address/' + address + '?' + queryString);
     }
 
     /**
@@ -169,11 +244,14 @@ class BaseWallet extends BaseChainComponent {
      * @desc This endpoint deletes the Wallet.
      *
      * @param {string} name - Wallet name.
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*|Promise<any | never>}
      */
-    deleteWallet(name) {
-        return this.request.delete(this.basePath + this.getSelectedNetwork() + '/wallets/' + name);
+    deleteWallet(name, queryParams = {}) {
+        const queryString = querystring.stringify(queryParams);
+
+        return this.request.delete(this.basePath + this.getSelectedNetwork() + '/wallets/' + name + '?' + queryString);
     }
 
     /**
@@ -183,11 +261,14 @@ class BaseWallet extends BaseChainComponent {
      * @desc This endpoint deletes the HD Wallet.
      *
      * @param {string} name - Wallet name.
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*|Promise<any | never>}
      */
-    deleteHDWallet(name) {
-        return this.request.delete(this.basePath + this.getSelectedNetwork() + '/wallets/hd/' + name);
+    deleteHDWallet(name, queryParams = {}) {
+        const queryString = querystring.stringify(queryParams);
+
+        return this.request.delete(this.basePath + this.getSelectedNetwork() + '/wallets/hd/' + name + '?' + queryString);
     }
 
     /**
@@ -197,13 +278,26 @@ class BaseWallet extends BaseChainComponent {
      * @desc Create XPub Endpoint allows you to create a random extended public key (based on your password), xpriv and wif.
      *
      * @param {string} password
+     * @param {object} [optData] - Optional data.
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*|Promise<any | never>}
      */
-    createXPub(password) {
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/wallets/hd/xpub', {
-            password: password
+    createXPub(password, optData = {}, queryParams = {}) {
+        let data = {};
+
+        Object.keys(optData).map(k => {
+            data[k] = optData[k];
         });
+
+        data = {
+            ...data,
+            password: password
+        };
+
+        const queryString = querystring.stringify(queryParams);
+
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/wallets/hd/xpub?' + queryString, data);
     }
 
     /**
@@ -218,15 +312,28 @@ class BaseWallet extends BaseChainComponent {
      * @param {string} xpub
      * @param {number} from
      * @param {number} to
+     * @param {object} [optData] - Optional data.
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*|Promise<any | never>}
      */
-    getXPubChangeAddresses(xpub, from, to) {
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/wallets/hd/xpub/addresses/change', {
+    getXPubChangeAddresses(xpub, from, to, optData = {}, queryParams = {}) {
+        let data = {};
+
+        Object.keys(optData).map(k => {
+            data[k] = optData[k];
+        });
+
+        data = {
+            ...data,
             xpub: xpub,
             from: from,
             to: to
-        });
+        };
+
+        const queryString = querystring.stringify(queryParams);
+
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/wallets/hd/xpub/addresses/change?' + queryString, data);
     }
 
     /**
@@ -241,15 +348,28 @@ class BaseWallet extends BaseChainComponent {
      * @param {string} xpub
      * @param {number} from
      * @param {number} to
+     * @param {object} [optData] - Optional data.
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*|Promise<any | never>}
      */
-    getXPubReceiveAddresses(xpub, from, to) {
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/wallets/hd/xpub/addresses/receive', {
+    getXPubReceiveAddresses(xpub, from, to, optData = {}, queryParams = {}) {
+        let data = {};
+
+        Object.keys(optData).map(k => {
+            data[k] = optData[k];
+        });
+
+        data = {
+            ...data,
             xpub: xpub,
             from: from,
             to: to
-        });
+        };
+
+        const queryString = querystring.stringify(queryParams);
+
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/wallets/hd/xpub/addresses/receive?' + queryString, data);
     }
 
 }

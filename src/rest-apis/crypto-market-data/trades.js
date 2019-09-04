@@ -1,3 +1,4 @@
+const querystring = require('querystring');
 const BaseAuth = require('../../common/base-auth');
 
 class Trades extends BaseAuth {
@@ -8,12 +9,18 @@ class Trades extends BaseAuth {
      * @async
      * @desc Get latest trades from all symbols up to 1 hour ago. Latest data is always returned in time descending order.
      *
-     * @param {number} [limit=50] - Amount of items to return (optional, default value is 50).
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*}
      */
-    getLatestData(limit = 50) {
-        return this.request.get('/trades/latest?limit=' + limit);
+    getLatestData(queryParams = {}) {
+        const combinedQueryParams = {
+            limit: 50, // Amount of items to return (optional, default value is 50)
+            ...queryParams,
+        };
+        const queryString = querystring.stringify(combinedQueryParams);
+
+        return this.request.get('/trades/latest?' + queryString);
     }
 
     /**
@@ -23,13 +30,19 @@ class Trades extends BaseAuth {
      * @desc Get latest trades from a specific symbol up to 1 hour ago. Latest data is always returned in time descending order.
      *
      * @param {string} symbolId - Symbol identifier used to filter response. (_id attribute from symbols endpoint).
-     * @param {number} [skip=0] - The offset of items to start from. Useful for paginations. (e.g. skip=100 would show results from 101 item to 150).
-     * @param {number} [limit=50] - Amount of items to return (optional, default value is 50).
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*}
      */
-    getLatestDataBySymbol(symbolId, skip = 0, limit = 50) {
-        return this.request.get('/trades/' + symbolId + '/latest?skip=' + skip + '&limit=' + limit);
+    getLatestDataBySymbol(symbolId, queryParams = {}) {
+        const combinedQueryParams = {
+            skip: 0, // The offset of items to start from. Useful for paginations. (e.g. skip=100 would show results from 101 item to 150).
+            limit: 50, // Amount of items to return (optional, default value is 50)
+            ...queryParams,
+        };
+        const queryString = querystring.stringify(combinedQueryParams);
+
+        return this.request.get('/trades/' + symbolId + '/latest?' + queryString);
     }
 
     /**
@@ -39,13 +52,19 @@ class Trades extends BaseAuth {
      * @desc Get latest trades from a specific exchange up to 1 hour ago. Latest data is always returned in time descending order.
      *
      * @param {string} exchangeId - Our identifier (UID) of the exchange where trade took place. (_id attribute from exchanges endpoint).
-     * @param {number} [skip=0] - The offset of items to start from. Useful for paginations. (e.g. skip=100 would show results from 101 item to 150).
-     * @param {number} [limit=50] - Amount of items to return (optional, default value is 50).
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*}
      */
-    getLatestDataByExchange(exchangeId, skip = 0, limit = 50) {
-        return this.request.get('/trades/exchange/' + exchangeId + '/latest?skip=' + skip + '&limit=' + limit);
+    getLatestDataByExchange(exchangeId, queryParams = {}) {
+        const combinedQueryParams = {
+            skip: 0, // The offset of items to start from. Useful for paginations. (e.g. skip=100 would show results from 101 item to 150).
+            limit: 50, // Amount of items to return (optional, default value is 50)
+            ...queryParams,
+        };
+        const queryString = querystring.stringify(combinedQueryParams);
+
+        return this.request.get('/trades/exchange/' + exchangeId + '/latest?' + queryString);
     }
 
     /**
@@ -55,13 +74,19 @@ class Trades extends BaseAuth {
      * @desc Get latest trades from a specific base asset up to 1 hour ago. Latest data is always returned in time descending order.
      *
      * @param {string} baseAsset - Our identifier (UID) of the base asset in a trade. (_id attribute from assets endpoint).
-     * @param {number} [skip=0] - The offset of items to start from. Useful for paginations. (e.g. skip=100 would show results from 101 item to 150).
-     * @param {number} [limit=50] - Amount of items to return (optional, default value is 50).
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*}
      */
-    getLatestDataByAsset(baseAsset, skip = 0, limit = 50) {
-        return this.request.get('/trades/baseAsset/' + baseAsset + '/latest?skip=' + skip + '&limit=' + limit);
+    getLatestDataByAsset(baseAsset, queryParams = {}) {
+        const combinedQueryParams = {
+            skip: 0, // The offset of items to start from. Useful for paginations. (e.g. skip=100 would show results from 101 item to 150).
+            limit: 50, // Amount of items to return (optional, default value is 50)
+            ...queryParams,
+        };
+        const queryString = querystring.stringify(combinedQueryParams);
+
+        return this.request.get('/trades/baseAsset/' + baseAsset + '/latest?' + queryString);
     }
 
     /**
@@ -72,13 +97,19 @@ class Trades extends BaseAuth {
      *
      * @param {string} baseAsset - Our identifier (UID) of the base asset in a trade. (_id attribute from assets endpoint).
      * @param {string} quoteAsset - Our identifier (UID) of the quote asset in a trade. (_id attribute from assets endpoint).
-     * @param {number} [skip=0] - The offset of items to start from. Useful for paginations. (e.g. skip=100 would show results from 101 item to 150).
-     * @param {number} [limit=50] - Amount of items to return (optional, default value is 50).
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*}
      */
-    getLatestDataByAssetsPair(baseAsset, quoteAsset, skip = 0, limit = 50) {
-        return this.request.get('/trades/baseAsset/' + baseAsset + '/quoteAsset/' + quoteAsset + '/latest?skip=' + skip + '&limit=' + limit);
+    getLatestDataByAssetsPair(baseAsset, quoteAsset, queryParams = {}) {
+        const combinedQueryParams = {
+            skip: 0, // The offset of items to start from. Useful for paginations. (e.g. skip=100 would show results from 101 item to 150).
+            limit: 50, // Amount of items to return (optional, default value is 50)
+            ...queryParams,
+        };
+        const queryString = querystring.stringify(combinedQueryParams);
+
+        return this.request.get('/trades/baseAsset/' + baseAsset + '/quoteAsset/' + quoteAsset + '/latest?' + queryString);
     }
 
     /**
@@ -90,13 +121,19 @@ class Trades extends BaseAuth {
      * @param {string} exchangeId - Our identifier (UID) of the exchange where trade took place. (_id attribute from exchanges endpoint).
      * @param {string} baseAsset - Our identifier (UID) of the base asset in a trade. (_id attribute from assets endpoint).
      * @param {string} quoteAsset - Our identifier (UID) of the quote asset in a trade. (_id attribute from assets endpoint).
-     * @param {number} [skip=0] - The offset of items to start from. Useful for paginations. (e.g. skip=100 would show results from 101 item to 150).
-     * @param {number} [limit=50] - Amount of items to return (optional, default value is 50).
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*}
      */
-    getLatestDataByExchangeAssetsPair(exchangeId, baseAsset, quoteAsset, skip = 0, limit = 50) {
-        return this.request.get('/trades/exchange/' + exchangeId + '/baseAsset/' + baseAsset + '/quoteAsset/' + quoteAsset + '/latest?skip=' + skip + '&limit=' + limit);
+    getLatestDataByExchangeAssetsPair(exchangeId, baseAsset, quoteAsset, queryParams = {}) {
+        const combinedQueryParams = {
+            skip: 0, // The offset of items to start from. Useful for paginations. (e.g. skip=100 would show results from 101 item to 150).
+            limit: 50, // Amount of items to return (optional, default value is 50)
+            ...queryParams,
+        };
+        const queryString = querystring.stringify(combinedQueryParams);
+
+        return this.request.get('/trades/exchange/' + exchangeId + '/baseAsset/' + baseAsset + '/quoteAsset/' + quoteAsset + '/latest?' + queryString);
     }
 
     /**
@@ -109,13 +146,21 @@ class Trades extends BaseAuth {
      * @param {string} symbolId - Symbol identifier used to filter response.
      * @param {number} timeStart - Unix Timestamp for the start of the requested period.
      * @param {number} timeEnd - Unix Timestamp for the end of the requested period. Has current time by default.
-     * @param {number} [skip=0] - The offset of items to start from. Useful for paginations. (e.g. skip=100 would show results from 101 item to 150).
-     * @param {number} [limit=50] - Amount of items to return (optional, default value is 50).
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*}
      */
-    tradesGetHistoricalData(symbolId, timeStart, timeEnd, skip = 0, limit = 50) {
-        return this.request.get('/trades/' + symbolId + '/history?timeStart=' + timeStart + '&timeEnd=' + timeEnd + '&skip=' + skip + '&limit=' + limit);
+    tradesGetHistoricalData(symbolId, timeStart, timeEnd, queryParams = {}) {
+        const combinedQueryParams = {
+            timeStart: timeStart,
+            timeEnd: timeEnd,
+            skip: 0, // The offset of items to start from. Useful for paginations. (e.g. skip=100 would show results from 101 item to 150).
+            limit: 50, // Amount of items to return (optional, default value is 50)
+            ...queryParams,
+        };
+        const queryString = querystring.stringify(combinedQueryParams);
+
+        return this.request.get('/trades/' + symbolId + '/history?' + queryString);
     }
 
     /**
@@ -128,13 +173,21 @@ class Trades extends BaseAuth {
      * @param {string} exchangeId - Our identifier (UID) of the exchange where trade took place. (_id attribute from exchanges endpoint).
      * @param {number} timeStart - Unix Timestamp for the start of the requested period.
      * @param {number} timeEnd - Unix Timestamp for the end of the requested period. Has current time by default.
-     * @param {number} [skip=0] - The offset of items to start from. Useful for paginations. (e.g. skip=100 would show results from 101 item to 150).
-     * @param {number} [limit=50] - Amount of items to return (optional, default value is 50).
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*}
      */
-    tradesGetHistoricalDataByExchange(exchangeId, timeStart, timeEnd, skip = 0, limit = 50) {
-        return this.request.get('/trades/exchange/' + exchangeId + '/history?timeStart=' + timeStart + '&timeEnd=' + timeEnd + '&skip=' + skip + '&limit=' + limit);
+    tradesGetHistoricalDataByExchange(exchangeId, timeStart, timeEnd, queryParams = {}) {
+        const combinedQueryParams = {
+            timeStart: timeStart,
+            timeEnd: timeEnd,
+            skip: 0, // The offset of items to start from. Useful for paginations. (e.g. skip=100 would show results from 101 item to 150).
+            limit: 50, // Amount of items to return (optional, default value is 50)
+            ...queryParams,
+        };
+        const queryString = querystring.stringify(combinedQueryParams);
+
+        return this.request.get('/trades/exchange/' + exchangeId + '/history?' + queryString);
     }
 
     /**
@@ -147,13 +200,21 @@ class Trades extends BaseAuth {
      * @param {string} baseAsset - Our identifier (UID) of the base asset in a trade. (_id attribute from assets endpoint).
      * @param {number} timeStart - Unix Timestamp for the start of the requested period.
      * @param {number} timeEnd - Unix Timestamp for the end of the requested period. Has current time by default.
-     * @param {number} [skip=0] - The offset of items to start from. Useful for paginations. (e.g. skip=100 would show results from 101 item to 150).
-     * @param {number} [limit=50] - Amount of items to return (optional, default value is 50).
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*}
      */
-    tradesGetHistoricalDataByAsset(baseAsset, timeStart, timeEnd, skip = 0, limit = 50) {
-        return this.request.get('/trades/baseAsset/' + baseAsset + '/history?timeStart=' + timeStart + '&timeEnd=' + timeEnd + '&skip=' + skip + '&limit=' + limit);
+    tradesGetHistoricalDataByAsset(baseAsset, timeStart, timeEnd, queryParams = {}) {
+        const combinedQueryParams = {
+            timeStart: timeStart,
+            timeEnd: timeEnd,
+            skip: 0, // The offset of items to start from. Useful for paginations. (e.g. skip=100 would show results from 101 item to 150).
+            limit: 50, // Amount of items to return (optional, default value is 50)
+            ...queryParams,
+        };
+        const queryString = querystring.stringify(combinedQueryParams);
+
+        return this.request.get('/trades/baseAsset/' + baseAsset + '/history?' + queryString);
     }
 
     /**
@@ -167,13 +228,21 @@ class Trades extends BaseAuth {
      * @param {string} quoteAsset - Our identifier (UID) of the quote asset in a trade. (_id attribute from assets endpoint).
      * @param {number} timeStart - Unix Timestamp for the start of the requested period.
      * @param {number} timeEnd - Unix Timestamp for the end of the requested period. Has current time by default.
-     * @param {number} [skip=0] - The offset of items to start from. Useful for paginations. (e.g. skip=100 would show results from 101 item to 150).
-     * @param {number} [limit=50] - Amount of items to return (optional, default value is 50).
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*}
      */
-    tradesGetHistoricalDataByAssetPair(baseAsset, quoteAsset, timeStart, timeEnd, skip = 0, limit = 50) {
-        return this.request.get('/trades/baseAsset/' + baseAsset + '/quoteAsset/' + quoteAsset + '/history?timeStart=' + timeStart + '&timeEnd=' + timeEnd + '&skip=' + skip + '&limit=' + limit);
+    tradesGetHistoricalDataByAssetPair(baseAsset, quoteAsset, timeStart, timeEnd, queryParams = {}) {
+        const combinedQueryParams = {
+            timeStart: timeStart,
+            timeEnd: timeEnd,
+            skip: 0, // The offset of items to start from. Useful for paginations. (e.g. skip=100 would show results from 101 item to 150).
+            limit: 50, // Amount of items to return (optional, default value is 50)
+            ...queryParams,
+        };
+        const queryString = querystring.stringify(combinedQueryParams);
+
+        return this.request.get('/trades/baseAsset/' + baseAsset + '/quoteAsset/' + quoteAsset + '/history?' + queryString);
     }
 
     /**
@@ -189,13 +258,21 @@ class Trades extends BaseAuth {
      * @param {string} quoteAsset - Our identifier (UID) of the quote asset in a trade. (_id attribute from assets endpoint).
      * @param {number} timeStart - Unix Timestamp for the start of the requested period.
      * @param {number} timeEnd - Unix Timestamp for the end of the requested period. Has current time by default.
-     * @param {number} [skip=0] - The offset of items to start from. Useful for paginations. (e.g. skip=100 would show results from 101 item to 150).
-     * @param {number} [limit=50] - Amount of items to return (optional, default value is 50).
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*}
      */
-    tradesGetHistoricalDataByExchangeAssetPair(exchangeId, baseAsset, quoteAsset, timeStart, timeEnd, skip = 0, limit = 50) {
-        return this.request.get('/trades/exchange/' + exchangeId + '/baseAsset/' + baseAsset + '/quoteAsset/' + quoteAsset + '/history?timeStart=' + timeStart + '&timeEnd=' + timeEnd + '&skip=' + skip + '&limit=' + limit);
+    tradesGetHistoricalDataByExchangeAssetPair(exchangeId, baseAsset, quoteAsset, timeStart, timeEnd, queryParams = {}) {
+        const combinedQueryParams = {
+            timeStart: timeStart,
+            timeEnd: timeEnd,
+            skip: 0, // The offset of items to start from. Useful for paginations. (e.g. skip=100 would show results from 101 item to 150).
+            limit: 50, // Amount of items to return (optional, default value is 50)
+            ...queryParams,
+        };
+        const queryString = querystring.stringify(combinedQueryParams);
+
+        return this.request.get('/trades/exchange/' + exchangeId + '/baseAsset/' + baseAsset + '/quoteAsset/' + quoteAsset + '/history?' + queryString);
     }
 
 }

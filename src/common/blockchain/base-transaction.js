@@ -1,3 +1,4 @@
+const querystring = require('querystring');
 const BaseChainComponent = require('./base-chain-component');
 
 class BaseTransaction extends BaseChainComponent {
@@ -9,11 +10,14 @@ class BaseTransaction extends BaseChainComponent {
      * @desc The Transaction Txid Endpoint returns detailed information about a given transaction based on its id.
      *
      * @param {string} txID - Id of the transaction in blockchain.
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*|Promise<any | never>}
      */
-    getTransaction(txID) {
-        return this.request.get(this.basePath + this.getSelectedNetwork() + '/txs/txid/' + txID);
+    getTransaction(txID, queryParams = {}) {
+        const queryString = querystring.stringify(queryParams);
+
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/txs/txid/' + txID + '?' + queryString);
     }
 
     /**
@@ -26,13 +30,19 @@ class BaseTransaction extends BaseChainComponent {
      *      first transaction (the coinbase transaction) included in the block.
      *
      * @param block
-     * @param {number} [index=0] - Index to start from.
-     * @param {number} [limit=1] - Number of transactions to be returned.
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*|Promise<any | never>}
      */
-    getTransactionIndexByBlock(block, index = 0, limit = 1) {
-        return this.request.get(this.basePath + this.getSelectedNetwork() + '/txs/block/' + block + '?index=' + index + '&limit=' + limit);
+    getTransactionIndexByBlock(block, queryParams = {}) {
+        const combinedQueryParams = {
+            index: 0, // Index to start from.
+            limit: 1, // Number of transactions to be returned.
+            ...queryParams,
+        };
+        const queryString = querystring.stringify(combinedQueryParams);
+
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/txs/block/' + block + '?' + queryString);
     }
 
     /**
@@ -42,13 +52,19 @@ class BaseTransaction extends BaseChainComponent {
      * @desc The Unconfirmed Transactions Endpoint returns an array of the latest transactions relayed by nodes in a
      *      blockchain that haven’t been included in any blocks.
      *
-     * @param {number} [index=0] - Index to start from.
-     * @param {number} [limit=100] - Number of transactions to be returned.
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*|Promise<any | never>}
      */
-    getUnconfirmedTransactions(index = 0, limit = 100) {
-        return this.request.get(this.basePath + this.getSelectedNetwork() + '/txs/unconfirmed?index=' + index + '&limit=' + limit);
+    getUnconfirmedTransactions(queryParams = {}) {
+        const combinedQueryParams = {
+            index: 0, // Index to start from.
+            limit: 100, // Number of transactions to be returned.
+            ...queryParams,
+        };
+        const queryString = querystring.stringify(combinedQueryParams);
+
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/txs/unconfirmed?' + queryString);
     }
 
     /**
@@ -59,13 +75,26 @@ class BaseTransaction extends BaseChainComponent {
      *      perhaps you want to double-check another client library or confirm that another service is sending proper transactions.
      *
      * @param {string} hex - Hex of raw transaction.
+     * @param {object} [optData] - Optional data.
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*|Promise<any | never>}
      */
-    decodeRawTransaction(hex) {
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/decode', {
-            hex: hex
+    decodeRawTransaction(hex, optData = {}, queryParams = {}) {
+        let data = {};
+
+        Object.keys(optData).map(k => {
+            data[k] = optData[k];
         });
+
+        data = {
+            ...data,
+            hex: hex
+        };
+
+        const queryString = querystring.stringify(queryParams);
+
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/decode?' + queryString, data);
     }
 
     /**
@@ -80,15 +109,28 @@ class BaseTransaction extends BaseChainComponent {
      * @param {Array} inputs
      * @param {Array} outputs
      * @param {Object<{number} value>} fee
+     * @param {object} [optData] - Optional data.
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*|Promise<any | never>}
      */
-    createTransaction(inputs, outputs, fee) {
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/create', {
+    createTransaction(inputs, outputs, fee, optData = {}, queryParams = {}) {
+        let data = {};
+
+        Object.keys(optData).map(k => {
+            data[k] = optData[k];
+        });
+
+        data = {
+            ...data,
             inputs: inputs,
             outputs: outputs,
             fee: fee,
-        });
+        };
+
+        const queryString = querystring.stringify(queryParams);
+
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/create?' + queryString, data);
     }
 
     /**
@@ -99,14 +141,27 @@ class BaseTransaction extends BaseChainComponent {
      *
      * @param {string} hex - Hex of raw transaction.
      * @param {Array} wifs
+     * @param {object} [optData] - Optional data.
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*|Promise<any | never>}
      */
-    signTransaction(hex, wifs) {
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/sign', {
+    signTransaction(hex, wifs, optData = {}, queryParams = {}) {
+        let data = {};
+
+        Object.keys(optData).map(k => {
+            data[k] = optData[k];
+        });
+
+        data = {
+            ...data,
             hex: hex,
             wifs: wifs,
-        });
+        };
+
+        const queryString = querystring.stringify(queryParams);
+
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/sign?' + queryString, data);
     }
 
     /**
@@ -116,13 +171,26 @@ class BaseTransaction extends BaseChainComponent {
      * @desc Transaction Send Endpoint allows users to broadcast the signed transaction to the Blockchain.
      *
      * @param {string} hex - Hex of raw transaction.
+     * @param {object} [optData] - Optional data.
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*|Promise<any | never>}
      */
-    sendTransaction(hex) {
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/send', {
-            hex: hex
+    sendTransaction(hex, optData = {}, queryParams = {}) {
+        let data = {};
+
+        Object.keys(optData).map(k => {
+            data[k] = optData[k];
         });
+
+        data = {
+            ...data,
+            hex: hex,
+        };
+
+        const queryString = querystring.stringify(queryParams);
+
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/send?' + queryString, data);
     }
 
     /**
@@ -138,18 +206,31 @@ class BaseTransaction extends BaseChainComponent {
      * @param {Array} outputs
      * @param {Object<{number} value>} fee
      * @param {Array} wifs
+     * @param {object} [optData] - Optional data.
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*|Promise<any | never>}
      */
-    newTransaction(inputs, outputs, fee, wifs) {
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/new', {
+    newTransaction(inputs, outputs, fee, wifs, optData = {}, queryParams = {}) {
+        let data = {};
+
+        Object.keys(optData).map(k => {
+            data[k] = optData[k];
+        });
+
+        data = {
+            ...data,
             createTx: {
                 inputs: inputs,
                 outputs: outputs,
                 fee: fee
             },
             wifs: wifs
-        });
+        };
+
+        const queryString = querystring.stringify(queryParams);
+
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/new?' + queryString, data);
     }
 
     /**
@@ -168,28 +249,32 @@ class BaseTransaction extends BaseChainComponent {
      * @param {string} password - Wallet password.
      * @param {Array} outputs
      * @param {Object<{number} value, {string} [address]>} fee
-     * @param {Array} [inputs=null]
-     * @param {number} [locktime=0]
+     * @param {object} [optData] - Optional data.
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*|Promise<any | never>}
      */
-    createHDWalletTransaction(walletName, password, outputs, fee, inputs = null, locktime = 0) {
-        var data = {
+    createHDWalletTransaction(walletName, password, outputs, fee, optData = {}, queryParams = {}) {
+        let data = {
+            inputs: null,
+            locktime: 0,
+        };
+
+        Object.keys(optData).map(k => {
+            data[k] = optData[k];
+        });
+
+        data = {
+            ...data,
             walletName: walletName,
             password: password,
             outputs: outputs,
-            fee: fee
+            fee: fee,
         };
 
-        if (inputs) {
-            data.inputs = inputs;
-        }
+        const queryString = querystring.stringify(queryParams);
 
-        if (locktime) {
-            data.locktime = locktime;
-        }
-
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/hdwallet', data);
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/hdwallet?' + queryString, data);
     }
 
     /**
@@ -202,10 +287,14 @@ class BaseTransaction extends BaseChainComponent {
      *      and should be used at users' sole discretion. average_bytes represents the average size of the transactions
      *      in bytes and is used for the calculations of the recommended fee price. All fees are in bch.
      *
+     * @param {object} [queryParams] - Additional query parameters.
+     *
      * @returns {*|Promise<any | never>}
      */
-    getTransactionsFee() {
-        return this.request.get(this.basePath + this.getSelectedNetwork() + '/txs/fee');
+    getTransactionsFee(queryParams = {}) {
+        const queryString = querystring.stringify(queryParams);
+
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/txs/fee?' + queryString);
     }
 
 }

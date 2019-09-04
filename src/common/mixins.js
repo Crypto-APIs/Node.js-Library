@@ -1,3 +1,5 @@
+const querystring = require('querystring');
+
 const MultisigMixin = {
 
     /**
@@ -7,12 +9,18 @@ const MultisigMixin = {
      * @desc The Multisig Address Endpoint strikes a general information about a single address that is involved in multisignature addresses.
      *
      * @param {string} address - Address in blockchain.
-     * @param {number} [limit=50] - Sets the number of returned results.
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*|Promise<any | never>}
      */
-    getInfoMultisig(address, limit = 50) {
-        return this.request.get(this.basePath + this.getSelectedNetwork() + '/address/' + address + '/multisig?limit=' + limit);
+    getInfoMultisig(address, queryParams = {}) {
+        const combinedQueryParams = {
+            limit: 50,
+            ...queryParams,
+        };
+        const queryString = querystring.stringify(combinedQueryParams);
+
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/address/' + address + '/multisig?' + queryString);
     }
 
 };
@@ -32,12 +40,22 @@ const BTCBasedPayment = {
      * @param {string} wallet - Wallet created by current USER_ID.
      * @param {string} password - Wallet password.
      * @param {number} confirmations - After how many confirmations to execute the payment forwarding.
-     * @param {number} [fee=null] - What fee should be paid for the transaction.
+     * @param {object} [optData] - Optional data.
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*|Promise<any | never>}
      */
-    createPaymentForwarding(from, to, callbackURL, wallet, password, confirmations, fee = null) {
-        const data = {
+    createPaymentForwarding(from, to, callbackURL, wallet, password, confirmations, optData = {}, queryParams = {}) {
+        let data = {
+            fee: null, // What fee should be paid for the transaction.
+        };
+
+        Object.keys(optData).map(k => {
+            data[k] = optData[k];
+        });
+
+        data = {
+            ...data,
             from: from,
             to: to,
             callback: callbackURL,
@@ -46,11 +64,9 @@ const BTCBasedPayment = {
             confirmations: confirmations,
         };
 
-        if (fee) {
-            data.fee = fee;
-        }
+        const queryString = querystring.stringify(queryParams);
 
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/payments', data);
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/payments?' + queryString, data);
     }
 
 };

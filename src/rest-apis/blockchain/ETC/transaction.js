@@ -1,3 +1,4 @@
+const querystring = require('querystring');
 const Base = require('../../../common/blockchain/base-chain-component');
 
 class ETCTransaction extends Base {
@@ -9,11 +10,14 @@ class ETCTransaction extends Base {
      * @desc The Transaction Hash Endpoint returns detailed information about a given transaction based on its hash.
      *
      * @param {string} txHash - Hash of the transaction in blockchain.
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*|Promise<any | never>}
      */
-    getTransaction(txHash) {
-        return this.request.get(this.basePath + this.getSelectedNetwork() + '/txs/hash/' + txHash);
+    getTransaction(txHash, queryParams = {}) {
+        const queryString = querystring.stringify(queryParams);
+
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/txs/hash/' + txHash + '?' + queryString);
     }
 
     /**
@@ -24,13 +28,19 @@ class ETCTransaction extends Base {
      *      transactions for the block height defined, starting from the index defined up to the limit defined.
      *
      * @param {number} block - Block number.
-     * @param {number} [index=0] - Index - start from.
-     * @param {number} [limit=50] - Limit - up to.
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*|Promise<any | never>}
      */
-    getTransactionsByBlock(block, index = 0, limit = 50) {
-        return this.request.get(this.basePath + this.getSelectedNetwork() + '/txs/block/' + block + '?index=' + index + '&limit=' + limit);
+    getTransactionsByBlock(block, queryParams = {}) {
+        const combinedQueryParams = {
+            index: 0, // Index - start from.
+            limit: 50, // Limit - up to.
+            ...queryParams,
+        };
+        const queryString = querystring.stringify(combinedQueryParams);
+
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/txs/block/' + block + '?' + queryString);
     }
 
     /**
@@ -42,11 +52,14 @@ class ETCTransaction extends Base {
      *
      * @param {number} blockNumber - Block height.
      * @param {number} txIndex - Index of the transaction in block.
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*|Promise<any | never>}
      */
-    getTransactionByBlockNumber(blockNumber, txIndex) {
-        return this.request.get(this.basePath + this.getSelectedNetwork() + '/txs/block/' + blockNumber + '/' + txIndex);
+    getTransactionByBlockNumber(blockNumber, txIndex, queryParams = {}) {
+        const queryString = querystring.stringify(queryParams);
+
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/txs/block/' + blockNumber + '/' + txIndex + '?' + queryString);
     }
 
     /**
@@ -58,11 +71,14 @@ class ETCTransaction extends Base {
      *
      * @param {string} blockHash - Block hash.
      * @param {number} txIndex - Index of the transaction in block.
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*|Promise<any | never>}
      */
-    getTransactionByBlockHash(blockHash, txIndex) {
-        return this.request.get(this.basePath + this.getSelectedNetwork() + '/txs/block/' + blockHash + '/' + txIndex);
+    getTransactionByBlockHash(blockHash, txIndex, queryParams = {}) {
+        const queryString = querystring.stringify(queryParams);
+
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/txs/block/' + blockHash + '/' + txIndex + '?' + queryString);
     }
 
     /**
@@ -83,13 +99,23 @@ class ETCTransaction extends Base {
      * @param {number} value
      * @param {number} gasPrice
      * @param {number} gasLimit
-     * @param {number} [nonce=null] - The transactions count for the specified from address. If not specified the system will automatically calculate the correct nonce.
-     * @param {number} [data=null] - Hexidecimal string. Be aware that the gas limit will be higher than the minumum amount of 21,000 wei.
+     * @param {object} [optData] - Optional data.
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*|Promise<any | never>}
      */
-    newTransaction(fromAddress, toAddress, password, value, gasPrice, gasLimit, nonce = null, data = null) {
-        const body = {
+    newTransaction(fromAddress, toAddress, password, value, gasPrice, gasLimit, optData = {}, queryParams = {}) {
+        let data = {
+            nonce: null, // The transactions count for the specified from address. If not specified the system will automatically calculate the correct nonce.
+            data: null, // Hexidecimal string. Be aware that the gas limit will be higher than the minumum amount of 21,000 wei.
+        };
+
+        Object.keys(optData).map(k => {
+            data[k] = optData[k];
+        });
+
+        data = {
+            ...data,
             fromAddress: fromAddress,
             toAddress: toAddress,
             password: password,
@@ -98,15 +124,9 @@ class ETCTransaction extends Base {
             gasLimit: gasLimit,
         };
 
-        if (nonce) {
-            body.nonce = nonce;
-        }
+        const queryString = querystring.stringify(queryParams);
 
-        if (data) {
-            body.data = data;
-        }
-
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/new', body);
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/new?' + queryString, data);
     }
 
     /**
@@ -118,27 +138,31 @@ class ETCTransaction extends Base {
      * @param fromAddress
      * @param toAddress
      * @param password
-     * @param {number} [gasPrice=null] - Gas price has a default value of 15 Gwei.
-     * @param {number} [gasLimit=null] - Gas limit will be calculated by the EVM.
+     * @param {object} [optData] - Optional data.
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*|Promise<any | never>}
      */
-    newAllTransaction(fromAddress, toAddress, password, gasPrice, gasLimit) {
-        const body = {
+    newAllTransaction(fromAddress, toAddress, password, optData = {}, queryParams = {}) {
+        let data = {
+            gasPrice: null, // Gas price has a default value of 15 Gwei.
+            gasLimit: null, // Gas limit will be calculated by the EVM.
+        };
+
+        Object.keys(optData).map(k => {
+            data[k] = optData[k];
+        });
+
+        data = {
+            ...data,
             fromAddress: fromAddress,
             toAddress: toAddress,
             password: password
         };
 
-        if (gasPrice) {
-            body.gasPrice = gasPrice;
-        }
+        const queryString = querystring.stringify(queryParams);
 
-        if (gasLimit) {
-            body.gasLimit = gasLimit;
-        }
-
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/new/all', body);
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/new/all?' + queryString, data);
     }
 
     /**
@@ -153,13 +177,23 @@ class ETCTransaction extends Base {
      * @param {number} value
      * @param {number} gasPrice
      * @param {number} gasLimit
-     * @param {number} [nonce=null] - Integer.
-     * @param {number} [data=null] - Hexidecimal.
+     * @param {object} [optData] - Optional data.
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*|Promise<any | never>}
      */
-    newTransactionWithPrivateKey(fromAddress, toAddress, privateKey, value, gasPrice, gasLimit, nonce = null, data = null) {
-        const body = {
+    newTransactionWithPrivateKey(fromAddress, toAddress, privateKey, value, gasPrice, gasLimit, optData = {}, queryParams = {}) {
+        let data = {
+            nonce: null, // Integer.
+            data: null, // Hexidecimal.
+        };
+
+        Object.keys(optData).map(k => {
+            data[k] = optData[k];
+        });
+
+        data = {
+            ...data,
             fromAddress: fromAddress,
             toAddress: toAddress,
             privateKey: privateKey,
@@ -168,15 +202,9 @@ class ETCTransaction extends Base {
             gasLimit: gasLimit,
         };
 
-        if (nonce) {
-            body.nonce = nonce;
-        }
+        const queryString = querystring.stringify(queryParams);
 
-        if (data) {
-            body.data = data;
-        }
-
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/new-pvtkey', body);
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/new-pvtkey?' + queryString, data);
     }
 
     /**
@@ -188,27 +216,31 @@ class ETCTransaction extends Base {
      * @param {string} fromAddress
      * @param {string} toAddress
      * @param {string} privateKey
-     * @param {number} [gasPrice=null] - Default gas price is 15Gwei.
-     * @param {number} [gasLimit=null] - If not set, will be calculated by the EVM.
+     * @param {object} [optData] - Optional data.
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*|Promise<any | never>}
      */
-    newAllTransactionWithPrivateKey(fromAddress, toAddress, privateKey, gasPrice = null, gasLimit = null) {
-        const body = {
+    newAllTransactionWithPrivateKey(fromAddress, toAddress, privateKey, optData = {}, queryParams = {}) {
+        let data = {
+            gasPrice: null, // Default gas price is 15Gwei.
+            gasLimit: null, // If not set, will be calculated by the EVM.
+        };
+
+        Object.keys(optData).map(k => {
+            data[k] = optData[k];
+        });
+
+        data = {
+            ...data,
             fromAddress: fromAddress,
             toAddress: toAddress,
             privateKey: privateKey
         };
 
-        if (gasPrice) {
-            body.gasPrice = gasPrice;
-        }
+        const queryString = querystring.stringify(queryParams);
 
-        if (gasLimit) {
-            body.gasLimit = gasLimit;
-        }
-
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/new-pvtkey/all', body);
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/new-pvtkey/all?' + queryString, data);
     }
 
     /**
@@ -226,15 +258,28 @@ class ETCTransaction extends Base {
      * @param {string} fromAddress
      * @param {string} toAddress
      * @param {number} value
+     * @param {object} [optData] - Optional data.
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*|Promise<any | never>}
      */
-    sendTransaction(fromAddress, toAddress, value) {
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/send', {
+    sendTransaction(fromAddress, toAddress, value, optData = {}, queryParams = {}) {
+        let data = {};
+
+        Object.keys(optData).map(k => {
+            data[k] = optData[k];
+        });
+
+        data = {
+            ...data,
             fromAddress: fromAddress,
             toAddress: toAddress,
             value: value
-        });
+        };
+
+        const queryString = querystring.stringify(queryParams);
+
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/send?' + queryString, data);
     }
 
     /**
@@ -244,13 +289,26 @@ class ETCTransaction extends Base {
      * @desc Once you’ve finished signing the raw transaction locally, send that raw transaction to our Push Raw Transaction Endpoint.
      *
      * @param {string} hex - Raw transaction.
+     * @param {object} [optData] - Optional data.
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*|Promise<any | never>}
      */
-    pushTransaction(hex) {
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/push', {
-            hex: hex
+    pushTransaction(hex, optData = {}, queryParams = {}) {
+        let data = {};
+
+        Object.keys(optData).map(k => {
+            data[k] = optData[k];
         });
+
+        data = {
+            ...data,
+            hex: hex
+        };
+
+        const queryString = querystring.stringify(queryParams);
+
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/push?' + queryString, data);
     }
 
     /**
@@ -263,22 +321,30 @@ class ETCTransaction extends Base {
      * @param {string} fromAddress
      * @param {string} toAddress
      * @param {number} value - Value of the transaction.
-     * @param {number} [data=null] - If data is added it should be a valid hexadecimal number otherwise an error will be returned as a response.
+     * @param {object} [optData] - Optional data.
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*|Promise<any | never>}
      */
-    estimateTransactionGas(fromAddress, toAddress, value, data = null) {
-        var body = {
+    estimateTransactionGas(fromAddress, toAddress, value, optData = {}, queryParams = {}) {
+        let data = {
+            data: null, // If data is added it should be a valid hexadecimal number otherwise an error will be returned as a response.
+        };
+
+        Object.keys(optData).map(k => {
+            data[k] = optData[k];
+        });
+
+        data = {
+            ...data,
             fromAddress: fromAddress,
             toAddress: toAddress,
             value: value
         };
 
-        if (data) {
-            body.data = data;
-        }
+        const queryString = querystring.stringify(queryParams);
 
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/gas', body);
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/gas?' + queryString, data);
     }
 
     /**
@@ -288,12 +354,18 @@ class ETCTransaction extends Base {
      * @desc Pending Transactions Endpoint makes a call to the EVM and returns all pending transactions. The response
      *      might be limited if you lack credits.
      *
-     * @param {number} [limit=50] - Limit to transactions.
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*|Promise<any | never>}
      */
-    getPendingTransactions(limit = 50) {
-        return this.request.get(this.basePath + this.getSelectedNetwork() + '/txs/pending?limit=' + limit);
+    getPendingTransactions(queryParams = {}) {
+        const combinedQueryParams = {
+            limit: 50, // Limit to transactions.
+            ...queryParams,
+        };
+        const queryString = querystring.stringify(combinedQueryParams);
+
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/txs/pending?' + queryString);
     }
 
     /**
@@ -303,12 +375,18 @@ class ETCTransaction extends Base {
      * @desc Queued Transactions Endpoint makes a call to the EVM and returns all queued transactions. The response
      *      might be limited if you lack credits.
      *
-     * @param {number} [limit=50] - Limit to transactions.
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*|Promise<any | never>}
      */
-    getQueuedTransactions(limit = 50) {
-        return this.request.get(this.basePath + this.getSelectedNetwork() + '/txs/queued?limit=' + limit);
+    getQueuedTransactions(queryParams = {}) {
+        const combinedQueryParams = {
+            limit: 50, // Limit to transactions.
+            ...queryParams,
+        };
+        const queryString = querystring.stringify(combinedQueryParams);
+
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/txs/queued?' + queryString);
     }
 
     /**
@@ -320,10 +398,14 @@ class ETCTransaction extends Base {
      *      Recommended is the gas price that we consider as the one that corresponds to a cheap and fast execution.
      *      However, it is only a suggestion and should be used at users' sole discretion. All gas prices are in Gwei.
      *
+     * @param {object} [queryParams] - Additional query parameters.
+     *
      * @returns {*|Promise<any | never>}
      */
-    getTransactionsFee() {
-        return this.request.get(this.basePath + this.getSelectedNetwork() + '/txs/fee');
+    getTransactionsFee(queryParams = {}) {
+        const queryString = querystring.stringify(queryParams);
+
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/txs/fee?' + queryString);
     }
 
 }

@@ -1,3 +1,4 @@
+const querystring = require('querystring');
 const BaseChainComponent = require('../../../common/blockchain/base-chain-component');
 
 class ETCToken extends BaseChainComponent {
@@ -11,11 +12,14 @@ class ETCToken extends BaseChainComponent {
      *
      * @param {string} address - address with tokens (e.g. "0x7857af2143cb06ddc1dab5d7844c9402e89717cb")
      * @param {string} contract - contract address (e.g. "0x40f9405587B284f737Ef5c4c2ecEA1Fa8bfAE014")
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*|Promise<any | never>}
      */
-    getAddressTokenBalance(address, contract) {
-        return this.request.get(this.basePath + this.getSelectedNetwork() + '/tokens/' + address + '/' + contract + '/balance');
+    getAddressTokenBalance(address, contract, queryParams = {}) {
+        const queryString = querystring.stringify(queryParams);
+
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/tokens/' + address + '/' + contract + '/balance?' + queryString);
     }
 
     /**
@@ -41,11 +45,20 @@ class ETCToken extends BaseChainComponent {
      * @param {number} token
      * @param {string} [password=null]
      * @param {string} [privateKey=null]
+     * @param {object} [optData] - Optional data.
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*|Promise<any | never>}
      */
-    transferTokens(fromAddress, toAddress, contract, gasPrice, gasLimit, token, password = null, privateKey = null) {
-        var data = {
+    transferTokens(fromAddress, toAddress, contract, gasPrice, gasLimit, token, password = null, privateKey = null, optData = {}, queryParams = {}) {
+        let data = {};
+
+        Object.keys(optData).map(k => {
+            data[k] = optData[k];
+        });
+
+        data = {
+            ...data,
             fromAddress: fromAddress,
             toAddress: toAddress,
             contract: contract,
@@ -60,7 +73,9 @@ class ETCToken extends BaseChainComponent {
             data.privateKey = privateKey;
         }
 
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/tokens/transfer', data);
+        const queryString = querystring.stringify(queryParams);
+
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/tokens/transfer?' + queryString, data);
     }
 
     /**
@@ -71,12 +86,18 @@ class ETCToken extends BaseChainComponent {
      *      with a list of all token transactions for the specified address (in DESC order).
      *
      * @param {string} address
-     * @param {number} [limit=50]
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*|Promise<any | never>}
      */
-    getTokenTransactionsByAddress(address, limit = 50) {
-        return this.request.get(this.basePath + this.getSelectedNetwork() + '/tokens/address/' + address + '/transfers?limit=' + limit);
+    getTokenTransactionsByAddress(address, queryParams = {}) {
+        const combinedQueryParams = {
+            limit: 50,
+            ...queryParams,
+        };
+        const queryString = querystring.stringify(combinedQueryParams);
+
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/tokens/address/' + address + '/transfers?' + queryString);
     }
 
     /**
@@ -88,12 +109,18 @@ class ETCToken extends BaseChainComponent {
      *      information: the contract, the name, symbol and type of the token.
      *
      * @param {string} address
-     * @param {number} [limit=50]
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*|Promise<any | never>}
      */
-    getAddressTokenTransfers(address, limit = 50) {
-        return this.request.get(this.basePath + this.getSelectedNetwork() + '/tokens/address/' + address + '?limit=' + limit);
+    getAddressTokenTransfers(address, queryParams = {}) {
+        const combinedQueryParams = {
+            limit: 50,
+            ...queryParams,
+        };
+        const queryString = querystring.stringify(combinedQueryParams);
+
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/tokens/address/' + address + '?' + queryString);
     }
 
 }

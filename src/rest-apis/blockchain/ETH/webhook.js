@@ -1,3 +1,4 @@
+const querystring = require('querystring');
 const {WH_EVENT: EVENT} = require('../../../consts');
 const BaseWebHook = require('../../../common/blockchain/base-web-hook');
 
@@ -11,14 +12,27 @@ class ETHWebHook extends BaseWebHook {
      *      The payload is a json object with the token transfer information.
      *
      * @param {string} callbackURL - Webhook callback url
+     * @param {object} [optData] - Optional data.
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*|Promise<any | never>}
      */
-    createTokenWebHook(callbackURL) {
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/hooks', {
+    createTokenWebHook(callbackURL, optData = {}, queryParams = {}) {
+        let data = {};
+
+        Object.keys(optData).map(k => {
+            data[k] = optData[k];
+        });
+
+        data = {
+            ...data,
             event: EVENT.ETH.TOKEN,
             url: callbackURL
-        });
+        };
+
+        const queryString = querystring.stringify(queryParams);
+
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/hooks?' + queryString, data);
     }
 
     /**
@@ -29,14 +43,27 @@ class ETHWebHook extends BaseWebHook {
      *      of the Ethereum Blockchain. The payload is a list with transactions from the txpool for the particular address.
      *
      * @param {string} callbackURL - Webhook callback url
+     * @param {object} [optData] - Optional data.
+     * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*|Promise<any | never>}
      */
-    createTxPoolWebHook(callbackURL) {
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/hooks', {
+    createTxPoolWebHook(callbackURL, optData = {}, queryParams = {}) {
+        let data = {};
+
+        Object.keys(optData).map(k => {
+            data[k] = optData[k];
+        });
+
+        data = {
+            ...data,
             event: EVENT.ETH.TXPOOL,
             url: callbackURL
-        });
+        };
+
+        const queryString = querystring.stringify(queryParams);
+
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/hooks?' + queryString, data);
     }
 
 }

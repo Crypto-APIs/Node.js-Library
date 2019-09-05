@@ -1,4 +1,3 @@
-const querystring = require('querystring');
 const BaseChainComponent = require('./base-chain-component');
 
 class BaseWallet extends BaseChainComponent {
@@ -29,9 +28,8 @@ class BaseWallet extends BaseChainComponent {
             addresses: addresses
         };
 
-        const queryString = querystring.stringify(queryParams);
 
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/wallets?' + queryString, data);
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/wallets', data, queryParams);
     }
 
     /**
@@ -62,9 +60,7 @@ class BaseWallet extends BaseChainComponent {
             password: password
         };
 
-        const queryString = querystring.stringify(queryParams);
-
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/wallets/hd?' + queryString, data);
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/wallets/hd', data, queryParams);
     }
 
     /**
@@ -79,9 +75,7 @@ class BaseWallet extends BaseChainComponent {
      * @returns {*|Promise<any | never>}
      */
     listWallets(queryParams = {}) {
-        const queryString = querystring.stringify(queryParams);
-
-        return this.request.get(this.basePath + this.getSelectedNetwork() + '/wallets?' + queryString);
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/wallets', queryParams);
     }
 
     /**
@@ -96,9 +90,7 @@ class BaseWallet extends BaseChainComponent {
      * @returns {*|Promise<any | never>}
      */
     listHDWallets(queryParams = {}) {
-        const queryString = querystring.stringify(queryParams);
-
-        return this.request.get(this.basePath + this.getSelectedNetwork() + '/wallets/hd?' + queryString);
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/wallets/hd', queryParams);
     }
 
     /**
@@ -113,9 +105,7 @@ class BaseWallet extends BaseChainComponent {
      * @returns {*|Promise<any | never>}
      */
     getWallet(walletName, queryParams = {}) {
-        const queryString = querystring.stringify(queryParams);
-
-        return this.request.get(this.basePath + this.getSelectedNetwork() + '/wallets/' + walletName + '?' + queryString);
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/wallets/' + walletName, queryParams);
     }
 
     /**
@@ -130,9 +120,7 @@ class BaseWallet extends BaseChainComponent {
      * @returns {*|Promise<any | never>}
      */
     getHDWallet(walletName, queryParams = {}) {
-        const queryString = querystring.stringify(queryParams);
-
-        return this.request.get(this.basePath + this.getSelectedNetwork() + '/wallets/hd/' + walletName + '?' + queryString);
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/wallets/hd/' + walletName, queryParams);
     }
 
     /**
@@ -162,9 +150,7 @@ class BaseWallet extends BaseChainComponent {
             addresses: addresses
         };
 
-        const queryString = querystring.stringify(queryParams);
-
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/wallets/' + name + '/addresses?' + queryString, data);
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/wallets/' + name + '/addresses', data, queryParams);
     }
 
     /**
@@ -181,9 +167,7 @@ class BaseWallet extends BaseChainComponent {
      * @returns {*|Promise<any | never>}
      */
     generateAddressInWallet(name, optData = {}, queryParams = {}) {
-        const queryString = querystring.stringify(queryParams);
-
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/wallets/' + name + '/addresses/generate?' + queryString, optData);
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/wallets/' + name + '/addresses/generate', optData, queryParams);
     }
 
     /**
@@ -214,9 +198,7 @@ class BaseWallet extends BaseChainComponent {
             password: password
         };
 
-        const queryString = querystring.stringify(queryParams);
-
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/wallets/hd/' + name + '/addresses/generate?' + queryString, data);
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/wallets/hd/' + name + '/addresses/generate', data, queryParams);
     }
 
     /**
@@ -232,9 +214,7 @@ class BaseWallet extends BaseChainComponent {
      * @returns {*|Promise<any | never>}
      */
     removeAddressFromWallet(name, address, queryParams = {}) {
-        const queryString = querystring.stringify(queryParams);
-
-        return this.request.delete(this.basePath + this.getSelectedNetwork() + '/wallets/' + name + '/address/' + address + '?' + queryString);
+        return this.request.delete(this.basePath + this.getSelectedNetwork() + '/wallets/' + name + '/address/' + address, queryParams);
     }
 
     /**
@@ -249,9 +229,7 @@ class BaseWallet extends BaseChainComponent {
      * @returns {*|Promise<any | never>}
      */
     deleteWallet(name, queryParams = {}) {
-        const queryString = querystring.stringify(queryParams);
-
-        return this.request.delete(this.basePath + this.getSelectedNetwork() + '/wallets/' + name + '?' + queryString);
+        return this.request.delete(this.basePath + this.getSelectedNetwork() + '/wallets/' + name, queryParams);
     }
 
     /**
@@ -266,9 +244,7 @@ class BaseWallet extends BaseChainComponent {
      * @returns {*|Promise<any | never>}
      */
     deleteHDWallet(name, queryParams = {}) {
-        const queryString = querystring.stringify(queryParams);
-
-        return this.request.delete(this.basePath + this.getSelectedNetwork() + '/wallets/hd/' + name + '?' + queryString);
+        return this.request.delete(this.basePath + this.getSelectedNetwork() + '/wallets/hd/' + name, queryParams);
     }
 
     /**
@@ -295,9 +271,7 @@ class BaseWallet extends BaseChainComponent {
             password: password
         };
 
-        const queryString = querystring.stringify(queryParams);
-
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/wallets/hd/xpub?' + queryString, data);
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/wallets/hd/xpub', data, queryParams);
     }
 
     /**
@@ -331,9 +305,7 @@ class BaseWallet extends BaseChainComponent {
             to: to
         };
 
-        const queryString = querystring.stringify(queryParams);
-
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/wallets/hd/xpub/addresses/change?' + queryString, data);
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/wallets/hd/xpub/addresses/change', data, queryParams);
     }
 
     /**
@@ -367,9 +339,7 @@ class BaseWallet extends BaseChainComponent {
             to: to
         };
 
-        const queryString = querystring.stringify(queryParams);
-
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/wallets/hd/xpub/addresses/receive?' + queryString, data);
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/wallets/hd/xpub/addresses/receive', data, queryParams);
     }
 
 }

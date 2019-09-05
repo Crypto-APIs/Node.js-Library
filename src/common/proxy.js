@@ -6,14 +6,14 @@ const Proxy = (function () {
     function createInstance(apiKey) {
         return {
             apiKey: apiKey,
-            get: function (path) {
-                return Request(this.apiKey, path);
+            get: function (path, queryParams = {}) {
+                return Request(this.apiKey, path, {queryParams});
             },
-            post: function (path, data) {
-                return Request(this.apiKey, path, {method: 'POST'}, JSON.stringify(data))
+            post: function (path, data, queryParams = {}) {
+                return Request(this.apiKey, path, {method: 'POST', queryParams}, JSON.stringify(data))
             },
-            delete: function (path) {
-                return Request(this.apiKey, path, {method: 'DELETE'})
+            delete: function (path, queryParams = {}) {
+                return Request(this.apiKey, path, {method: 'DELETE', queryParams})
             }
         };
     }

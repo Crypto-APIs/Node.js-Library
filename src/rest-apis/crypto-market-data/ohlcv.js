@@ -49,18 +49,18 @@ class OHLCV extends BaseAuth {
      * @desc Get OHLCV time-series data for requested symbol and period, returned in time ascending order.
      *
      * @param {string} symbolId - Symbol identifier (UID) used to filter response. (required).
-     * @param {string} periodId - Identifier of requested time period (required, e.g. 1hrs, 2mth etc.) (required).
-     * @param {number} timeStart - Time period starting time in timestamp (required).
-     * @param {number} timeEnd - Time period ending time in timestamp (optional, if not supplied then the data is returned to the end or when count of result elements reaches the limit).
+     * @param {string} period - Identifier of requested time period (required, e.g. 1hrs, 2mth etc.) (required).
+     * @param {number} timePeriodStart - Time period starting time in timestamp (required).
+     * @param {number} timePeriodEnd - Time period ending time in timestamp (optional, if not supplied then the data is returned to the end or when count of result elements reaches the limit).
      * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*}
      */
-    historicalData(symbolId, periodId, timeStart, timeEnd, queryParams = {}) {
+    historicalData(symbolId, period, timePeriodStart, timePeriodEnd, queryParams = {}) {
         const combinedQueryParams = {
-            periodId: periodId,
-            timePeriodStart: timeStart,
-            timePeriodEnd: timeEnd,
+            period: period,
+            timePeriodStart: timePeriodStart,
+            timePeriodEnd: timePeriodEnd,
             limit: 50, // Amount of items to return (optional, default value is 50)
             ...queryParams,
         };

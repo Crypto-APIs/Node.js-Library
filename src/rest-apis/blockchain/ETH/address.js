@@ -1,4 +1,3 @@
-const querystring = require('querystring');
 const BaseAddress = require('../../../common/blockchain/base-address');
 
 class ETHAddress extends BaseAddress {
@@ -30,9 +29,7 @@ class ETHAddress extends BaseAddress {
             password: password
         };
 
-        const queryString = querystring.stringify(queryParams);
-
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/account?' + queryString, data);
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/account', data, queryParams);
     }
 
     /**
@@ -47,9 +44,7 @@ class ETHAddress extends BaseAddress {
      * @returns {*|Promise<any | never>}
      */
     getAddressNonce(address, queryParams = {}) {
-        const queryString = querystring.stringify(queryParams);
-
-        return this.request.get(this.basePath + this.getSelectedNetwork() + '/address/' + address + '/nonce?' + queryString);
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/address/' + address + '/nonce', queryParams);
     }
 
 }

@@ -1,4 +1,3 @@
-const querystring = require('querystring');
 const BaseAuth = require('../../common/base-auth');
 
 class Base extends BaseAuth {
@@ -19,9 +18,8 @@ class Base extends BaseAuth {
             limit: 50, // Amount of items to return (optional, default value is 50).
             ...queryParams,
         };
-        const queryString = querystring.stringify(combinedQueryParams);
 
-        return this.request.get('/exchanges?' + queryString);
+        return this.request.get('/exchanges', combinedQueryParams);
     }
 
     /**
@@ -36,9 +34,7 @@ class Base extends BaseAuth {
      * @returns {*}
      */
     getExchangeDetails(exchangeId, queryParams = {}) {
-        const queryString = querystring.stringify(queryParams);
-
-        return this.request.get('/exchanges/' + exchangeId + '?' + queryString);
+        return this.request.get('/exchanges/' + exchangeId, queryParams);
     }
 
     /**
@@ -57,9 +53,8 @@ class Base extends BaseAuth {
             limit: 50, // Amount of items to return (optional, default value is 50).
             ...queryParams,
         };
-        const queryString = querystring.stringify(combinedQueryParams);
 
-        return this.request.get('/assets?' + queryString);
+        return this.request.get('/assets', combinedQueryParams);
     }
 
     /**
@@ -74,9 +69,7 @@ class Base extends BaseAuth {
      * @returns {*}
      */
     getAssetDetails(assetId, queryParams = {}) {
-        const queryString = querystring.stringify(queryParams);
-
-        return this.request.get('/assets/' + assetId + '?' + queryString);
+        return this.request.get('/assets/' + assetId, queryParams);
     }
 
     /**
@@ -91,9 +84,7 @@ class Base extends BaseAuth {
      * @returns {*}
      */
     getSymbolDetails(symbolId, queryParams = {}) {
-        const queryString = querystring.stringify(queryParams);
-
-        return this.request.get('/mappings/' + symbolId + '?' + queryString);
+        return this.request.get('/mappings/' + symbolId, queryParams);
     }
 
 }

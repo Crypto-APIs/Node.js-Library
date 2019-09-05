@@ -18,9 +18,7 @@ class ETHContract extends BaseChainComponent {
      * @returns {*|Promise<any | never>}
      */
     estimateSmartContractGas(queryParams = {}) {
-        const queryString = querystring.stringify(queryParams);
-
-        return this.request.get(this.basePath + this.getSelectedNetwork() + '/contracts/gas?' + queryString);
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/contracts/gas', queryParams);
     }
 
     /**
@@ -56,9 +54,7 @@ class ETHContract extends BaseChainComponent {
             byteCode: byteCode
         };
 
-        const queryString = querystring.stringify(queryParams);
-
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/contracts?' + queryString, data);
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/contracts', data, queryParams);
     }
 
 }

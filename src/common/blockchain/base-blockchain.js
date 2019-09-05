@@ -1,4 +1,3 @@
-const querystring = require('querystring');
 const BaseChainComponent = require('./base-chain-component');
 
 class BaseBlockchain extends BaseChainComponent {
@@ -14,9 +13,7 @@ class BaseBlockchain extends BaseChainComponent {
      * @returns {*|Promise<any | never>}
      */
     getInfo(queryParams = {}) {
-        const queryString = querystring.stringify(queryParams);
-
-        return this.request.get(this.basePath + this.getSelectedNetwork() + '/info?' + queryString);
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/info', queryParams);
     }
 
     /**
@@ -31,9 +28,7 @@ class BaseBlockchain extends BaseChainComponent {
      * @returns {*|Promise<any | never>}
      */
     getBlockByHash(blockHash, queryParams = {}) {
-        const queryString = querystring.stringify(queryParams);
-
-        return this.request.get(this.basePath + this.getSelectedNetwork() + '/blocks/' + blockHash + '?' + queryString);
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/blocks/' + blockHash, queryParams);
     }
 
     /**
@@ -49,8 +44,9 @@ class BaseBlockchain extends BaseChainComponent {
      */
     getBlockByHeight(blockHeight, queryParams = {}) {
         const queryString = querystring.stringify(queryParams);
+        const query = queryString ? '?' + queryString : '';
 
-        return this.request.get(this.basePath + this.getSelectedNetwork() + '/blocks/' + blockHeight + '?' + queryString);
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/blocks/' + blockHeight + query);
     }
 
     /**
@@ -64,9 +60,7 @@ class BaseBlockchain extends BaseChainComponent {
      * @returns {*|Promise<any | never>}
      */
     getLatestBlock(queryParams = {}) {
-        const queryString = querystring.stringify(queryParams);
-
-        return this.request.get(this.basePath + this.getSelectedNetwork() + '/blocks/latest?' + queryString);
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/blocks/latest', queryParams);
     }
 
 }

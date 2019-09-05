@@ -1,4 +1,3 @@
-const querystring = require('querystring');
 const BaseChainComponent = require('./base-chain-component');
 
 class BaseAddress extends BaseChainComponent {
@@ -15,9 +14,7 @@ class BaseAddress extends BaseChainComponent {
      * @returns {*|Promise<any | never>}
      */
     getInfo(address, queryParams = {}) {
-        const queryString = querystring.stringify(queryParams);
-
-        return this.request.get(this.basePath + this.getSelectedNetwork() + '/address/' + address + '?' + queryString);
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/address/' + address, queryParams);
     }
 
     /**
@@ -32,9 +29,7 @@ class BaseAddress extends BaseChainComponent {
      * @returns {*|Promise<any | never>}
      */
     generateAddress(optData = {}, queryParams = {}) {
-        const queryString = querystring.stringify(queryParams);
-
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/address?' + queryString, optData);
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/address', optData, queryParams);
     }
 
     /**
@@ -54,9 +49,8 @@ class BaseAddress extends BaseChainComponent {
             limit: 50, // Sets the number of returned results.
             ...queryParams,
         };
-        const queryString = querystring.stringify(combinedQueryParams);
 
-        return this.request.get(this.basePath + this.getSelectedNetwork() + '/address/' + address + '/transactions?' + queryString);
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/address/' + address + '/transactions', combinedQueryParams);
     }
 
 

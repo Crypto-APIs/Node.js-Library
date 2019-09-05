@@ -1,4 +1,3 @@
-const querystring = require('querystring');
 const Base = require('../../../common/blockchain/base-chain-component');
 
 class ETCTransaction extends Base {
@@ -15,9 +14,7 @@ class ETCTransaction extends Base {
      * @returns {*|Promise<any | never>}
      */
     getTransaction(txHash, queryParams = {}) {
-        const queryString = querystring.stringify(queryParams);
-
-        return this.request.get(this.basePath + this.getSelectedNetwork() + '/txs/hash/' + txHash + '?' + queryString);
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/txs/hash/' + txHash, queryParams);
     }
 
     /**
@@ -38,9 +35,8 @@ class ETCTransaction extends Base {
             limit: 50, // Limit - up to.
             ...queryParams,
         };
-        const queryString = querystring.stringify(combinedQueryParams);
 
-        return this.request.get(this.basePath + this.getSelectedNetwork() + '/txs/block/' + block + '?' + queryString);
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/txs/block/' + block, combinedQueryParams);
     }
 
     /**
@@ -57,9 +53,7 @@ class ETCTransaction extends Base {
      * @returns {*|Promise<any | never>}
      */
     getTransactionByBlockNumber(blockNumber, txIndex, queryParams = {}) {
-        const queryString = querystring.stringify(queryParams);
-
-        return this.request.get(this.basePath + this.getSelectedNetwork() + '/txs/block/' + blockNumber + '/' + txIndex + '?' + queryString);
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/txs/block/' + blockNumber + '/' + txIndex, queryParams);
     }
 
     /**
@@ -76,9 +70,7 @@ class ETCTransaction extends Base {
      * @returns {*|Promise<any | never>}
      */
     getTransactionByBlockHash(blockHash, txIndex, queryParams = {}) {
-        const queryString = querystring.stringify(queryParams);
-
-        return this.request.get(this.basePath + this.getSelectedNetwork() + '/txs/block/' + blockHash + '/' + txIndex + '?' + queryString);
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/txs/block/' + blockHash + '/' + txIndex, queryParams);
     }
 
     /**
@@ -124,9 +116,7 @@ class ETCTransaction extends Base {
             gasLimit: gasLimit,
         };
 
-        const queryString = querystring.stringify(queryParams);
-
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/new?' + queryString, data);
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/new', data, queryParams);
     }
 
     /**
@@ -160,9 +150,7 @@ class ETCTransaction extends Base {
             password: password
         };
 
-        const queryString = querystring.stringify(queryParams);
-
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/new/all?' + queryString, data);
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/new/all', data, queryParams);
     }
 
     /**
@@ -202,9 +190,7 @@ class ETCTransaction extends Base {
             gasLimit: gasLimit,
         };
 
-        const queryString = querystring.stringify(queryParams);
-
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/new-pvtkey?' + queryString, data);
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/new-pvtkey', data, queryParams);
     }
 
     /**
@@ -238,9 +224,7 @@ class ETCTransaction extends Base {
             privateKey: privateKey
         };
 
-        const queryString = querystring.stringify(queryParams);
-
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/new-pvtkey/all?' + queryString, data);
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/new-pvtkey/all', data, queryParams);
     }
 
     /**
@@ -277,9 +261,7 @@ class ETCTransaction extends Base {
             value: value
         };
 
-        const queryString = querystring.stringify(queryParams);
-
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/send?' + queryString, data);
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/send', data, queryParams);
     }
 
     /**
@@ -306,9 +288,7 @@ class ETCTransaction extends Base {
             hex: hex
         };
 
-        const queryString = querystring.stringify(queryParams);
-
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/push?' + queryString, data);
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/push', data, queryParams);
     }
 
     /**
@@ -342,9 +322,7 @@ class ETCTransaction extends Base {
             value: value
         };
 
-        const queryString = querystring.stringify(queryParams);
-
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/gas?' + queryString, data);
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/gas', data, queryParams);
     }
 
     /**
@@ -363,9 +341,8 @@ class ETCTransaction extends Base {
             limit: 50, // Limit to transactions.
             ...queryParams,
         };
-        const queryString = querystring.stringify(combinedQueryParams);
 
-        return this.request.get(this.basePath + this.getSelectedNetwork() + '/txs/pending?' + queryString);
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/txs/pending', combinedQueryParams);
     }
 
     /**
@@ -384,9 +361,8 @@ class ETCTransaction extends Base {
             limit: 50, // Limit to transactions.
             ...queryParams,
         };
-        const queryString = querystring.stringify(combinedQueryParams);
 
-        return this.request.get(this.basePath + this.getSelectedNetwork() + '/txs/queued?' + queryString);
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/txs/queued', combinedQueryParams);
     }
 
     /**
@@ -403,9 +379,7 @@ class ETCTransaction extends Base {
      * @returns {*|Promise<any | never>}
      */
     getTransactionsFee(queryParams = {}) {
-        const queryString = querystring.stringify(queryParams);
-
-        return this.request.get(this.basePath + this.getSelectedNetwork() + '/txs/fee?' + queryString);
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/txs/fee', queryParams);
     }
 
 }

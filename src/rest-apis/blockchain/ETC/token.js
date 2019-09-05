@@ -1,4 +1,3 @@
-const querystring = require('querystring');
 const BaseChainComponent = require('../../../common/blockchain/base-chain-component');
 
 class ETCToken extends BaseChainComponent {
@@ -17,9 +16,7 @@ class ETCToken extends BaseChainComponent {
      * @returns {*|Promise<any | never>}
      */
     getAddressTokenBalance(address, contract, queryParams = {}) {
-        const queryString = querystring.stringify(queryParams);
-
-        return this.request.get(this.basePath + this.getSelectedNetwork() + '/tokens/' + address + '/' + contract + '/balance?' + queryString);
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/tokens/' + address + '/' + contract + '/balance', queryParams);
     }
 
     /**
@@ -73,9 +70,7 @@ class ETCToken extends BaseChainComponent {
             data.privateKey = privateKey;
         }
 
-        const queryString = querystring.stringify(queryParams);
-
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/tokens/transfer?' + queryString, data);
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/tokens/transfer', data, queryParams);
     }
 
     /**
@@ -95,9 +90,8 @@ class ETCToken extends BaseChainComponent {
             limit: 50,
             ...queryParams,
         };
-        const queryString = querystring.stringify(combinedQueryParams);
 
-        return this.request.get(this.basePath + this.getSelectedNetwork() + '/tokens/address/' + address + '/transfers?' + queryString);
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/tokens/address/' + address + '/transfers', combinedQueryParams);
     }
 
     /**
@@ -118,9 +112,8 @@ class ETCToken extends BaseChainComponent {
             limit: 50,
             ...queryParams,
         };
-        const queryString = querystring.stringify(combinedQueryParams);
 
-        return this.request.get(this.basePath + this.getSelectedNetwork() + '/tokens/address/' + address + '?' + queryString);
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/tokens/address/' + address, combinedQueryParams);
     }
 
 }

@@ -1,4 +1,3 @@
-const querystring = require('querystring');
 const BaseChainComponent = require('./base-chain-component');
 
 class BaseTransaction extends BaseChainComponent {
@@ -15,9 +14,7 @@ class BaseTransaction extends BaseChainComponent {
      * @returns {*|Promise<any | never>}
      */
     getTransaction(txID, queryParams = {}) {
-        const queryString = querystring.stringify(queryParams);
-
-        return this.request.get(this.basePath + this.getSelectedNetwork() + '/txs/txid/' + txID + '?' + queryString);
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/txs/txid/' + txID, queryParams);
     }
 
     /**
@@ -40,9 +37,8 @@ class BaseTransaction extends BaseChainComponent {
             limit: 1, // Number of transactions to be returned.
             ...queryParams,
         };
-        const queryString = querystring.stringify(combinedQueryParams);
 
-        return this.request.get(this.basePath + this.getSelectedNetwork() + '/txs/block/' + block + '?' + queryString);
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/txs/block/' + block, combinedQueryParams);
     }
 
     /**
@@ -62,9 +58,8 @@ class BaseTransaction extends BaseChainComponent {
             limit: 100, // Number of transactions to be returned.
             ...queryParams,
         };
-        const queryString = querystring.stringify(combinedQueryParams);
 
-        return this.request.get(this.basePath + this.getSelectedNetwork() + '/txs/unconfirmed?' + queryString);
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/txs/unconfirmed', combinedQueryParams);
     }
 
     /**
@@ -92,9 +87,7 @@ class BaseTransaction extends BaseChainComponent {
             hex: hex
         };
 
-        const queryString = querystring.stringify(queryParams);
-
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/decode?' + queryString, data);
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/decode', data, queryParams);
     }
 
     /**
@@ -128,9 +121,7 @@ class BaseTransaction extends BaseChainComponent {
             fee: fee,
         };
 
-        const queryString = querystring.stringify(queryParams);
-
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/create?' + queryString, data);
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/create', data, queryParams);
     }
 
     /**
@@ -159,9 +150,7 @@ class BaseTransaction extends BaseChainComponent {
             wifs: wifs,
         };
 
-        const queryString = querystring.stringify(queryParams);
-
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/sign?' + queryString, data);
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/sign', data, queryParams);
     }
 
     /**
@@ -188,9 +177,7 @@ class BaseTransaction extends BaseChainComponent {
             hex: hex,
         };
 
-        const queryString = querystring.stringify(queryParams);
-
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/send?' + queryString, data);
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/send', data, queryParams);
     }
 
     /**
@@ -228,9 +215,7 @@ class BaseTransaction extends BaseChainComponent {
             wifs: wifs
         };
 
-        const queryString = querystring.stringify(queryParams);
-
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/new?' + queryString, data);
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/new', data, queryParams);
     }
 
     /**
@@ -272,9 +257,7 @@ class BaseTransaction extends BaseChainComponent {
             fee: fee,
         };
 
-        const queryString = querystring.stringify(queryParams);
-
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/hdwallet?' + queryString, data);
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/hdwallet', data, queryParams);
     }
 
     /**
@@ -292,9 +275,7 @@ class BaseTransaction extends BaseChainComponent {
      * @returns {*|Promise<any | never>}
      */
     getTransactionsFee(queryParams = {}) {
-        const queryString = querystring.stringify(queryParams);
-
-        return this.request.get(this.basePath + this.getSelectedNetwork() + '/txs/fee?' + queryString);
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/txs/fee', queryParams);
     }
 
 }

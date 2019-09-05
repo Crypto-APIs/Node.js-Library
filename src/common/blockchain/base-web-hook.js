@@ -1,4 +1,3 @@
-const querystring = require('querystring');
 const {WH_EVENT: EVENT} = require('../../consts');
 const BaseChainComponent = require('./base-chain-component');
 
@@ -29,9 +28,7 @@ class BaseWebHook extends BaseChainComponent {
             url: callbackURL
         };
 
-        const queryString = querystring.stringify(queryParams);
-
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/hooks?' + queryString, data);
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/hooks', data, queryParams);
     }
 
     /**
@@ -64,9 +61,7 @@ class BaseWebHook extends BaseChainComponent {
             confirmations: confirmations
         };
 
-        const queryString = querystring.stringify(queryParams);
-
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/hooks?' + queryString, data);
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/hooks', data, queryParams);
     }
 
     /**
@@ -104,9 +99,7 @@ class BaseWebHook extends BaseChainComponent {
             confirmations: confirmations
         };
 
-        const queryString = querystring.stringify(queryParams);
-
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/hooks?' + queryString, data);
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/hooks', data, queryParams);
     }
 
     /**
@@ -138,9 +131,7 @@ class BaseWebHook extends BaseChainComponent {
             confirmations: confirmations,
         };
 
-        const queryString = querystring.stringify(queryParams);
-
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/hooks?' + queryString, data);
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/hooks', data, queryParams);
     }
 
     /**
@@ -154,9 +145,7 @@ class BaseWebHook extends BaseChainComponent {
      * @returns {*|Promise<any | never>}
      */
     listAllHooks(queryParams = {}) {
-        const queryString = querystring.stringify(queryParams);
-
-        return this.request.get(this.basePath + this.getSelectedNetwork() + '/hooks?' + queryString);
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/hooks', queryParams);
     }
 
     /**
@@ -171,9 +160,7 @@ class BaseWebHook extends BaseChainComponent {
      * @returns {*|Promise<any | never>}
      */
     deleteWebHook(webhookID, queryParams = {}) {
-        const queryString = querystring.stringify(queryParams);
-
-        return this.request.delete(this.basePath + this.getSelectedNetwork() + '/hooks/' + webhookID + '?' + queryString);
+        return this.request.delete(this.basePath + this.getSelectedNetwork() + '/hooks/' + webhookID, queryParams);
     }
 }
 

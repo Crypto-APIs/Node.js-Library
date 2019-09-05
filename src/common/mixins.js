@@ -1,5 +1,3 @@
-const querystring = require('querystring');
-
 const MultisigMixin = {
 
     /**
@@ -18,9 +16,8 @@ const MultisigMixin = {
             limit: 50,
             ...queryParams,
         };
-        const queryString = querystring.stringify(combinedQueryParams);
 
-        return this.request.get(this.basePath + this.getSelectedNetwork() + '/address/' + address + '/multisig?' + queryString);
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/address/' + address + '/multisig', combinedQueryParams);
     }
 
 };
@@ -64,9 +61,7 @@ const BTCBasedPayment = {
             confirmations: confirmations,
         };
 
-        const queryString = querystring.stringify(queryParams);
-
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/payments?' + queryString, data);
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/payments', data, queryParams);
     }
 
 };

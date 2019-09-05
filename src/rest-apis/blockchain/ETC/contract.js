@@ -1,4 +1,3 @@
-const querystring = require('querystring');
 const BaseChainComponent = require('../../../common/blockchain/base-chain-component');
 
 class ETCContract extends BaseChainComponent {
@@ -18,9 +17,7 @@ class ETCContract extends BaseChainComponent {
      * @returns {*|Promise<any | never>}
      */
     estimateSmartContractGas(queryParams = {}) {
-        const queryString = querystring.stringify(queryParams);
-
-        return this.request.get(this.basePath + this.getSelectedNetwork() + '/contracts/gas?' + queryString);
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/contracts/gas', queryParams);
     }
 
     /**
@@ -56,9 +53,7 @@ class ETCContract extends BaseChainComponent {
             byteCode: byteCode
         };
 
-        const queryString = querystring.stringify(queryParams);
-
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/contracts?' + queryString, data);
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/contracts', data, queryParams);
     }
 
 }

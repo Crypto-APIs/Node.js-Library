@@ -1,4 +1,3 @@
-const querystring = require('querystring');
 const BasePaymentForwarding = require('../../../common/blockchain/base-payment-forwarding');
 
 class ETCPaymentForwarding extends BasePaymentForwarding {
@@ -41,9 +40,7 @@ class ETCPaymentForwarding extends BasePaymentForwarding {
             confirmations: confirmations,
         };
 
-        const queryString = querystring.stringify(queryParams);
-
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/payments?' + queryString, data);
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/payments', data, queryParams);
     }
 
 }

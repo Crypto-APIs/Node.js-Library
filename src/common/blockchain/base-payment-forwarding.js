@@ -1,4 +1,3 @@
-const querystring = require('querystring');
 const BaseChainComponent = require('./base-chain-component');
 
 class BasePaymentForwarding extends BaseChainComponent {
@@ -14,9 +13,7 @@ class BasePaymentForwarding extends BaseChainComponent {
      * @returns {*|Promise<any | never>}
      */
     listPayments(queryParams = {}) {
-        const queryString = querystring.stringify(queryParams);
-
-        return this.request.get(this.basePath + this.getSelectedNetwork() + '/payments?' + queryString);
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/payments', queryParams);
     }
 
     /**
@@ -30,9 +27,7 @@ class BasePaymentForwarding extends BaseChainComponent {
      * @returns {*|Promise<any | never>}
      */
     listPaymentsHistory(queryParams = {}) {
-        const queryString = querystring.stringify(queryParams);
-
-        return this.request.get(this.basePath + this.getSelectedNetwork() + '/payments/history?' + queryString);
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/payments/history', queryParams);
     }
 
     /**
@@ -47,9 +42,7 @@ class BasePaymentForwarding extends BaseChainComponent {
      * @returns {*|Promise<any | never>}
      */
     deletePayment(paymentID, queryParams = {}) {
-        const queryString = querystring.stringify(queryParams);
-
-        return this.request.delete(this.basePath + this.getSelectedNetwork() + '/payments/' + paymentID + '?' + queryString);
+        return this.request.delete(this.basePath + this.getSelectedNetwork() + '/payments/' + paymentID, queryParams);
     }
 
 }

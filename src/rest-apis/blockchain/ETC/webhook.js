@@ -1,4 +1,3 @@
-const querystring = require('querystring');
 const {WH_EVENT: EVENT} = require('../../../consts');
 const BaseWebHook = require('../../../common/blockchain/base-web-hook');
 
@@ -30,9 +29,7 @@ class ETCWebHook extends BaseWebHook {
             url: callbackURL
         };
 
-        const queryString = querystring.stringify(queryParams);
-
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/hooks?' + queryString, data);
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/hooks', data, queryParams);
     }
 
 }

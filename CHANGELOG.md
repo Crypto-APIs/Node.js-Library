@@ -1,3 +1,9 @@
+## 2019-09-, Version 3.0.0
+
+#### Notable changes:
+* Optional parameters in methods moved into a separate parameter
+* `switchAllNetworks` method added to the `BC` class for easier bulk switch of networks
+
 ## 2019-08-30, Version 2.1.0
 
 #### Notable changes:

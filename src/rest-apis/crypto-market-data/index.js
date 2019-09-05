@@ -1,8 +1,8 @@
-var Base = require('./base');
-var ExchangeRates = require('./exchange-rates');
-var Meta = require('./meta');
-var OHLCV = require('./ohlcv');
-var Trades = require('./trades');
+const Base = require('./base');
+const ExchangeRates = require('./exchange-rates');
+const Meta = require('./meta');
+const OHLCV = require('./ohlcv');
+const Trades = require('./trades');
 
 class CryptoMarketData {
 

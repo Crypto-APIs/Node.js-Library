@@ -1,4 +1,3 @@
-const querystring = require('querystring');
 const BaseAuth = require('../../common/base-auth');
 
 class ExchangeRates extends BaseAuth {
@@ -20,9 +19,8 @@ class ExchangeRates extends BaseAuth {
             timestamp: null, // Time (in UNIX Timestamp) of the market data used to calculate exchange rate. Optional. Default value is current time.
             ...queryParams,
         };
-        const queryString = querystring.stringify(combinedQueryParams);
 
-        return this.request.get('/exchange-rates/' + baseAssetId + '/' + quoteAssetId + '?' + queryString);
+        return this.request.get('/exchange-rates/' + baseAssetId + '/' + quoteAssetId, combinedQueryParams);
     }
 
     /**
@@ -43,9 +41,8 @@ class ExchangeRates extends BaseAuth {
             limit: 50, // Amount of items to return (optional, default value is 50).
             ...queryParams,
         };
-        const queryString = querystring.stringify(combinedQueryParams);
 
-        return this.request.get('/exchange-rates/' + baseAssetId + '?' + queryString);
+        return this.request.get('/exchange-rates/' + baseAssetId, combinedQueryParams);
     }
 
 }

@@ -43,10 +43,7 @@ class BaseBlockchain extends BaseChainComponent {
      * @returns {*|Promise<any | never>}
      */
     getBlockByHeight(blockHeight, queryParams = {}) {
-        const queryString = querystring.stringify(queryParams);
-        const query = queryString ? '?' + queryString : '';
-
-        return this.request.get(this.basePath + this.getSelectedNetwork() + '/blocks/' + blockHeight + query);
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/blocks/' + blockHeight, queryParams);
     }
 
     /**

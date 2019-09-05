@@ -1,4 +1,3 @@
-const querystring = require('querystring');
 const BaseAuth = require('../../common/base-auth');
 
 class Meta extends BaseAuth {
@@ -19,9 +18,8 @@ class Meta extends BaseAuth {
             limit: 50, // Amount of items to return (optional, default value is 50).
             ...queryParams,
         };
-        const queryString = querystring.stringify(combinedQueryParams);
 
-        return this.request.get('/exchanges/meta?' + queryString);
+        return this.request.get('/exchanges/meta', combinedQueryParams);
     }
 
     /**
@@ -40,9 +38,8 @@ class Meta extends BaseAuth {
             limit: 50, // Amount of items to return (optional, default value is 50).
             ...queryParams,
         };
-        const queryString = querystring.stringify(combinedQueryParams);
 
-        return this.request.get('/assets/meta?' + queryString);
+        return this.request.get('/assets/meta', combinedQueryParams);
     }
 
     /**
@@ -61,9 +58,8 @@ class Meta extends BaseAuth {
             limit: 50, // Amount of items to return (optional, default value is 50).
             ...queryParams,
         };
-        const queryString = querystring.stringify(combinedQueryParams);
 
-        return this.request.get('/mappings?' + queryString);
+        return this.request.get('/mappings', combinedQueryParams);
     }
 
 }

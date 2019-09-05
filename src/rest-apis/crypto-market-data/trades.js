@@ -1,4 +1,3 @@
-const querystring = require('querystring');
 const BaseAuth = require('../../common/base-auth');
 
 class Trades extends BaseAuth {
@@ -18,9 +17,8 @@ class Trades extends BaseAuth {
             limit: 50, // Amount of items to return (optional, default value is 50)
             ...queryParams,
         };
-        const queryString = querystring.stringify(combinedQueryParams);
 
-        return this.request.get('/trades/latest?' + queryString);
+        return this.request.get('/trades/latest', combinedQueryParams);
     }
 
     /**
@@ -40,9 +38,8 @@ class Trades extends BaseAuth {
             limit: 50, // Amount of items to return (optional, default value is 50)
             ...queryParams,
         };
-        const queryString = querystring.stringify(combinedQueryParams);
 
-        return this.request.get('/trades/' + symbolId + '/latest?' + queryString);
+        return this.request.get('/trades/' + symbolId + '/latest', combinedQueryParams);
     }
 
     /**
@@ -62,9 +59,8 @@ class Trades extends BaseAuth {
             limit: 50, // Amount of items to return (optional, default value is 50)
             ...queryParams,
         };
-        const queryString = querystring.stringify(combinedQueryParams);
 
-        return this.request.get('/trades/exchange/' + exchangeId + '/latest?' + queryString);
+        return this.request.get('/trades/exchange/' + exchangeId + '/latest', combinedQueryParams);
     }
 
     /**
@@ -84,9 +80,8 @@ class Trades extends BaseAuth {
             limit: 50, // Amount of items to return (optional, default value is 50)
             ...queryParams,
         };
-        const queryString = querystring.stringify(combinedQueryParams);
 
-        return this.request.get('/trades/baseAsset/' + baseAsset + '/latest?' + queryString);
+        return this.request.get('/trades/baseAsset/' + baseAsset + '/latest', combinedQueryParams);
     }
 
     /**
@@ -107,9 +102,8 @@ class Trades extends BaseAuth {
             limit: 50, // Amount of items to return (optional, default value is 50)
             ...queryParams,
         };
-        const queryString = querystring.stringify(combinedQueryParams);
 
-        return this.request.get('/trades/baseAsset/' + baseAsset + '/quoteAsset/' + quoteAsset + '/latest?' + queryString);
+        return this.request.get('/trades/baseAsset/' + baseAsset + '/quoteAsset/' + quoteAsset + '/latest', combinedQueryParams);
     }
 
     /**
@@ -131,9 +125,8 @@ class Trades extends BaseAuth {
             limit: 50, // Amount of items to return (optional, default value is 50)
             ...queryParams,
         };
-        const queryString = querystring.stringify(combinedQueryParams);
 
-        return this.request.get('/trades/exchange/' + exchangeId + '/baseAsset/' + baseAsset + '/quoteAsset/' + quoteAsset + '/latest?' + queryString);
+        return this.request.get('/trades/exchange/' + exchangeId + '/baseAsset/' + baseAsset + '/quoteAsset/' + quoteAsset + '/latest', combinedQueryParams);
     }
 
     /**
@@ -158,9 +151,8 @@ class Trades extends BaseAuth {
             limit: 50, // Amount of items to return (optional, default value is 50)
             ...queryParams,
         };
-        const queryString = querystring.stringify(combinedQueryParams);
 
-        return this.request.get('/trades/' + symbolId + '/history?' + queryString);
+        return this.request.get('/trades/' + symbolId + '/history', combinedQueryParams);
     }
 
     /**
@@ -185,9 +177,8 @@ class Trades extends BaseAuth {
             limit: 50, // Amount of items to return (optional, default value is 50)
             ...queryParams,
         };
-        const queryString = querystring.stringify(combinedQueryParams);
 
-        return this.request.get('/trades/exchange/' + exchangeId + '/history?' + queryString);
+        return this.request.get('/trades/exchange/' + exchangeId + '/history', combinedQueryParams);
     }
 
     /**
@@ -212,9 +203,8 @@ class Trades extends BaseAuth {
             limit: 50, // Amount of items to return (optional, default value is 50)
             ...queryParams,
         };
-        const queryString = querystring.stringify(combinedQueryParams);
 
-        return this.request.get('/trades/baseAsset/' + baseAsset + '/history?' + queryString);
+        return this.request.get('/trades/baseAsset/' + baseAsset + '/history', combinedQueryParams);
     }
 
     /**
@@ -240,9 +230,8 @@ class Trades extends BaseAuth {
             limit: 50, // Amount of items to return (optional, default value is 50)
             ...queryParams,
         };
-        const queryString = querystring.stringify(combinedQueryParams);
 
-        return this.request.get('/trades/baseAsset/' + baseAsset + '/quoteAsset/' + quoteAsset + '/history?' + queryString);
+        return this.request.get('/trades/baseAsset/' + baseAsset + '/quoteAsset/' + quoteAsset + '/history', combinedQueryParams);
     }
 
     /**
@@ -270,9 +259,8 @@ class Trades extends BaseAuth {
             limit: 50, // Amount of items to return (optional, default value is 50)
             ...queryParams,
         };
-        const queryString = querystring.stringify(combinedQueryParams);
 
-        return this.request.get('/trades/exchange/' + exchangeId + '/baseAsset/' + baseAsset + '/quoteAsset/' + quoteAsset + '/history?' + queryString);
+        return this.request.get('/trades/exchange/' + exchangeId + '/baseAsset/' + baseAsset + '/quoteAsset/' + quoteAsset + '/history', combinedQueryParams);
     }
 
 }

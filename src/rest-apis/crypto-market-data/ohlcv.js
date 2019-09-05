@@ -1,4 +1,3 @@
-const querystring = require('querystring');
 const BaseAuth = require('../../common/base-auth');
 
 class OHLCV extends BaseAuth {
@@ -14,9 +13,7 @@ class OHLCV extends BaseAuth {
      * @returns {*}
      */
     listAllPeriods(queryParams = {}) {
-        const queryString = querystring.stringify(queryParams);
-
-        return this.request.get('/ohlcv/periods?' + queryString);
+        return this.request.get('/ohlcv/periods', queryParams);
     }
 
     /**
@@ -37,9 +34,8 @@ class OHLCV extends BaseAuth {
             limit: 50, // Amount of items to return (optional, default value is 50)
             ...queryParams,
         };
-        const queryString = querystring.stringify(combinedQueryParams);
 
-        return this.request.get('/ohlcv/latest/' + symbolId + '?' + queryString);
+        return this.request.get('/ohlcv/latest/' + symbolId, combinedQueryParams);
     }
 
     /**
@@ -64,9 +60,8 @@ class OHLCV extends BaseAuth {
             limit: 50, // Amount of items to return (optional, default value is 50)
             ...queryParams,
         };
-        const queryString = querystring.stringify(combinedQueryParams);
 
-        return this.request.get('/ohlcv/history/' + symbolId + '?' + queryString);
+        return this.request.get('/ohlcv/history/' + symbolId, combinedQueryParams);
     }
 
 }

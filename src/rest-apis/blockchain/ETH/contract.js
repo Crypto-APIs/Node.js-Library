@@ -1,4 +1,3 @@
-const querystring = require('querystring');
 const BaseChainComponent = require('../../../common/blockchain/base-chain-component');
 
 class ETHContract extends BaseChainComponent {

@@ -1,4 +1,4 @@
-## 2019-09-, Version 3.0.0
+## 2019-09-09, Version 3.0.0
 
 #### Breaking changes:
 * Optional parameters in methods moved into a separate parameter. Methods who may need revisiting:

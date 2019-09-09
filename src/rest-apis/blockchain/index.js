@@ -6,8 +6,6 @@ const {ETC} = require('./ETC');
 const {ETH} = require('./ETH');
 const {LTC} = require('./LTC');
 
-const BCs = [];
-
 class Blockchain {
 
     constructor(...props) {

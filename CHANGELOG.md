@@ -1,7 +1,44 @@
 ## 2019-09-, Version 3.0.0
 
+#### Breaking changes:
+* Optional parameters in methods moved into a separate parameter. Methods who may need revisiting:
+  - getAddressTransactions
+  - getTransactionIndexByBlock
+  - getUnconfirmedTransactions
+  - createHDWalletTransaction
+  - getInfoMultisig
+  - createPaymentForwarding
+  - getTokenTransactionsByAddress
+  - getAddressTokenTransfers
+  - getTransactionsByBlock
+  - newTransaction
+  - newAllTransaction
+  - newTransactionWithPrivateKey
+  - newAllTransactionWithPrivateKey
+  - estimateTransactionGas
+  - getPendingTransactions
+  - getQueuedTransactions
+  - listAllExchanges
+  - listAllAssets
+  - getSpecificRate
+  - getAllCurrentRates
+  - listAllSymbols
+  - latestData
+  - historicalData
+  - getLatestData
+  - getLatestDataBySymbol
+  - getLatestDataByExchange
+  - getLatestDataByAsset
+  - getLatestDataByAssetsPair
+  - getLatestDataByExchangeAssetsPair
+  - tradesGetHistoricalData
+  - tradesGetHistoricalDataByExchange
+  - tradesGetHistoricalDataByAsset
+  - tradesGetHistoricalDataByAssetPair
+  - tradesGetHistoricalDataByExchangeAssetPair
+
 #### Notable changes:
-* Optional parameters in methods moved into a separate parameter
+* All optional parameters in methods moved into a separate parameter
 * `switchAllNetworks` method added to the `BC` class for easier bulk switch of networks
 
 ## 2019-08-30, Version 2.1.0

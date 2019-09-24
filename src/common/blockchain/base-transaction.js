@@ -76,14 +76,8 @@ class BaseTransaction extends BaseChainComponent {
      * @returns {*|Promise<any | never>}
      */
     decodeRawTransaction(hex, optData = {}, queryParams = {}) {
-        let data = {};
-
-        Object.keys(optData).map(k => {
-            data[k] = optData[k];
-        });
-
-        data = {
-            ...data,
+        const data = {
+            ...optData,
             hex: hex
         };
 
@@ -108,14 +102,8 @@ class BaseTransaction extends BaseChainComponent {
      * @returns {*|Promise<any | never>}
      */
     createTransaction(inputs, outputs, fee, optData = {}, queryParams = {}) {
-        let data = {};
-
-        Object.keys(optData).map(k => {
-            data[k] = optData[k];
-        });
-
-        data = {
-            ...data,
+        const data = {
+            ...optData,
             inputs: inputs,
             outputs: outputs,
             fee: fee,
@@ -138,14 +126,8 @@ class BaseTransaction extends BaseChainComponent {
      * @returns {*|Promise<any | never>}
      */
     signTransaction(hex, wifs, optData = {}, queryParams = {}) {
-        let data = {};
-
-        Object.keys(optData).map(k => {
-            data[k] = optData[k];
-        });
-
-        data = {
-            ...data,
+        const data = {
+            ...optData,
             hex: hex,
             wifs: wifs,
         };
@@ -166,14 +148,8 @@ class BaseTransaction extends BaseChainComponent {
      * @returns {*|Promise<any | never>}
      */
     sendTransaction(hex, optData = {}, queryParams = {}) {
-        let data = {};
-
-        Object.keys(optData).map(k => {
-            data[k] = optData[k];
-        });
-
-        data = {
-            ...data,
+        const data = {
+            ...optData,
             hex: hex,
         };
 
@@ -199,14 +175,8 @@ class BaseTransaction extends BaseChainComponent {
      * @returns {*|Promise<any | never>}
      */
     newTransaction(inputs, outputs, fee, wifs, optData = {}, queryParams = {}) {
-        let data = {};
-
-        Object.keys(optData).map(k => {
-            data[k] = optData[k];
-        });
-
-        data = {
-            ...data,
+        const data = {
+            ...optData,
             createTx: {
                 inputs: inputs,
                 outputs: outputs,

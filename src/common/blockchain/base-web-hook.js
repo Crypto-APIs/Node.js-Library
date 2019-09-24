@@ -16,14 +16,8 @@ class BaseWebHook extends BaseChainComponent {
      * @returns {*|Promise<any | never>}
      */
     createNewBlockWebHook(callbackURL, optData = {}, queryParams = {}) {
-        let data = {};
-
-        Object.keys(optData).map(k => {
-            data[k] = optData[k];
-        });
-
-        data = {
-            ...data,
+        const data = {
+            ...optData,
             event: EVENT.COMMON.NEW_BLOCK,
             url: callbackURL
         };
@@ -47,14 +41,8 @@ class BaseWebHook extends BaseChainComponent {
      * @returns {*|Promise<any | never>}
      */
     createConfirmedTransactionWebHook(callbackURL, transaction, confirmations, optData = {}, queryParams = {}) {
-        let data = {};
-
-        Object.keys(optData).map(k => {
-            data[k] = optData[k];
-        });
-
-        data = {
-            ...data,
+        const data = {
+            ...optData,
             event: EVENT.COMMON.CONFIRMED_TX,
             url: callbackURL,
             transaction: transaction,
@@ -85,14 +73,8 @@ class BaseWebHook extends BaseChainComponent {
      * @returns {*|Promise<any | never>}
      */
     createAddressTransactionWebHook(callbackURL, address, confirmations, optData = {}, queryParams = {}) {
-        let data = {};
-
-        Object.keys(optData).map(k => {
-            data[k] = optData[k];
-        });
-
-        data = {
-            ...data,
+        const data = {
+            ...optData,
             event: EVENT.COMMON.ADDRESS,
             url: callbackURL,
             address: address,
@@ -117,14 +99,8 @@ class BaseWebHook extends BaseChainComponent {
      * @returns {*|Promise<any | never>}
      */
     createTransactionConfirmationsWebHook(callbackURL, address, confirmations, optData = {}, queryParams = {}) {
-        let data = {};
-
-        Object.keys(optData).map(k => {
-            data[k] = optData[k];
-        });
-
-        data = {
-            ...data,
+        const data = {
+            ...optData,
             event: EVENT.COMMON.TRANSACTION_CONFIRMATIONS,
             url: callbackURL,
             address: address,

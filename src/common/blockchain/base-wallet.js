@@ -16,14 +16,8 @@ class BaseWallet extends BaseChainComponent {
      * @returns {*|Promise<any | never>}
      */
     createWallet(name, addresses, optData = {}, queryParams = {}) {
-        let data = {};
-
-        Object.keys(optData).map(k => {
-            data[k] = optData[k];
-        });
-
-        data = {
-            ...data,
+        const data = {
+            ...optData,
             walletName: name,
             addresses: addresses
         };
@@ -47,14 +41,8 @@ class BaseWallet extends BaseChainComponent {
      * @returns {*|Promise<any | never>}
      */
     createHDWallet(name, addressCount, password, optData = {}, queryParams = {}) {
-        let data = {};
-
-        Object.keys(optData).map(k => {
-            data[k] = optData[k];
-        });
-
-        data = {
-            ...data,
+        const data = {
+            ...optData,
             walletName: name,
             addressCount: addressCount,
             password: password
@@ -139,14 +127,8 @@ class BaseWallet extends BaseChainComponent {
      * @returns {*|Promise<any | never>}
      */
     addAddressToWallet(name, addresses, optData = {}, queryParams = {}) {
-        let data = {};
-
-        Object.keys(optData).map(k => {
-            data[k] = optData[k];
-        });
-
-        data = {
-            ...data,
+        const data = {
+            ...optData,
             addresses: addresses
         };
 
@@ -186,14 +168,8 @@ class BaseWallet extends BaseChainComponent {
      * @returns {*|Promise<any | never>}
      */
     generateAddressInHDWallet(name, addressCount, password, optData = {}, queryParams = {}) {
-        let data = {};
-
-        Object.keys(optData).map(k => {
-            data[k] = optData[k];
-        });
-
-        data = {
-            ...data,
+        const data = {
+            ...optData,
             addressCount: addressCount,
             password: password
         };
@@ -260,14 +236,8 @@ class BaseWallet extends BaseChainComponent {
      * @returns {*|Promise<any | never>}
      */
     createXPub(password, optData = {}, queryParams = {}) {
-        let data = {};
-
-        Object.keys(optData).map(k => {
-            data[k] = optData[k];
-        });
-
-        data = {
-            ...data,
+        const data = {
+            ...optData,
             password: password
         };
 
@@ -292,14 +262,8 @@ class BaseWallet extends BaseChainComponent {
      * @returns {*|Promise<any | never>}
      */
     getXPubChangeAddresses(xpub, from, to, optData = {}, queryParams = {}) {
-        let data = {};
-
-        Object.keys(optData).map(k => {
-            data[k] = optData[k];
-        });
-
-        data = {
-            ...data,
+        const data = {
+            ...optData,
             xpub: xpub,
             from: from,
             to: to
@@ -326,14 +290,8 @@ class BaseWallet extends BaseChainComponent {
      * @returns {*|Promise<any | never>}
      */
     getXPubReceiveAddresses(xpub, from, to, optData = {}, queryParams = {}) {
-        let data = {};
-
-        Object.keys(optData).map(k => {
-            data[k] = optData[k];
-        });
-
-        data = {
-            ...data,
+        const data = {
+            ...optData,
             xpub: xpub,
             from: from,
             to: to

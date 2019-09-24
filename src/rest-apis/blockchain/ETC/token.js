@@ -40,22 +40,16 @@ class ETCToken extends BaseChainComponent {
      * @param {number} gasPrice
      * @param {number} gasLimit
      * @param {number} token
-     * @param {string} [password=null]
-     * @param {string} [privateKey=null]
+     * @param {string} [password='']
+     * @param {string} [privateKey='']
      * @param {object} [optData] - Optional data.
      * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*|Promise<any | never>}
      */
-    transferTokens(fromAddress, toAddress, contract, gasPrice, gasLimit, token, password = null, privateKey = null, optData = {}, queryParams = {}) {
-        let data = {};
-
-        Object.keys(optData).map(k => {
-            data[k] = optData[k];
-        });
-
-        data = {
-            ...data,
+    transferTokens(fromAddress, toAddress, contract, gasPrice, gasLimit, token, password = '', privateKey = '', optData = {}, queryParams = {}) {
+        const data = {
+            ...optData,
             fromAddress: fromAddress,
             toAddress: toAddress,
             contract: contract,

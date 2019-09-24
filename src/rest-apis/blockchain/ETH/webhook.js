@@ -17,14 +17,8 @@ class ETHWebHook extends BaseWebHook {
      * @returns {*|Promise<any | never>}
      */
     createTokenWebHook(callbackURL, optData = {}, queryParams = {}) {
-        let data = {};
-
-        Object.keys(optData).map(k => {
-            data[k] = optData[k];
-        });
-
-        data = {
-            ...data,
+        const data = {
+            ...optData,
             event: EVENT.ETH.TOKEN,
             url: callbackURL
         };
@@ -46,14 +40,8 @@ class ETHWebHook extends BaseWebHook {
      * @returns {*|Promise<any | never>}
      */
     createTxPoolWebHook(callbackURL, optData = {}, queryParams = {}) {
-        let data = {};
-
-        Object.keys(optData).map(k => {
-            data[k] = optData[k];
-        });
-
-        data = {
-            ...data,
+        const data = {
+            ...optData,
             event: EVENT.ETH.TXPOOL,
             url: callbackURL
         };

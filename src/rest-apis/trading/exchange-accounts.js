@@ -37,18 +37,18 @@ class ExchangeAccounts extends BaseAuth {
      * @async
      * @desc Create an account for Trading APIs
      *
-     * @param {string} exchangeId - Exchange id supported in Trading APIs
-     * @param {string} exchangeApiKey - Your api key in the exchange, needed for validating calls to Private APIs
+     * @param {string} exchange_id - Exchange id supported in Trading APIs
+     * @param {string} exchange_api_key - Your api key in the exchange, needed for validating calls to Private APIs
      * @param {object} [optData] - Optional data.
      * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*}
      */
-    create(exchangeId, exchangeApiKey, optData = {}, queryParams = {}) {
+    create(exchange_id, exchange_api_key, optData = {}, queryParams = {}) {
         const data = {
             ...optData,
-            exchange_id: exchangeId,
-            exchange_api_key: exchangeApiKey,
+            exchange_id: exchange_id,
+            exchange_api_key: exchange_api_key,
         };
 
         return this.request.post('/trading/exchange-accounts', data, queryParams);

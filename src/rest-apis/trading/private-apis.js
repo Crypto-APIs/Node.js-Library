@@ -36,7 +36,7 @@ class PrivateAPIs extends BaseAuth {
      * Get Deposit Address
      *
      * @async
-     * @desc Shows open orders as provided by a given exchange's Private APIs.
+     * @desc Shows deposit address as provided by a given exchange's Private APIs.
      *
      * @param {string} accountId - Id used for authentication. (After a successful account creation in Crypto APIs)
      * @param {string} code - Code/currency with which the address is going to be funded (e.g. 'XLM')

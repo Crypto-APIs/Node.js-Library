@@ -5,6 +5,7 @@ const Network = require('./common/network');
 
 const Blockchain = require('./rest-apis/blockchain');
 const CryptoMarketData = require('./rest-apis/crypto-market-data');
+const Trading = require('./rest-apis/trading');
 
 class CryptoAPIs {
 
@@ -14,6 +15,7 @@ class CryptoAPIs {
 
         this.BC = new Blockchain(apiKey);
         this.CMD = new CryptoMarketData(apiKey);
+        this.TR = new Trading(apiKey);
     }
 
 }

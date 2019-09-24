@@ -868,6 +868,19 @@ It will print similar to the following:
 }
 ```
 
+### Trading - Services/Methods
+
+| Exchange Accounts | Private APIs      |
+| ----------------- | ----------------- |
+| create            | listAllExchanges  |
+| listAll           | getBalance        |
+| get               | getDepositAddress |
+| update            | getMyTrades       |
+| replace           | getOpenOrders     |
+| delete            | createOrder       |
+|                   | cancelOrder       |
+|                   | withdraw          |
+
 ### Exchanges - Services/Methods
 
 

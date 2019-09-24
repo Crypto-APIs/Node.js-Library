@@ -3,6 +3,7 @@ const Logger = require('../src/common/logger');
 const CryptoAPIs = require('../src');
 const Network = require('./rest-apis/blockchains/network-switch.test');
 const CMD = require('./rest-apis/crypto-market-data');
+const TR = require('./rest-apis/trading');
 const BCH = require('./rest-apis/blockchains/BCH');
 const BTC = require('./rest-apis/blockchains/BTC');
 const DASH = require('./rest-apis/blockchains/DASH');
@@ -23,6 +24,7 @@ const LTC = require('./rest-apis/blockchains/LTC');
 
     await Network(caClient);
     await CMD(caClient);
+    await TR(caClient);
     await BCH(caClient);
     await BTC(caClient);
     await DASH(caClient);

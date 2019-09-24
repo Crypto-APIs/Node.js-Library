@@ -1,3 +1,8 @@
+## 2019-09-24, Version 3.1.0
+
+#### Notable changes:
+* Trading APIs added
+
 ## 2019-09-09, Version 3.0.0
 
 #### Breaking changes:

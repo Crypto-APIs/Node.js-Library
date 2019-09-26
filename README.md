@@ -935,7 +935,7 @@ It will print similar to the following:
 |                                                  |                   |                          | newTransaction             | generateAddressInWallet   |                                       |
 |                                                  |                   |                          | createHDWalletTransaction  | generateAddressInHDWallet |                                       |
 |                                                  |                   |                          | getTransactionsFee         | removeAddressFromWallet   |                                       |
-|                                                  |                   |                          |                            | deleteWallet              |                                       |
+|                                                  |                   |                          | refund                     | deleteWallet              |                                       |
 |                                                  |                   |                          |                            | deleteHDWallet            |                                       |
 |                                                  |                   |                          |                            | createXPub                |                                       |
 |                                                  |                   |                          |                            | getXPubChangeAddresses    |                                       |

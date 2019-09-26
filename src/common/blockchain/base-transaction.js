@@ -248,6 +248,32 @@ class BaseTransaction extends BaseChainComponent {
         return this.request.get(this.basePath + this.getSelectedNetwork() + '/txs/fee', queryParams);
     }
 
+    /**
+     * Refund Transaction Endpoint
+     *
+     * @async
+     * @desc The Refund Transaction Endpoint allows users easily to return the amount in bch they have received from an
+     *      unknown source. Only two fields are required: the `txid` of the transcation and the `wif` of the recipient
+     *      address (see examples). There is an optional field `fee`. If `fee` field is not set the system will set the
+     *      recommended fee from the Transaction Fee Endpoint.
+     *
+     * @param {string} txid
+     * @param {string} wif
+     * @param {object} [optData] - Optional data.
+     * @param {object} [queryParams] - Additional query parameters.
+     *
+     * @returns {*|Promise|Promise<any>}
+     */
+    refund(txid, wif, optData = {}, queryParams = {}) {
+        const data = {
+            ...optData,
+            txid: txid,
+            wif: wif,
+        };
+
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/refund', data, queryParams);
+    }
+
 }
 
 module.exports = BaseTransaction;

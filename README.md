@@ -899,28 +899,29 @@ It will print similar to the following:
 |                    |                      |                  |                | tradesGetHistoricalDataByExchangeAssetPair |
 
 
-### Ethereum - Services/Methods
+### Ethereum (ETH), Ethereum Classic (ETC)  - Services/Methods
 
 
-| AddressService         | BlockchainService | ContractService          | PaymentForwardingService | TokenService                  | TransactionService              | WebhookService                        |               
-| ---------------------- | ----------------- | ------------------------ | ------------------------ | ----------------------------- | ------------------------------- | ------------------------------------- |  
-| getInfo                | getInfo           | estimateSmartContractGas | createPaymentForwarding  | getAddressTokenBalance        | getTransaction                  | createNewBlockWebHook                 |
-| generateAddress        | getBlockByHash    | deploySmartContract      | listPayments             | transferTokens                | getTransactionsByBlock          | createConfirmedTransactionWebHook     | 
-| generateAccount        | getBlockByHeight  |                          | listPaymentsHistory      | getTokenTransactionsByAddress | getTransactionByBlockNumber     | createAddressTransactionWebHook       |
-| getAddressTransactions | getLatestBlock    |                          | deletePayment            | getAddressTokenTransfers      | getTransactionByBlockHash       | createTransactionConfirmationsWebHook |
-| getAddressNonce        |                   |                          |                          |                               | newTransaction                  | createTokenWebHook                    |
-|                        |                   |                          |                          |                               | newAllTransaction               | createTxPoolWebHook                   |
-|                        |                   |                          |                          |                               | newTransactionWithPrivateKey    | listAllHooks                          |
-|                        |                   |                          |                          |                               | newAllTransactionWithPrivateKey | deleteWebHook                         |
-|                        |                   |                          |                          |                               | sendTransaction                 |                                       |
-|                        |                   |                          |                          |                               | pushTransaction                 |                                       |
-|                        |                   |                          |                          |                               | estimateTransactionGas          |                                       |
-|                        |                   |                          |                          |                               | getPendingTransactions          |                                       |
-|                        |                   |                          |                          |                               | getQueuedTransactions           |                                       |
-|                        |                   |                          |                          |                               | getTransactionsFee              |                                       |
+| AddressService         | BlockchainService | ContractService          | PaymentForwardingService | TokenService                  | TransactionService              | WebhookService                            |               
+| ---------------------- | ----------------- | ------------------------ | ------------------------ | ----------------------------- | ------------------------------- | ----------------------------------------- |  
+| getInfo                | getInfo           | estimateSmartContractGas | createPaymentForwarding  | getAddressTokenBalance        | getTransaction                  | createNewBlockWebHook                     |
+| generateAddress        | getBlockByHash    | deploySmartContract      | listPayments             | transferTokens                | getTransactionsByBlock          | createConfirmedTransactionWebHook         | 
+| generateAccount        | getBlockByHeight  |                          | listPaymentsHistory      | getTokenTransactionsByAddress | getTransactionByBlockNumber     | createAddressTransactionWebHook           |
+| getAddressTransactions | getLatestBlock    |                          | deletePayment            | getAddressTokenTransfers      | getTransactionByBlockHash       | createTransactionConfirmationsWebHook     |
+| getAddressNonce        |                   |                          |                          |                               | newTransaction                  | createTokenWebHook (not supported in ETC) |                    |
+|                        |                   |                          |                          |                               | newAllTransaction               | createTxPoolWebHook                       |
+|                        |                   |                          |                          |                               | newTransactionWithPrivateKey    | listAllHooks                              |
+|                        |                   |                          |                          |                               | newAllTransactionWithPrivateKey | deleteWebHook                             |
+|                        |                   |                          |                          |                               | sendTransaction                 |                                           |
+|                        |                   |                          |                          |                               | pushTransaction                 |                                           |
+|                        |                   |                          |                          |                               | estimateTransactionGas          |                                           |
+|                        |                   |                          |                          |                               | getPendingTransactions          |                                           |
+|                        |                   |                          |                          |                               | getQueuedTransactions           |                                           |
+|                        |                   |                          |                          |                               | getTransactionsFee              |                                           |
+|                        |                   |                          |                          |                               | refund                          |                                           |
     
                                 
-### Bitcoin, Litecoin, Bitcoin Cash, Dogecoin, DASH - Services/Methods
+### Bitcoin (BTC), Litecoin (LTC), Bitcoin Cash (BCH), Dogecoin (DOGE), DASH - Services/Methods
 
 
 | AddressService                                   | BlockchainService | PaymentForwardingService | TransactionService         | WalletService             | WebhookService                        |               

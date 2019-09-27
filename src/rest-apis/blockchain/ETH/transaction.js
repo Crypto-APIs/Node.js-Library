@@ -382,6 +382,38 @@ class ETHTransaction extends Base {
         return this.request.get(this.basePath + this.getSelectedNetwork() + '/txs/fee', queryParams);
     }
 
+    /**
+     * Refund Transaction Endpoint
+     *
+     * @async
+     * @desc The Refund Transaction Endpoint allows users easily to return the amount in eth they have received from an
+     *      unknown source. Only two fields are required: the txHash of the transcation and the privateKey or password
+     *      (if you are using an account) of the recipient address/account (see examples). There is an optional field
+     *      gasPrice. If gasPrice field is not set the system will set the recommended gasPrice from the Transaction Fee Endpoint.
+     *
+     * @param {string} txHash
+     * @param {string} password
+     * @param {string} privateKey
+     * @param {object} [optData] - Optional data.
+     * @param {object} [queryParams] - Additional query parameters.
+     *
+     * @returns {*|Promise|Promise<any>}
+     */
+    refund(txHash, password, privateKey, optData = {}, queryParams = {}) {
+        const data = {
+            ...optData,
+            txHash: txHash,
+        };
+
+        if (password) {
+            data.password = password;
+        } else {
+            data.privateKey = privateKey;
+        }
+
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/refund', data, queryParams);
+    }
+
 }
 
 module.exports = ETHTransaction;

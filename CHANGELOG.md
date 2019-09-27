@@ -1,3 +1,8 @@
+## 2019-09-27, Version 3.2.0
+
+#### Notable changes:
+* Transaction refund added
+
 ## 2019-09-24, Version 3.1.0
 
 #### Notable changes:

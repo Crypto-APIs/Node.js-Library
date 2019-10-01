@@ -1,3 +1,8 @@
+## 2019-10-01, Version 4.0.0
+
+#### Breaking changes:
+* `TR.exchangeAccounts` methods now accept camelCase parameters instead of snake_case 
+
 ## 2019-09-27, Version 3.2.0
 
 #### Notable changes:

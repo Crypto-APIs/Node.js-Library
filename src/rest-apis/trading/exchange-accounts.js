@@ -71,22 +71,6 @@ class ExchangeAccounts extends BaseAuth {
     }
 
     /**
-     * Replace Account
-     *
-     * @async
-     * @desc Replaces an already created account in our system with another for Trading APIs
-     *
-     * @param {string} accountId - Id of your account used for making calls to an exchange's Private APIs.
-     * @param {object} [optData] - Optional data.
-     * @param {object} [queryParams] - Additional query parameters.
-     *
-     * @returns {*}
-     */
-    replace(accountId, optData = {}, queryParams = {}) {
-        return this.request.put('/trading/exchange-accounts/' + accountId, optData, queryParams);
-    }
-
-    /**
      * Delete Account
      *
      * @async

@@ -45,6 +45,14 @@ class ExchangeRates extends BaseAuth {
         return this.request.get('/exchange-rates/' + baseAssetId, combinedQueryParams);
     }
 
+    getSpecificRateInSpecificExchange() {
+
+    }
+
+    getAllCurrentRatesInSpecificExchange() {
+
+    }
+
 }
 
 module.exports = ExchangeRates;

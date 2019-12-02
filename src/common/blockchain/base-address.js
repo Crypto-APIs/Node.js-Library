@@ -53,6 +53,32 @@ class BaseAddress extends BaseChainComponent {
         return this.request.get(this.basePath + this.getSelectedNetwork() + '/address/' + address + '/transactions', combinedQueryParams);
     }
 
+    /**
+     * Multiple Addresses Info Endpoint
+     *
+     * @async
+     * @desc The Multiple Addresses Info Endpoint strikes a general information about the given addresses in the array.
+     *
+     * @param {array<string>} addresses
+     * @param {object} [optData] - Optional data.
+     * @param {object} [queryParams] - Additional query parameters.
+     *
+     * @returns {*|Promise<any | never>}
+     */
+    multipleAddressesInfo(addresses, optData = {}, queryParams = {}) {
+        let data = {};
+
+        Object.keys(optData).map(k => {
+            data[k] = optData[k];
+        });
+
+        data = {
+            ...data,
+            addresses: addresses
+        };
+
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/address/show-multiple', data, queryParams);
+    }
 
 }
 

@@ -11,6 +11,11 @@ const WH_EVENT = {
     },
     ETC: {
         TXPOOL: 'TXPOOL',
+    },
+    OMNI: {
+        OMNI_CONFIRMED_TX: 'OMNI_CONFIRMED_TX',
+        OMNI_TRANSACTION_CONFIRMATIONS: 'OMNI_TRANSACTION_CONFIRMATIONS',
+        OMNI_TOKEN: 'OMNI_TOKEN',
     }
 };
 

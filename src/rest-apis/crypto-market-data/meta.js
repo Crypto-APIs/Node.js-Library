@@ -22,6 +22,18 @@ class Meta extends BaseAuth {
         return this.request.get('/exchanges/meta', combinedQueryParams);
     }
 
+    listExchangesBySupportingAssets() {
+
+    }
+
+    listExchangesBySupportingPairs() {
+
+    }
+
+    listAllSymbolsSupportedInExchange() {
+
+    }
+
     /**
      * List All Assets
      *

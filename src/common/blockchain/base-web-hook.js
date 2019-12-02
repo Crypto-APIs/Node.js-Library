@@ -138,6 +138,20 @@ class BaseWebHook extends BaseChainComponent {
     deleteWebHook(webhookID, queryParams = {}) {
         return this.request.delete(this.basePath + this.getSelectedNetwork() + '/hooks/' + webhookID, queryParams);
     }
+
+    /**
+     * Delete All My Webhooks
+     *
+     * @async
+     * @desc TotalCount and results indicate how many Webhooks were deleted.
+     *
+     * @param {object} [queryParams] - Additional query parameters.
+     *
+     * @returns {*|Promise<any | never>}
+     */
+    deleteAllMyWebhooks(queryParams = {}) {
+        return this.request.delete(this.basePath + this.getSelectedNetwork() + '/hooks/all', queryParams);
+    }
 }
 
 module.exports = BaseWebHook;

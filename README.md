@@ -876,68 +876,68 @@ It will print similar to the following:
 | listAll           | getBalance        |
 | get               | getDepositAddress |
 | update            | getMyTrades       |
-| replace           | getOpenOrders     |
-| delete            | createOrder       |
+| delete            | getOpenOrders     |
+|                   | createOrder       |
 |                   | cancelOrder       |
 |                   | withdraw          |
 
 ### Exchanges - Services/Methods
 
 
-| Base               | ExchangeRatesService | MetadataService  | OHLCVService   | TradesService                              |             
-| ------------------ | -------------------- | ---------------- | -------------- | ------------------------------------------ |  
-| listAllExchanges   | getSpecificRate      | listAllExchanges | listAllPeriods | getLatestData                              |
-| getExchangeDetails | getAllCurrentRates   | listAllAssets    | latestData     | getLatestDataBySymbol                      |
-| listAllAssets      |                      | listAllSymbols   | historicalData | getLatestDataByExchange                    |
-| getAssetDetails    |                      |                  |                | getLatestDataByAsset                       |
-| getSymbolDetails   |                      |                  |                | getLatestDataByAssetsPair                  |
-|                    |                      |                  |                | getLatestDataByExchangeAssetsPair          |
-|                    |                      |                  |                | tradesGetHistoricalData                    |
-|                    |                      |                  |                | tradesGetHistoricalDataByExchange          |
-|                    |                      |                  |                | tradesGetHistoricalDataByAsset             |
-|                    |                      |                  |                | tradesGetHistoricalDataByAssetPair         |
-|                    |                      |                  |                | tradesGetHistoricalDataByExchangeAssetPair |
+| Base               | ExchangeRatesService | MetadataService  | OHLCVService   | TradesService                              | OrderBookService    |            
+| ------------------ | -------------------- | ---------------- | -------------- | ------------------------------------------ | ------------------- |
+| listAllExchanges   | getSpecificRate      | listAllExchanges | listAllPeriods | getLatestData                              | getSnapshotBySymbol |
+| getExchangeDetails | getAllCurrentRates   | listAllAssets    | latestData     | getLatestDataBySymbol                      |                     |
+| listAllAssets      |                      | listAllSymbols   | historicalData | getLatestDataByExchange                    |                     |
+| getAssetDetails    |                      |                  |                | getLatestDataByAsset                       |                     |
+| getSymbolDetails   |                      |                  |                | getLatestDataByAssetsPair                  |                     |
+|                    |                      |                  |                | getLatestDataByExchangeAssetsPair          |                     |
+|                    |                      |                  |                | tradesGetHistoricalData                    |                     |
+|                    |                      |                  |                | tradesGetHistoricalDataByExchange          |                     |
+|                    |                      |                  |                | tradesGetHistoricalDataByAsset             |                     |
+|                    |                      |                  |                | tradesGetHistoricalDataByAssetPair         |                     |
+|                    |                      |                  |                | tradesGetHistoricalDataByExchangeAssetPair |                     |
 
 
 ### Ethereum (ETH), Ethereum Classic (ETC)  - Services/Methods
 
 
-| AddressService         | BlockchainService | ContractService          | PaymentForwardingService | TokenService                  | TransactionService              | WebhookService                            |               
-| ---------------------- | ----------------- | ------------------------ | ------------------------ | ----------------------------- | ------------------------------- | ----------------------------------------- |  
-| getInfo                | getInfo           | estimateSmartContractGas | createPaymentForwarding  | getAddressTokenBalance        | getTransaction                  | createNewBlockWebHook                     |
-| generateAddress        | getBlockByHash    | deploySmartContract      | listPayments             | transferTokens                | getTransactionsByBlock          | createConfirmedTransactionWebHook         | 
-| generateAccount        | getBlockByHeight  |                          | listPaymentsHistory      | getTokenTransactionsByAddress | getTransactionByBlockNumber     | createAddressTransactionWebHook           |
-| getAddressTransactions | getLatestBlock    |                          | deletePayment            | getAddressTokenTransfers      | getTransactionByBlockHash       | createTransactionConfirmationsWebHook     |
-| getAddressNonce        |                   |                          |                          |                               | newTransaction                  | createTokenWebHook (not supported in ETC) |                    |
-|                        |                   |                          |                          |                               | newAllTransaction               | createTxPoolWebHook                       |
-|                        |                   |                          |                          |                               | newTransactionWithPrivateKey    | listAllHooks                              |
-|                        |                   |                          |                          |                               | newAllTransactionWithPrivateKey | deleteWebHook                             |
-|                        |                   |                          |                          |                               | sendTransaction                 |                                           |
-|                        |                   |                          |                          |                               | pushTransaction                 |                                           |
-|                        |                   |                          |                          |                               | estimateTransactionGas          |                                           |
-|                        |                   |                          |                          |                               | getPendingTransactions          |                                           |
-|                        |                   |                          |                          |                               | getQueuedTransactions           |                                           |
-|                        |                   |                          |                          |                               | getTransactionsFee              |                                           |
-|                        |                   |                          |                          |                               | refund                          |                                           |
+| AddressService           | BlockchainService | ContractService          | PaymentForwardingService | TokenService                  | TransactionService              | WebhookService                            |               
+| ------------------------ | ----------------- | ------------------------ | ------------------------ | ----------------------------- | ------------------------------- | ----------------------------------------- |  
+| getInfo                  | getInfo           | estimateSmartContractGas | createPaymentForwarding  | getAddressTokenBalance        | getTransaction                  | createNewBlockWebHook                     |
+| getTransactionsByAddress | getBlockByHash    | deploySmartContract      | listPayments             | transferTokens                | getTransactionsByBlock          | createConfirmedTransactionWebHook         | 
+| generateAddress          | getBlockByHeight  |                          | listPaymentsHistory      | getTokenTransactionsByAddress | getTransactionByBlockNumber     | createAddressTransactionWebHook           |
+| generateAccount          | getLatestBlock    |                          | deletePayment            | getAddressTokenTransfers      | getTransactionByBlockHash       | createTransactionConfirmationsWebHook     |
+| getAddressTransactions   |                   |                          |                          | getTotalSupplyAndDecimals     | newTransaction                  | createTokenWebHook (not supported in ETC) |
+| getAddressNonce          |                   |                          |                          | getAllTokens (Ethereum)       | newAllTransaction               | listAllHooks                              |
+| multipleAddressesInfo    |                   |                          |                          |                               | newTransactionWithPrivateKey    | deleteWebHook                             |
+|                          |                   |                          |                          |                               | newAllTransactionWithPrivateKey |                                           |
+|                          |                   |                          |                          |                               | sendTransaction                 |                                           |
+|                          |                   |                          |                          |                               | pushTransaction                 |                                           |
+|                          |                   |                          |                          |                               | estimateTransactionGas          |                                           |
+|                          |                   |                          |                          |                               | getPendingTransactions          |                                           |
+|                          |                   |                          |                          |                               | getQueuedTransactions           |                                           |
+|                          |                   |                          |                          |                               | getTransactionsFee              |                                           |
+|                          |                   |                          |                          |                               | refund                          |                                           |
     
                                 
 ### Bitcoin (BTC), Litecoin (LTC), Bitcoin Cash (BCH), Dogecoin (DOGE), DASH - Services/Methods
 
 
-| AddressService                                   | BlockchainService | PaymentForwardingService | TransactionService         | WalletService             | WebhookService                        |               
-| ------------------------------------------------ | ----------------- | ------------------------ | -------------------------- | ------------------------- | ------------------------------------- |  
-| getInfo                                          | getInfo           | createPaymentForwarding  | getTransaction             | createWallet              | createNewBlockWebHook                 |
-| getInfoMultisig (not supported in Dogecoin/DASH) | getBlockByHash    | deletePayment            | getTransactionIndexByBlock | createHDWallet            | createConfirmedTransactionWebHook     | 
-| generateAddress                                  | getBlockByHeight  | listPayments             | getUnconfirmedTransactions | listWallets               | createAddressTransactionWebHook       |
-| getAddressTransactions                           | getLatestBlock    | listPaymentsHistory      | decodeRawTransaction       | listHDWallets             | createTransactionConfirmationsWebHook |
-|                                                  |                   |                          | createTransaction          | getWallet                 | listAllHooks                          |
-|                                                  |                   |                          | signTransaction            | getHDWallet               | deleteWebHook                         |
-|                                                  |                   |                          | sendTransaction            | addAddressToWallet        |                                       |
-|                                                  |                   |                          | newTransaction             | generateAddressInWallet   |                                       |
-|                                                  |                   |                          | createHDWalletTransaction  | generateAddressInHDWallet |                                       |
-|                                                  |                   |                          | getTransactionsFee         | removeAddressFromWallet   |                                       |
-|                                                  |                   |                          | refund                     | deleteWallet              |                                       |
-|                                                  |                   |                          |                            | deleteHDWallet            |                                       |
-|                                                  |                   |                          |                            | createXPub                |                                       |
-|                                                  |                   |                          |                            | getXPubChangeAddresses    |                                       |
-|                                                  |                   |                          |                            | getXPubReceiveAddresses   |                                       |
+| AddressService                                   | BlockchainService | PaymentForwardingService | TransactionService         | WalletService             | WebhookService                                  |               
+| ------------------------------------------------ | ----------------- | ------------------------ | -------------------------- | ------------------------- | ----------------------------------------------- |  
+| getInfo                                          | getInfo           | createPaymentForwarding  | getTransaction             | createWallet              | createNewBlockWebHook                           |
+| getInfoMultisig (not supported in Dogecoin/DASH) | getBlockByHash    | deletePayment            | getTransactionIndexByBlock | createHDWallet            | createConfirmedTransactionWebHook               |
+| generateAddress                                  | getBlockByHeight  | listPayments             | getUnconfirmedTransactions | listWallets               | createAddressTransactionWebHook                 |
+| getAddressTransactions                           | getLatestBlock    | listPaymentsHistory      | decodeRawTransaction       | listHDWallets             | createTransactionConfirmationsWebHook           |
+| multipleAddressesInfo                            |                   |                          | createTransaction          | getWallet                 | createOmniConfirmedTransactionWebHook (BTC)     |
+|                                                  |                   |                          | signTransaction            | getHDWallet               | createOmniTransactionConfirmationsWebHook (BTC) |
+|                                                  |                   |                          | sendTransaction            | addAddressToWallet        | createOmniTokenWebHook (BTC)                    |
+|                                                  |                   |                          | newTransaction             | generateAddressInWallet   | listAllHooks                                    |
+|                                                  |                   |                          | createHDWalletTransaction  | generateAddressInHDWallet | deleteWebHook                                   |
+|                                                  |                   |                          | getTransactionsFee         | removeAddressFromWallet   | deleteAllMyWebhooks                             |
+|                                                  |                   |                          | refund                     | deleteWallet              |                                                 |
+|                                                  |                   |                          |                            | deleteHDWallet            |                                                 |
+|                                                  |                   |                          |                            | createXPub                |                                                 |
+|                                                  |                   |                          |                            | getXPubChangeAddresses    |                                                 |
+|                                                  |                   |                          |                            | getXPubReceiveAddresses   |                                                 |

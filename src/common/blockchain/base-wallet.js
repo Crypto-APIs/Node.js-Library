@@ -300,6 +300,9 @@ class BaseWallet extends BaseChainComponent {
         return this.request.post(this.basePath + this.getSelectedNetwork() + '/wallets/hd/xpub/addresses/receive', data, queryParams);
     }
 
+    importAddressAsWallet() {
+
+    }
 }
 
 module.exports = BaseWallet;

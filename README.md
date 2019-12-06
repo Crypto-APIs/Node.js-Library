@@ -136,19 +136,19 @@ NOTES:
 * [caClient.BC.XXX.webhook.deleteWebHook](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/btc/index#btc-webhooks-delete-webhook-endpoint)
 * [caClient.BC.XXX.webhook.deleteAllMyWebhooks](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/btc/index#btc-webhooks-delete-all-webhooks-endpoint)
 
-#### Omni Layer methods (BTC only)
-* [caClient.BC.XXX.omniLayer.getNodeInfo](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/btc/index#btc-omni-blockchain-chain-endpoint)
-* [caClient.BC.XXX.omniLayer.getAddress](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/btc/index#btc-omni-address-info-endpoint)
-* [caClient.BC.XXX.omniLayer.getAddressTransactions](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/btc/index#btc-omni-address-txs-endpoint)
-* [caClient.BC.XXX.omniLayer.createTransactions](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/btc/index#btc-omni-transactions-creating-transactions)
-* [caClient.BC.XXX.omniLayer.signTransaction](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/btc/index#btc-omni-transactions-sign)
-* [caClient.BC.XXX.omniLayer.sendTransaction](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/btc/index#btc-omni-transactions-send-transactions)
-* [caClient.BC.XXX.omniLayer.newTransaction](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/btc/index#btc-omni-transactions-new-transactions)
-* [caClient.BC.XXX.omniLayer.createHDWalletTransaction](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/btc/index#btc-omni-transactions-hdwallet-transactions)
-* [caClient.BC.XXX.omniLayer.getTransaction](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/btc/index#btc-omni-transaction-txid-endpoint)
-* [caClient.BC.XXX.omniLayer.getTransactionIndexByBlock](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/btc/index#btc-omni-transaction-by-block-endpoint)
-* [caClient.BC.XXX.omniLayer.getTransactionsPropertyId](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/btc/index#btc-omni-transaction-by-propertyid-endpoint)
-* [caClient.BC.XXX.omniLayer.getUnconfirmedTransactions](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/btc/index#btc-omni-unconfirmed-txs-endpoint)
+#### Omni Layer methods
+* (BTC only) [caClient.BC.XXX.omniLayer.getNodeInfo](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/btc/index#btc-omni-blockchain-chain-endpoint)
+* (BTC only) [caClient.BC.XXX.omniLayer.getAddress](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/btc/index#btc-omni-address-info-endpoint)
+* (BTC only) [caClient.BC.XXX.omniLayer.getAddressTransactions](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/btc/index#btc-omni-address-txs-endpoint)
+* (BTC only) [caClient.BC.XXX.omniLayer.createTransactions](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/btc/index#btc-omni-transactions-creating-transactions)
+* (BTC only) [caClient.BC.XXX.omniLayer.signTransaction](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/btc/index#btc-omni-transactions-sign)
+* (BTC only) [caClient.BC.XXX.omniLayer.sendTransaction](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/btc/index#btc-omni-transactions-send-transactions)
+* (BTC only) [caClient.BC.XXX.omniLayer.newTransaction](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/btc/index#btc-omni-transactions-new-transactions)
+* (BTC only) [caClient.BC.XXX.omniLayer.createHDWalletTransaction](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/btc/index#btc-omni-transactions-hdwallet-transactions)
+* (BTC only) [caClient.BC.XXX.omniLayer.getTransaction](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/btc/index#btc-omni-transaction-txid-endpoint)
+* (BTC only) [caClient.BC.XXX.omniLayer.getTransactionIndexByBlock](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/btc/index#btc-omni-transaction-by-block-endpoint)
+* (BTC only) [caClient.BC.XXX.omniLayer.getTransactionsPropertyId](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/btc/index#btc-omni-transaction-by-propertyid-endpoint)
+* (BTC only) [caClient.BC.XXX.omniLayer.getUnconfirmedTransactions](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/btc/index#btc-omni-unconfirmed-txs-endpoint)
 
 
 ### ETH / ETC methods

@@ -18,6 +18,7 @@
     - OMNI_CONFIRMED_TX
     - OMNI_TRANSACTION_CONFIRMATIONS
     - OMNI_TOKEN
+* README reworked
 
 #### Bug fixes:
 * Added `confirmations` parameter to `createTokenWebHook` (ETH)

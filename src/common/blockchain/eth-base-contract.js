@@ -1,6 +1,6 @@
-const BaseChainComponent = require('../../../common/blockchain/base-chain-component');
+const BaseChainComponent = require('./base-chain-component');
 
-class ETHContract extends BaseChainComponent {
+class EthBaseContract extends BaseChainComponent {
 
     /**
      * Estimate Gas Smart Contract Endpoint
@@ -58,4 +58,4 @@ class ETHContract extends BaseChainComponent {
 
 }
 
-module.exports = ETHContract;
+module.exports = EthBaseContract;

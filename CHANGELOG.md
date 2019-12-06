@@ -1,8 +1,7 @@
-## 2019-12-, Version 4.1.0
+## 2019-12-06, Version 4.1.0
 
 #### Notable changes:
-* 
-
+* All methods are now up to date with the [documentation](https://docs.cryptoapis.io/)
 
 ## 2019-10-01, Version 4.0.0
 

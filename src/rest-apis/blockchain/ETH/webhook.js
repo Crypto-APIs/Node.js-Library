@@ -11,39 +11,18 @@ class ETHWebHook extends BaseWebHook {
      *      The payload is a json object with the token transfer information.
      *
      * @param {string} callbackURL - Webhook callback url
+     * @param {string} address - Address from the blockchain.
      * @param {object} [optData] - Optional data.
      * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*|Promise<any | never>}
      */
-    createTokenWebHook(callbackURL, optData = {}, queryParams = {}) {
+    createTokenWebHook(callbackURL, address, optData = {}, queryParams = {}) {
         const data = {
             ...optData,
             event: EVENT.ETH.TOKEN,
-            url: callbackURL
-        };
-
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/hooks', data, queryParams);
-    }
-
-    /**
-     * Create Tx pool WebHook Endpoint
-     *
-     * @async
-     * @desc Similar to ADDRESS Webhook, differes in that it is for a given address found in the transactions in the txpool
-     *      of the Ethereum Blockchain. The payload is a list with transactions from the txpool for the particular address.
-     *
-     * @param {string} callbackURL - Webhook callback url
-     * @param {object} [optData] - Optional data.
-     * @param {object} [queryParams] - Additional query parameters.
-     *
-     * @returns {*|Promise<any | never>}
-     */
-    createTxPoolWebHook(callbackURL, optData = {}, queryParams = {}) {
-        const data = {
-            ...optData,
-            event: EVENT.ETH.TXPOOL,
-            url: callbackURL
+            url: callbackURL,
+            address: address,
         };
 
         return this.request.post(this.basePath + this.getSelectedNetwork() + '/hooks', data, queryParams);

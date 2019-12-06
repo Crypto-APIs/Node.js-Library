@@ -1,6 +1,6 @@
-const Base = require('../../../common/blockchain/base-chain-component');
+const BaseChainComponent = require('./base-chain-component');
 
-class ETCTransaction extends Base {
+class EthBaseTransaction extends BaseChainComponent {
 
     /**
      * Transaction Hash Endpoint
@@ -80,7 +80,7 @@ class ETCTransaction extends Base {
      * @desc In order to use this endpoint you should have an account(keystore file) stored on our servers.
      *
      *      Then, you need to provide the from address, to address, value to transfer (in Ether), gas price and gas
-     *      limit in wei. A standard ETC transfer requires at least a gas limit of 21,000 units of gas. Even if you set
+     *      limit in wei. A standard ETH transfer requires at least a gas limit of 21,000 units of gas. Even if you set
      *      a higher than the required gas limit, only the required limit will be deducted. Optional fields are: nonce
      *      and data. The nonce represents the transactions count for the specified from address. If not specified the
      *      system will automatically calculate the correct nonce.
@@ -307,16 +307,8 @@ class ETCTransaction extends Base {
      * @returns {*|Promise<any | never>}
      */
     estimateTransactionGas(fromAddress, toAddress, value, optData = {}, queryParams = {}) {
-        let data = {
-            data: null, // If data is added it should be a valid hexadecimal number otherwise an error will be returned as a response.
-        };
-
-        Object.keys(optData).map(k => {
-            data[k] = optData[k];
-        });
-
-        data = {
-            ...data,
+        const data = {
+            ...optData,
             fromAddress: fromAddress,
             toAddress: toAddress,
             value: value
@@ -416,4 +408,4 @@ class ETCTransaction extends Base {
 
 }
 
-module.exports = ETCTransaction;
+module.exports = EthBaseTransaction;

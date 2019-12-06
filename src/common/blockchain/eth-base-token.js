@@ -1,6 +1,6 @@
-const BaseChainComponent = require('../../../common/blockchain/base-chain-component');
+const BaseChainComponent = require('./base-chain-component');
 
-class ETCToken extends BaseChainComponent {
+class EthBaseToken extends BaseChainComponent {
 
     /**
      * Get Token Balance
@@ -40,16 +40,22 @@ class ETCToken extends BaseChainComponent {
      * @param {number} gasPrice
      * @param {number} gasLimit
      * @param {number} token
-     * @param {string} [password='']
-     * @param {string} [privateKey='']
+     * @param {string} [password=null]
+     * @param {string} [privateKey=null]
      * @param {object} [optData] - Optional data.
      * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*|Promise<any | never>}
      */
-    transferTokens(fromAddress, toAddress, contract, gasPrice, gasLimit, token, password = '', privateKey = '', optData = {}, queryParams = {}) {
-        const data = {
-            ...optData,
+    transferTokens(fromAddress, toAddress, contract, gasPrice, gasLimit, token, password = null, privateKey = null, optData = {}, queryParams = {}) {
+        let data = {};
+
+        Object.keys(optData).map(k => {
+            data[k] = optData[k];
+        });
+
+        data = {
+            ...data,
             fromAddress: fromAddress,
             toAddress: toAddress,
             contract: contract,
@@ -110,6 +116,22 @@ class ETCToken extends BaseChainComponent {
         return this.request.get(this.basePath + this.getSelectedNetwork() + '/tokens/address/' + address, combinedQueryParams);
     }
 
+    /**
+     * Get Token Total Supply And Decimals
+     *
+     * @async
+     * @desc In the request url you should provide the contract you want to observe. After sending the request you will
+     *      receive a json object with the total supply and the decimals of the token. Works both for ERC-20 and ERC-721 Tokens.
+     *
+     * @param {string} contract - Contract address (e.g. "0xe9fa3d69c35b907e57f6561c1daf9bf7fc5d3786")
+     * @param {object} [queryParams] - Additional query parameters.
+     *
+     * @returns {*|Promise<any | never>}
+     */
+    getTokenTotalSupplyAndDecimals(contract, queryParams = {}) {
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/tokens/contract/' + contract, queryParams);
+    }
+
 }
 
-module.exports = ETCToken;
+module.exports = EthBaseToken;

@@ -1,7 +1,7 @@
 async function Transaction(caClient) {
     console.log('\n::ETC Transaction');
 
-    const txHash = '0x3d6b4341a2ffe7bfcf2533d1179756ebadae871b9ad43e6e62732d115b1097ba';
+    const txHash = '0x7a7f3afed522a106d4b1ea469352cf4ca128eacfbb70b9002c37db5db9ef5d01';
 
     const transaction = await caClient.BC.ETC.transaction.getTransaction(txHash).then(response => response ? response.payload : null);
 
@@ -19,7 +19,6 @@ async function Transaction(caClient) {
     await caClient.BC.ETC.transaction.estimateTransactionGas(from, to, value);
     await caClient.BC.ETC.transaction.getPendingTransactions();
     await caClient.BC.ETC.transaction.getQueuedTransactions();
-    await caClient.BC.ETC.transaction.getTransactionsFee();
 }
 
 

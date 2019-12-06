@@ -1,6 +1,6 @@
 const BaseChainComponent = require('./base-chain-component');
 
-class BaseOmniLayer extends BaseChainComponent {
+class OmniBaseLayer extends BaseChainComponent {
 
     constructor(apiKey, bcId) {
         super(apiKey, bcId + '/omni');
@@ -179,7 +179,6 @@ class BaseOmniLayer extends BaseChainComponent {
      */
     createHDWalletTransaction(walletName, password, from, to, value, fee, propertyID, optData = {}, queryParams = {}) {
         let data = {
-            inputs: null,
             locktime: 0,
         };
 
@@ -189,6 +188,8 @@ class BaseOmniLayer extends BaseChainComponent {
 
         data = {
             ...data,
+            walletName: walletName,
+            password: password,
             from: from,
             to: to,
             value: value,
@@ -282,4 +283,4 @@ class BaseOmniLayer extends BaseChainComponent {
 
 }
 
-module.exports = BaseOmniLayer;
+module.exports = OmniBaseLayer;

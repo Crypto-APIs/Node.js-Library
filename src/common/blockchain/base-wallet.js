@@ -300,9 +300,35 @@ class BaseWallet extends BaseChainComponent {
         return this.request.post(this.basePath + this.getSelectedNetwork() + '/wallets/hd/xpub/addresses/receive', data, queryParams);
     }
 
-    importAddressAsWallet() {
+    /**
+     * Import Address as a Wallet
+     *
+     * @async
+     * @desc This endpoint allows you to import a BTC address. Although it is only an address it will be treated as an
+     *      HDwallet. Therefore, with the imported wallet users can make transactions and payment forwardings. Moreover,
+     *      imported wallets can be listed and deleted.
+     *
+     * @param {string} walletName - Wallet name.
+     * @param {string} password - Wallet password.
+     * @param {string} privateKey
+     * @param {string} address
+     * @param {object} [optData] - Optional data.
+     * @param {object} [queryParams] - Additional query parameters.
+     *
+     * @returns {*|Promise<any | never>}
+     */
+    importAddressAsWallet(walletName, password, privateKey, address, optData = {}, queryParams = {}) {
+        const data = {
+            ...optData,
+            walletName: walletName,
+            password: password,
+            privateKey: privateKey,
+            address: address,
+        };
 
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/wallets/hd/import', data, queryParams);
     }
+
 }
 
 module.exports = BaseWallet;

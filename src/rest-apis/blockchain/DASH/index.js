@@ -6,7 +6,7 @@ const Transaction = require('../../../common/blockchain/base-transaction');
 const Wallet = require('../../../common/blockchain/base-wallet');
 const Webhook = require('../../../common/blockchain/base-web-hook');
 
-const PaymentForwarding = require('./payment-forwarding');
+const PaymentForwarding = require('../../../common/blockchain/btc-base-payment-forwarding');
 
 const ID = 'dash';
 const NETWORKS = {

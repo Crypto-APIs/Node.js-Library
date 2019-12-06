@@ -2,11 +2,12 @@ const BlockchainNetwork = require('../../../common/blockchain/blockchain-network
 
 const Blockchain = require('../../../common/blockchain/base-blockchain');
 
-const Address = require('./address');
-const Contract = require('./contract');
-const PaymentForwarding = require('./payment-forwarding');
+const Contract = require('../../../common/blockchain/eth-base-contract');
+const Address = require('../../../common/blockchain/eth-base-address');
+const PaymentForwarding = require('../../../common/blockchain/eth-base-payment-forwarding');
+const Transaction = require('../../../common/blockchain/eth-base-transaction');
+
 const Token = require('./token');
-const Transaction = require('./transaction');
 const Webhook = require('./webhook');
 
 const ID = 'eth';

@@ -1,6 +1,22 @@
-const BaseAddress = require('../../../common/blockchain/base-address');
+const BaseAddress = require('./base-address');
 
-class ETCAddress extends BaseAddress {
+class EthBaseAddress extends BaseAddress {
+
+    /**
+     * Get Transactions By Address
+     *
+     * @async
+     * @desc The Transactions By Address Endpoint returns all transactions specified by the query params: index and limit;
+     *      The maximum value of limit is 50. The value in the returned transactions in WEI.
+     *
+     * @param {string} address - Address in blockchain.
+     * @param {object} [queryParams] - Additional query parameters.
+     *
+     * @returns {*|Promise<any | never>}
+     */
+    getTransactionsByAddress(address, queryParams = {}) {
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/address/' + address + '/transactions', queryParams);
+    }
 
     /**
      * Generate Account Endpoint
@@ -49,4 +65,4 @@ class ETCAddress extends BaseAddress {
 
 }
 
-module.exports = ETCAddress;
+module.exports = EthBaseAddress;

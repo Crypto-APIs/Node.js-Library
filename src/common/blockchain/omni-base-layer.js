@@ -3,7 +3,8 @@ const BaseChainComponent = require('./base-chain-component');
 class OmniBaseLayer extends BaseChainComponent {
 
     constructor(apiKey, bcId) {
-        super(apiKey, bcId + '/omni');
+        super(apiKey, bcId);
+        this.basePath = this.basePath + 'omni/';
     }
 
     /**

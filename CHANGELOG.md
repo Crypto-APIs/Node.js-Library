@@ -1,3 +1,27 @@
+## 2019-12-09, Version 4.2.0
+
+#### Notable changes:
+* Added Omni Layer methods to BTC
+    - getNodeInfo
+    - getAddress
+    - getAddressTransactions
+    - createTransactions
+    - signTransaction
+    - sendTransaction
+    - newTransaction
+    - createHDWalletTransaction
+    - getTransaction
+    - getTransactionIndexByBlock
+    - getTransactionsPropertyId
+    - getUnconfirmedTransactions
+* Added Omni Webhooks to BTC
+    - OMNI_CONFIRMED_TX
+    - OMNI_TRANSACTION_CONFIRMATIONS
+    - OMNI_TOKEN
+
+#### Bug fixes:
+* Added `confirmations` parameter to `createTokenWebHook` (ETH)
+
 ## 2019-12-06, Version 4.1.0
 
 #### Notable changes:

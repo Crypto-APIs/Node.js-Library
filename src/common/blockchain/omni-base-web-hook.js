@@ -64,16 +64,20 @@ class OmniBaseWebHook extends BaseWebHook {
      *      The payload is a json object with the token transfer information.
      *
      * @param {string} callbackURL - Webhook callback url
+     * @param {string} address - Address from the blockchain.
+     * @param {number} confirmations - Receive webhook after a specified number of confirmations.
      * @param {object} [optData] - Optional data.
      * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*|Promise<any | never>}
      */
-    createOmniTokenWebHook(callbackURL, optData = {}, queryParams = {}) {
+    createOmniTokenWebHook(callbackURL, address, confirmations, optData = {}, queryParams = {}) {
         const data = {
             ...optData,
             event: EVENT.OMNI.OMNI_TOKEN,
-            url: callbackURL
+            url: callbackURL,
+            address: address,
+            confirmations: confirmations,
         };
 
         return this.request.post(this.basePath + this.getSelectedNetwork() + '/hooks', data, queryParams);

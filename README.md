@@ -1,3 +1,5 @@
+## Previous version of this doc [here](./README--deprecated.md)
+
 JavaScript SDK for [CryptoAPIs.io](https://cryptoapis.io/)
 ===========
 

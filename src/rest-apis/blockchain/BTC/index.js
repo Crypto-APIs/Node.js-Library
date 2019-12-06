@@ -28,7 +28,7 @@ class BTC extends BlockchainNetwork {
         this.transaction = new Transaction(...props, ID);
         this.wallet = new Wallet(...props, ID);
         this.webhook = new Webhook(...props, ID);
-        // this.omniLayer = new OmniLayer(...props, ID);
+        this.omniLayer = new OmniLayer(...props, ID);
     }
 
 }

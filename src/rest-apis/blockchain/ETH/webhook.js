@@ -12,17 +12,19 @@ class ETHWebHook extends BaseWebHook {
      *
      * @param {string} callbackURL - Webhook callback url
      * @param {string} address - Address from the blockchain.
+     * @param {number} confirmations - Receive webhook after a specified number of confirmations.
      * @param {object} [optData] - Optional data.
      * @param {object} [queryParams] - Additional query parameters.
      *
      * @returns {*|Promise<any | never>}
      */
-    createTokenWebHook(callbackURL, address, optData = {}, queryParams = {}) {
+    createTokenWebHook(callbackURL, address, confirmations, optData = {}, queryParams = {}) {
         const data = {
             ...optData,
             event: EVENT.ETH.TOKEN,
             url: callbackURL,
             address: address,
+            confirmations: confirmations,
         };
 
         return this.request.post(this.basePath + this.getSelectedNetwork() + '/hooks', data, queryParams);

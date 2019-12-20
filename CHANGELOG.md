@@ -1,3 +1,8 @@
+## 2019-12-20, Version 4.1.1
+
+#### Breaking changes:
+* createTokenWebHook method params updated
+
 ## 2019-12-06, Version 4.1.0
 
 #### Notable changes:

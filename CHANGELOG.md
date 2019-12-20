@@ -15,9 +15,9 @@
     - getTransactionsPropertyId
     - getUnconfirmedTransactions
 * Added Omni Webhooks to BTC
-    - OMNI_CONFIRMED_TX
-    - OMNI_TRANSACTION_CONFIRMATIONS
-    - OMNI_TOKEN
+    - createOmniConfirmedTransactionWebHook (OMNI_CONFIRMED_TX)
+    - createOmniTransactionConfirmationsWebHook (OMNI_TRANSACTION_CONFIRMATIONS)
+    - createOmniTokenWebHook (OMNI_TOKEN)
 * README reworked
 
 ## 2019-12-20, Version 4.1.1

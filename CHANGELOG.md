@@ -1,3 +1,8 @@
+## 2019-12-20, Version 4.2.1
+
+#### Notable changes:
+* Added `getTransactionSize` method for BTC based
+
 ## 2019-12-20, Version 4.2.0
 
 #### Notable changes:

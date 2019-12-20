@@ -118,6 +118,7 @@ NOTES:
 * caClient.BC.XXX.transaction.newTransaction ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/btc/index#btc-transactions-new-transactions))
 * caClient.BC.XXX.transaction.createHDWalletTransaction ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/btc/index#btc-transactions-hdwallet-transactions))
 * caClient.BC.XXX.transaction.getTransactionsFee ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/btc/index#btc-transactions-fee-endpoint))
+* caClient.BC.XXX.transaction.getTransactionSize ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/btc/index#btc-transactions-size))
 * caClient.BC.XXX.transaction.refund ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/btc/index#btc-refund-transaction))
 
 #### Payment Forwarding methods

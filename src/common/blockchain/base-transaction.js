@@ -95,7 +95,7 @@ class BaseTransaction extends BaseChainComponent {
      *
      * @param {Array} inputs
      * @param {Array} outputs
-     * @param {Object<{number} value>} fee
+     * @param {object<{number} value>} fee
      * @param {object} [optData] - Optional data.
      * @param {object} [queryParams] - Additional query parameters.
      *
@@ -167,7 +167,7 @@ class BaseTransaction extends BaseChainComponent {
      *
      * @param {Array} inputs
      * @param {Array} outputs
-     * @param {Object<{number} value>} fee
+     * @param {object<{number} value>} fee
      * @param {Array} wifs
      * @param {object} [optData] - Optional data.
      * @param {object} [queryParams] - Additional query parameters.
@@ -203,7 +203,7 @@ class BaseTransaction extends BaseChainComponent {
      * @param {string} walletName - Wallet name.
      * @param {string} password - Wallet password.
      * @param {Array} outputs
-     * @param {Object<{number} value, {string} [address]>} fee
+     * @param {object<{number} value, {string} [address]>} fee
      * @param {object} [optData] - Optional data.
      * @param {object} [queryParams] - Additional query parameters.
      *
@@ -246,6 +246,31 @@ class BaseTransaction extends BaseChainComponent {
      */
     getTransactionsFee(queryParams = {}) {
         return this.request.get(this.basePath + this.getSelectedNetwork() + '/txs/fee', queryParams);
+    }
+
+    /**
+     * Transaction Size Endpoint
+     *
+     * @async
+     * @desc Using Crypto APIs, you can calculate the approximate size of a standard transaction.
+     *
+     * @param {array} inputs
+     * @param {array} outputs
+     * @param {object} fee
+     * @param {object} [optData] - Optional data.
+     * @param {object} [queryParams] - Additional query parameters.
+     *
+     * @returns {*|Promise|Promise<any>}
+     */
+    getTransactionSize(inputs, outputs, fee, optData = {}, queryParams = {}) {
+        const data = {
+            ...optData,
+            inputs,
+            outputs,
+            fee,
+        };
+
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/size', data, queryParams);
     }
 
     /**

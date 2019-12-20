@@ -1,4 +1,4 @@
-## 2019-12-09, Version 4.2.0
+## 2019-12-20, Version 4.2.0
 
 #### Notable changes:
 * Added Omni Layer methods to BTC
@@ -20,8 +20,10 @@
     - OMNI_TOKEN
 * README reworked
 
-#### Bug fixes:
-* Added `confirmations` parameter to `createTokenWebHook` (ETH)
+## 2019-12-20, Version 4.1.1
+
+#### Breaking changes:
+* createTokenWebHook method params updated
 
 ## 2019-12-06, Version 4.1.0
 

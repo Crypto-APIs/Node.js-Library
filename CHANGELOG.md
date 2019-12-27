@@ -1,3 +1,8 @@
+## 2019-12-27, Version 4.2.2
+
+#### Notable changes:
+* README update
+
 ## 2019-12-20, Version 4.2.1
 
 #### Notable changes:

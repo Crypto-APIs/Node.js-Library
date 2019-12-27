@@ -69,6 +69,8 @@ It will print the following:
 ```
 
 
+# Blockchain as a Service APIs
+
 ## List of all methods available
 NOTES: 
 * XXX - blockchain (BTC / BCH / LTC / DOGE / DASH / ETH / ETC)
@@ -214,3 +216,72 @@ NOTES:
 * caClient.BC.XXX.webhook.listAllHooks ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/eth/index#eth-list-webhook-endpoint))
 * caClient.BC.XXX.webhook.deleteWebHook ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/eth/index#eth-delete-webhook-endpoints))
 * caClient.BC.XXX.webhook.deleteAllMyWebhooks ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/eth/index#eth-delete-all-webhooks-endpoints))
+
+
+# Crypto Market Data APIs
+
+#### Metadata
+* caClient.CMD.meta.listAllExchanges ([docs](https://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#list-all-exchanges))
+* caClient.CMD.meta.listExchangesBySupportingAssets ([docs](https://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#list-exchanges-by-supporting-assets))
+* caClient.CMD.meta.listExchangesBySupportingPairs ([docs](https://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#list-exchanges-by-supporting-pairs))
+* caClient.CMD.meta.listAllSymbolsSupportedInExchange ([docs](https://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#list-all-symbols-supported-in-exchange))
+* caClient.CMD.meta.listAllAssets ([docs](https://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#list-all-assets))
+* caClient.CMD.meta.listAllSymbols ([docs](https://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#list-all-symbols))
+
+#### Base data
+* caClient.CMD.base.listAllExchanges ([docs](https://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#list-all-exchanges-base-data))
+* caClient.CMD.base.getExchangeDetails ([docs](https://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#get-exchange-details))
+* caClient.CMD.base.listAllAssets ([docs](https://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#list-all-assets-base-data))
+* caClient.CMD.base.getAssetDetails ([docs](https://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#get-asset-details))
+* caClient.CMD.base.getSymbolDetails ([docs](https://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#get-symbol-details))
+
+#### Exchange Rates
+* caClient.CMD.exchangeRates.getSpecificRate ([docs](https://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#get-specific-rate))
+* caClient.CMD.exchangeRates.getAllCurrentRates ([docs](https://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#get-all-current-rates))
+* caClient.CMD.exchangeRates.getSpecificRateInSpecificExchange ([docs](https://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#get-specific-rate-in-a-specific-exchange))
+* caClient.CMD.exchangeRates.getAllCurrentRatesInSpecificExchange ([docs](https://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#get-all-current-rates-in-a-specific-exchange))
+
+#### OHLCV
+* caClient.CMD.OHLCV.listAllPeriods ([docs](https://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#list-all-periods))
+* caClient.CMD.OHLCV.latestData ([docs](https://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#latest-data))
+* caClient.CMD.OHLCV.historicalData ([docs](https://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#historical-data))
+
+#### Trades
+* caClient.CMD.trades.getLatestData ([docs](https://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#trades-latest-data))
+* caClient.CMD.trades.getLatestDataBySymbol ([docs](https://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#trades-latest-data-by-symbol))
+* caClient.CMD.trades.getLatestDataByExchange ([docs](https://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#trades-latest-data-by-exchange))
+* caClient.CMD.trades.getLatestDataByAsset ([docs](https://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#trades-latest-data-by-base-asset))
+* caClient.CMD.trades.getLatestDataByAssetsPair ([docs](https://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#trades-latest-data-by-pair))
+* caClient.CMD.trades.getLatestDataByExchangeAssetsPair ([docs](https://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#trades-latest-data-by-exchange-pair))
+* caClient.CMD.trades.tradesGetHistoricalData ([docs](https://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#trades-historical-data))
+* caClient.CMD.trades.tradesGetHistoricalDataByExchange ([docs](https://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#trades-historical-data-by-exchange))
+* caClient.CMD.trades.tradesGetHistoricalDataByAsset ([docs](https://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#trades-historical-data-by-base-asset))
+* caClient.CMD.trades.tradesGetHistoricalDataByAssetPair ([docs](https://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#trades-historical-data-by-pair))
+* caClient.CMD.trades.tradesGetHistoricalDataByExchangeAssetPair ([docs](https://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#trades-historical-data-by-exchange-pair))
+
+#### Order Book
+* caClient.CMD.orderBook.getSnapshotBySymbol ([docs](https://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#order-book-snapshot-by-symbol))
+
+
+# Trading APIs
+
+#### Exchange Accounts
+* caClient.TR.exchangeAccounts.create ([docs](https://docs.cryptoapis.io/rest-apis/trading-apis/exchange-accounts/index#create-account))
+* caClient.TR.exchangeAccounts.listAll ([docs](https://docs.cryptoapis.io/rest-apis/trading-apis/exchange-accounts/index#list-all-accounts))
+* caClient.TR.exchangeAccounts.get ([docs](https://docs.cryptoapis.io/rest-apis/trading-apis/exchange-accounts/index#get-account))
+* caClient.TR.exchangeAccounts.update ([docs](https://docs.cryptoapis.io/rest-apis/trading-apis/exchange-accounts/index#update-account))
+* caClient.TR.exchangeAccounts.delete ([docs](https://docs.cryptoapis.io/rest-apis/trading-apis/exchange-accounts/index#delete-account))
+
+#### Private APIs
+* caClient.TR.privateAPIs.listAllExchanges ([docs](https://docs.cryptoapis.io/rest-apis/trading-apis/private-apis/index#list-all-exchanges)))
+* caClient.TR.privateAPIs.getBalance ([docs](https://docs.cryptoapis.io/rest-apis/trading-apis/private-apis/index#balance)))
+* caClient.TR.privateAPIs.getDepositAddress ([docs](https://docs.cryptoapis.io/rest-apis/trading-apis/private-apis/index#get-deposit-address)))
+* caClient.TR.privateAPIs.getMyTrades ([docs](https://docs.cryptoapis.io/rest-apis/trading-apis/private-apis/index#get-my-trades)))
+* caClient.TR.privateAPIs.getOpenOrders ([docs](https://docs.cryptoapis.io/rest-apis/trading-apis/private-apis/index#get-open-orders)))
+* caClient.TR.privateAPIs.createOrder ([docs](https://docs.cryptoapis.io/rest-apis/trading-apis/private-apis/index#create-order)))
+* caClient.TR.privateAPIs.cancelOrder ([docs](https://docs.cryptoapis.io/rest-apis/trading-apis/private-apis/index#cancel-order)))
+* caClient.TR.privateAPIs.withdraw ([docs](https://docs.cryptoapis.io/rest-apis/trading-apis/private-apis/index#withdraw)))
+
+#### Arbitrage
+* caClient.TR.arbitrage.listAll ([docs](https://docs.cryptoapis.io/rest-apis/trading-apis/arbitrage/index#arbitrage))
+

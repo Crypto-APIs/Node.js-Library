@@ -5,6 +5,7 @@ const {DOGE} = require('./DOGE');
 const {ETC} = require('./ETC');
 const {ETH} = require('./ETH');
 const {LTC} = require('./LTC');
+const {ZIL} = require('./ZIL');
 
 class Blockchain {
 
@@ -16,6 +17,7 @@ class Blockchain {
         this.ETC = new ETC(...props);
         this.ETH = new ETH(...props);
         this.LTC = new LTC(...props);
+        this.ZIL = new ZIL(...props);
     }
 
     /**

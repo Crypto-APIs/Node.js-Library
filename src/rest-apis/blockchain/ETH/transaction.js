@@ -1,6 +1,6 @@
 const EthBaseTransaction = require('../../../common/blockchain/eth-base-transaction');
 
-class ETHransaction extends EthBaseTransaction {
+class ETHTransaction extends EthBaseTransaction {
 
     /**
      * Get Internal Transactions Endpoint
@@ -19,4 +19,4 @@ class ETHransaction extends EthBaseTransaction {
 
 }
 
-module.exports = ETHransaction;
+module.exports = ETHTransaction;

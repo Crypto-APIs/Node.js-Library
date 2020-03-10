@@ -223,21 +223,21 @@ NOTES:
 ### ZIL methods
 
 #### Blockchain methods
-* caClient.BC.XXX.blockchain.getInfo ([docs]())
-* caClient.BC.XXX.blockchain.getBlockByHash ([docs]())
-* caClient.BC.XXX.blockchain.getBlockByHeight ([docs]())
-* caClient.BC.XXX.blockchain.getLatestBlock ([docs]())
+* caClient.BC.XXX.blockchain.getInfo ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/zil/index#zil-chain-endpoint))
+* caClient.BC.XXX.blockchain.getBlockByHash ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/zil/index#zil-block-hash-endpoint))
+* caClient.BC.XXX.blockchain.getBlockByHeight ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/zil/index#zil-block-height-endpoint))
+* caClient.BC.XXX.blockchain.getLatestBlock ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/zil/index#zil-latest-block-endpoint))
 
 #### Addresses methods
-* caClient.BC.XXX.address.getInfo ([docs]())
-* caClient.BC.XXX.address.getTransactionsByAddress ([docs]())
-* caClient.BC.XXX.address.generateAddress ([docs]())
+* caClient.BC.XXX.address.getInfo ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/zil/index#zil-address-endpoint))
+* caClient.BC.XXX.address.getTransactionsByAddress ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/zil/index#zil-transactions-address-endpoint))
+* caClient.BC.XXX.address.generateAddress ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/zil/index#zil-generate-address-endpoint))
 
 #### Transaction methods
-* caClient.BC.XXX.transaction.getTransaction ([docs]())
-* caClient.BC.XXX.transaction.getTransactionsByBlock ([docs]())
-* caClient.BC.XXX.transaction.getTransactionByBlockNumber ([docs]())
-* caClient.BC.XXX.transaction.getTransactionByBlockHash ([docs]())
+* caClient.BC.XXX.transaction.getTransaction ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/zil/index#zil-transaction-hash-endpoint))
+* caClient.BC.XXX.transaction.getTransactionsByBlock ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/zil/index#zil-transaction-index-endpoint-by-index-limit-block-number))
+* caClient.BC.XXX.transaction.getTransactionByBlockNumber ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/zil/index#zil-transaction-index-endpoint-by-block-number))
+* caClient.BC.XXX.transaction.getTransactionByBlockHash ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/zil/index#zil-transaction-index-endpoint-by-block-hash))
 
 
 # Crypto Market Data APIs

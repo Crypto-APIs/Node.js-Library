@@ -73,7 +73,7 @@ It will print the following:
 
 ## List of all methods available
 NOTES: 
-* XXX - blockchain (BTC / BCH / LTC / DOGE / DASH / ETH / ETC)
+* XXX - blockchain (BTC / BCH / LTC / DOGE / DASH / ETH / ETC / ZIL)
 * doc links target BTC / ETH in our documentation to avoid repetition. For other blockchains refer to the corresponding parts in our [documentation](https://docs.cryptoapis.io/)
 
 ### BTC / BCH / LTC / DOGE / DASH methods
@@ -90,6 +90,7 @@ NOTES:
 * caClient.BC.XXX.address.generateAddress ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/btc/index#btc-address-generate-address-endpoint))
 * caClient.BC.XXX.address.getAddressTransactions ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/btc/index#btc-address-transactions-endpoint))
 * caClient.BC.XXX.address.multipleAddressesInfo ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/btc/index#btc-multiple-addresses-info-endpoint))
+* caClient.BC.XXX.address.getUnconfirmedByAddress ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/btc/index#btc-address-unconfirmed-transactions-endpoint))
 
 #### Wallets methods
 * caClient.BC.XXX.wallet.createWallet ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/btc/index#btc-wallet-create-wallet-endpoint))
@@ -122,6 +123,7 @@ NOTES:
 * caClient.BC.XXX.transaction.getTransactionsFee ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/btc/index#btc-transactions-fee-endpoint))
 * caClient.BC.XXX.transaction.getTransactionSize ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/btc/index#btc-transactions-size))
 * caClient.BC.XXX.transaction.refund ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/btc/index#btc-refund-transaction))
+* caClient.BC.XXX.transaction.getTransactionSizeForHDWallet ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/btc/index#btc-hd-wallet-transactions-size))
 
 #### Payment Forwarding methods
 * caClient.BC.XXX.paymentForwarding.createPaymentForwarding ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/btc/index#btc-payment-forwarding-create-payment-endpoint))
@@ -216,6 +218,26 @@ NOTES:
 * caClient.BC.XXX.webhook.listAllHooks ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/eth/index#eth-list-webhook-endpoint))
 * caClient.BC.XXX.webhook.deleteWebHook ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/eth/index#eth-delete-webhook-endpoints))
 * caClient.BC.XXX.webhook.deleteAllMyWebhooks ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/eth/index#eth-delete-all-webhooks-endpoints))
+
+
+### ZIL methods
+
+#### Blockchain methods
+* caClient.BC.XXX.blockchain.getInfo ([docs]())
+* caClient.BC.XXX.blockchain.getBlockByHash ([docs]())
+* caClient.BC.XXX.blockchain.getBlockByHeight ([docs]())
+* caClient.BC.XXX.blockchain.getLatestBlock ([docs]())
+
+#### Addresses methods
+* caClient.BC.XXX.address.getInfo ([docs]())
+* caClient.BC.XXX.address.getTransactionsByAddress ([docs]())
+* caClient.BC.XXX.address.generateAddress ([docs]())
+
+#### Transaction methods
+* caClient.BC.XXX.transaction.getTransaction ([docs]())
+* caClient.BC.XXX.transaction.getTransactionsByBlock ([docs]())
+* caClient.BC.XXX.transaction.getTransactionByBlockNumber ([docs]())
+* caClient.BC.XXX.transaction.getTransactionByBlockHash ([docs]())
 
 
 # Crypto Market Data APIs

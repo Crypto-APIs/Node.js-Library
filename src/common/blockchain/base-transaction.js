@@ -299,6 +299,31 @@ class BaseTransaction extends BaseChainComponent {
         return this.request.post(this.basePath + this.getSelectedNetwork() + '/txs/refund', data, queryParams);
     }
 
+    /**
+     * Transaction Size for HD Wallet
+     *
+     * @async
+     * @desc Using this endpoint you can get the approximate size of a transaction in HD wallet.
+     *
+     * @param {string} walletName
+     * @param {string} password
+     * @param {array} outputs
+     * @param {object} [optData] - Optional data.
+     * @param {object} [queryParams] - Additional query parameters.
+     *
+     * @returns {*|Promise|Promise<any>}
+     */
+    getTransactionSizeForHDWallet(walletName, password, outputs, optData = {}, queryParams = {}) {
+        const data = {
+            ...optData,
+            walletName,
+            password,
+            outputs,
+        };
+
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/wallets/hd/txs/size ', data, queryParams);
+    }
+
 }
 
 module.exports = BaseTransaction;

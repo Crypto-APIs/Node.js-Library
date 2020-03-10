@@ -1,3 +1,24 @@
+## 2020-03-10, Version 4.3.0
+
+#### Added:
+* Zilliqa (ZIL) - new blockchain (under development)
+    * `mainnet` only, `testnet` coming soon
+    * exposed endpoints so far:
+        * caClient.BC.ZIL.blockchain.getInfo
+        * caClient.BC.ZIL.blockchain.getBlockByHash
+        * caClient.BC.ZIL.blockchain.getBlockByHeight
+        * caClient.BC.ZIL.blockchain.getLatestBlock
+        * caClient.BC.ZIL.address.getInfo
+        * caClient.BC.ZIL.address.getTransactionsByAddress
+        * caClient.BC.ZIL.address.generateAddress
+        * caClient.BC.ZIL.transaction.getTransaction
+        * caClient.BC.ZIL.transaction.getTransactionsByBlock
+        * caClient.BC.ZIL.transaction.getTransactionByBlockNumber
+        * caClient.BC.ZIL.transaction.getTransactionByBlockHash
+* XXX (BTC / BCH / LTC / DASH / DOGE)
+    * caClient.BC.XXX.address.getUnconfirmedByAddress
+    * caClient.BC.XXX.transaction.getTransactionSizeForHDWallet
+
 ## 2019-12-27, Version 4.2.2
 
 #### Notable changes:

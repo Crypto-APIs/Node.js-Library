@@ -1,3 +1,14 @@
+## 2020-03-12, Version 4.4.0
+
+#### Notable changes:
+* README update - added all method arguments
+
+#### Bugfixes:
+* Added missing implementation for `listExchangesBySupportingAssets`, `listExchangesBySupportingPairs` and `listAllSymbolsSupportedInExchange`
+
+#### Removed:
+* Deprecated doc
+
 ## 2020-03-10, Version 4.3.0
 
 #### Added:

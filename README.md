@@ -68,13 +68,7 @@ It will print the following:
 }
 ```
 
-
-# Blockchain as a Service APIs
-
-## List of all methods available
-NOTES: 
-* XXX - blockchain (BTC / BCH / LTC / DOGE / DASH / ETH / ETC / ZIL)
-* doc links target BTC / ETH in our documentation to avoid repetition. For other blockchains refer to the corresponding parts in our [documentation](https://docs.cryptoapis.io/)
+### Usage notes
 * `required` arguments (e.g. `getBlockByHeight(blockHeight)` means the correct usage is `getBlockByHeight(567)`
 * `one of` arguments (e.g. `transferTokens(fromAddress, toAddress, contract, gasPrice, gasLimit, token, password/privateKey)` means the following are correct usages:
     1. `transferTokens(fromAddress, toAddress, contract, gasPrice, gasLimit, token, password)`
@@ -85,6 +79,13 @@ NOTES:
     3. `getAddressTransactions(address, {limit: 10})`
     4. `getAddressTransactions(address, {index: 1, limit: 10})`
 and if omitted, the default values are given in `= {index: 0, limit: 50}` meaning `getAddressTransactions(address)` implies `index: 0` and `limit: 50` unless specified otherwise via usages `ii`, `iii`, `iv`
+
+# Blockchain as a Service APIs
+
+## List of all methods available
+NOTES: 
+* XXX - blockchain (BTC / BCH / LTC / DOGE / DASH / ETH / ETC / ZIL)
+* doc links target BTC / ETH in our documentation to avoid repetition. For other blockchains refer to the corresponding parts in our [documentation](https://docs.cryptoapis.io/)
 
 ### BTC / BCH / LTC / DOGE / DASH methods
 
@@ -255,7 +256,7 @@ and if omitted, the default values are given in `= {index: 0, limit: 50}` meanin
 #### Metadata
 * caClient.CMD.meta.listAllExchanges(?{?skip, ?limit} = {skip: 0, limit: 50}) ([docs](https://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#list-all-exchanges))
 * caClient.CMD.meta.listExchangesBySupportingAssets(assetId, ?{?skip, ?limit} = {skip: 0, limit: 50}) ([docs](https://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#list-exchanges-by-supporting-assets))
-* caClient.CMD.meta.listExchangesBySupportingPairs(assetId_1, assetId_2, , ?{?skip, ?limit} = {skip: 0, limit: 50}) ([docs](https://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#list-exchanges-by-supporting-pairs))
+* caClient.CMD.meta.listExchangesBySupportingPairs(assetId_1, assetId_2, ?{?skip, ?limit} = {skip: 0, limit: 50}) ([docs](https://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#list-exchanges-by-supporting-pairs))
 * caClient.CMD.meta.listAllSymbolsSupportedInExchange(exchangeId, ?{?skip, ?limit} = {skip: 0, limit: 50}) ([docs](https://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#list-all-symbols-supported-in-exchange))
 * caClient.CMD.meta.listAllAssets(?{?skip, ?limit} = {skip: 0, limit: 50}) ([docs](https://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#list-all-assets))
 * caClient.CMD.meta.listAllSymbols(?{?skip, ?limit} = {skip: 0, limit: 50}) ([docs](https://docs.cryptoapis.io/rest-apis/crypto-market-data-apis/index#list-all-symbols))
@@ -305,14 +306,14 @@ and if omitted, the default values are given in `= {index: 0, limit: 50}` meanin
 * caClient.TR.exchangeAccounts.delete(accountId) ([docs](https://docs.cryptoapis.io/rest-apis/trading-apis/exchange-accounts/index#delete-account))
 
 #### Private APIs
-* caClient.TR.privateAPIs.listAllExchanges() ([docs](https://docs.cryptoapis.io/rest-apis/trading-apis/private-apis/index#list-all-exchanges)))
-* caClient.TR.privateAPIs.getBalance(accountId) ([docs](https://docs.cryptoapis.io/rest-apis/trading-apis/private-apis/index#balance)))
-* caClient.TR.privateAPIs.getDepositAddress(accountId, code) ([docs](https://docs.cryptoapis.io/rest-apis/trading-apis/private-apis/index#get-deposit-address)))
-* caClient.TR.privateAPIs.getMyTrades(accountId) ([docs](https://docs.cryptoapis.io/rest-apis/trading-apis/private-apis/index#get-my-trades)))
-* caClient.TR.privateAPIs.getOpenOrders(accountId) ([docs](https://docs.cryptoapis.io/rest-apis/trading-apis/private-apis/index#get-open-orders)))
-* caClient.TR.privateAPIs.createOrder(accountId, symbol, type, side, amount, price) ([docs](https://docs.cryptoapis.io/rest-apis/trading-apis/private-apis/index#create-order)))
-* caClient.TR.privateAPIs.cancelOrder(accountId, id) ([docs](https://docs.cryptoapis.io/rest-apis/trading-apis/private-apis/index#cancel-order)))
-* caClient.TR.privateAPIs.withdraw(accountId, code, amount, address) ([docs](https://docs.cryptoapis.io/rest-apis/trading-apis/private-apis/index#withdraw)))
+* caClient.TR.privateAPIs.listAllExchanges() ([docs](https://docs.cryptoapis.io/rest-apis/trading-apis/private-apis/index#list-all-exchanges))
+* caClient.TR.privateAPIs.getBalance(accountId) ([docs](https://docs.cryptoapis.io/rest-apis/trading-apis/private-apis/index#balance))
+* caClient.TR.privateAPIs.getDepositAddress(accountId, code) ([docs](https://docs.cryptoapis.io/rest-apis/trading-apis/private-apis/index#get-deposit-address))
+* caClient.TR.privateAPIs.getMyTrades(accountId) ([docs](https://docs.cryptoapis.io/rest-apis/trading-apis/private-apis/index#get-my-trades))
+* caClient.TR.privateAPIs.getOpenOrders(accountId) ([docs](https://docs.cryptoapis.io/rest-apis/trading-apis/private-apis/index#get-open-orders))
+* caClient.TR.privateAPIs.createOrder(accountId, symbol, type, side, amount, price) ([docs](https://docs.cryptoapis.io/rest-apis/trading-apis/private-apis/index#create-order))
+* caClient.TR.privateAPIs.cancelOrder(accountId, id) ([docs](https://docs.cryptoapis.io/rest-apis/trading-apis/private-apis/index#cancel-order))
+* caClient.TR.privateAPIs.withdraw(accountId, code, amount, address) ([docs](https://docs.cryptoapis.io/rest-apis/trading-apis/private-apis/index#withdraw))
 
 #### Arbitrage
 * caClient.TR.arbitrage.listAll() ([docs](https://docs.cryptoapis.io/rest-apis/trading-apis/arbitrage/index#arbitrage))

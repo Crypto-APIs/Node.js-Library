@@ -40,7 +40,7 @@ class Blockchain {
                             return this[bc].switchNetwork(this.ETH.NETWORKS.ROPSTEN);
                         }
                         if (bc === 'ETC') {
-                            return this[bc].switchNetwork(this.ETC.NETWORKS.MORDEN);
+                            return this[bc].switchNetwork(this.ETC.NETWORKS.MORDOR);
                         }
 
                         this[bc].switchNetwork(networkConfig);

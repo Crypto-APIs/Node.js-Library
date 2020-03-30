@@ -12,7 +12,8 @@ const Transaction = require('../../../common/blockchain/eth-base-transaction');
 const ID = 'etc';
 const NETWORKS = {
     MAINNET: 'mainnet',
-    MORDEN: 'morden',
+    MORDOR: 'mordor',
+    KOTTI: 'kotti',
 };
 
 class ETC extends BlockchainNetwork {

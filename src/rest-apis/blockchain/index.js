@@ -6,6 +6,7 @@ const {ETC} = require('./ETC');
 const {ETH} = require('./ETH');
 const {LTC} = require('./LTC');
 const {ZIL} = require('./ZIL');
+const {XRP} = require('./XRP');
 
 class Blockchain {
 
@@ -18,6 +19,7 @@ class Blockchain {
         this.ETH = new ETH(...props);
         this.LTC = new LTC(...props);
         this.ZIL = new ZIL(...props);
+        this.XRP = new XRP(...props);
     }
 
     /**

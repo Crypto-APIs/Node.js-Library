@@ -12,6 +12,7 @@ const ETC = require('./rest-apis/blockchains/ETC');
 const ETH = require('./rest-apis/blockchains/ETH');
 const LTC = require('./rest-apis/blockchains/LTC');
 const ZIL = require('./rest-apis/blockchains/ZIL');
+const XRP = require('./rest-apis/blockchains/XRP');
 
 (async function () {
     if (!process.argv[2]) {
@@ -34,4 +35,5 @@ const ZIL = require('./rest-apis/blockchains/ZIL');
     await ETH(caClient);
     await LTC(caClient);
     await ZIL(caClient);
+    await XRP(caClient);
 })();

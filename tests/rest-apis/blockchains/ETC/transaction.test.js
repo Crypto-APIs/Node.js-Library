@@ -1,7 +1,7 @@
 async function Transaction(caClient) {
     console.log('\n::ETC Transaction');
 
-    const txHash = '0x7a7f3afed522a106d4b1ea469352cf4ca128eacfbb70b9002c37db5db9ef5d01';
+    const txHash = '0x9bdfc6a9f315a8841699a2754eab5deacc3e35c4c86f239069b566ca31264eca';
 
     const transaction = await caClient.BC.ETC.transaction.getTransaction(txHash).then(response => response ? response.payload : null);
 
@@ -12,8 +12,8 @@ async function Transaction(caClient) {
         await caClient.BC.ETC.transaction.getTransactionByBlockHash(transaction.block_hash, transaction.index);
     }
 
-    const from = '0x7857af2143cb06ddc1dab5d7844c9402e89717cb';
-    const to = '0xc595B20EEC3d35E8f993d79262669F3ADb6328f7';
+    const from = '0xD76fF6e847d4BE1A12Cae03Bf9992D61E4DE1340';
+    const to = '0x1Dd64259174527Acc37C145Ea53c7E473b440E6A';
     const value = 0.01;
 
     await caClient.BC.ETC.transaction.estimateTransactionGas(from, to, value);

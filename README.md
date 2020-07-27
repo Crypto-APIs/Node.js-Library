@@ -84,7 +84,7 @@ and if omitted, the default values are given in `= {index: 0, limit: 50}` meanin
 
 ## List of all methods available
 NOTES: 
-* XXX - blockchain (BTC / BCH / LTC / DOGE / DASH / ETH / ETC / ZIL)
+* XXX - blockchain (BTC / BCH / LTC / DOGE / DASH / ETH / ETC / ZIL, XRP)
 * doc links target BTC / ETH in our documentation to avoid repetition. For other blockchains refer to the corresponding parts in our [documentation](https://docs.cryptoapis.io/)
 
 ### BTC / BCH / LTC / DOGE / DASH methods
@@ -143,13 +143,13 @@ NOTES:
 * caClient.BC.XXX.paymentForwarding.deletePayment(paymentID) ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/btc/index#btc-payment-forwarding-delete-payment-endpoints))
 
 #### Webhook methods
-* caClient.BC.XXX.webhook.createNewBlockWebHook(callbackURL) ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/btc/index#btc-webhooks-create-new-block-webhook-endpoint))
-* caClient.BC.XXX.webhook.createConfirmedTransactionWebHook(callbackURL, transaction, confirmations) ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/btc/index#btc-webhooks-create-confirmed-transaction-webhook-endpoint))
-* caClient.BC.XXX.webhook.createAddressTransactionWebHook(callbackURL, address, confirmations) ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/btc/index#btc-webhooks-create-address-transaction-webhook-endpoint))
-* caClient.BC.XXX.webhook.createTransactionConfirmationsWebHook(callbackURL, address, confirmations) ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/btc/index#btc-webhooks-create-transaction-confirmations-webhook-endpoint))
-* (``BTC only``) caClient.BC.XXX.webhook.createOmniConfirmedTransactionWebHook(callbackURL, transaction, confirmations) ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/btc/index#btc-webhooks-create-omni-confirmed-transaction-webhook-endpoint))
-* (``BTC only``) caClient.BC.XXX.webhook.createOmniTransactionConfirmationsWebHook(callbackURL, address, confirmations) ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/btc/index#btc-webhooks-create-omni-transaction-confirmations-webhook-endpoint))
-* (``BTC only``) caClient.BC.XXX.webhook.createOmniTokenWebHook(callbackURL, address, confirmations) ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/btc/index#btc-webhooks-create-omni-token-webhook-endpoint))
+* caClient.BC.XXX.webhook.createNewBlockWebHook(callbackURL, ?{allowDuplicate} = {allowDuplicate: false}) ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/btc/index#btc-webhooks-create-new-block-webhook-endpoint))
+* caClient.BC.XXX.webhook.createConfirmedTransactionWebHook(callbackURL, transaction, confirmations, ?{allowDuplicate} = {allowDuplicate: false}) ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/btc/index#btc-webhooks-create-confirmed-transaction-webhook-endpoint))
+* caClient.BC.XXX.webhook.createAddressTransactionWebHook(callbackURL, address, confirmations, ?{allowDuplicate} = {allowDuplicate: false}) ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/btc/index#btc-webhooks-create-address-transaction-webhook-endpoint))
+* caClient.BC.XXX.webhook.createTransactionConfirmationsWebHook(callbackURL, address, confirmations, ?{allowDuplicate} = {allowDuplicate: false}) ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/btc/index#btc-webhooks-create-transaction-confirmations-webhook-endpoint))
+* (``BTC only``) caClient.BC.XXX.webhook.createOmniConfirmedTransactionWebHook(callbackURL, transaction, confirmations, ?{allowDuplicate} = {allowDuplicate: false}) ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/btc/index#btc-webhooks-create-omni-confirmed-transaction-webhook-endpoint))
+* (``BTC only``) caClient.BC.XXX.webhook.createOmniTransactionConfirmationsWebHook(callbackURL, address, confirmations, ?{allowDuplicate} = {allowDuplicate: false}) ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/btc/index#btc-webhooks-create-omni-transaction-confirmations-webhook-endpoint))
+* (``BTC only``) caClient.BC.XXX.webhook.createOmniTokenWebHook(callbackURL, address, confirmations, ?{?allowDuplicate, ?everyConfirmation} = {allowDuplicate: false, everyConfirmation: false}}) ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/btc/index#btc-webhooks-create-omni-token-webhook-endpoint))
 * caClient.BC.XXX.webhook.listAllHooks() ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/btc/index#btc-webhooks-list-webhooks-endpoint))
 * caClient.BC.XXX.webhook.deleteWebHook(webhookID) ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/btc/index#btc-webhooks-delete-webhook-endpoint))
 * caClient.BC.XXX.webhook.deleteAllMyWebhooks() ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/btc/index#btc-webhooks-delete-all-webhooks-endpoint))
@@ -206,6 +206,7 @@ NOTES:
 #### Contract methods
 * caClient.BC.XXX.contract.estimateSmartContractGas() ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/eth/index#eth-estimate-gas-smart-contract-endpoint))
 * caClient.BC.XXX.contract.deploySmartContract(privateKey, fromAddress, gasPrice, gasLimit, byteCode) ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/eth/index#eth-deploy-smart-contract-endpoint))
+* (``ETH only``) caClient.BC.XXX.contract.getContractGasPrice() ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/eth/index#eth-contract-gas-price-endpoint))
 
 #### Tokens methods
 * caClient.BC.XXX.token.getAddressTokenBalance(address, contract) ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/eth/index#eth-get-token-balance))
@@ -213,6 +214,7 @@ NOTES:
 * (``ETH only``) caClient.BC.XXX.token.getTokenTransactionsByAddress(address, ?{?limit} = {limit: 50}) ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/eth/index#eth-get-address-token-transactions))
 * (``ETH only``) caClient.BC.XXX.token.getAddressTokenTransfers(address, ?{?limit} = {limit: 50}) ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/eth/index#eth-get-address-token-transfers))
 * caClient.BC.XXX.token.getTokenTotalSupplyAndDecimals(contract) ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/eth/index#eth-get-token-total-supply))
+* (``ETH only``) caClient.BC.XXX.token.estimateTokenTransactionGasLimit() ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/eth/index#eth-estimate-token-transaction-gas-limit-endpoint))
 
 #### Payment Forwarding methods
 * caClient.BC.XXX.paymentForwarding.createPaymentForwarding(from, to, callbackURL, wallet, password, confirmations, ?{?fee} = {fee: null}) ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/eth/index#eth-create-payment-forwarding))
@@ -221,11 +223,11 @@ NOTES:
 * caClient.BC.XXX.paymentForwarding.listPaymentsHistory() ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/eth/index#eth-list-payment-forwarding-history))
 
 #### Webhook methods
-* caClient.BC.XXX.webhook.createNewBlockWebHook(callbackURL) ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/eth/index#eth-create-webhook-endpoint))
-* caClient.BC.XXX.webhook.createConfirmedTransactionWebHook(callbackURL, transaction, confirmations) ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/eth/index#eth-create-webhook-endpoint))
-* caClient.BC.XXX.webhook.createAddressTransactionWebHook(callbackURL, address, confirmations) ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/eth/index#eth-create-webhook-endpoint))
-* caClient.BC.XXX.webhook.createTransactionConfirmationsWebHook(callbackURL, address, confirmations) ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/eth/index#eth-create-webhook-endpoint))
-* (``ETH only``) caClient.BC.XXX.webhook.createTokenWebHook(callbackURL, address, confirmations) ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/eth/index#eth-create-webhook-endpoint))
+* caClient.BC.XXX.webhook.createNewBlockWebHook(callbackURL, ?{allowDuplicate} = {allowDuplicate: false}) ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/eth/index#eth-create-webhook-endpoint))
+* caClient.BC.XXX.webhook.createConfirmedTransactionWebHook(callbackURL, transaction, confirmations, ?{allowDuplicate} = {allowDuplicate: false}) ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/eth/index#eth-create-webhook-endpoint))
+* caClient.BC.XXX.webhook.createAddressTransactionWebHook(callbackURL, address, confirmations, ?{allowDuplicate} = {allowDuplicate: false}) ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/eth/index#eth-create-webhook-endpoint))
+* caClient.BC.XXX.webhook.createTransactionConfirmationsWebHook(callbackURL, address, confirmations, ?{allowDuplicate} = {allowDuplicate: false}) ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/eth/index#eth-create-webhook-endpoint))
+* (``ETH only``) caClient.BC.XXX.webhook.createTokenWebHook(callbackURL, address, confirmations, ?{?allowDuplicate, ?everyConfirmation} = {allowDuplicate: false, everyConfirmation: false}}) ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/eth/index#eth-create-webhook-endpoint))
 * caClient.BC.XXX.webhook.listAllHooks() ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/eth/index#eth-list-webhook-endpoint))
 * caClient.BC.XXX.webhook.deleteWebHook(webhookID) ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/eth/index#eth-delete-webhook-endpoints))
 * caClient.BC.XXX.webhook.deleteAllMyWebhooks() ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/eth/index#eth-delete-all-webhooks-endpoints))
@@ -249,6 +251,35 @@ NOTES:
 * caClient.BC.XXX.transaction.getTransactionsByBlock(block, ?{?index, ?limit} = {index: 0, limit: 50}) ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/zil/index#zil-transaction-index-endpoint-by-index-limit-block-number))
 * caClient.BC.XXX.transaction.getTransactionByBlockNumber(blockNumber, txIndex) ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/zil/index#zil-transaction-index-endpoint-by-block-number))
 * caClient.BC.XXX.transaction.getTransactionByBlockHash(blockHash, txIndex) ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/zil/index#zil-transaction-index-endpoint-by-block-hash))
+
+
+### XRP methods
+
+#### Blockchain methods
+* caClient.BC.XXX.blockchain.getInfo() ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/xrp/index#xrp-chain-endpoint))
+* caClient.BC.XXX.blockchain.getBlockByHash(blockHash) ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/xrp/index#xrp-block-hash-endpoint))
+* caClient.BC.XXX.blockchain.getBlockByHeight(blockHeight) ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/xrp/index#xrp-block-height-endpoint))
+* caClient.BC.XXX.blockchain.getLatestBlock() ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/xrp/index#xrp-latest-block-endpoint))
+
+#### Addresses methods
+* caClient.BC.XXX.address.getInfo(address) ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/xrp/index#xrp-address-endpoint))
+* caClient.BC.XXX.address.getAddressTransactions(address, ?{?index, ?limit} = {index: 0, limit: 50}) ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/xrp/index#xrp-transactions-address-endpoint))
+* caClient.BC.XXX.address.generateAddress() ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/xrp/index#xrp-generate-address-endpoint))
+
+#### Transaction methods
+* caClient.BC.XXX.transaction.getTransaction(txHash) ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/xrp/index#xrp-transaction-hash-endpoint))
+* caClient.BC.XXX.transaction.getTransactionsByBlock(block, ?{?index, ?limit} = {index: 0, limit: 50}) ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/xrp/index#xrp-transaction-index-endpoint-by-index-limit-block-number))
+* caClient.BC.XXX.transaction.getTransactionByBlockNumber(blockNumber, txIndex) ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/xrp/index#xrp-transaction-index-endpoint-by-block-number))
+* caClient.BC.XXX.transaction.getTransactionByBlockHash(blockHash, txIndex) ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/xrp/index#xrp-transaction-index-endpoint-by-block-hash))
+* caClient.BC.XXX.transaction.pushTransaction(hex) ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/xrp/index#xrp-transactions-send-transactions))
+
+#### Webhook methods
+* caClient.BC.XXX.webhook.createNewBlockWebHook(callbackURL, ?{allowDuplicate} = {allowDuplicate: false}) ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/xrp/index#xrp-create-webhook-endpoint))
+* caClient.BC.XXX.webhook.createAddressTransactionWebHook(callbackURL, address, confirmations, ?{allowDuplicate} = {allowDuplicate: false}) ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/xrp/index#xrp-create-webhook-endpoint))
+* caClient.BC.XXX.webhook.createTransactionConfirmationsWebHook(callbackURL, address, confirmations, ?{allowDuplicate} = {allowDuplicate: false}) ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/xrp/index#xrp-create-webhook-endpoint))
+* caClient.BC.XXX.webhook.listAllHooks() ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/btc/index#btc-webhooks-list-webhooks-endpoint))
+* caClient.BC.XXX.webhook.deleteWebHook(webhookID) ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/btc/index#btc-webhooks-delete-webhook-endpoint))
+* caClient.BC.XXX.webhook.deleteAllMyWebhooks() ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/xrp/index#xrp-delete-all-webhooks-endpoints))
 
 
 # Crypto Market Data APIs

@@ -1,3 +1,48 @@
+## 2020-07-27, Version 4.5.0
+
+#### Added:
+* Ripple (XRP) - new blockchain (under development)
+    * exposed endpoints so far:
+        * caClient.BC.XRP.blockchain.getInfo
+        * caClient.BC.XRP.blockchain.getBlockByHash
+        * caClient.BC.XRP.blockchain.getBlockByHeight
+        * caClient.BC.XRP.blockchain.getLatestBlock
+        * caClient.BC.XRP.address.getInfo
+        * caClient.BC.XRP.address.getTransactionsByAddress
+        * caClient.BC.XRP.address.generateAddress
+        * caClient.BC.XRP.transaction.getTransaction
+        * caClient.BC.XRP.transaction.getTransactionsByBlock
+        * caClient.BC.XRP.transaction.getTransactionByBlockNumber
+        * caClient.BC.XRP.transaction.getTransactionByBlockHash
+        * caClient.BC.XRP.transaction.pushTransaction
+        * caClient.BC.XRP.webhook.createNewBlockWebHook
+        * caClient.BC.XRP.webhook.createAddressTransactionWebHook
+        * caClient.BC.XRP.webhook.createTransactionConfirmationsWebHook
+        * caClient.BC.XRP.webhook.listAllHooks
+        * caClient.BC.XRP.webhook.deleteWebHook
+        * caClient.BC.XRP.webhook.deleteAllMyWebhooks
+* ETH
+    * caClient.BC.XXX.token.estimateTokenTransactionGasLimit
+    * caClient.BC.XXX.contract.getContractGasPrice
+
+#### Notable changes:
+* XXX - Webhook creation related methods now support an additional optional parameter `allowDuplicate`. Methods affected:    * caClient.BC.XXX.webhook.createNewBlockWebHook
+    * caClient.BC.XXX.webhook.createConfirmedTransactionWebHook
+    * caClient.BC.XXX.webhook.createAddressTransactionWebHook
+    * caClient.BC.XXX.webhook.createTransactionConfirmationsWebHook
+    * (``BTC only``) caClient.BC.XXX.webhook.createOmniConfirmedTransactionWebHook
+    * (``BTC only``) caClient.BC.XXX.webhook.createOmniTransactionConfirmationsWebHook
+    * (``BTC only``) caClient.BC.XXX.webhook.createOmniTokenWebHook
+    * (``ETH only``) caClient.BC.XXX.webhook.createTokenWebHook
+* BCH
+    * caClient.BC.BCH.webhook.createAddressTransactionWebHook - supports both **q Address** and **Legacy Address** formats ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/bch/index#webhook-types))
+    * caClient.BC.BCH.webhook.createTransactionConfirmationsWebHook - supports both **q Address** and **Legacy Address** formats ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/bch/index#webhook-types))
+* BTC
+    * createOmniTokenWebHook now accepts an optional parameter `everyConfirmation` ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/eth/index#eth-create-webhook-endpoint))
+* ETH
+    * createTokenWebHook now accepts an optional parameter `everyConfirmation` ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/eth/index#eth-create-webhook-endpoint))
+* **[NOTICE]**: You can view the latest method signatures updated in the [README](./README.md) 
+
 ## 2020-03-12, Version 4.4.0
 
 #### Notable changes:

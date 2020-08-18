@@ -218,6 +218,7 @@ NOTES:
 
 #### Payment Forwarding methods
 * caClient.BC.XXX.paymentForwarding.createPaymentForwarding(from, to, callbackURL, wallet, password, confirmations, ?{?fee} = {fee: null}) ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/eth/index#eth-create-payment-forwarding))
+* (``ETH only``) caClient.BC.XXX.paymentForwarding.createPaymentForwardingWithPrivateKey(from, to, callbackURL, privateKey, confirmations, ?{?gasPrice, ?gasLimit} = {gasPrice: null, gasLimit: null}) ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/eth/index#eth-create-payment-forwarding))
 * caClient.BC.XXX.paymentForwarding.deletePayment(paymentID) ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/eth/index#eth-delete-payment-forwarding))
 * caClient.BC.XXX.paymentForwarding.listPayments() ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/eth/index#eth-list-payment-forwarding))
 * caClient.BC.XXX.paymentForwarding.listPaymentsHistory() ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/eth/index#eth-list-payment-forwarding-history))

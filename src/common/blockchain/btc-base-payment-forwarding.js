@@ -12,7 +12,7 @@ class BtcBasePaymentForwarding extends BasePaymentForwarding {
      *
      * @param {string} from - Address in blockchain.
      * @param {string} to - Address in blockchain.
-     * @param {string} callbackURL - Callback url addres that will be called after forwarding is processed.
+     * @param {string} callbackURL - Callback url address that will be called after forwarding is processed.
      * @param {string} wallet - Wallet created by current USER_ID.
      * @param {string} password - Wallet password.
      * @param {number} confirmations - After how many confirmations to execute the payment forwarding.

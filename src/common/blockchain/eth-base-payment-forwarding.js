@@ -12,7 +12,7 @@ class EthBasePaymentForwarding extends BasePaymentForwarding {
      *
      * @param {string} from - Address in blockchain.
      * @param {string} to - Address in blockchain.
-     * @param {string} callbackURL - Callback url addres that will be called after forwarding is processed.
+     * @param {string} callbackURL - Callback url address that will be called after forwarding is processed.
      * @param {string} wallet - Wallet created by current USER_ID.
      * @param {string} password - Wallet password.
      * @param {number} confirmations - After how many confirmations to execute the payment forwarding.
@@ -37,6 +37,43 @@ class EthBasePaymentForwarding extends BasePaymentForwarding {
             callback: callbackURL,
             wallet: wallet,
             password: password,
+            confirmations: confirmations,
+        };
+
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/payments', data, queryParams);
+    }
+
+    /**
+     * Create Payment Endpoint.
+     *
+     * @async
+     * @desc First, to create an payment forwarding address, you need to POST a partially filled PaymentForward object
+     *      to the payment creation endpoint. You need to include the following data: - from - to - callback (url) - from address private key - confirmations
+     *
+     * @param {string} from - Address in blockchain.
+     * @param {string} to - Address in blockchain.
+     * @param {string} callbackURL - Callback url address that will be called after forwarding is processed.
+     * @param {string} privateKey - Private key for the from address.
+     * @param {number} confirmations - After how many confirmations to execute the payment forwarding.
+     * @param {object} [optData] - Optional data.
+     * @param {object} [queryParams] - Additional query parameters.
+     *
+     * @returns {*|Promise<any | never>}
+     */
+    createPaymentForwardingWithPrivateKey(from, to, callbackURL, privateKey, confirmations, optData = {}, queryParams = {}) {
+        let data = {
+        };
+
+        Object.keys(optData).map(k => {
+            data[k] = optData[k];
+        });
+
+        data = {
+            ...data,
+            from: from,
+            to: to,
+            callback: callbackURL,
+            privateKey: privateKey,
             confirmations: confirmations,
         };
 

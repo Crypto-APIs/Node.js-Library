@@ -321,7 +321,7 @@ class BaseTransaction extends BaseChainComponent {
             outputs,
         };
 
-        return this.request.post(this.basePath + this.getSelectedNetwork() + '/wallets/hd/txs/size ', data, queryParams);
+        return this.request.post(this.basePath + this.getSelectedNetwork() + '/wallets/hd/txs/size', data, queryParams);
     }
 
 }

@@ -1,3 +1,9 @@
+## 2020-08-26, Version 4.6.1
+
+#### Bugfixes:
+* Correct path for `getTransactionSizeForHDWallet`
+
+
 ## 2020-07-27, Version 4.5.0
 
 #### Added:

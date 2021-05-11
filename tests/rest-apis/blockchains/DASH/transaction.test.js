@@ -7,6 +7,7 @@ async function Transaction(caClient) {
 
     if (transactions && transactions.length) {
         const txId = transactions[0].txid;
+        await caClient.BC.DASH.transaction.getBasicTransaction(txId).then(response => response ? response.payload : null);
         await caClient.BC.DASH.transaction.getTransaction(txId);
     }
 

@@ -1,3 +1,9 @@
+## 2021-05-11, Version 4.7.0
+
+#### Added:
+* Added `getBasicTransaction` endpoint to BTC-based endpoints
+    * caClient.BC.XXX.transaction.getBasicTransaction
+
 ## 2020-08-26, Version 4.6.1
 
 #### Bugfixes:

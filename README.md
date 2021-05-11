@@ -123,6 +123,7 @@ NOTES:
 
 #### Transaction methods
 * caClient.BC.XXX.transaction.getTransaction(txID) ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/btc/index#btc-transactions-transaction-txid-endpoint))
+* caClient.BC.XXX.transaction.getBasicTransaction(txID) ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/btc/index#btc-basic-transaction-txid-endpoint))
 * caClient.BC.XXX.transaction.getTransactionIndexByBlock(block, ?{?index, ?limit} = {index: 0, limit: 1}) ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/btc/index#btc-transactions-transaction-by-block-endpoint))
 * caClient.BC.XXX.transaction.getUnconfirmedTransactions(?{?index, ?limit} = {index: 0, limit: 100}) ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/btc/index#btc-transactions-unconfirmed-transactions-endpoint))
 * caClient.BC.XXX.transaction.decodeRawTransaction(hex) ([docs](https://docs.cryptoapis.io/rest-apis/blockchain-as-a-service-apis/btc/index#btc-transactions-decode-raw-transaction-endpoint))

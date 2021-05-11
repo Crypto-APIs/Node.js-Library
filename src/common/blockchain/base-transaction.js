@@ -18,6 +18,21 @@ class BaseTransaction extends BaseChainComponent {
     }
 
     /**
+     * Basic Transaction Details By Transaction ID
+     *
+     * @async
+     * @desc The Basic Transaction By Txid Endpoint returns basic information about a given transaction based on its id.
+     *
+     * @param {string} txID - Id of the transaction in blockchain.
+     * @param {object} [queryParams] - Additional query parameters.
+     *
+     * @returns {*|Promise<any | never>}
+     */
+    getBasicTransaction(txID, queryParams = {}) {
+        return this.request.get(this.basePath + this.getSelectedNetwork() + '/txs/basic/txid/' + txID, queryParams);
+    }
+
+    /**
      * Transactions Block Endpoint
      *
      * @async

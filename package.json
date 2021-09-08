@@ -1,7 +1,7 @@
 {
   "name": "cryptoapis.io",
-  "version": "4.7.0",
-  "description": "Crypto APIs SDK",
+  "version": "4.7.1",
+  "description": "Crypto APIs 1.0 SDK",
   "main": "src/index.js",
   "scripts": {
     "test": "node tests/index.js"

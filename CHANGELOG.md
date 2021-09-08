@@ -1,3 +1,8 @@
+## 2021-09-08, Version 4.7.1
+
+#### Notable changes:
+* README update - updated package description
+
 ## 2021-05-11, Version 4.7.0
 
 #### Added:

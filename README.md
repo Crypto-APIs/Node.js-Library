@@ -1,3 +1,37 @@
+# ⚠️ SDK Deprecation Notice
+
+> **Status:** Archived & Deprecated  
+> **Effective Date:** 1st April, 2025
+
+---
+
+This SDK has been officially **deprecated** and is no longer actively maintained or updated.
+
+To give you more flexibility, we recommend generating your own SDK using our official **OpenAPI specification**, available for download from the Crypto APIs Developer Portal:
+
+👉 [https://developers.cryptoapis.io/](https://developers.cryptoapis.io/)
+
+---
+
+## 💡 Recommended Approach
+
+You can easily generate SDKs in most major programming languages using tools such as:
+
+- [OpenAPI Generator](https://openapi-generator.tech/)
+- [Swagger Codegen](https://swagger.io/tools/swagger-codegen/)
+
+Simply use our OpenAPI JSON to create SDKs tailored to your specific needs.
+
+---
+
+This repository will remain available for reference but is no longer supported.
+
+For questions, please contact us via our official support channels.
+
+---
+
+_Thank you for your understanding and for building with Crypto APIs!_
+
 ## Previous version of this doc [here](./README--deprecated.md)
 
 JavaScript SDK for [CryptoAPIs.io](https://cryptoapis.io/)
